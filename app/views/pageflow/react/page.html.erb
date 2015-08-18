@@ -1,0 +1,4 @@
+<% if page.template.present? %>
+  <% component_name = Pageflow.config.page_types.find_by_name!(page.template).component_name %>
+  <% concat React::ServerRendering.render(component_name, {page: configuration.reduce({}) { |result, (key, value)| result[key.camelize(:lower)] = value; result }}, true) %>
+<% end %>
