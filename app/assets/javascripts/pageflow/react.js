@@ -85,6 +85,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _componentsPage_backgroundJsx2 = _interopRequireDefault(_componentsPage_backgroundJsx);
 
+	var _componentsPage_shadowJsx = __webpack_require__(37);
+
+	var _componentsPage_shadowJsx2 = _interopRequireDefault(_componentsPage_shadowJsx);
+
 	var _componentsPage_contentJsx = __webpack_require__(8);
 
 	var _componentsPage_contentJsx2 = _interopRequireDefault(_componentsPage_contentJsx);
@@ -92,6 +96,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _componentsPage_headerJsx = __webpack_require__(9);
 
 	var _componentsPage_headerJsx2 = _interopRequireDefault(_componentsPage_headerJsx);
+
+	var _componentsPage_textJsx = __webpack_require__(38);
+
+	var _componentsPage_textJsx2 = _interopRequireDefault(_componentsPage_textJsx);
 
 	var _componentsBackground_imageJsx = __webpack_require__(10);
 
@@ -133,8 +141,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    Page: _componentsPageJsx2['default'],
 	    PageWrapper: _componentsPage_wrapperJsx2['default'],
 	    PageBackground: _componentsPage_backgroundJsx2['default'],
+	    PageShadow: _componentsPage_shadowJsx2['default'],
 	    PageContent: _componentsPage_contentJsx2['default'],
 	    PageHeader: _componentsPage_headerJsx2['default'],
+	    PageText: _componentsPage_textJsx2['default'],
 	    BackgroundImage: _componentsBackground_imageJsx2['default'],
 	    PageBackgroundImage: _componentsPage_background_imageJsx2['default'],
 
@@ -210,6 +220,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        page: _utilsCamelize2['default'].keys(configuration.attributes),
 	        pageHooks: this.pageHooks
 	      }), pageElement[0]);
+
+	      pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
 	    }
 	  };
 	};
@@ -2657,6 +2669,120 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports['default'] = (0, _create_page_componentJsx2['default'])(LazyBackgroundImage);
 	module.exports = exports['default'];
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var PageShadow = (function (_React$Component) {
+	  _inherits(PageShadow, _React$Component);
+
+	  function PageShadow() {
+	    _classCallCheck(this, PageShadow);
+
+	    _get(Object.getPrototypeOf(PageShadow.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(PageShadow, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "shadow_wrapper" },
+	        _react2["default"].createElement("div", { className: "shadow", style: this.style() })
+	      );
+	    }
+	  }, {
+	    key: "style",
+	    value: function style() {
+	      if ('gradientOpacity' in this.props.page) {
+	        return {
+	          opacity: this.props.page.gradientOpacity / 100
+	        };
+	      }
+	    }
+	  }]);
+
+	  return PageShadow;
+	})(_react2["default"].Component);
+
+	exports["default"] = PageShadow;
+	;
+	module.exports = exports["default"];
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(2);
+
+	var PageText = (function (_Component) {
+	  _inherits(PageText, _Component);
+
+	  function PageText() {
+	    _classCallCheck(this, PageText);
+
+	    _get(Object.getPrototypeOf(PageText.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(PageText, [{
+	    key: "render",
+	    value: function render() {
+	      return React.createElement(
+	        "div",
+	        { className: "contentText" },
+	        React.createElement("p", { dangerouslySetInnerHTML: this.text() })
+	      );
+	    }
+	  }, {
+	    key: "text",
+	    value: function text() {
+	      return { __html: this.props.page.text };
+	    }
+	  }]);
+
+	  return PageText;
+	})(_react.Component);
+
+	exports["default"] = PageText;
+	;
+
+	exports["default"] = PageText;
+	module.exports = exports["default"];
 
 /***/ }
 /******/ ]);

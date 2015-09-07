@@ -42,6 +42,8 @@ export default function(Component) {
         page: camelize.keys(configuration.attributes),
         pageHooks: this.pageHooks
       }), pageElement[0]);
+
+      pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
     }
   };
 };

@@ -7,8 +7,10 @@ import mutate from './mutate';
 import Page from './components/page.jsx';
 import PageWrapper from './components/page_wrapper.jsx';
 import PageBackground from './components/page_background.jsx';
+import PageShadow from './components/page_shadow.jsx';
 import PageContent from './components/page_content.jsx';
 import PageHeader from './components/page_header.jsx';
+import PageText from './components/page_text.jsx';
 import BackgroundImage from './components/background_image.jsx';
 import PageBackgroundImage from './components/page_background_image.jsx';
 import PageLink from './components/page_link.jsx';
@@ -36,8 +38,10 @@ export default {
     Page,
     PageWrapper,
     PageBackground,
+    PageShadow,
     PageContent,
     PageHeader,
+    PageText,
     BackgroundImage,
     PageBackgroundImage,
 

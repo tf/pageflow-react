@@ -3,18 +3,6 @@ import BackgroundImage from 'components/background_image.jsx';
 import renderComponent from '../support/render_component';
 
 describe('BackgroundImage', () => {
-  it('has background class css', () => {
-    var backgroundImage = renderComponent(BackgroundImage, {imageFileId: 5});
-
-    expect(backgroundImage.props.className.split(' ')).to.contain('background');
-  });
-
-  it('has background_image css class', () => {
-    var backgroundImage = renderComponent(BackgroundImage, {imageFileId: 5});
-
-    expect(backgroundImage.props.className.split(' ')).to.contain('background_image');
-  });
-
   it('has image file css class', () => {
     var backgroundImage = renderComponent(BackgroundImage, {imageFileId: 5});
 
