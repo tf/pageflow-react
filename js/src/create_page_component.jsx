@@ -20,7 +20,11 @@ export default function(Component) {
 
         deactivating: () => {
           trigger('pageDidDeactivate');
-        }
+        },
+
+        resize: () => {
+          trigger('pageDidResize');
+        },
       }, this);
 
       function trigger(name, options) {

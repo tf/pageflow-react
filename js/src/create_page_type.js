@@ -36,6 +36,10 @@ export default function(Component) {
       this._pageHooks.trigger('deactivated');
     },
 
+    resize() {
+      this._pageHooks.trigger('resize');
+    },
+
     update(pageElement, configuration) {
       this._render(pageElement, configuration.attributes);
       pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);

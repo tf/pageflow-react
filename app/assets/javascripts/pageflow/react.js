@@ -187,41 +187,48 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    scroller: false,
 
 	    enhance: function enhance(pageElement, configuration) {
-	      this.pageHooks = _underscore2['default'].extend({}, _backbone.Events);
+	      this._pageHooks = _underscore2['default'].extend({}, _backbone.Events);
+	      this._isPreloaded = false;
 
-	      _react2['default'].render(_react2['default'].createElement(Component, {
-	        page: _utilsCamelize2['default'].keys(configuration),
-	        pageHooks: this.pageHooks
-	      }), pageElement[0]);
+	      this._render(pageElement, configuration);
 	    },
 
-	    preload: function preload() {
-	      this.pageHooks.trigger('preload');
+	    preload: function preload(pageElement, configuration) {
+	      this._isPreloaded = true;
+	      this._render(pageElement, configuration);
 	    },
 
 	    activating: function activating(elelement, configuration, options) {
-	      this.pageHooks.trigger('activating', options);
+	      this._pageHooks.trigger('activating', options);
 	    },
 
 	    activated: function activated() {
-	      this.pageHooks.trigger('activated');
+	      this._pageHooks.trigger('activated');
 	    },
 
 	    deactivating: function deactivating() {
-	      this.pageHooks.trigger('deactivating');
+	      this._pageHooks.trigger('deactivating');
 	    },
 
 	    deactivated: function deactivated() {
-	      this.pageHooks.trigger('deactivated');
+	      this._pageHooks.trigger('deactivated');
+	    },
+
+	    resize: function resize() {
+	      this._pageHooks.trigger('resize');
 	    },
 
 	    update: function update(pageElement, configuration) {
-	      _react2['default'].render(_react2['default'].createElement(Component, {
-	        page: _utilsCamelize2['default'].keys(configuration.attributes),
-	        pageHooks: this.pageHooks
-	      }), pageElement[0]);
-
+	      this._render(pageElement, configuration.attributes);
 	      pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
+	    },
+
+	    _render: function _render(pageElement, configuration) {
+	      _react2['default'].render(_react2['default'].createElement(Component, {
+	        page: _utilsCamelize2['default'].keys(configuration),
+	        pageHooks: this._pageHooks,
+	        isPreloaded: this._isPreloaded
+	      }), pageElement[0]);
 	    }
 	  };
 	};
@@ -289,10 +296,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        var component = this.refs.component;
 
 	        this.context.pageHooks.on({
-	          preload: function preload() {
-	            trigger('pageWillPreload');
-	          },
-
 	          activating: function activating(options) {
 	            trigger('pageWillActivate', options);
 	          },
@@ -303,6 +306,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	          deactivating: function deactivating() {
 	            trigger('pageDidDeactivate');
+	          },
+
+	          resize: function resize() {
+	            trigger('pageDidResize');
 	          }
 	        }, this);
 
@@ -634,6 +641,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _underscore2 = _interopRequireDefault(_underscore);
 
+	/**
+	 * Display an element with a background image.
+	 */
+
 	var BackgroundImage = (function (_React$Component) {
 	  _inherits(BackgroundImage, _React$Component);
 
@@ -646,7 +657,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  _createClass(BackgroundImage, [{
 	    key: 'render',
 	    value: function render() {
-	      return _react2['default'].createElement('div', { className: this.cssClass() });
+	      return _react2['default'].createElement('div', { className: this.cssClass(), style: this.style() });
 	    }
 	  }, {
 	    key: 'cssClass',
@@ -658,6 +669,46 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    value: function imageCssClass() {
 	      return ['image', this.props.imageFileId || 'none'].join('_');
 	    }
+	  }, {
+	    key: 'style',
+	    value: function style() {
+	      return {
+	        backgroundPosition: this.positionCoordinate(0) + '% ' + this.positionCoordinate(1) + '%'
+	      };
+	    }
+	  }, {
+	    key: 'positionCoordinate',
+	    value: function positionCoordinate(index) {
+	      var coordinate = this.props.position[index];
+
+	      if (typeof coordinate === 'undefined') {
+	        return 50;
+	      }
+
+	      return coordinate;
+	    }
+	  }], [{
+	    key: 'propTypes',
+	    value: {
+	      /** The id of the image file to display */
+	      imageFileId: _react2['default'].PropTypes.number.isRequired,
+
+	      /** Background position */
+	      position: _react2['default'].PropTypes.arrayOf(_react2['default'].PropTypes.number),
+
+	      /** Additional CSS classes. */
+	      className: _react2['default'].PropTypes.string,
+
+	      /** Used to lazy load images. */
+	      loaded: _react2['default'].PropTypes.bool
+	    },
+	    enumerable: true
+	  }, {
+	    key: 'defaultProps',
+	    value: {
+	      position: [50, 50]
+	    },
+	    enumerable: true
 	  }]);
 
 	  return BackgroundImage;
@@ -708,6 +759,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    key: 'render',
 	    value: function render() {
 	      return _react2['default'].createElement(_lazy_background_imageJsx2['default'], { imageFileId: this.props.page.backgroundImageId,
+	        position: [this.props.page.backgroundImageX, this.props.page.backgroundImageY],
 	        className: 'background background_image' });
 	    }
 	  }]);
@@ -2582,14 +2634,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      return {
 	        pageHooks: this.props.pageHooks,
-	        pageScroller: this._pageScroller
+	        pageScroller: this._pageScroller,
+	        pageIsPreloaded: this.props.isPreloaded
 	      };
 	    }
 	  }], [{
 	    key: 'childContextTypes',
 	    value: {
 	      pageHooks: _react2['default'].PropTypes.object,
-	      pageScroller: _react2['default'].PropTypes.object
+	      pageScroller: _react2['default'].PropTypes.object,
+	      pageIsPreloaded: _react2['default'].PropTypes.bool
 	    },
 	    enumerable: true
 	  }]);
@@ -2638,27 +2692,24 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var LazyBackgroundImage = (function (_React$Component) {
 	  _inherits(LazyBackgroundImage, _React$Component);
 
+	  _createClass(LazyBackgroundImage, null, [{
+	    key: 'contextTypes',
+	    value: {
+	      pageIsPreloaded: _react2['default'].PropTypes.bool
+	    },
+	    enumerable: true
+	  }]);
+
 	  function LazyBackgroundImage(props) {
 	    _classCallCheck(this, LazyBackgroundImage);
 
 	    _get(Object.getPrototypeOf(LazyBackgroundImage.prototype), 'constructor', this).call(this, props);
-	    this.state = { preloaded: false };
 	  }
 
 	  _createClass(LazyBackgroundImage, [{
-	    key: 'pageWillPreload',
-	    value: function pageWillPreload() {
-	      this.setState({ preloaded: true });
-	    }
-	  }, {
-	    key: 'pageWillActivate',
-	    value: function pageWillActivate() {
-	      this.setState({ preloaded: true });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2['default'].createElement(_background_imageJsx2['default'], _extends({}, this.props, { loaded: this.state.preloaded }));
+	      return _react2['default'].createElement(_background_imageJsx2['default'], _extends({}, this.props, { loaded: this.context.pageIsPreloaded }));
 	    }
 	  }]);
 
