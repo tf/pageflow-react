@@ -33,7 +33,7 @@ module.exports = function (config) {
       devtool: 'inline-source-map',
       module: {
         loaders: [
-          {test: /\.jsx?$/, loader: 'babel-loader?optional[]=runtime'}
+          {test: /\.jsx?$/, loader: 'babel-loader?stage=0&optional[]=runtime'}
         ]
       },
       resolve: {
