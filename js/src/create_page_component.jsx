@@ -10,10 +10,6 @@ export default function(Component) {
       var component = this.refs.component;
 
       this.context.pageHooks.on({
-        preload: () => {
-          trigger('pageWillPreload');
-        },
-
         activating: (options) => {
           trigger('pageWillActivate', options);
         },

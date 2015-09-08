@@ -9,41 +9,44 @@ export default function(Component) {
     scroller: false,
 
     enhance(pageElement, configuration) {
-      this.pageHooks = _.extend({}, Events);
+      this._pageHooks = _.extend({}, Events);
+      this._isPreloaded = false;
 
-      React.render(React.createElement(Component, {
-        page: camelize.keys(configuration),
-        pageHooks: this.pageHooks
-      }), pageElement[0]);
+      this._render(pageElement, configuration);
     },
 
-    preload() {
-      this.pageHooks.trigger('preload');
+    preload(pageElement, configuration) {
+      this._isPreloaded = true;
+      this._render(pageElement, configuration);
     },
 
     activating(elelement, configuration, options) {
-      this.pageHooks.trigger('activating', options);
+      this._pageHooks.trigger('activating', options);
     },
 
     activated() {
-      this.pageHooks.trigger('activated');
+      this._pageHooks.trigger('activated');
     },
 
     deactivating() {
-      this.pageHooks.trigger('deactivating');
+      this._pageHooks.trigger('deactivating');
     },
 
     deactivated() {
-      this.pageHooks.trigger('deactivated');
+      this._pageHooks.trigger('deactivated');
     },
 
     update(pageElement, configuration) {
-      React.render(React.createElement(Component, {
-        page: camelize.keys(configuration.attributes),
-        pageHooks: this.pageHooks
-      }), pageElement[0]);
-
+      this._render(pageElement, configuration.attributes);
       pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
+    },
+
+    _render(pageElement, configuration) {
+      React.render(React.createElement(Component, {
+        page: camelize.keys(configuration),
+        pageHooks: this._pageHooks,
+        isPreloaded: this._isPreloaded
+      }), pageElement[0]);
     }
   };
 };

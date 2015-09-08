@@ -4,6 +4,7 @@ export default class Page extends React.Component {
   static childContextTypes = {
     pageHooks: React.PropTypes.object,
     pageScroller: React.PropTypes.object,
+    pageIsPreloaded: React.PropTypes.bool
   }
 
   getChildContext() {
@@ -19,7 +20,8 @@ export default class Page extends React.Component {
 
     return {
       pageHooks: this.props.pageHooks,
-      pageScroller: this._pageScroller
+      pageScroller: this._pageScroller,
+      pageIsPreloaded: this.props.isPreloaded
     };
   }
 };
