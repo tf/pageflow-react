@@ -960,18 +960,33 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    value: function render() {
 	      return _react2['default'].createElement(
 	        'a',
-	        { href: this.href() },
+	        { href: this._href(), onClick: this._handleClick.bind(this) },
 	        this.props.children
 	      );
 	    }
 	  }, {
-	    key: 'href',
-	    value: function href() {
-	      if (this.props.page) {
-	        return '#' + this.props.page.perma_id;
+	    key: '_href',
+	    value: function _href() {
+	      if (this._targetPage()) {
+	        return '#' + this._targetPage().perma_id;
 	      } else {
 	        return '#missing';
 	      }
+	    }
+	  }, {
+	    key: '_handleClick',
+	    value: function _handleClick(event) {
+	      if (this._targetPage()) {
+	        pageflow.slides.goToByPermaId(this._targetPage().perma_id, {
+	          transition: this.props.pageLink.page_transition
+	        });
+	      }
+	      event.preventDefault();
+	    }
+	  }, {
+	    key: '_targetPage',
+	    value: function _targetPage() {
+	      return this.props.pageLink.targetPage;
 	    }
 	  }]);
 
