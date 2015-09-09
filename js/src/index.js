@@ -4,6 +4,8 @@ import createPageComponent from './create_page_component.jsx';
 import resolve from './resolve';
 import mutate from './mutate';
 
+import classNames from 'classnames';
+
 import Page from './components/page.jsx';
 import PageWrapper from './components/page_wrapper.jsx';
 import PageBackground from './components/page_background.jsx';
@@ -33,6 +35,8 @@ export default {
 
   /** @api public */
   mutate,
+
+  classNames,
 
   components: {
     Page,
