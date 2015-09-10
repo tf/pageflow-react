@@ -16,9 +16,24 @@ Or install it yourself as:
 
     $ gem install pageflow-react
 
-## Usage
+## Development Mode
 
-TODO: Write usage instructions here
+Enter js dir:
+
+    $ cd js
+
+Install npm dependencies:
+
+    $ npm install
+    $ npm install -g karma-cli webpack
+
+Run webpack watcher to rebuild javascript files in `app/assets`
+
+    $ webpack --watch
+
+Run test suite
+
+    $ karma start
 
 ## Contributing
 
