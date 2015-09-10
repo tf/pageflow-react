@@ -2148,7 +2148,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	console.log('HACK');
+
 	var React = __webpack_require__(2);
 	var emptyFunction = function(){};
 	var assign = __webpack_require__(36);
