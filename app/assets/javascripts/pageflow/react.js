@@ -2115,7 +2115,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }, {
 	    key: 'imageFileId',
 	    value: function imageFileId() {
-	      return this.props.customThumbnailId || this.props.page && this.props.page.background_image_id || 'none';
+	      return this.props.customThumbnailId || this.props.page && this.props.page.thumbnail_image_id || this.props.page && this.props.page.background_image_id || 'none';
 	    }
 	  }, {
 	    key: 'cssClass',

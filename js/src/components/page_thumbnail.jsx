@@ -12,6 +12,7 @@ export default class PageTumbnail extends React.Component {
 
   imageFileId() {
     return this.props.customThumbnailId ||
+           (this.props.page && this.props.page.thumbnail_image_id) ||
            (this.props.page && this.props.page.background_image_id) ||
            'none'
   }
