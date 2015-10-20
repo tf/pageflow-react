@@ -19,7 +19,7 @@ export default class extends Mutation {
 
   _getPage() {
     var [pageId] = this.props.id.split(':');
-    var page = pageflow.pages.get(pageId);
+    var page = pageflow.pages.getByPermaId(pageId);
 
     if (!page) {
       throw new Error(`Could not find page with id ${pageId}.`);

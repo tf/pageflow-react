@@ -1157,7 +1157,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      var pageId = _props$id$split2[0];
 
-	      var page = _pageflow2['default'].pages.get(pageId);
+	      var page = _pageflow2['default'].pages.getByPermaId(pageId);
 
 	      if (!page) {
 	        throw new Error('Could not find page with id ' + pageId + '.');
