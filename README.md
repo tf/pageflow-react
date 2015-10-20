@@ -1,20 +1,16 @@
-# Pageflow::React
+# Pageflow React
 
-TODO: Write a gem description
+React bindings for Pageflow page type development.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+This gem is not intended to be used in a Pageflow application
+directly. Instead it comes as a dependency of a gem providing Pageflow
+plugins.
 
-    gem 'pageflow-react'
+## Usage
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install pageflow-react
+TODO
 
 ## Development Mode
 
