@@ -1,34 +1,43 @@
 import Resolver from './resolver';
+import createRecursiveResolver from './create_recursive_resolver';
 
-import _ from 'underscore';
+import camelize from '../utils/camelize';
 
 /**
  * Resolves a foreign key to an object of attributes from the seed
  * data.
  */
-export default class SeedResolver extends Resolver {
+class SeedResolver extends Resolver {
   constructor(options, callback) {
     super(callback);
-    this._options = _.extend({
+
+    this._options = {
       idAttribute: 'id',
       attributesForProps: ['id'],
-      includeConfiguration: false
-    }, options);
-
-    this._attributesById = _(this._options.seed()).reduce((result, attributes) => {
-      var id = attributes[this._options.idAttribute];
-      result[id] = attributes;
-      return result;
-    }, {});
+      includeConfiguration: false,
+      ...options
+    };
   }
 
-  get(props) {
-    var attributes = this._getAttributes(props);
+  get(props, seed) {
+    var attributes = this._getAttributes(props, seed);
     return this._getProps(attributes);
   }
 
-  _getAttributes(props) {
-    return this._attributesById[this._getModelId(props)];
+  _getAttributes(props, seed) {
+    return this._getAttributesById(this._getModelId(props), seed);
+  }
+
+  _getAttributesById(id, seed) {
+    const collection = seed[this._options.seedProperty];
+
+    if (!collection) {
+      return null;
+    }
+
+    return collection.find((attributes) => {
+      return attributes[this._options.idAttribute] === id;
+    });
   }
 
   _getModelId(props) {
@@ -45,24 +54,22 @@ export default class SeedResolver extends Resolver {
     props = this._getPropsFromAttributes(attributes);
 
     if (this._options.includeConfiguration) {
-      _.extend(props, attributes.configuration);
+      Object.assign(props, camelize.deep(attributes.configuration));
     }
 
     return props;
   }
 
   _getPropsFromAttributes(attributes) {
-    return _(this._options.attributesForProps).reduce((result, name) => {
+    return this._options.attributesForProps.reduce((result, name) => {
       if (typeof name === 'string') {
-        result[name] = attributes[name];
-      }
-      else {
-        _(name).each((name, key) => {
-          result[key] = attributes[name];
-        })
+        name = [camelize(name), name];
       }
 
+      result[name[0]] = attributes[name[1]];
       return result;
     }, {})
   }
 };
+
+export default createRecursiveResolver(SeedResolver);

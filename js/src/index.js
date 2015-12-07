@@ -1,3 +1,4 @@
+import createPage from './create_page.jsx';
 import createContainer from './create_container.jsx';
 import createPageType from './create_page_type';
 import createPageComponent from './create_page_component.jsx';
@@ -6,7 +7,6 @@ import mutate from './mutate';
 
 import classNames from 'classnames';
 
-import Page from './components/page.jsx';
 import PageWrapper from './components/page_wrapper.jsx';
 import PageBackground from './components/page_background.jsx';
 import PageShadow from './components/page_shadow.jsx';
@@ -25,6 +25,9 @@ export default {
   createContainer,
 
   /** @api public */
+  createPage,
+
+  /** @api public */
   createPageType,
 
   /** @api public */
@@ -39,7 +42,6 @@ export default {
   classNames,
 
   components: {
-    Page,
     PageWrapper,
     PageBackground,
     PageShadow,

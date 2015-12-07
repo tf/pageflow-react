@@ -1,11 +1,26 @@
-import {Component} from 'react';
+import React from 'react';
 
 import Scroller from './scroller';
 import createPageComponent from '../create_page_component.jsx';
 
-export default class PageContent extends Component {
-  static contextTypes = {
+export default class PageContent extends React.Component {
+  static childContextTypes = {
     pageScroller: React.PropTypes.object
+  }
+
+  getChildContext() {
+    this._pageScroller = this._pageScroller || {
+      disable: () => {
+        this.refs.scroller.disable();
+      },
+      enable: () => {
+        this.refs.scroller.enable();
+      }
+    };
+
+    return {
+      pageScroller: this._pageScroller,
+    };
   }
 
   render() {
@@ -18,16 +33,6 @@ export default class PageContent extends Component {
         </Scroller>
       </div>
     );
-  }
-
-  componentDidMount() {
-    this.context.pageScroller.on('disable', () => {
-      this.refs.scroller.disable();
-    }, this);
-
-    this.context.pageScroller.on('enable', () => {
-      this.refs.scroller.enable();
-    }, this);
   }
 
   componentWillUnmount() {

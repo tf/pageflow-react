@@ -5,8 +5,8 @@ import sinon from 'sinon';
 
 describe('ObjectResolver', () => {
   class FakeResolver extends Resolver {
-    get(props) {
-      return `resolved value ${props.other}`;
+    get(props, seed) {
+      return `resolved value ${props.other} with ${seed}`;
     }
 
     triggerCallback() {
@@ -23,6 +23,18 @@ describe('ObjectResolver', () => {
       expect(result.key).to.eq(123)
     });
 
+    it('resolves to null if null is passed as props', () => {
+      var objectResolver = new ObjectResolver({
+        key: (callback) => {
+          return new FakeResolver(callback);
+        }
+      });
+
+      var result = objectResolver.get(null);
+
+      expect(result).to.eq(null)
+    });
+
     it('uses resolver in fragment to resolve value for key', () => {
       var objectResolver = new ObjectResolver({
         key: (callback) => {
@@ -30,9 +42,9 @@ describe('ObjectResolver', () => {
         }
       });
 
-      var result = objectResolver.get({other: 123});
+      var result = objectResolver.get({other: 123}, 'SEED');
 
-      expect(result.key).to.eq('resolved value 123');
+      expect(result.key).to.eq('resolved value 123 with SEED');
     });
 
     it('invokes callback when some resolver signals a change', () => {
@@ -45,7 +57,7 @@ describe('ObjectResolver', () => {
         }
       }, callback);
 
-      var result = objectResolver.get({});
+      objectResolver.get({});
       resolver.triggerCallback();
 
       expect(callback).to.have.been.called;
@@ -76,9 +88,9 @@ describe('ObjectResolver', () => {
         }
       });
 
-      var result = objectResolver.get({nested: {other: 123}});
+      var result = objectResolver.get({nested: {other: 123}}, 'SEED');
 
-      expect(result.nested.key).to.eq('resolved value 123');
+      expect(result.nested.key).to.eq('resolved value 123 with SEED');
     });
 
     it('invokes callback when resolver of nested key signals a change', () => {
@@ -93,7 +105,7 @@ describe('ObjectResolver', () => {
         }
       }, callback);
 
-      var result = objectResolver.get({nested: {}});
+      objectResolver.get({nested: {}});
       resolver.triggerCallback();
 
       expect(callback).to.have.been.called;

@@ -1,13 +1,11 @@
 import BackboneModelResolver from './backbone_model_resolver';
-import pageflow from 'pageflow';
-
-import _ from 'underscore';
 
 export default function(options, callback) {
-  return new BackboneModelResolver(_.extend({
+  return new BackboneModelResolver({
     collection: () => pageflow.pages,
     idAttribute: 'perma_id',
-    attributesForProps: ['perma_id', 'type'],
-    includeConfiguration: true
-  }, options), callback);
+    attributesForProps: ['perma_id', ['type', 'template'], 'chapter_id'],
+    includeConfiguration: true,
+    ...options
+  }, callback);
 };

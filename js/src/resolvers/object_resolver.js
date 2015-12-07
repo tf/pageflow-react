@@ -1,5 +1,4 @@
 import Resolver from './resolver';
-import _ from 'underscore';
 
 export default class ObjectResolver extends Resolver {
   constructor(fragment, callback, p) {
@@ -9,23 +8,31 @@ export default class ObjectResolver extends Resolver {
     this._p = p;
   }
 
-  get(props) {
+  get(props, seed) {
     this._updateResolvers();
+
+    if (!props) {
+      return null;
+    }
 
     if (this._p) {
       props = props[this._p];
     }
 
-    return _(this._resolvers).reduce((result, resolver, key) => {
-      result[key] = resolver.get(props);
+    return Object.keys(this._resolvers).reduce((result, key) => {
+      const resolver = this._resolvers[key];
+
+      result[key] = resolver.get(props, seed);
       return result;
-    }, _(props).clone());
+    }, {...props});
   }
 
   _updateResolvers() {
     var resolvers = this._resolvers;
 
-    _(this._fragment).each((resolverProvider, key) => {
+    Object.keys(this._fragment || {}).forEach((key) => {
+      const resolverProvider = this._fragment[key];
+
       if (!resolvers[key]) {
         resolvers[key] = this._createResolver(resolverProvider, key);
       }

@@ -18,6 +18,32 @@ describe('BackboneModelResolver', () => {
     expect(result).to.deep.eq({id: 1, title: 'Some title'})
   });
 
+  it('can map attribute names', () => {
+    var collection = new Backbone.Collection([{id: 1, template: 'background_image'}]);
+    var modelResolver = new BackboneModelResolver({
+      collection: () => collection,
+      attributesForProps: ['id', ['type', 'template']],
+      property: 'modelId'
+    });
+
+    var result = modelResolver.get({modelId: 1});
+
+    expect(result).to.deep.eq({id: 1, type: 'background_image'})
+  });
+
+  it('camelizes attribute names', () => {
+    var collection = new Backbone.Collection([{id: 1, image_id: 2}]);
+    var modelResolver = new BackboneModelResolver({
+      collection: () => collection,
+      attributesForProps: ['id', 'image_id'],
+      property: 'modelId'
+    });
+
+    var result = modelResolver.get({modelId: 1});
+
+    expect(result).to.deep.eq({id: 1, imageId: 2})
+  });
+
   it('resolves to null if property is missing', () => {
     var collection = new Backbone.Collection();
     var modelResolver = new BackboneModelResolver({
@@ -82,7 +108,7 @@ describe('BackboneModelResolver', () => {
       property: 'modelId'
     }, callback);
 
-    var result = modelResolver.get({modelId: 1});
+    modelResolver.get({modelId: 1});
     collection.first().set('title', 'Changed title');
 
     expect(callback).to.have.been.called;
@@ -189,6 +215,26 @@ describe('BackboneModelResolver', () => {
       collection.get(1).configuration.set('title', 'Changed text');
 
       expect(callback).not.to.have.been.called;
+    });
+
+    it('deeply camelizes configuration attribute names', () => {
+      var collection = new Backbone.Collection([{id: 1}]);
+      collection.first().configuration = new Backbone.Model({
+        page_links: [
+          {
+            image_id: 1
+          }
+        ]
+      });
+      var modelResolver = new BackboneModelResolver({
+        collection: () => collection,
+        includeConfiguration: true,
+        property: 'modelId'
+      });
+
+      var result = modelResolver.get({modelId: 1});
+
+      expect(result).to.deep.eq({id: 1, pageLinks: [{imageId: 1}]})
     });
   });
 });

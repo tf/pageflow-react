@@ -14,27 +14,35 @@ export default function(Component, options) {
   }
 
   return class extends React.Component {
-    constructor(props) {
-      super(props);
+    static contextTypes = {
+      resolverSeed: React.PropTypes.object
+    }
+
+    constructor(props, context) {
+      super(props, context);
 
       this._resolver = new ObjectResolver(
         options.fragments,
         this._handleChange.bind(this)
       );
 
-      this.state = this._resolver.get(props);
+      this.state = this._resolve(props);
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setState(this._resolver.get(nextProps));
+      this.setState(this._resolve(nextProps));
     }
 
     _handleChange() {
-      this.setState(this._resolver.get(this.props));
+      this.setState(this._resolve(this.props));
+    }
+
+    _resolve(props) {
+      return this._resolver.get(props, this.context.resolverSeed);
     }
 
     render() {
-      return (<Component {...this.state} ref="component" />);
+      return (<Component {...this.state} />);
     }
   };
 

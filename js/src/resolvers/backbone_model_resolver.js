@@ -1,34 +1,36 @@
 import Resolver from './resolver';
+import createRecursiveResolver from './create_recursive_resolver';
 
-import _ from 'underscore';
+import camelize from '../utils/camelize';
 
 /**
  * Resolve a foreign key to an object of attributes.
  */
-export default class BackboneModelResolver extends Resolver {
+class BackboneModelResolver extends Resolver {
   constructor(options, callback) {
     super(callback);
-    this._options = _.extend({
+    this._options = {
       idAttribute: 'id',
       attributesForProps: ['id'],
-      includeConfiguration: false
-    }, options);
+      includeConfiguration: false,
+      ...options
+    };
   }
 
-  get(props) {
-    this._updateModel(props);
+  get(props, seed) {
+    this._updateModel(props, seed || {});
     this._updateSubscription();
 
     return this._getPropsFromModel();
   }
 
-  _updateModel(props) {
+  _updateModel(props, seed) {
     this._prevModel = this._model;
-    this._model = this._getModel(props);
+    this._model = this._getModel(props, seed);
   }
 
-  _getModel(props) {
-    var collection = this._options.collection();
+  _getModel(props, seed) {
+    var collection = this._options.collection(seed.ns);
     return collection.findWhere(this._getIdConditions(props));
   }
 
@@ -73,9 +75,9 @@ export default class BackboneModelResolver extends Resolver {
   }
 
   _getSubscribedEvents() {
-    return _(this._options.attributesForProps)
-                 .map((attribute) => `change:${attribute}`)
-                 .join(' ');
+    return this._options.attributesForProps
+               .map((attribute) => `change:${attribute}`)
+               .join(' ');
   }
 
   _getPropsFromModel() {
@@ -83,13 +85,28 @@ export default class BackboneModelResolver extends Resolver {
     var model = this._model;
 
     if (model) {
-      props = model.pick(this._options.attributesForProps);
+      props = this._getPropsFromAttributes();
 
       if (this._options.includeConfiguration) {
-        _.extend(props, model.configuration.attributes);
+        Object.assign(props, camelize.deep(model.configuration.attributes))
       }
     }
 
     return props;
   }
+
+  _getPropsFromAttributes() {
+    var model = this._model;
+
+    return this._options.attributesForProps.reduce((result, name) => {
+      if (typeof name === 'string') {
+        name = [camelize(name), name];
+      }
+
+      result[name[0]] = model.get(name[1]);
+      return result;
+    }, {})
+  }
 };
+
+export default createRecursiveResolver(BackboneModelResolver);
