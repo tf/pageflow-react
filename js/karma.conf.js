@@ -31,6 +31,11 @@ module.exports = function (config) {
     ],
     webpack: {
       devtool: 'inline-source-map',
+      plugins: [
+        new webpack.DefinePlugin({
+          PAGEFLOW_EDITOR: false
+        })
+      ],
       module: {
         loaders: [
           {test: /\.jsx?$/, loader: 'babel-loader?stage=0&optional[]=runtime'}
