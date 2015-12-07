@@ -1,10 +1,10 @@
 import createContainer from 'create_container.jsx';
 import Resolver from 'resolvers/resolver';
 
-import React from 'react/addons';
+import React from 'react';
 import renderComponent from './support/render_component';
 
-const TestUtils = React.addons.TestUtils;
+import TestUtils from 'react-addons-test-utils';
 
 describe('createContainer', () => {
   it('creates a wrapper component that passes props', () => {
@@ -21,7 +21,6 @@ describe('createContainer', () => {
     var Component = class extends React.Component {};
     var FakeResolver = class extends Resolver {
       get(props) {
-        console.log(props);
         return 'resolved page ' + props.targetPageId;
       }
     };

@@ -1,23 +1,20 @@
 import React from 'react';
-import _ from 'underscore';
-import {Events} from 'backbone';
-
-import camelize from './utils/camelize';
+import ReactDOM from 'react-dom';
 
 export default function(Component) {
   return {
     scroller: false,
 
-    enhance(pageElement, configuration) {
-      this._pageHooks = _.extend({}, Events);
+    enhance(pageElement) {
+      this._pageHooks = {...Backbone.Events};
       this._isPreloaded = false;
 
-      this._render(pageElement, configuration);
+      this._render(pageElement);
     },
 
-    preload(pageElement, configuration) {
+    preload(pageElement) {
       this._isPreloaded = true;
-      this._render(pageElement, configuration);
+      this._render(pageElement);
     },
 
     activating(elelement, configuration, options) {
@@ -41,13 +38,13 @@ export default function(Component) {
     },
 
     update(pageElement, configuration) {
-      this._render(pageElement, configuration.attributes);
       pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
     },
 
-    _render(pageElement, configuration) {
-      React.render(React.createElement(Component, {
-        page: camelize.keys(configuration),
+    _render(pageElement) {
+      ReactDOM.render(React.createElement(Component, {
+        resolverSeed: pageflow.seed,
+        pageId: parseInt(pageElement.attr('id'), 10),
         pageHooks: this._pageHooks,
         isPreloaded: this._isPreloaded
       }), pageElement[0]);

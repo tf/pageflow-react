@@ -26,5 +26,6 @@ module.exports = {
     underscore: '_',
     backbone: 'Backbone',
     jquery: 'jQuery'
+    'react-dom': 'ReactDOM'
   }
 };

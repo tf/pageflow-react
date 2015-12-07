@@ -1,4 +1,5 @@
 import {Component} from 'react';
+import ReactDom from 'react-dom';
 
 /** @api private */
 class Scroller extends Component {
@@ -10,7 +11,7 @@ class Scroller extends Component {
 
   componentDidMount() {
     if (typeof jQuery !== 'undefined') {
-      var element = jQuery(React.findDOMNode(this.refs.wrapper));
+      var element = jQuery(ReactDOM.findDOMNode(this.refs.wrapper));
 
       element.scroller();
       window.sss = this.scroller = element.scroller('instance');
