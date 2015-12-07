@@ -1,33 +1,76 @@
-import React from 'react';
+import classNames from 'classnames';
 
-import LazyBackgroundImage from './lazy_background_image.jsx';
+import createContainer from '../create_container.jsx';
+import resolve from '../resolve';
+import camelize from '../utils/camelize';
 
-export default class PageTumbnail extends React.Component {
-  render() {
-    return (
-      <LazyBackgroundImage className="page_thumbnail"
-                           imageFileId={this.imageFileId()} />
-    );
-  }
-
-  imageFileId() {
-    return this.props.customThumbnailId ||
-           (this.props.page && this.props.page.thumbnail_image_id) ||
-           (this.props.page && this.props.page.background_image_id) ||
-           'none'
-  }
-
-  cssClass() {
-    return _([
-      'page_thumbnail',
-      this.imageCssClass()
-    ]).compact().join(' ');
-  }
-
-  imageCssClass() {
-    return [
-      'pageflow_image_file_link_thumbnail',
-      (this.props.page && this.props.page.background_image_id) || 'none'
-    ].join('_');
-  }
+export function PageThumbnail(props) {
+  return (
+    <div className={className(props)} />
+  );
 };
+
+PageThumbnail.defaultProps = {
+  imageStyle: 'navigation_thumbnail_large'
+};
+
+function className(props) {
+  return classNames(
+    props.className,
+    thumbnailClassName(props),
+    `is_${props.page.type.name}`
+  );
+}
+
+function thumbnailClassName(props) {
+  var candidate = firstPresentCandidate(props);
+
+  if (candidate) {
+    return thumbnailCandidateClassName(props, candidate);
+  }
+}
+
+function firstPresentCandidate(props) {
+  return thumbnailCandidates(props).find(candidate => {
+    var id = thumbnailCandidateId(props, candidate);
+    var ids = props.fileIds[candidate.collectionName] || [];
+
+    return (id && ids.includes(id));
+  });
+}
+
+function thumbnailCandidates(props) {
+  return [
+    customThumbnailCandidate(props),
+    ...props.page.type.thumbnailCandidates
+  ];
+}
+
+function customThumbnailCandidate(props) {
+  return {
+    id: props.customThumbnailId,
+    cssClassPrefix: 'pageflow_image_file',
+    collectionName: 'image_files'
+  }
+}
+
+function thumbnailCandidateClassName(props, candidate) {
+  return [
+    candidate.cssClassPrefix,
+    props.imageStyle,
+    thumbnailCandidateId(props, candidate)
+  ].join('_');
+}
+
+function thumbnailCandidateId(props, candidate) {
+  return 'id' in candidate ? candidate.id : props.page[camelize(candidate.attribute)];
+}
+
+export default createContainer(PageThumbnail, {
+  fragments: {
+    page: {
+      type: resolve('pageType')
+    },
+    fileIds: resolve('fileIds')
+  }
+});
