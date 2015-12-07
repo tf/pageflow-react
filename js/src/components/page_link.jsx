@@ -3,7 +3,9 @@ import React from 'react';
 export default class PageLink extends React.Component {
   render() {
     return (
-      <a href={this._href()} onClick={this._handleClick.bind(this)}>
+      <a href={this._href()}
+         className={this.props.className}
+         onClick={this._handleClick.bind(this)}>
         {this.props.children}
       </a>
     );

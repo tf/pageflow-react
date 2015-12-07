@@ -7,7 +7,7 @@ import classNames from 'classnames';
 export default class BackgroundImage extends React.Component {
   static propTypes = {
     /** The id of the image file to display */
-    imageFileId: React.PropTypes.number.isRequired,
+    imageFileId: React.PropTypes.number,
 
     /** Background position */
     position: React.PropTypes.arrayOf(React.PropTypes.number),
