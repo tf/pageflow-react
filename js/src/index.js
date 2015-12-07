@@ -22,6 +22,8 @@ import PageThumbnail from './components/page_thumbnail.jsx';
 
 import Draggable from 'react-draggable';
 
+import widgets from './components/widgets';
+
 export default {
   /** @api public */
   createContainer,
@@ -62,6 +64,8 @@ export default {
     PageLink,
     PageThumbnail,
 
-    Draggable
+    Draggable,
+
+    widgets
   }
 };
