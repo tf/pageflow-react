@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'underscore';
+import classNames from 'classnames';
 
 /**
  * Display an element with a background image.
@@ -31,10 +31,11 @@ export default class BackgroundImage extends React.Component {
   }
 
   cssClass() {
-    return _([this.props.className,
-              this.props.loaded ? 'load_image' : null,
-              this.imageCssClass()
-    ]).compact().join(' ');
+    return classNames(
+      this.props.className,
+      this.props.loaded ? 'load_image' : null,
+      this.imageCssClass()
+    );
   }
 
   imageCssClass() {
@@ -57,4 +58,3 @@ export default class BackgroundImage extends React.Component {
     return coordinate;
   }
 };
-
