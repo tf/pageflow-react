@@ -38,7 +38,15 @@ module.exports = function (config) {
       ],
       module: {
         loaders: [
-          {test: /\.jsx?$/, loader: 'babel-loader?stage=0&optional[]=runtime'}
+          {
+            test: /\.jsx?$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader?stage=0&optional[]=runtime'
+          },
+          {
+            test: require.resolve('react'),
+            loader: 'expose?React'
+          }
         ]
       },
       resolve: {
