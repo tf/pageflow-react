@@ -10,7 +10,7 @@ module.exports = function (config) {
       'spec/*spec.js',
       'spec/**/*spec.js'
     ],
-    exlude: [
+    exclude: [
       'flycheck_*.js',
       '**/flycheck_*.js',
       '*/**/flycheck_*.js',
