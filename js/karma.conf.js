@@ -7,6 +7,7 @@ module.exports = function (config) {
     singleRun: false,
     frameworks: ['mocha', 'chai', 'chai-sinon', 'phantomjs-shim'],
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'spec/*spec.js',
       'spec/**/*spec.js'
     ],
