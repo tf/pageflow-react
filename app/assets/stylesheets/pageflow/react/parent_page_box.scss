@@ -80,3 +80,15 @@
     font-weight: bold;
   }
 }
+
+@include phone {
+  .parent_page_box {
+    display: none;
+  }
+}
+
+@include pad_portrait {
+  .parent_page_box {
+    display: none;
+  }
+}
