@@ -29,11 +29,13 @@
     width: $indicator-width;
 
     background-color: $background-color;
+    text-decoration: none;
 
     @include transition(transform 0.3s ease, visibility 0.3s ease);
     @include transition-delay(0);
     @include transform(translate3d(-100%, 0, 0));
     visibility: hidden;
+
 
     &.is_visible {
       @include transform(translate3d(0, 0, 0));
