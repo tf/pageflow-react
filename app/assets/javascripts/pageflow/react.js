@@ -8849,6 +8849,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    { className: 'parent_page_box' },
 	    React.createElement('a', { className: (0, _classnames2['default'])('parent_page_box-link', props.parentPage && 'is_visible'),
 	      href: '#' + (props.parentPage ? props.parentPage.permaId : ''),
+	      tabIndex: '2',
 	      onClick: handleClick }),
 	    renderOverlay(props.parentPage)
 	  );

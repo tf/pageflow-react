@@ -12,6 +12,7 @@ function ParentPageBox(props) {
       <a className={classNames('parent_page_box-link',
                                props.parentPage && 'is_visible')}
          href={`#${props.parentPage ? props.parentPage.permaId : ''}`}
+         tabIndex="2"
          onClick={handleClick} />
 
       {renderOverlay(props.parentPage)}
