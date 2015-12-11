@@ -1,0 +1,6 @@
+<% if page.template.present? %>
+  <% Rails.logger.info("----- start render #{Time.now.to_f}") %>
+  <% concat (@__renderer ||= Pageflow::React::SprocketsRenderer.new(@__entry_seed ||= entry_seed(@entry))).render(
+     page.perma_id) %>
+  <% Rails.logger.info("----- end render #{Time.now.to_f}") %>
+<% end %>
