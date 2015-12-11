@@ -5404,10 +5404,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 
-	var _componentsWidgets = __webpack_require__(238);
-
-	var _componentsWidgets2 = _interopRequireDefault(_componentsWidgets);
-
 	exports['default'] = {
 	  /** @api public */
 	  createContainer: _create_containerJsx2['default'],
@@ -5448,9 +5444,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    PageLink: _componentsPage_linkJsx2['default'],
 	    PageThumbnail: _componentsPage_thumbnailJsx2['default'],
 
-	    Draggable: _reactDraggable2['default'],
-
-	    widgets: _componentsWidgets2['default']
+	    Draggable: _reactDraggable2['default']
 	  }
 	};
 	module.exports = exports['default'];
@@ -8789,111 +8783,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	}
 
-
-/***/ },
-/* 238 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _parent_page_boxJsx = __webpack_require__(239);
-
-	var _parent_page_boxJsx2 = _interopRequireDefault(_parent_page_boxJsx);
-
-	exports['default'] = {
-	  ParentPageBox: _parent_page_boxJsx2['default']
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _create_containerJsx = __webpack_require__(194);
-
-	var _create_containerJsx2 = _interopRequireDefault(_create_containerJsx);
-
-	var _create_widgetJsx = __webpack_require__(211);
-
-	var _create_widgetJsx2 = _interopRequireDefault(_create_widgetJsx);
-
-	var _resolve = __webpack_require__(198);
-
-	var _resolve2 = _interopRequireDefault(_resolve);
-
-	var _page_thumbnailJsx = __webpack_require__(233);
-
-	var _page_thumbnailJsx2 = _interopRequireDefault(_page_thumbnailJsx);
-
-	var _classnames = __webpack_require__(221);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	function ParentPageBox(props) {
-	  return React.createElement(
-	    'div',
-	    { className: 'parent_page_box' },
-	    React.createElement('a', { className: (0, _classnames2['default'])('parent_page_box-link', props.parentPage && 'is_visible'),
-	      href: '#' + (props.parentPage ? props.parentPage.permaId : ''),
-	      tabIndex: '2',
-	      onClick: handleClick }),
-	    renderOverlay(props.parentPage)
-	  );
-	}
-
-	function renderOverlay(page) {
-	  if (page) {
-	    return React.createElement(
-	      'div',
-	      { className: 'parent_page_box-overlay' },
-	      'Zurück zu Kapitel',
-	      React.createElement(
-	        'div',
-	        { className: 'parent_page_box-chapter_title' },
-	        page.chapter.title
-	      ),
-	      React.createElement('hr', { className: 'parent_page_box-separator' }),
-	      React.createElement(
-	        'span',
-	        { className: 'parent_page_box-page_title' },
-	        page.title
-	      ),
-	      React.createElement(_page_thumbnailJsx2['default'], { className: 'parent_page_box-thumbnail', page: page })
-	    );
-	  } else {
-	    return null;
-	  }
-	}
-
-	function handleClick(event) {
-	  pageflow.slides.goToParentPage();
-	  event.preventDefault();
-	}
-
-	exports['default'] = (0, _create_widgetJsx2['default'])((0, _create_containerJsx2['default'])(ParentPageBox, {
-	  fragments: {
-	    parentPage: (0, _resolve2['default'])('currentParentPage', {
-	      fragments: {
-	        chapter: (0, _resolve2['default'])('chapter')
-	      }
-	    })
-	  }
-	}));
-	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
