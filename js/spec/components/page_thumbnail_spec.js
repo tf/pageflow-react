@@ -26,6 +26,63 @@ describe('PageThumbnail', () => {
     expect(className).to.contain('pageflow_image_file_thumbnail_10');
   });
 
+  it('supports lazy thumbnail css class', () => {
+    const page = {
+      type: {
+        thumbnailCandidates: [
+          {
+            attribute: 'thumbnailFileId',
+            collectionName: 'image_files',
+            cssClassPrefix: 'pageflow_image_file'
+          }
+        ]
+      },
+      thumbnailFileId: 10
+    };
+    const fileIds = {
+      'image_files': [10]
+    };
+
+    const pageThumbnail = renderComponent(PageThumbnail, {
+      page,
+      fileIds,
+      imageStyle: 'thumbnail',
+      lazy: true
+    });
+    const className = pageThumbnail.props.className;
+
+    expect(className).to.contain('lazy_pageflow_image_file_thumbnail_10');
+  });
+
+  it('adds load_image class if loaded prop is present', () => {
+    const page = {
+      type: {
+        thumbnailCandidates: [
+          {
+            attribute: 'thumbnailFileId',
+            collectionName: 'image_files',
+            cssClassPrefix: 'pageflow_image_file'
+          }
+        ]
+      },
+      thumbnailFileId: 10
+    };
+    const fileIds = {
+      'image_files': [10]
+    };
+
+    const pageThumbnail = renderComponent(PageThumbnail, {
+      page,
+      fileIds,
+      imageStyle: 'thumbnail',
+      lazy: true,
+      loaded: true
+    });
+    const className = pageThumbnail.props.className;
+
+    expect(className).to.contain('load_image');
+  });
+
   it('skips candidates whose attributes point to non existing files', () => {
     const page = {
       type: {

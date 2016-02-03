@@ -16,6 +16,7 @@ PageThumbnail.defaultProps = {
 
 function className(props) {
   return classNames(
+    {load_image: props.lazy && props.loaded},
     props.className,
     thumbnailClassName(props),
     `is_${props.page.type.name}`
@@ -56,10 +57,11 @@ function customThumbnailCandidate(props) {
 
 function thumbnailCandidateClassName(props, candidate) {
   return [
+    props.lazy ? 'lazy' : null,
     candidate.cssClassPrefix,
     props.imageStyle,
     thumbnailCandidateId(props, candidate)
-  ].join('_');
+  ].filter(Boolean).join('_');
 }
 
 function thumbnailCandidateId(props, candidate) {

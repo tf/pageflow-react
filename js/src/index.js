@@ -19,6 +19,7 @@ import BackgroundImage from './components/background_image.jsx';
 import PageBackgroundImage from './components/page_background_image.jsx';
 import PageLink from './components/page_link.jsx';
 import PageThumbnail from './components/page_thumbnail.jsx';
+import LazyLoadedPageThumbnail from './components/lazy_loaded_page_thumbnail.jsx';
 
 import Draggable from 'react-draggable';
 
@@ -61,6 +62,7 @@ export default {
 
     PageLink,
     PageThumbnail,
+    LazyLoadedPageThumbnail,
 
     Draggable
   }
