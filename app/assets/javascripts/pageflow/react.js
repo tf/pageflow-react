@@ -5626,6 +5626,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        this.setState(this._resolve(nextProps));
 	      }
 	    }, {
+	      key: 'componentWillUnmount',
+	      value: function componentWillUnmount() {
+	        this._resolver.dispose();
+	      }
+	    }, {
 	      key: '_handleChange',
 	      value: function _handleChange() {
 	        this.setState(this._resolve(this.props));
@@ -5710,17 +5715,26 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      }, _extends({}, props));
 	    }
 	  }, {
+	    key: 'dispose',
+	    value: function dispose() {
+	      var _this2 = this;
+
+	      Object.keys(this._resolvers).forEach(function (key) {
+	        _this2._resolvers[key].dispose();
+	      });
+	    }
+	  }, {
 	    key: '_updateResolvers',
 	    value: function _updateResolvers() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      var resolvers = this._resolvers;
 
 	      Object.keys(this._fragment || {}).forEach(function (key) {
-	        var resolverProvider = _this2._fragment[key];
+	        var resolverProvider = _this3._fragment[key];
 
 	        if (!resolvers[key]) {
-	          resolvers[key] = _this2._createResolver(resolverProvider, key);
+	          resolvers[key] = _this3._createResolver(resolverProvider, key);
 	        }
 	      });
 	    }
@@ -5767,6 +5781,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  _createClass(Resolver, [{
 	    key: "get",
 	    value: function get(props) {}
+	  }, {
+	    key: "dispose",
+	    value: function dispose() {}
 
 	    /** @protected */
 	  }, {
@@ -5985,6 +6002,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        return result;
 	      }, {});
 	    }
+	  }, {
+	    key: 'dispose',
+	    value: function dispose() {
+	      var _this2 = this;
+
+	      Object.values(this._options.collections()).forEach(function (collection) {
+	        return collection.off('remove', _this2._handleChange, _this2);
+	      });
+	    }
 	  }]);
 
 	  return _default;
@@ -6085,6 +6111,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      this._updateSubscription();
 
 	      return this._getPropsFromModel();
+	    }
+	  }, {
+	    key: 'dispose',
+	    value: function dispose() {
+	      if (this._model) {
+	        this._stopListening(this._model);
+	      }
 	    }
 	  }, {
 	    key: '_updateModel',
@@ -6224,6 +6257,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      value: function get(props, seed) {
 	        var result = this._inner.get(props, seed);
 	        return this._objectResolver.get(result, seed);
+	      }
+	    }, {
+	      key: 'dispose',
+	      value: function dispose() {
+	        this._inner.dispose();
+	        this._objectResolver.dispose();
 	      }
 	    }]);
 
@@ -6640,6 +6679,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      }, seed);
 	    }
 	  }, {
+	    key: 'dispose',
+	    value: function dispose() {
+	      this._unsubscribeFromPageChange();
+	    }
+	  }, {
 	    key: '_currentParentPagePermaId',
 	    value: function _currentParentPagePermaId(seed) {
 	      var currentPagePermaId = pageflow.slides.currentPage().page('getPermaId');
@@ -6649,6 +6693,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    key: '_subscribeToPageChange',
 	    value: function _subscribeToPageChange() {
 	      pageflow.events.on('page:change', this._handleChange, this);
+	    }
+	  }, {
+	    key: '_unsubscribeFromPageChange',
+	    value: function _unsubscribeFromPageChange() {
+	      pageflow.events.off('page:change', this._handleChange, this);
 	    }
 	  }]);
 
@@ -6739,6 +6788,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	    update: function update(pageElement, configuration) {
 	      pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
+	    },
+
+	    cleanup: function cleanup(pageElement) {
+	      _reactDom2['default'].unmountComponentAtNode(pageElement[0]);
 	    },
 
 	    _render: function _render(pageElement) {
@@ -7367,11 +7420,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          )
 	        )
 	      );
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      this.context.pageScroller.off(null, null, this);
 	    }
 	  }, {
 	    key: 'pageWillActivate',
