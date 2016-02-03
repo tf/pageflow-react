@@ -5,6 +5,8 @@ export default class Resolver {
 
   get(props) {}
 
+  dispose() {}
+
   /** @protected */
   _handleChange() {
     if (this._callback) {

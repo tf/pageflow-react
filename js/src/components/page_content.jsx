@@ -35,10 +35,6 @@ export default class PageContent extends React.Component {
     );
   }
 
-  componentWillUnmount() {
-    this.context.pageScroller.off(null, null, this);
-  }
-
   pageWillActivate(options) {
     this.refs.scroller.resetPosition({position: options.position})
   }

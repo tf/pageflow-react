@@ -17,6 +17,10 @@ class CurrentPageResolver extends Resolver {
     }, seed);
   }
 
+  dispose() {
+    this._unsubscribeFromPageChange();
+  }
+
   _currentParentPagePermaId(seed) {
     var currentPagePermaId = pageflow.slides.currentPage().page('getPermaId');
     return pageflow.entryData.getParentPagePermaIdByPagePermaId(currentPagePermaId);
@@ -24,6 +28,10 @@ class CurrentPageResolver extends Resolver {
 
   _subscribeToPageChange() {
     pageflow.events.on('page:change', this._handleChange, this);
+  }
+
+  _unsubscribeFromPageChange() {
+    pageflow.events.off('page:change', this._handleChange, this);
   }
 };
 

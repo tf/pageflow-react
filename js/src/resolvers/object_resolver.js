@@ -27,6 +27,12 @@ export default class ObjectResolver extends Resolver {
     }, {...props});
   }
 
+  dispose() {
+    Object.keys(this._resolvers).forEach((key) => {
+      this._resolvers[key].dispose();
+    });
+  }
+
   _updateResolvers() {
     var resolvers = this._resolvers;
 

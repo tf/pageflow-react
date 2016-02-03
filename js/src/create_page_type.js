@@ -41,6 +41,10 @@ export default function(Component) {
       pageflow.commonPageCssClasses.updateCommonPageCssClasses(pageElement, configuration);
     },
 
+    cleanup(pageElement) {
+      ReactDOM.unmountComponentAtNode(pageElement[0]);
+    },
+
     _render(pageElement) {
       ReactDOM.render(React.createElement(Component, {
         resolverSeed: pageflow.seed,

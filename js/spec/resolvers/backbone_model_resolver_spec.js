@@ -167,6 +167,22 @@ describe('BackboneModelResolver', () => {
     expect(callback).not.to.have.been.called;
   });
 
+  it('stops listening to model on dispose', () => {
+    var collection = new Backbone.Collection([{id: 1, title: 'Some title'}]);
+    var callback = sinon.spy();
+    var modelResolver = new BackboneModelResolver({
+      collection: () => collection,
+      attributesForProps: ['id', 'title'],
+      property: 'modelId'
+    }, callback);
+
+    modelResolver.get({modelId: 1});
+    modelResolver.dispose();
+    collection.first().set('title', 'Changed title');
+
+    expect(callback).not.to.have.been.called;
+  });
+
   context('with includeConfiguration option', () => {
     it('includes attributes from a nested configuration model', () => {
       var collection = new Backbone.Collection([{id: 1}]);

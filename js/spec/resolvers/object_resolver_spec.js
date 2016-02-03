@@ -5,6 +5,11 @@ import sinon from 'sinon';
 
 describe('ObjectResolver', () => {
   class FakeResolver extends Resolver {
+    constructor(callback) {
+      super(callback);
+      this.dispose = sinon.spy();
+    }
+
     get(props, seed) {
       return `resolved value ${props.other} with ${seed}`;
     }
@@ -110,5 +115,37 @@ describe('ObjectResolver', () => {
 
       expect(callback).to.have.been.called;
     });
+  });
+
+  it('passes dispose to resolver created from fragment', () => {
+    var resolver;
+    var objectResolver = new ObjectResolver({
+      key: (callback) => {
+        resolver = new FakeResolver(callback);
+        return resolver;
+      }
+    });
+
+    objectResolver.get({});
+    objectResolver.dispose();
+
+    expect(resolver.dispose).to.have.been.called;
+  });
+
+  it('passes dispose to nested resolver', () => {
+    var resolver;
+    var objectResolver = new ObjectResolver({
+      nested: {
+        key: (callback) => {
+          resolver = new FakeResolver(callback);
+          return resolver;
+        }
+      }
+    });
+
+    objectResolver.get({nested: {}});
+    objectResolver.dispose();
+
+    expect(resolver.dispose).to.have.been.called;
   });
 });

@@ -24,6 +24,12 @@ class BackboneModelResolver extends Resolver {
     return this._getPropsFromModel();
   }
 
+  dispose() {
+    if (this._model) {
+      this._stopListening(this._model);
+    }
+  }
+
   _updateModel(props, seed) {
     this._prevModel = this._model;
     this._model = this._getModel(props, seed);

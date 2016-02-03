@@ -8,6 +8,7 @@ describe('resolver created by createRecursiveResolver', () => {
     constructor(options, callback) {
       super(callback);
 
+      this.dispose = options.onDispose || sinon.spy();
       this._triggerCallbackOnGet = options.triggerCallbackOnGet;
       this._result = options.result;
     }
@@ -81,5 +82,39 @@ describe('resolver created by createRecursiveResolver', () => {
     resolver.get();
 
     expect(callback).to.have.been.called;
+  });
+
+  it('passes dispose on nested resolver', () => {
+    const RecursiveResolver = createRecursiveResolver(FakeResolver);
+    var nestedResolver;
+    const resolver = new RecursiveResolver({
+      result: {chapterId: 5},
+      fragments: {
+        chapter: (callback) => {
+          nestedResolver = new FakeResolver({result: 'chapter'}, callback);
+          return nestedResolver;
+        }
+      }
+    }, () => {});
+
+    resolver.get();
+    resolver.dispose();
+
+    expect(nestedResolver.dispose).to.have.been.called;
+  });
+
+  it('passes dispose to decorated resolver', () => {
+    const RecursiveResolver = createRecursiveResolver(FakeResolver);
+    var disposed = false;
+    const resolver = new RecursiveResolver({
+      triggerCallbackOnGet: true,
+      onDispose: () => { disposed = true; },
+      result: {chapterId: 5},
+    }, () => {});
+
+    resolver.get();
+    resolver.dispose();
+
+    expect(disposed).to.eq(true);
   });
 });

@@ -23,12 +23,27 @@ describe('EditorFileIdsResolver', () => {
       image_files: new Backbone.Collection([{id: 1}])
     };
     var callback = sinon.spy();
-    var resolver = new EditorFileIdsResolver({
+    new EditorFileIdsResolver({
       collections: () => files
     }, callback);
 
     files.image_files.shift();
 
     expect(callback).to.have.been.called;
+  });
+
+  it('stops invokes callback after dispose', () => {
+    var files = {
+      image_files: new Backbone.Collection([{id: 1}])
+    };
+    var callback = sinon.spy();
+    var resolver = new EditorFileIdsResolver({
+      collections: () => files
+    }, callback);
+
+    resolver.dispose();
+    files.image_files.shift();
+
+    expect(callback).not.to.have.been.called;
   });
 });

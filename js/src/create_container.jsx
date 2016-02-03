@@ -33,6 +33,10 @@ export default function(Component, options) {
       this.setState(this._resolve(nextProps));
     }
 
+    componentWillUnmount() {
+      this._resolver.dispose();
+    }
+
     _handleChange() {
       this.setState(this._resolve(this.props));
     }

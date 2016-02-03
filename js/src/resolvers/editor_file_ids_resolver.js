@@ -21,4 +21,10 @@ export default class extends Resolver {
       return result;
     }, {});
   }
+
+  dispose() {
+    Object.values(this._options.collections()).forEach((collection) =>
+      collection.off('remove', this._handleChange, this)
+    );
+  }
 };

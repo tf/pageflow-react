@@ -11,5 +11,10 @@ export default function(Resolver) {
       const result = this._inner.get(props, seed);
       return this._objectResolver.get(result, seed);
     }
+
+    dispose() {
+      this._inner.dispose();
+      this._objectResolver.dispose();
+    }
   }
 };
