@@ -26,6 +26,7 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
     "phantomjs": "^1.9.18",
+    "react-addons-test-utils": "^0.14.7",
     "sinon": "git://github.com/cjohansen/Sinon.JS#b672042043517b9f84e14ed0fb8265126168778a",
     "sinon-chai": "^2.8.0",
     "underscore": "^1.8.3",
