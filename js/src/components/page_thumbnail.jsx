@@ -19,7 +19,7 @@ function className(props) {
     {load_image: props.lazy && props.loaded},
     props.className,
     thumbnailClassName(props),
-    `is_${props.page.type.name}`
+    pageTypeModifierClassName(props.page)
   );
 }
 
@@ -43,7 +43,7 @@ function firstPresentCandidate(props) {
 function thumbnailCandidates(props) {
   return [
     customThumbnailCandidate(props),
-    ...props.page.type.thumbnailCandidates
+    ...pageThumbnailCandiates(props.page)
   ];
 }
 
@@ -53,6 +53,10 @@ function customThumbnailCandidate(props) {
     cssClassPrefix: 'pageflow_image_file',
     collectionName: 'image_files'
   }
+}
+
+function pageThumbnailCandiates(page) {
+  return page ? page.type.thumbnailCandidates : [];
 }
 
 function thumbnailCandidateClassName(props, candidate) {
@@ -66,6 +70,10 @@ function thumbnailCandidateClassName(props, candidate) {
 
 function thumbnailCandidateId(props, candidate) {
   return 'id' in candidate ? candidate.id : props.page[camelize(candidate.attribute)];
+}
+
+function pageTypeModifierClassName(page) {
+  return page ? `is_${page.type.name}` : 'is_unassigned';
 }
 
 export default createContainer(PageThumbnail, {

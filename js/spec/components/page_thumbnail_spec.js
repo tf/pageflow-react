@@ -199,4 +199,13 @@ describe('PageThumbnail', () => {
 
     expect(className).to.contain('is_video');
   });
-})
+
+  it('sets is_unassigned modifier class name if page is null', () => {
+    const fileIds = {};
+
+    const pageThumbnail = renderComponent(PageThumbnail, {page: null, fileIds});
+    const className = pageThumbnail.props.className;
+
+    expect(className).to.contain('is_unassigned');
+  });
+});
