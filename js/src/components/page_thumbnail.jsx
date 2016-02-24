@@ -18,9 +18,13 @@ function className(props) {
   return classNames(
     {load_image: props.lazy && props.loaded},
     props.className,
-    thumbnailClassName(props),
-    `is_${props.page.type.name}`
+    typeClassName(props.page),
+    thumbnailClassName(props)
   );
+}
+
+function typeClassName(page) {
+  return page ? `is_${page.type.name}` : 'is_dangling';
 }
 
 function thumbnailClassName(props) {
@@ -43,7 +47,7 @@ function firstPresentCandidate(props) {
 function thumbnailCandidates(props) {
   return [
     customThumbnailCandidate(props),
-    ...props.page.type.thumbnailCandidates
+    ...pageTypeCandidates(props.page)
   ];
 }
 
@@ -53,6 +57,10 @@ function customThumbnailCandidate(props) {
     cssClassPrefix: 'pageflow_image_file',
     collectionName: 'image_files'
   }
+}
+
+function pageTypeCandidates(page) {
+  return page ? page.type.thumbnailCandidates : [];
 }
 
 function thumbnailCandidateClassName(props, candidate) {

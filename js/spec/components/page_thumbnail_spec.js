@@ -199,4 +199,15 @@ describe('PageThumbnail', () => {
 
     expect(className).to.contain('is_video');
   });
+
+  context('when page is null', function() {
+    it('sets is_dangling class name', () => {
+    const fileIds = {};
+
+    const pageThumbnail = renderComponent(PageThumbnail, {page: null, fileIds});
+    const className = pageThumbnail.props.className;
+
+    expect(className).to.contain('is_dangling');
+    });
+  });
 })
