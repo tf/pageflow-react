@@ -5400,11 +5400,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _componentsPage_thumbnailJsx2 = _interopRequireDefault(_componentsPage_thumbnailJsx);
 
-	var _componentsLazy_loaded_page_thumbnailJsx = __webpack_require__(239);
+	var _componentsLazy_loaded_page_thumbnailJsx = __webpack_require__(234);
 
 	var _componentsLazy_loaded_page_thumbnailJsx2 = _interopRequireDefault(_componentsLazy_loaded_page_thumbnailJsx);
 
-	var _reactDraggable = __webpack_require__(234);
+	var _reactDraggable = __webpack_require__(235);
 
 	var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 
@@ -5683,13 +5683,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var ObjectResolver = (function (_Resolver) {
 	  _inherits(ObjectResolver, _Resolver);
 
-	  function ObjectResolver(fragment, callback, p) {
+	  function ObjectResolver(fragment, callback, propertyName) {
 	    _classCallCheck(this, ObjectResolver);
 
 	    _get(Object.getPrototypeOf(ObjectResolver.prototype), 'constructor', this).call(this, callback);
 	    this._fragment = fragment;
 	    this._resolvers = {};
-	    this._p = p;
+	    this._propertyName = propertyName;
 	  }
 
 	  _createClass(ObjectResolver, [{
@@ -5699,12 +5699,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      this._updateResolvers();
 
-	      if (!props) {
-	        return null;
+	      if (this._propertyName) {
+	        props = props[this._propertyName];
 	      }
 
-	      if (this._p) {
-	        props = props[this._p];
+	      if (!props) {
+	        return null;
 	      }
 
 	      return Object.keys(this._resolvers).reduce(function (result, key) {
@@ -8015,7 +8015,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 	function className(props) {
-	  return (0, _classnames2['default'])({ load_image: props.lazy && props.loaded }, props.className, thumbnailClassName(props), 'is_' + props.page.type.name);
+	  return (0, _classnames2['default'])({ load_image: props.lazy && props.loaded }, props.className, typeClassName(props.page), thumbnailClassName(props));
+	}
+
+	function typeClassName(page) {
+	  return page ? 'is_' + page.type.name : 'is_dangling';
 	}
 
 	function thumbnailClassName(props) {
@@ -8036,7 +8040,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 	function thumbnailCandidates(props) {
-	  return [customThumbnailCandidate(props)].concat(_toConsumableArray(props.page.type.thumbnailCandidates));
+	  return [customThumbnailCandidate(props)].concat(_toConsumableArray(pageTypeCandidates(props.page)));
 	}
 
 	function customThumbnailCandidate(props) {
@@ -8045,6 +8049,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    cssClassPrefix: 'pageflow_image_file',
 	    collectionName: 'image_files'
 	  };
+	}
+
+	function pageTypeCandidates(page) {
+	  return page ? page.type.thumbnailCandidates : [];
 	}
 
 	function thumbnailCandidateClassName(props, candidate) {
@@ -8068,19 +8076,83 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 /* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(235);
+	'use strict';
 
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(193);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _create_page_componentJsx = __webpack_require__(215);
+
+	var _create_page_componentJsx2 = _interopRequireDefault(_create_page_componentJsx);
+
+	var _page_thumbnailJsx = __webpack_require__(233);
+
+	var _page_thumbnailJsx2 = _interopRequireDefault(_page_thumbnailJsx);
+
+	var LazyLoadedPageThumbnail = (function (_React$Component) {
+	  _inherits(LazyLoadedPageThumbnail, _React$Component);
+
+	  function LazyLoadedPageThumbnail() {
+	    _classCallCheck(this, LazyLoadedPageThumbnail);
+
+	    _get(Object.getPrototypeOf(LazyLoadedPageThumbnail.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(LazyLoadedPageThumbnail, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(_page_thumbnailJsx2['default'], _extends({}, this.props, { lazy: true, loaded: this.context.pageIsPreloaded }));
+	    }
+	  }], [{
+	    key: 'contextTypes',
+	    value: {
+	      pageIsPreloaded: _react2['default'].PropTypes.bool
+	    },
+	    enumerable: true
+	  }]);
+
+	  return LazyLoadedPageThumbnail;
+	})(_react2['default'].Component);
+
+	;
+
+	exports['default'] = (0, _create_page_componentJsx2['default'])(LazyLoadedPageThumbnail);
+	module.exports = exports['default'];
 
 /***/ },
 /* 235 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(236);
+
+
+/***/ },
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(193);
 	var emptyFunction = function(){};
-	var assign = __webpack_require__(236);
-	var classNames = __webpack_require__(237);
+	var assign = __webpack_require__(237);
+	var classNames = __webpack_require__(238);
 
 	//
 	// Helpers. See Element definition below this section.
@@ -8757,7 +8829,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 /***/ },
-/* 236 */
+/* 237 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -8789,7 +8861,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 /***/ },
-/* 237 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -8836,71 +8908,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 		}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	}
 
-
-/***/ },
-/* 238 */,
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var _react = __webpack_require__(193);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _create_page_componentJsx = __webpack_require__(215);
-
-	var _create_page_componentJsx2 = _interopRequireDefault(_create_page_componentJsx);
-
-	var _page_thumbnailJsx = __webpack_require__(233);
-
-	var _page_thumbnailJsx2 = _interopRequireDefault(_page_thumbnailJsx);
-
-	var LazyLoadedPageThumbnail = (function (_React$Component) {
-	  _inherits(LazyLoadedPageThumbnail, _React$Component);
-
-	  function LazyLoadedPageThumbnail() {
-	    _classCallCheck(this, LazyLoadedPageThumbnail);
-
-	    _get(Object.getPrototypeOf(LazyLoadedPageThumbnail.prototype), 'constructor', this).apply(this, arguments);
-	  }
-
-	  _createClass(LazyLoadedPageThumbnail, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2['default'].createElement(_page_thumbnailJsx2['default'], _extends({}, this.props, { lazy: true, loaded: this.context.pageIsPreloaded }));
-	    }
-	  }], [{
-	    key: 'contextTypes',
-	    value: {
-	      pageIsPreloaded: _react2['default'].PropTypes.bool
-	    },
-	    enumerable: true
-	  }]);
-
-	  return LazyLoadedPageThumbnail;
-	})(_react2['default'].Component);
-
-	;
-
-	exports['default'] = (0, _create_page_componentJsx2['default'])(LazyLoadedPageThumbnail);
-	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);
