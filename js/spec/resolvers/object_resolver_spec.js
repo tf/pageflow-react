@@ -98,6 +98,20 @@ describe('ObjectResolver', () => {
       expect(result.nested.key).to.eq('resolved value 123 with SEED');
     });
 
+    it('keeps null event if resolver in nested fragment is present', () => {
+      var objectResolver = new ObjectResolver({
+        nested: {
+          key: (callback) => {
+            return new FakeResolver(callback);
+          }
+        }
+      });
+
+      var result = objectResolver.get({nested: null}, 'SEED');
+
+      expect(result.nested).to.eq(null);
+    });
+
     it('invokes callback when resolver of nested key signals a change', () => {
       var callback = sinon.spy();
       var resolver;

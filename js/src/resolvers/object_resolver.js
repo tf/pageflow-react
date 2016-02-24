@@ -1,22 +1,22 @@
 import Resolver from './resolver';
 
 export default class ObjectResolver extends Resolver {
-  constructor(fragment, callback, p) {
+  constructor(fragment, callback, propertyName) {
     super(callback);
     this._fragment = fragment;
     this._resolvers = {};
-    this._p = p;
+    this._propertyName = propertyName;
   }
 
   get(props, seed) {
     this._updateResolvers();
 
-    if (!props) {
-      return null;
+    if (this._propertyName) {
+      props = props[this._propertyName];
     }
 
-    if (this._p) {
-      props = props[this._p];
+    if (!props) {
+      return null;
     }
 
     return Object.keys(this._resolvers).reduce((result, key) => {
