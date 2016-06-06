@@ -6,6 +6,7 @@ import SeedPageResolver from './resolvers/seed_page_resolver';
 import SeedChapterResolver from './resolvers/seed_chapter_resolver';
 import PageTypeResolver from './resolvers/page_type_resolver';
 import CurrentParentPageResolver from './resolvers/current_parent_page_resolver';
+import I18nResolver from './resolvers/i18n_resolver';
 
 var resolvers;
 
@@ -27,6 +28,7 @@ else {
 resolvers = {
   pageType: PageTypeResolver,
   currentParentPage: CurrentParentPageResolver,
+  i18n: I18nResolver,
   ...resolvers
 }
 
