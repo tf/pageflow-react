@@ -4,13 +4,14 @@ import createContainer from './create_container.jsx';
 import createResolverRoot from './create_resolver_root.jsx';
 import resolve from './resolve';
 
-export default function(Component) {
+export default function(Component, options = {}) {
   const ContainerComponent = createContainer(Component, {
     fragments: {
       page: resolve('page', {
         property: 'pageId'
-      })
-    }
+      }),
+      ...(options.fragments || {})
+    },
   });
 
   class Page extends React.Component {
