@@ -1,3 +1,4 @@
 files:
   - js/src/components/background_image.jsx
   - js/src/components/page_background.jsx
+  - js/src/components/InfoBox.jsx
