@@ -1,5 +1,8 @@
 import {Component} from 'react';
 
+/**
+ * Used inside with {BackgroundImage}.
+ */
 export default class extends Component {
   render() {
     return (
