@@ -1,11 +1,7 @@
 import React from 'react';
 
 export default function(Component) {
-  return class extends React.Component {
-    static childContextTypes = {
-      resolverSeed: React.PropTypes.object
-    }
-
+  class ResolverRoot extends React.Component {
     getChildContext() {
       return {
         resolverSeed: this.props.resolverSeed || {}
@@ -18,4 +14,10 @@ export default function(Component) {
       );
     }
   };
+
+  ResolverRoot.childContextTypes = {
+    resolverSeed: React.PropTypes.object
+  };
+
+  return ResolverRoot;
 };

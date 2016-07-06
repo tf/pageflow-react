@@ -1,1 +1,2 @@
-dir: js/src
+files:
+  - js/src/components/background_image.jsx

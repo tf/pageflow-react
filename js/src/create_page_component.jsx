@@ -1,11 +1,7 @@
 import React from 'react';
 
 export default function(Component) {
-  return class extends React.Component {
-    static contextTypes = {
-      pageHooks: React.PropTypes.object
-    }
-
+  class PageComponent extends React.Component {
     componentDidMount() {
       var component = this.refs.component;
 
@@ -42,4 +38,10 @@ export default function(Component) {
       return (<Component {...this.props} ref="component" />);
     }
   }
+
+  PageComponent.contextTypes = {
+    pageHooks: React.PropTypes.object
+  };
+
+  return PageComponent;
 };

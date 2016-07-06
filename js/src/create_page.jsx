@@ -15,11 +15,6 @@ export default function(Component, options = {}) {
   });
 
   class Page extends React.Component {
-    static childContextTypes = {
-      pageHooks: React.PropTypes.object,
-      pageIsPreloaded: React.PropTypes.bool
-    }
-
     getChildContext() {
       return {
         pageHooks: this.props.pageHooks,
@@ -32,6 +27,11 @@ export default function(Component, options = {}) {
         <ContainerComponent pageId={this.props.pageId} />
       );
     }
+  };
+
+  Page.childContextTypes = {
+    pageHooks: React.PropTypes.object,
+    pageIsPreloaded: React.PropTypes.bool
   };
 
   return createResolverRoot(Page);

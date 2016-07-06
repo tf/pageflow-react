@@ -13,11 +13,7 @@ export default function(Component, options) {
     };
   }
 
-  return class extends React.Component {
-    static contextTypes = {
-      resolverSeed: React.PropTypes.object
-    }
-
+  class Container extends React.Component {
     constructor(props, context) {
       super(props, context);
 
@@ -48,6 +44,11 @@ export default function(Component, options) {
     render() {
       return (<Component {...this.state} />);
     }
+  }
+
+  Container.contextTypes = {
+    resolverSeed: React.PropTypes.object
   };
 
+  return Container;
 };
