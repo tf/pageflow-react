@@ -1,9 +1,9 @@
 import {Component} from 'react';
 
 /**
- * Used inside with {BackgroundImage}.
+ * Used inside with {@link BackgroundImage}.
  */
-export default class extends Component {
+export default class PageBackground extends Component {
   render() {
     return (
       <div className="backgroundArea">
