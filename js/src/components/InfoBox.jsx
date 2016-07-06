@@ -3,6 +3,7 @@ import classNames from 'classnames';
 /**
  * Info box
  * @name InfoBox
+ * @class
  */
 export default function(props) {
   return (
