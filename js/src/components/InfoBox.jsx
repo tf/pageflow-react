@@ -1,5 +1,9 @@
 import classNames from 'classnames';
 
+/**
+ * Info box
+ * @name InfoBox
+ */
 export default function(props) {
   return (
     <div className={wrapperClassNames(props)}>
