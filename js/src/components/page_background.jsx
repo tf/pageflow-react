@@ -2,6 +2,7 @@ import {Component} from 'react';
 
 /**
  * Used inside with {@link BackgroundImage}.
+ * @name PageBackground
  */
 export default class PageBackground extends Component {
   render() {
