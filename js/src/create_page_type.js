@@ -55,4 +55,4 @@ export default function(Component) {
       }), pageElement[0]);
     }
   };
-};
+}

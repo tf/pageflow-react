@@ -31,6 +31,7 @@
     "plugins": [ "react" ],
     "globals": {
       "React": true,
+      "Backbone": true,
       "pageflow": true,
       "PAGEFLOW_EDITOR": true,
       "I18n": true
