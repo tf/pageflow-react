@@ -19,6 +19,10 @@ export default function(Component) {
         },
 
         deactivating: () => {
+          trigger('pageWillDeactivate');
+        },
+
+        deactivated: () => {
           trigger('pageDidDeactivate');
         },
 
