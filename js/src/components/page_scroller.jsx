@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Scroller from './scroller';
-import createPageComponent from '../create_page_component.jsx';
+import withPageLifecycle from '../withPageLifecycle.jsx';
 
 export default class PageScroller extends React.Component {
   static childContextTypes = {
@@ -46,4 +46,4 @@ export default class PageScroller extends React.Component {
   }
 };
 
-export default createPageComponent(PageScroller);
+export default withPageLifecycle(PageScroller);

@@ -11,7 +11,7 @@ import PageText from './page_text.jsx';
 import PlayerControls from './PlayerControls.jsx';
 import CloseButton from './CloseButton.jsx';
 
-import createPageComponent from '../create_page_component.jsx';
+import withPageLifecycle from '../withPageLifecycle.jsx';
 
 /**
  *
@@ -103,4 +103,4 @@ PageWithInteractiveBackground.contextTypes = {
   scrollIndicator: React.PropTypes.object
 };
 
-export default createPageComponent(PageWithInteractiveBackground);
+export default withPageLifecycle(PageWithInteractiveBackground);
