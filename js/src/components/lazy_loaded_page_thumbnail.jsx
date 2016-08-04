@@ -1,7 +1,5 @@
 import React from 'react';
 
-import createPageComponent from '../create_page_component.jsx';
-
 import PageThumbnail from './page_thumbnail.jsx';
 
 class LazyLoadedPageThumbnail extends React.Component {
@@ -16,4 +14,4 @@ class LazyLoadedPageThumbnail extends React.Component {
   }
 };
 
-export default createPageComponent(LazyLoadedPageThumbnail);
+export default LazyLoadedPageThumbnail;

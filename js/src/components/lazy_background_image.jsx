@@ -1,7 +1,5 @@
 import React from 'react';
 
-import createPageComponent from '../create_page_component.jsx';
-
 import BackgroundImage from './background_image.jsx';
 
 class LazyBackgroundImage extends React.Component {
@@ -20,4 +18,4 @@ class LazyBackgroundImage extends React.Component {
   }
 };
 
-export default createPageComponent(LazyBackgroundImage);
+export default LazyBackgroundImage;
