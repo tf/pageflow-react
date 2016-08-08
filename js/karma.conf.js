@@ -62,6 +62,7 @@ module.exports = function (config) {
         'react/addons': true
       },
       resolve: {
+        extensions: ['', '.js', '.jsx'],
         root: [path.resolve('./src'), path.resolve('./spec')]
       }
     },

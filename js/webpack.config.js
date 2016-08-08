@@ -5,6 +5,10 @@ module.exports = {
     './index.js'
   ],
 
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
+
   module: {
     loaders: [
       {
