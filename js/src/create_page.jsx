@@ -15,17 +15,14 @@ export default function(Component, options = {}) {
   });
 
   class Page extends React.Component {
-    static childContextTypes = {
-      pageHooks: React.PropTypes.object,
-      scrollIndicator: React.PropTypes.object,
-      pageIsPreloaded: React.PropTypes.bool
-    }
-
     getChildContext() {
       return {
         pageHooks: this.props.pageHooks,
         scrollIndicator: this.props.scrollIndicator,
-        pageIsPreloaded: this.props.isPreloaded
+        pageState: {
+          isPreloaded: this.props.isPreloaded,
+          isPrepared: this.props.isPrepared
+        }
       };
     }
 
@@ -34,7 +31,13 @@ export default function(Component, options = {}) {
         <ContainerComponent pageId={this.props.pageId} />
       );
     }
+  }
+
+  Page.childContextTypes = {
+    pageHooks: React.PropTypes.object,
+    scrollIndicator: React.PropTypes.object,
+    pageState: React.PropTypes.object,
   };
 
   return createResolverRoot(Page);
-};
+}

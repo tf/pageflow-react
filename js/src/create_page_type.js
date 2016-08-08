@@ -8,6 +8,7 @@ export default function(Component) {
     enhance(pageElement) {
       this._pageHooks = {...Backbone.Events};
       this._isPreloaded = false;
+      this._isPrepared = false;
 
       this._render(pageElement);
     },
@@ -17,7 +18,18 @@ export default function(Component) {
       this._render(pageElement);
     },
 
-    activating(elelement, configuration, options) {
+    prepare(pageElement) {
+      this._prepare(pageElement);
+      this._pageHooks.trigger('prepare');
+    },
+
+    unprepare(pageElement) {
+      this._scheduleUnprepare(pageElement);
+      this._pageHooks.trigger('unprepare');
+    },
+
+    activating(pageElement, configuration, options) {
+      this._prepare(pageElement);
       this._pageHooks.trigger('activating', options);
     },
 
@@ -29,7 +41,8 @@ export default function(Component) {
       this._pageHooks.trigger('deactivating');
     },
 
-    deactivated() {
+    deactivated(pageElement) {
+      this._scheduleUnprepare(pageElement);
       this._pageHooks.trigger('deactivated');
     },
 
@@ -45,13 +58,33 @@ export default function(Component) {
       ReactDOM.unmountComponentAtNode(pageElement[0]);
     },
 
+    _scheduleUnprepare(pageElement) {
+      if (!this._unprepareTimeout) {
+        this._unprepareTimeout = setTimeout(() => {
+          this._isPrepared = false;
+          this._render(pageElement);
+        }, 5000);
+      }
+    },
+
+    _prepare(pageElement) {
+      if (this._unprepareTimeout) {
+        clearTimeout(this._unprepareTimeout);
+        this._unprepareTimeout = null;
+      }
+
+      this._isPrepared = true;
+      this._render(pageElement);
+    },
+
     _render(pageElement) {
       ReactDOM.render(React.createElement(Component, {
         resolverSeed: pageflow.seed,
         pageId: parseInt(pageElement.attr('id'), 10),
         pageHooks: this._pageHooks,
         scrollIndicator: this.scrollIndicator,
-        isPreloaded: this._isPreloaded
+        isPreloaded: this._isPreloaded,
+        isPrepared: this._isPrepared
       }), pageElement[0]);
     }
   };
