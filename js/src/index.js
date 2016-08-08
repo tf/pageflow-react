@@ -4,6 +4,7 @@ import createContainer from './create_container.jsx';
 import createPageType from './create_page_type';
 import createWidgetType from './create_widget_type';
 import withPageLifecycle from './withPageLifecycle.jsx';
+import withPageStateProp from './withPageStateProp.jsx';
 import resolve from './resolve';
 import mutate from './mutate';
 
@@ -46,6 +47,7 @@ export default {
   /** @deprecated Use withPageLifecycle instead. */
   createPageComponent: withPageLifecycle,
 
+  withPageStateProp,
 
   /** @api public */
   resolve,
