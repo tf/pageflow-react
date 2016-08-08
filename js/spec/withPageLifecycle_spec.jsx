@@ -16,18 +16,8 @@ describe('withPageLifecycle', () => {
     expect(result.find(Component)).to.have.prop('some', 'prop');
   });
 
-  const hookMapping = {
-    prepare: 'pageDidPrepare',
-    unprepare: 'pageDidUnprepare',
-    activating: 'pageWillActivate',
-    activated: 'pageDidActivate',
-    deactivating: 'pageWillDeactivate',
-    deactivated: 'pageDidDeactivate',
-    resize: 'pageDidResize'
-  };
-
-  Object.keys(hookMapping).forEach(hook => {
-    const method = hookMapping[hook];
+  Object.keys(withPageLifecycle.hookMapping).forEach(hook => {
+    const method = withPageLifecycle.hookMapping[hook];
 
     it(`calls ${method} when ${hook} page hook is triggered`, () => {
       const lifecycleMethod = sinon.spy();
