@@ -4,10 +4,17 @@ import LazyBackgroundImage from './lazy_background_image.jsx';
 
 export default class PageBackgroundImage extends React.Component {
   render() {
+    const page = this.props.page;
+    const property = this.props.imagePropertyBaseName;
+
     return (
-      <LazyBackgroundImage imageFileId={this.props.page.backgroundImageId}
-                           position={[this.props.page.backgroundImageX, this.props.page.backgroundImageY]}
+      <LazyBackgroundImage imageFileId={page[`${property}Id`]}
+                           position={[page[`${property}X`], page[`${property}Y`]]}
                            className="background background_image" />
     );
   }
+}
+
+PageBackgroundImage.defaultProps = {
+  imagePropertyBaseName: 'backgroundImage'
 };
