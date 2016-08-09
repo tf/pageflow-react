@@ -8,6 +8,7 @@ import PageTypeResolver from './resolvers/page_type_resolver';
 import CurrentParentPageResolver from './resolvers/current_parent_page_resolver';
 import I18nResolver from './resolvers/i18n_resolver';
 import VideoFileResolver from './resolvers/VideoFileResolver';
+import SettingResolver from './resolvers/SettingResolver';
 
 var resolvers;
 
@@ -31,6 +32,7 @@ resolvers = {
   currentParentPage: CurrentParentPageResolver,
   i18n: I18nResolver,
   videoFile: VideoFileResolver,
+  setting: SettingResolver,
   ...resolvers
 };
 
