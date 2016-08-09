@@ -8,8 +8,9 @@ import PageForeground from './page_foreground.jsx';
 import PageScroller from './page_scroller.jsx';
 import PageHeader from './page_header.jsx';
 import PageText from './page_text.jsx';
-import PlayerControls from './PlayerControls.jsx';
+import PlayerControls from './PlayerControls';
 import CloseButton from './CloseButton.jsx';
+import MenuBar from './PlayerControls/MenuBar';
 
 import withPageLifecycle from '../withPageLifecycle.jsx';
 
@@ -55,6 +56,11 @@ class PageWithInteractiveBackground extends React.Component {
     return (
       <PageWrapper className={classNames({unplayed: !this.state.didPlay}, 'hide_content_with_text')}>
         <CloseButton onClick={this.onCloseButtonClick} />
+        <MenuBar additionalButtons={this.props.additionalMenuBarButtons}
+                 onAdditionalButtonClick={this.props.onAdditionalButtonClick}
+                 qualityMenuButtonTitle={this.props.qualityMenuButtonTitle}
+                 qualityMenuItems={this.props.qualityMenuItems}
+                 onQualityMenuItemClick={this.props.onQualityMenuItemClick} />
 
         <PageBackground>
           <div className="videoWrapper">
@@ -97,6 +103,12 @@ PageWithInteractiveBackground.propTypes = {
   page: React.PropTypes.object,
   onEnterBackground: React.PropTypes.func,
   onLeaveBackground: React.PropTypes.func,
+
+  additionalMenuBarButtons: React.PropTypes.array,
+  onAdditionalButtonClick: React.PropTypes.func,
+
+  qualityMenuItems: React.PropTypes.array,
+  onQualityMenuItemClick: React.PropTypes.func
 };
 
 PageWithInteractiveBackground.contextTypes = {
