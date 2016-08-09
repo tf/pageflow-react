@@ -8,8 +8,9 @@ import PageForeground from './page_foreground.jsx';
 import PageScroller from './page_scroller.jsx';
 import PageHeader from './page_header.jsx';
 import PageText from './page_text.jsx';
-import PlayerControls from './PlayerControls.jsx';
+import PlayerControls from './PlayerControls';
 import CloseButton from './CloseButton.jsx';
+import MenuBar from './PlayerControls/MenuBar';
 
 import createPageComponent from '../create_page_component.jsx';
 
@@ -21,15 +22,20 @@ class PageWithInteractiveBackground extends React.Component {
     super(props, context);
 
     this.state = {
-      didPlay: true
+      didPlay: false,
+      menuBarHiddenOnPhone: false
     };
 
-    this.setDidPlay = () => {
-      this.setState({didPlay: true});
+    this.onHideTextActivate = () => {
+      this.setState({
+        didPlay: true,
+        menuBarHiddenOnPhone: false
+      });
     };
 
-    this.enableScrollIndicator = () => {
+    this.onHideTextDeactivate = () => {
       this.context.scrollIndicator.enable();
+      this.setState({menuBarHiddenOnPhone: true});
     };
 
     this.onPlayButtonClick = () => {
@@ -55,6 +61,12 @@ class PageWithInteractiveBackground extends React.Component {
     return (
       <PageWrapper className={classNames({unplayed: !this.state.didPlay}, 'hide_content_with_text')}>
         <CloseButton onClick={this.onCloseButtonClick} />
+        <MenuBar additionalButtons={this.props.additionalMenuBarButtons}
+                 onAdditionalButtonClick={this.props.onAdditionalButtonClick}
+                 qualityMenuButtonTitle={this.props.qualityMenuButtonTitle}
+                 qualityMenuItems={this.props.qualityMenuItems}
+                 onQualityMenuItemClick={this.props.onQualityMenuItemClick}
+                 hiddenOnPhone={this.state.menuBarHiddenOnPhone} />
 
         <PageBackground>
           <div className="videoWrapper">
@@ -79,17 +91,17 @@ class PageWithInteractiveBackground extends React.Component {
   }
 
   pageWillActivate() {
-    this.setState({didPlay: false});
+    this.setState({didPlay: false, menuBarHiddenOnPhone: false});
   }
 
   pageDidActivate() {
-    pageflow.hideText.on('activate', this.setDidPlay);
-    pageflow.hideText.on('deactivate', this.enableScrollIndicator);
+    pageflow.hideText.on('activate', this.onHideTextActivate);
+    pageflow.hideText.on('deactivate', this.onHideTextDeactivate);
   }
 
   pageWillDeactivate() {
-    pageflow.hideText.off('activate', this.setDidPlay);
-    pageflow.hideText.off('deactivate', this.enableScrollIndicator);
+    pageflow.hideText.off('activate', this.onHideTextActivate);
+    pageflow.hideText.off('deactivate', this.onHideTextDeactivate);
   }
 }
 
@@ -97,6 +109,12 @@ PageWithInteractiveBackground.propTypes = {
   page: React.PropTypes.object,
   onEnterBackground: React.PropTypes.func,
   onLeaveBackground: React.PropTypes.func,
+
+  additionalMenuBarButtons: React.PropTypes.array,
+  onAdditionalButtonClick: React.PropTypes.func,
+
+  qualityMenuItems: React.PropTypes.array,
+  onQualityMenuItemClick: React.PropTypes.func
 };
 
 PageWithInteractiveBackground.contextTypes = {
