@@ -1,17 +1,10 @@
-import UpdatePageMutation from './mutations/update_page_mutation';
-import UpdatePageLinkMutation from './mutations/update_page_link_mutation';
-
-var mutations = {
-  updatePage: UpdatePageMutation,
-  updatePageLink: UpdatePageLinkMutation
-};
+import MutationResolver from 'resolvers/MutationResolver';
 
 export default function(mutationName, props) {
-  var mutation = mutations[mutationName];
-
-  if (!mutation) {
-    throw `Unknown mutation ${mutationName}`;
-  }
-
-  return new mutation(props).perform();
-};
+  return function(callback) {
+    return new MutationResolver({
+      name: mutationName,
+      props
+    }, callback);
+  };
+}
