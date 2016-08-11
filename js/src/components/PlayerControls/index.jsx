@@ -1,6 +1,7 @@
 import React from 'react';
 
 import InfoBox from '../InfoBox';
+import PlayButton from './PlayButton';
 import QualityMenu from './QualityMenu';
 
 function PlayerControls(props) {
@@ -12,13 +13,9 @@ function PlayerControls(props) {
 
       <div className="vjs-control-bar">
         <div className="play_button">
-          <a className="vjs-play-control"
-             href="#"
-             tabIndex="4"
-             title={props.playButtonTitle}
-             onClick={props.onPlayButtonClick}>
-            <span></span>
-          </a>
+          <PlayButton title={props.playButtonTitle}
+                      iconName={props.playButtonIconName}
+                      onClick={props.onPlayButtonClick} />
         </div>
         <div className="control_bar_text">
           {props.controlBarText}
