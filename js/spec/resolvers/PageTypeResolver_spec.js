@@ -1,4 +1,4 @@
-import PageTypeResolver from 'resolvers/page_type_resolver';
+import PageTypeResolver from 'resolvers/PageTypeResolver';
 
 describe('PageTypeResolver', () => {
   it('uses page type seed data', () => {

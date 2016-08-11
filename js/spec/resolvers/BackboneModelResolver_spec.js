@@ -1,4 +1,4 @@
-import BackboneModelResolver from 'resolvers/backbone_model_resolver';
+import BackboneModelResolver from 'resolvers/BackboneModelResolver';
 
 import Backbone from 'backbone';
 

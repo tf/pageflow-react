@@ -1,4 +1,4 @@
-import Resolver from './resolver';
+import Resolver from './Resolver';
 
 export default class extends Resolver {
   constructor(_, callback) {

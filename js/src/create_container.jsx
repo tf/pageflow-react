@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ObjectResolver from './resolvers/object_resolver';
+import ObjectResolver from './resolvers/ObjectResolver';
 
 export default function(Component, options) {
   options = options || {};

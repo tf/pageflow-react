@@ -1,4 +1,4 @@
-import SeedResolver from 'resolvers/seed_resolver';
+import SeedResolver from 'resolvers/SeedResolver';
 
 describe('SeedResolver', () => {
   it('gets props from seed data referenced by id', () => {
