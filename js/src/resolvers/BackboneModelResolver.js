@@ -97,6 +97,7 @@ class BackboneModelResolver extends Resolver {
   _getSubscribedEvents() {
     return this._options.attributesForProps
                .map((attribute) => `change:${attribute}`)
+               .concat(['remove'])
                .join(' ');
   }
 
