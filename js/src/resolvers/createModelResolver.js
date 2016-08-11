@@ -56,7 +56,17 @@ export default function(options, {editorMode = PAGEFLOW_EDITOR} = {}) {
     includeConfiguration: options.includeConfiguration
   };
 
-  return function({property}, callback) {
+  if (!options.backboneCollection) {
+    throw new Error('Required option backboneCollection missing.');
+  }
+
+  if (!options.seedProperty) {
+    throw new Error('Required option seedProperty missing.');
+  }
+
+  return function({property} = {}, callback) {
+    property = property || options.property;
+
     if (editorMode) {
       return new BackboneModelResolver({
         collection: options.backboneCollection,

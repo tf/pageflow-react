@@ -3,6 +3,24 @@ import Backbone from 'backbone';
 import sinon from 'sinon';
 
 describe('createModelResolver', () => {
+  it('throws helpful error when called without backboneCollection option', () => {
+    expect(() => {
+      createModelResolver({
+        seedProperty: 'models',
+        attributesForProps: ['name']
+      });
+    }).to.throw(/backboneCollection missing/);
+  });
+
+  it('throws helpful error when called without seedProperty option', () => {
+    expect(() => {
+      createModelResolver({
+        backboneCollection: () => {},
+        attributesForProps: ['name']
+      });
+    }).to.throw(/seedProperty missing/);
+  });
+
   describe('creates resolver that', () => {
     function itBehavesLikeModelResolver(env) {
       it('resolves to attributes hash', () => {
@@ -38,6 +56,24 @@ describe('createModelResolver', () => {
         const resolver = new Resolver({
           property: 'someId'
         }, () => {});
+
+        const result = resolver.get({someId: 5}, seed);
+
+        expect(result).to.deep.eq({name: 'some name'});
+      });
+
+      it('can use predefined property option', () => {
+        const attributes = [{id: 5, name: 'some name'}];
+        const seed = {models: attributes};
+        const collection = new Backbone.Collection(attributes);
+
+        const Resolver = createModelResolver({
+          seedProperty: 'models',
+          backboneCollection: () => collection,
+          attributesForProps: ['name'],
+          property: 'someId'
+        }, env);
+        const resolver = new Resolver(undefined, () => {});
 
         const result = resolver.get({someId: 5}, seed);
 
