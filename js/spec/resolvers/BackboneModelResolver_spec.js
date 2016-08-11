@@ -114,6 +114,24 @@ describe('BackboneModelResolver', () => {
     expect(callback).to.have.been.called;
   });
 
+  it('invokes callback when model is destroyed', () => {
+    var collection = new Backbone.Collection([{perma_id: 1, title: 'Some title'}]);
+    var valueAtCallback = 'not called';
+    var modelResolver = new BackboneModelResolver({
+      collection: () => collection,
+      idAttribute: 'perma_id',
+      attributesForProps: ['id', 'title'],
+      property: 'modelId'
+    }, () => {
+      valueAtCallback = modelResolver.get({modelId: 1});
+    });
+
+    modelResolver.get({modelId: 1});
+    collection.first().destroy();
+
+    expect(valueAtCallback).to.eq(null);
+  });
+
   it('does not invoke callback when other attributes changes', () => {
     var collection = new Backbone.Collection([{id: 1, title: 'Some title'}]);
     var callback = sinon.spy();
