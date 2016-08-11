@@ -1,5 +1,5 @@
-import Resolver from './resolver';
-import createRecursiveResolver from './create_recursive_resolver';
+import Resolver from './Resolver';
+import createRecursiveResolver from './createRecursiveResolver';
 
 import camelize from '../utils/camelize';
 

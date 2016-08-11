@@ -1,4 +1,4 @@
-import ObjectResolver from './object_resolver';
+import ObjectResolver from './ObjectResolver';
 
 export default function(Resolver) {
   return class {

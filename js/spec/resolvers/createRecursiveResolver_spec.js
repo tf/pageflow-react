@@ -1,5 +1,5 @@
-import Resolver from 'resolvers/resolver';
-import createRecursiveResolver from 'resolvers/create_recursive_resolver';
+import Resolver from 'resolvers/Resolver';
+import createRecursiveResolver from 'resolvers/createRecursiveResolver';
 
 import sinon from 'sinon';
 

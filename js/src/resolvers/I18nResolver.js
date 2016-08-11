@@ -1,4 +1,4 @@
-import Resolver from './resolver';
+import Resolver from './Resolver';
 
 export default class extends Resolver {
   get(props, seed) {
@@ -8,4 +8,4 @@ export default class extends Resolver {
       }
     };
   }
-};
+}

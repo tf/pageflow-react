@@ -1,4 +1,4 @@
-import I18nResolver from 'resolvers/i18n_resolver';
+import I18nResolver from 'resolvers/I18nResolver';
 
 import sinon from 'sinon';
 
