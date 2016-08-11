@@ -26,6 +26,7 @@ module.exports = {
   externals: {
     pageflow: 'pageflow',
     react: 'React',
+    backbone: 'Backbone',
     'react-dom': 'ReactDOM'
   }
 };
