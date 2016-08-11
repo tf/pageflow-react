@@ -1,4 +1,4 @@
-import Resolver from './resolver';
+import Resolver from './Resolver';
 
 import camelize from '../utils/camelize';
 
@@ -9,4 +9,4 @@ export default class extends Resolver {
       ...camelize.deep(seed.page_types[props.type])
     };
   }
-};
+}

@@ -1,7 +1,7 @@
-import Resolver from './resolver';
-import resolve from '../resolve';
+import Resolver from './Resolver';
+import resolve from 'resolve';
 
-import createRecursiveResolver from './create_recursive_resolver';
+import createRecursiveResolver from './createRecursiveResolver';
 
 class CurrentPageResolver extends Resolver {
   constructor(options, callback) {

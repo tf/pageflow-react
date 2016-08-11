@@ -7,15 +7,15 @@ describe('VideoFileResolver', () => {
         '4k': 'https://somehost/dir/:id_partition/4k.mp4'
       },
     },
-    video_file_variants: {
-      2004: ['4k'],
-      2005: ['4k', 'medium']
-    }
+    video_files: [
+      {id: 2004, variants: ['4k']},
+      {id: 2005, variants: ['4k', 'medium']}
+    ]
   };
 
   it('interpolates id into url template', () => {
     var resolver = new VideoFileResolver({
-      id: props => props.videoId
+      property: 'videoId'
     });
 
     var result = resolver.get({videoId: 2004}, seed);
@@ -25,17 +25,9 @@ describe('VideoFileResolver', () => {
     });
   });
 
-  it('raises descriptive error if id option is missing', () => {
-    var resolver = new VideoFileResolver();
-
-    expect(() => {
-      resolver.get({videoId: 2004}, seed);
-    }).to.throw(/as id option/);
-  });
-
   it('returns null if video with id is not found', () => {
     var resolver = new VideoFileResolver({
-      id: props => props.videoId
+      property: 'videoId'
     });
 
     var result = resolver.get({videoId: 1}, seed);
@@ -45,7 +37,7 @@ describe('VideoFileResolver', () => {
 
   it('skips variants that do not have an url template', () => {
     var resolver = new VideoFileResolver({
-      id: props => props.videoId
+      property: 'videoId'
     });
 
     var result = resolver.get({videoId: 2004}, seed);

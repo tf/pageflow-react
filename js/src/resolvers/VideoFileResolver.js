@@ -1,41 +1,26 @@
-import Resolver from './resolver';
+import createModelResolver from './createModelResolver';
+import compose from './compose';
 
-class VideoFileResolver extends Resolver {
-  constructor(options, callback) {
-    super(callback);
-    this.options = options || {};
+export default compose(toVideoUrls, createModelResolver({
+  backboneCollection: () => pageflow.videoFiles,
+  seedProperty: 'video_files',
+  attributesForProps: ['id', 'variants'],
+}));
+
+function toVideoUrls(attributes, seed) {
+  if (!attributes) {
+    return null;
   }
 
-  get(props, seed) {
-    const videoFileId = getVideoFileId(props, this.options);
-    const variants = getPresentVariants(seed, videoFileId);
+  return attributes.variants.reduce((result, variant) => {
+    const url = getVideoFileUrl(seed, attributes.id, variant);
 
-    if (!variants) {
-      return null;
+    if (url) {
+      result[variant] = url;
     }
 
-    return variants.reduce((result, quality) => {
-      const url = getVideoFileUrl(seed, videoFileId, quality);
-
-      if (url) {
-        result[quality] = url;
-      }
-
-      return result;
-    }, {});
-  }
-}
-
-function getVideoFileId(props, options) {
-  if (typeof options.id != 'function') {
-    throw new Error('Pass a function mapping props to file id as id option.');
-  }
-
-  return options.id(props);
-}
-
-function getPresentVariants(seed, videoFileId) {
-  return seed.video_file_variants[videoFileId];
+    return result;
+  }, {});
 }
 
 function getVideoFileUrl(seed, videoFileId, quality) {
@@ -63,5 +48,3 @@ function partition(string, separator) {
 function pad(string, size) {
   return (Array(size).fill(0).join('') + string).slice(-size);
 }
-
-export default VideoFileResolver;

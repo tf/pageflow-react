@@ -1,4 +1,4 @@
-import Resolver from './resolver';
+import Resolver from './Resolver';
 
 import UpdatePageMutation from 'mutations/update_page_mutation';
 import UpdatePageLinkMutation from 'mutations/update_page_link_mutation';

@@ -1,4 +1,4 @@
-import EditorFileIdsResolver from 'resolvers/editor_file_ids_resolver';
+import EditorFileIdsResolver from 'resolvers/EditorFileIdsResolver';
 
 import Backbone from 'backbone';
 

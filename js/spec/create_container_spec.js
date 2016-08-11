@@ -1,5 +1,5 @@
 import createContainer from 'create_container.jsx';
-import Resolver from 'resolvers/resolver';
+import Resolver from 'resolvers/Resolver';
 
 import React from 'react';
 import renderComponent from './support/render_component';
