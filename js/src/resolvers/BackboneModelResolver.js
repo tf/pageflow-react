@@ -16,6 +16,14 @@ class BackboneModelResolver extends Resolver {
       includeConfiguration: false,
       ...options
     };
+
+    if (!this._options.collection) {
+      throw new Error('Required option collection missing.');
+    }
+
+    if (!this._options.property) {
+      throw new Error('Required option property missing.');
+    }
   }
 
   get(props, seed) {
@@ -37,7 +45,12 @@ class BackboneModelResolver extends Resolver {
   }
 
   _getModel(props, seed) {
-    var collection = this._options.collection(seed.ns);
+    var collection = this._options.collection();
+
+    if (!(collection instanceof Backbone.Collection)) {
+      throw new Error(`Expected collection option to return a Backbone.Collection but got ${collection}`);
+    }
+
     return collection.findWhere(this._getIdConditions(props));
   }
 
