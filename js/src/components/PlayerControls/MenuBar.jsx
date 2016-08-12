@@ -21,6 +21,7 @@ MenuBar.propTypes = {
       label: React.PropTypes.string.isRequired
     })
   ),
+  hiddenOnPhone: React.PropTypes.bool,
   onAdditionalButtonClick: React.PropTypes.func,
   qualityMenuButtonTitle: React.PropTypes.string,
   qualityMenuItems: QualityMenu.propTypes.items,
@@ -32,7 +33,9 @@ MenuBar.defaultProps = {
 };
 
 function className(props) {
-  return classNames('player_controls-menu_bar', props.className);
+  return classNames('player_controls-menu_bar',
+                    {'player_controls-menu_bar-hidden_on_phone': props.hiddenOnPhone},
+                    props.className);
 }
 
 function renderAdditionalButtons(props) {

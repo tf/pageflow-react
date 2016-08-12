@@ -22,15 +22,20 @@ class PageWithInteractiveBackground extends React.Component {
     super(props, context);
 
     this.state = {
-      didPlay: true
+      didPlay: false,
+      menuBarHiddenOnPhone: false
     };
 
-    this.setDidPlay = () => {
-      this.setState({didPlay: true});
+    this.onHideTextActivate = () => {
+      this.setState({
+        didPlay: true,
+        menuBarHiddenOnPhone: false
+      });
     };
 
-    this.enableScrollIndicator = () => {
+    this.onHideTextDeactivate = () => {
       this.context.scrollIndicator.enable();
+      this.setState({menuBarHiddenOnPhone: true});
     };
 
     this.onPlayButtonClick = () => {
@@ -60,7 +65,8 @@ class PageWithInteractiveBackground extends React.Component {
                  onAdditionalButtonClick={this.props.onAdditionalButtonClick}
                  qualityMenuButtonTitle={this.props.qualityMenuButtonTitle}
                  qualityMenuItems={this.props.qualityMenuItems}
-                 onQualityMenuItemClick={this.props.onQualityMenuItemClick} />
+                 onQualityMenuItemClick={this.props.onQualityMenuItemClick}
+                 hiddenOnPhone={this.state.menuBarHiddenOnPhone} />
 
         <PageBackground>
           <div className="videoWrapper">
@@ -86,17 +92,17 @@ class PageWithInteractiveBackground extends React.Component {
   }
 
   pageWillActivate() {
-    this.setState({didPlay: false});
+    this.setState({didPlay: false, menuBarHiddenOnPhone: false});
   }
 
   pageDidActivate() {
-    pageflow.hideText.on('activate', this.setDidPlay);
-    pageflow.hideText.on('deactivate', this.enableScrollIndicator);
+    pageflow.hideText.on('activate', this.onHideTextActivate);
+    pageflow.hideText.on('deactivate', this.onHideTextDeactivate);
   }
 
   pageWillDeactivate() {
-    pageflow.hideText.off('activate', this.setDidPlay);
-    pageflow.hideText.off('deactivate', this.enableScrollIndicator);
+    pageflow.hideText.off('activate', this.onHideTextActivate);
+    pageflow.hideText.off('deactivate', this.onHideTextDeactivate);
   }
 }
 
