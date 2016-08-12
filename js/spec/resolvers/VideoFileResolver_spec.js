@@ -4,7 +4,8 @@ describe('VideoFileResolver', () => {
   const seed = {
     file_url_templates: {
       video_files: {
-        '4k': 'https://somehost/dir/:id_partition/4k.mp4'
+        '4k': 'https://somehost/dir/:id_partition/4k.mp4',
+        poster: 'https://somehost/dir/:id_partition/poster.jpg'
       },
     },
     video_files: [
@@ -21,7 +22,8 @@ describe('VideoFileResolver', () => {
     var result = resolver.get({videoId: 2004}, seed);
 
     expect(result).to.deep.eq({
-      '4k': 'https://somehost/dir/000/002/004/4k.mp4'
+      '4k': 'https://somehost/dir/000/002/004/4k.mp4',
+      poster: 'https://somehost/dir/000/002/004/poster.jpg'
     });
   });
 
