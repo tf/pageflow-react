@@ -1,17 +1,10 @@
-import React from 'react';
-
 import PageThumbnail from './page_thumbnail.jsx';
+import withPageStateProp from 'withPageStateProp';
 
-class LazyLoadedPageThumbnail extends React.Component {
-  static contextTypes = {
-    pageIsPreloaded: React.PropTypes.bool
-  }
+function LazyLoadedPageThumbnail(props) {
+  return (
+    <PageThumbnail {...props} lazy={true} loaded={props.pageState.isPreloaded} />
+  );
+}
 
-  render() {
-    return (
-      <PageThumbnail {...this.props} lazy={true} loaded={this.context.pageIsPreloaded} />
-    );
-  }
-};
-
-export default LazyLoadedPageThumbnail;
+export default withPageStateProp(LazyLoadedPageThumbnail);
