@@ -72,7 +72,7 @@ class PageWithInteractiveBackground extends React.Component {
         <PageForeground>
           <PlayerControls playButtonTitle="Starten"
                           playButtonIconName={this.props.playButtonIconName}
-                          controlBarText={page.controlBarText}
+                          controlBarText={page.controlBarText || this.props.defaultControlBarText}
                           onPlayButtonClick={this.onPlayButtonClick}
                           infoBox={{title: page.additionalTitle, description: page.additionalDescription}} />
 
@@ -103,6 +103,7 @@ class PageWithInteractiveBackground extends React.Component {
 PageWithInteractiveBackground.propTypes = {
   page: React.PropTypes.object,
 
+  defaultControlBarText: React.PropTypes.string,
   playButtonIconName: React.PropTypes.string,
 
   onEnterBackground: React.PropTypes.func,
