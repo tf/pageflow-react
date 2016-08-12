@@ -12,7 +12,7 @@ function toVideoUrls(attributes, seed) {
     return null;
   }
 
-  return attributes.variants.reduce((result, variant) => {
+  return getVariants(attributes).reduce((result, variant) => {
     const url = getVideoFileUrl(seed, attributes.id, variant);
 
     if (url) {
@@ -21,6 +21,10 @@ function toVideoUrls(attributes, seed) {
 
     return result;
   }, {});
+}
+
+function getVariants(attributes) {
+  return attributes.variants.concat(['poster']);
 }
 
 function getVideoFileUrl(seed, videoFileId, quality) {
