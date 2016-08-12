@@ -2,20 +2,61 @@ import classNames from 'classnames';
 
 import Icon from '../Icon.jsx';
 
-export default function MenuBarButton(props) {
-  return (
-    <div className={className(props)}>
-      <a className={className(props, 'link')}
-         href="#"
-         tabIndex="4"
-         title={props.title}
-         onClick={props.onClick}>
-        <Icon className={className(props, 'icon')}
-              name={props.iconName} />
-      </a>
-      {renderSubMenu(props)}
-    </div>
-  );
+export default class MenuBarButton extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.state = {
+      subMenuVisible: false
+    };
+
+    this.onLinkClick = () => {
+      if (this.props.subMenuItems.length > 0) {
+        this.setState({subMenuVisible: true});
+      }
+
+      if (this.props.onClick) {
+        this.props.onClick();
+      }
+    };
+
+    this.onMouseEnter = () => {
+      if (this.props.subMenuItems.length > 0) {
+        this.setState({subMenuVisible: true});
+      }
+    };
+
+    this.onMouseLeave = () => {
+      if (this.props.subMenuItems.length > 0) {
+        this.setState({subMenuVisible: false});
+      }
+    };
+
+    this.closeMenu = () => {
+      this.setState({subMenuVisible: false});
+    };
+  }
+
+  render() {
+    const props = this.props;
+
+    return (
+      <div className={wrapperClassName(props, this.state.subMenuVisible)}
+           ref={(wrapper) => this.wrapper = wrapper}
+           onMouseEnter={this.onMouseEnter}
+           onMouseLeave={this.onMouseLeave}>
+        <a className={className(props, 'link')}
+           href="#"
+           tabIndex="4"
+           title={props.title}
+           onClick={this.onLinkClick}>
+          <Icon className={className(props, 'icon')}
+                name={props.iconName} />
+        </a>
+        {renderSubMenu(props, this.closeMenu)}
+      </div>
+    );
+  }
 }
 
 MenuBarButton.propTypes = {
@@ -37,23 +78,23 @@ MenuBarButton.defaultProps = {
   subMenuItems: []
 };
 
-function renderSubMenu(props) {
+function renderSubMenu(props, closeMenu) {
   if (props.subMenuItems.length > 0) {
     return (
       <ul className="player_controls-menu_bar_button_sub_menu">
-        {renderSubMenuItems(props)}
+        {renderSubMenuItems(props, closeMenu)}
       </ul>
     );
   }
 }
 
-function renderSubMenuItems(props) {
+function renderSubMenuItems(props, closeMenu) {
   return props.subMenuItems.map(item => {
     return (
       <li className={itemClassName(item)} key={item.value}>
         <a className="player_controls-menu_bar_button_sub_menu_item_link"
            href="#"
-           onClick={subMenuItemClickHandler(props, item.value)} >
+           onClick={subMenuItemClickHandler(props, item.value, closeMenu)} >
 
           {renderSubMenuItemIcon(item)}
           {item.label}
@@ -62,6 +103,11 @@ function renderSubMenuItems(props) {
       </li>
     );
   });
+}
+
+function wrapperClassName(props, subMenuVisible) {
+  return classNames({'player_controls-menu_bar_button-sub_menu_visible': subMenuVisible},
+                    className(props));
 }
 
 function itemClassName(item) {
@@ -90,10 +136,14 @@ function renderSubMenuItemAnnotation(props, item) {
   }
 }
 
-function subMenuItemClickHandler(props, value) {
-  if (props.onSubMenuItemClick) {
-    return () => props.onSubMenuItemClick(value);
-  }
+function subMenuItemClickHandler(props, value, closeMenu) {
+  return () => {
+    closeMenu();
+
+    if (props.onSubMenuItemClick) {
+      props.onSubMenuItemClick(value);
+    }
+  };
 }
 
 function className(props, ...suffix) {
