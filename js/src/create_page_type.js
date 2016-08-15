@@ -29,6 +29,8 @@ export default function(Component) {
     },
 
     activating(pageElement, configuration, options) {
+      this._isActive = true;
+
       this._prepare(pageElement);
       this._pageHooks.trigger('activating', options);
     },
@@ -37,7 +39,10 @@ export default function(Component) {
       this._pageHooks.trigger('activated');
     },
 
-    deactivating() {
+    deactivating(pageElement) {
+      this._isActive = false;
+      this._render(pageElement);
+
       this._pageHooks.trigger('deactivating');
     },
 
@@ -84,7 +89,8 @@ export default function(Component) {
         pageHooks: this._pageHooks,
         scrollIndicator: this.scrollIndicator,
         isPreloaded: this._isPreloaded,
-        isPrepared: this._isPrepared
+        isPrepared: this._isPrepared,
+        isActive: this._isActive
       }), pageElement[0]);
     }
   };

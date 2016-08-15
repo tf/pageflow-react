@@ -20,6 +20,7 @@ export default function(Component, options = {}) {
         pageHooks: this.props.pageHooks,
         scrollIndicator: this.props.scrollIndicator,
         pageState: {
+          isActive: this.props.isActive,
           isPreloaded: this.props.isPreloaded,
           isPrepared: this.props.isPrepared
         }
