@@ -17,12 +17,14 @@ export default function(Component, options = {}) {
   class Page extends React.Component {
     static childContextTypes = {
       pageHooks: React.PropTypes.object,
+      scrollIndicator: React.PropTypes.object,
       pageIsPreloaded: React.PropTypes.bool
     }
 
     getChildContext() {
       return {
         pageHooks: this.props.pageHooks,
+        scrollIndicator: this.props.scrollIndicator,
         pageIsPreloaded: this.props.isPreloaded
       };
     }
