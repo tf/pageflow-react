@@ -5549,6 +5549,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          pageHooks: this.props.pageHooks,
 	          scrollIndicator: this.props.scrollIndicator,
 	          pageState: {
+	            isActive: this.props.isActive,
 	            isPreloaded: this.props.isPreloaded,
 	            isPrepared: this.props.isPrepared
 	          }
@@ -7187,6 +7188,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    },
 
 	    activating: function activating(pageElement, configuration, options) {
+	      this._isActive = true;
+
 	      this._prepare(pageElement);
 	      this._pageHooks.trigger('activating', options);
 	    },
@@ -7195,7 +7198,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      this._pageHooks.trigger('activated');
 	    },
 
-	    deactivating: function deactivating() {
+	    deactivating: function deactivating(pageElement) {
+	      this._isActive = false;
+	      this._render(pageElement);
+
 	      this._pageHooks.trigger('deactivating');
 	    },
 
@@ -7244,7 +7250,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        pageHooks: this._pageHooks,
 	        scrollIndicator: this.scrollIndicator,
 	        isPreloaded: this._isPreloaded,
-	        isPrepared: this._isPrepared
+	        isPrepared: this._isPrepared,
+	        isActive: this._isActive
 	      }), pageElement[0]);
 	    }
 	  };
