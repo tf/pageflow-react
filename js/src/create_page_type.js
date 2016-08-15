@@ -50,6 +50,7 @@ export default function(Component) {
         resolverSeed: pageflow.seed,
         pageId: parseInt(pageElement.attr('id'), 10),
         pageHooks: this._pageHooks,
+        scrollIndicator: this.scrollIndicator,
         isPreloaded: this._isPreloaded
       }), pageElement[0]);
     }
