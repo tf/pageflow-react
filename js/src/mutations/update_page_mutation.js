@@ -3,15 +3,15 @@ import Mutation from './mutation';
 import pageflow from 'pageflow';
 
 export default class extends Mutation {
-  perform() {
-    this._getPage().configuration.set(this.props.attributes);
+  perform(options) {
+    this._getPage(options.pageId).configuration.set(options.attributes);
   }
 
-  _getPage() {
-    var page = pageflow.pages.get(this.props.pageId);
+  _getPage(pageId) {
+    var page = pageflow.pages.get(pageId);
 
     if (!page) {
-      throw new Error(`Could not find page with id ${this.props.pageId}.`);
+      throw new Error(`Could not find page with id ${pageId}.`);
     }
 
     return page;
