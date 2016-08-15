@@ -9,6 +9,8 @@ import mutate from './mutate';
 
 import classNames from 'classnames';
 
+import PageWithInteractiveBackground from './components/PageWithInteractiveBackground.jsx';
+
 import PageWrapper from './components/page_wrapper.jsx';
 import PageBackground from './components/page_background.jsx';
 import PageShadow from './components/page_shadow.jsx';
@@ -51,6 +53,8 @@ export default {
   classNames,
 
   components: {
+    PageWithInteractiveBackground,
+
     PageWrapper,
     PageBackground,
     PageShadow,
