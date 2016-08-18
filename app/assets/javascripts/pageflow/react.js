@@ -5328,7 +5328,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _create_pageJsx2 = _interopRequireDefault(_create_pageJsx);
 
-	var _create_widgetJsx = __webpack_require__(217);
+	var _create_widgetJsx = __webpack_require__(219);
 
 	var _create_widgetJsx2 = _interopRequireDefault(_create_widgetJsx);
 
@@ -5336,19 +5336,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _create_containerJsx2 = _interopRequireDefault(_create_containerJsx);
 
-	var _create_page_type = __webpack_require__(218);
+	var _create_page_type = __webpack_require__(220);
 
 	var _create_page_type2 = _interopRequireDefault(_create_page_type);
 
-	var _create_widget_type = __webpack_require__(220);
+	var _create_widget_type = __webpack_require__(222);
 
 	var _create_widget_type2 = _interopRequireDefault(_create_widget_type);
 
-	var _withPageLifecycleJsx = __webpack_require__(221);
+	var _withPageLifecycleJsx = __webpack_require__(223);
 
 	var _withPageLifecycleJsx2 = _interopRequireDefault(_withPageLifecycleJsx);
 
-	var _withPageStatePropJsx = __webpack_require__(222);
+	var _withPageStatePropJsx = __webpack_require__(224);
 
 	var _withPageStatePropJsx2 = _interopRequireDefault(_withPageStatePropJsx);
 
@@ -5356,75 +5356,75 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _resolve2 = _interopRequireDefault(_resolve);
 
-	var _mutate = __webpack_require__(223);
+	var _mutate = __webpack_require__(225);
 
 	var _mutate2 = _interopRequireDefault(_mutate);
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _componentsPageWithInteractiveBackgroundJsx = __webpack_require__(231);
+	var _componentsPageWithInteractiveBackgroundJsx = __webpack_require__(233);
 
 	var _componentsPageWithInteractiveBackgroundJsx2 = _interopRequireDefault(_componentsPageWithInteractiveBackgroundJsx);
 
-	var _componentsPage_wrapperJsx = __webpack_require__(232);
+	var _componentsPage_wrapperJsx = __webpack_require__(234);
 
 	var _componentsPage_wrapperJsx2 = _interopRequireDefault(_componentsPage_wrapperJsx);
 
-	var _componentsPage_backgroundJsx = __webpack_require__(233);
+	var _componentsPage_backgroundJsx = __webpack_require__(235);
 
 	var _componentsPage_backgroundJsx2 = _interopRequireDefault(_componentsPage_backgroundJsx);
 
-	var _componentsPage_shadowJsx = __webpack_require__(234);
+	var _componentsPage_shadowJsx = __webpack_require__(236);
 
 	var _componentsPage_shadowJsx2 = _interopRequireDefault(_componentsPage_shadowJsx);
 
-	var _componentsPage_contentJsx = __webpack_require__(254);
+	var _componentsPage_contentJsx = __webpack_require__(256);
 
 	var _componentsPage_contentJsx2 = _interopRequireDefault(_componentsPage_contentJsx);
 
-	var _componentsPage_headerJsx = __webpack_require__(238);
+	var _componentsPage_headerJsx = __webpack_require__(240);
 
 	var _componentsPage_headerJsx2 = _interopRequireDefault(_componentsPage_headerJsx);
 
-	var _componentsPage_textJsx = __webpack_require__(239);
+	var _componentsPage_textJsx = __webpack_require__(241);
 
 	var _componentsPage_textJsx2 = _interopRequireDefault(_componentsPage_textJsx);
 
-	var _componentsBackground_imageJsx = __webpack_require__(255);
+	var _componentsBackground_imageJsx = __webpack_require__(257);
 
 	var _componentsBackground_imageJsx2 = _interopRequireDefault(_componentsBackground_imageJsx);
 
-	var _componentsPage_background_imageJsx = __webpack_require__(256);
+	var _componentsPage_background_imageJsx = __webpack_require__(258);
 
 	var _componentsPage_background_imageJsx2 = _interopRequireDefault(_componentsPage_background_imageJsx);
 
-	var _componentsPage_linkJsx = __webpack_require__(258);
+	var _componentsPage_linkJsx = __webpack_require__(260);
 
 	var _componentsPage_linkJsx2 = _interopRequireDefault(_componentsPage_linkJsx);
 
-	var _componentsPage_thumbnailJsx = __webpack_require__(259);
+	var _componentsPage_thumbnailJsx = __webpack_require__(261);
 
 	var _componentsPage_thumbnailJsx2 = _interopRequireDefault(_componentsPage_thumbnailJsx);
 
-	var _componentsLazy_loaded_page_thumbnailJsx = __webpack_require__(260);
+	var _componentsLazy_loaded_page_thumbnailJsx = __webpack_require__(262);
 
 	var _componentsLazy_loaded_page_thumbnailJsx2 = _interopRequireDefault(_componentsLazy_loaded_page_thumbnailJsx);
 
-	var _componentsIcon = __webpack_require__(243);
+	var _componentsIcon = __webpack_require__(245);
 
 	var _componentsIcon2 = _interopRequireDefault(_componentsIcon);
 
-	var _componentsIconsMapping = __webpack_require__(244);
+	var _componentsIconsMapping = __webpack_require__(246);
 
 	var _componentsIconsMapping2 = _interopRequireDefault(_componentsIconsMapping);
 
-	var _componentsIconsContainer = __webpack_require__(247);
+	var _componentsIconsContainer = __webpack_require__(249);
 
 	var _componentsIconsContainer2 = _interopRequireDefault(_componentsIconsContainer);
 
-	var _reactDraggable = __webpack_require__(261);
+	var _reactDraggable = __webpack_require__(263);
 
 	var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 
@@ -5976,11 +5976,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _I18nResolver2 = _interopRequireDefault(_I18nResolver);
 
-	var _VideoFileResolver = __webpack_require__(214);
+	var _ImageFileResolver = __webpack_require__(214);
+
+	var _ImageFileResolver2 = _interopRequireDefault(_ImageFileResolver);
+
+	var _VideoFileResolver = __webpack_require__(217);
 
 	var _VideoFileResolver2 = _interopRequireDefault(_VideoFileResolver);
 
-	var _SettingResolver = __webpack_require__(216);
+	var _SettingResolver = __webpack_require__(218);
 
 	var _SettingResolver2 = _interopRequireDefault(_SettingResolver);
 
@@ -5992,6 +5996,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  resolve.register('currentParentPage', _CurrentParentPageResolver2['default']);
 	  resolve.register('i18n', _I18nResolver2['default']);
 	  resolve.register('videoFile', _VideoFileResolver2['default']);
+	  resolve.register('imageFile', _ImageFileResolver2['default']);
 	  resolve.register('setting', _SettingResolver2['default']);
 	}
 
@@ -6926,52 +6931,72 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
+	var _createFileResolver = __webpack_require__(215);
+
+	var _createFileResolver2 = _interopRequireDefault(_createFileResolver);
+
+	exports['default'] = (0, _createFileResolver2['default'])({ collectionName: 'image_files' });
+	module.exports = exports['default'];
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = createFileResolver;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
 	var _createModelResolver = __webpack_require__(204);
 
 	var _createModelResolver2 = _interopRequireDefault(_createModelResolver);
 
-	var _compose = __webpack_require__(215);
+	var _compose = __webpack_require__(216);
 
 	var _compose2 = _interopRequireDefault(_compose);
 
-	exports['default'] = (0, _compose2['default'])(toVideoUrls, (0, _createModelResolver2['default'])({
-	  backboneCollection: function backboneCollection() {
-	    return pageflow.videoFiles;
-	  },
-	  seedProperty: 'video_files',
-	  attributesForProps: ['id', 'variants']
-	}));
+	function createFileResolver(_ref) {
+	  var collectionName = _ref.collectionName;
 
-	function toVideoUrls(attributes, seed) {
-	  if (!attributes) {
-	    return null;
-	  }
+	  return (0, _compose2['default'])(toUrls, (0, _createModelResolver2['default'])({
+	    backboneCollection: function backboneCollection() {
+	      return pageflow.files[collectionName];
+	    },
+	    seedProperty: collectionName,
+	    attributesForProps: ['id', 'variants']
+	  }));
 
-	  return getVariants(attributes).reduce(function (result, variant) {
-	    var url = getVideoFileUrl(seed, attributes.id, variant);
-
-	    if (url) {
-	      result[variant] = url;
+	  function toUrls(file, seed) {
+	    if (!file) {
+	      return null;
 	    }
 
-	    return result;
-	  }, {});
-	}
+	    return file.variants.reduce(function (result, variant) {
+	      var url = getFileUrl(seed, file.id, variant);
 
-	function getVariants(attributes) {
-	  return attributes.variants.concat(['poster']);
-	}
+	      if (url) {
+	        result[variant] = url;
+	      }
 
-	function getVideoFileUrl(seed, videoFileId, quality) {
-	  var template = getUrlTemplate(seed, quality);
-
-	  if (template) {
-	    return template.replace(':id_partition', idPartition(videoFileId));
+	      return result;
+	    }, {});
 	  }
-	}
 
-	function getUrlTemplate(seed, quality) {
-	  return seed.file_url_templates.video_files[quality];
+	  function getFileUrl(seed, fileId, quality) {
+	    var template = getUrlTemplate(seed, quality);
+
+	    if (template) {
+	      return template.replace(':id_partition', idPartition(fileId));
+	    }
+	  }
+
+	  function getUrlTemplate(seed, quality) {
+	    return seed.file_url_templates[collectionName][quality];
+	  }
 	}
 
 	function idPartition(id) {
@@ -6990,7 +7015,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 215 */
+/* 216 */
 /***/ function(module, exports) {
 
 	/**
@@ -7057,7 +7082,26 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 216 */
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _createFileResolver = __webpack_require__(215);
+
+	var _createFileResolver2 = _interopRequireDefault(_createFileResolver);
+
+	exports['default'] = (0, _createFileResolver2['default'])({ collectionName: 'video_files' });
+	module.exports = exports['default'];
+
+/***/ },
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7120,7 +7164,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 217 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7139,7 +7183,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 218 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7156,7 +7200,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(219);
+	var _reactDom = __webpack_require__(221);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -7260,13 +7304,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 219 */
+/* 221 */
 /***/ function(module, exports) {
 
 	module.exports = ReactDOM;
 
 /***/ },
-/* 220 */
+/* 222 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7293,7 +7337,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 221 */
+/* 223 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7460,7 +7504,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 222 */
+/* 224 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7538,7 +7582,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 223 */
+/* 225 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7549,7 +7593,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _resolversMutationResolver = __webpack_require__(224);
+	var _resolversMutationResolver = __webpack_require__(226);
 
 	var _resolversMutationResolver2 = _interopRequireDefault(_resolversMutationResolver);
 
@@ -7565,7 +7609,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 224 */
+/* 226 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7588,15 +7632,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _Resolver3 = _interopRequireDefault(_Resolver2);
 
-	var _mutationsUpdate_page_mutation = __webpack_require__(225);
+	var _mutationsUpdate_page_mutation = __webpack_require__(227);
 
 	var _mutationsUpdate_page_mutation2 = _interopRequireDefault(_mutationsUpdate_page_mutation);
 
-	var _mutationsUpdate_page_link_mutation = __webpack_require__(228);
+	var _mutationsUpdate_page_link_mutation = __webpack_require__(230);
 
 	var _mutationsUpdate_page_link_mutation2 = _interopRequireDefault(_mutationsUpdate_page_link_mutation);
 
-	var _mutationsSettingMutation = __webpack_require__(229);
+	var _mutationsSettingMutation = __webpack_require__(231);
 
 	var _mutationsSettingMutation2 = _interopRequireDefault(_mutationsSettingMutation);
 
@@ -7639,7 +7683,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 225 */
+/* 227 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7658,11 +7702,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _mutation = __webpack_require__(226);
+	var _mutation = __webpack_require__(228);
 
 	var _mutation2 = _interopRequireDefault(_mutation);
 
-	var _pageflow = __webpack_require__(227);
+	var _pageflow = __webpack_require__(229);
 
 	var _pageflow2 = _interopRequireDefault(_pageflow);
 
@@ -7700,7 +7744,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 226 */
+/* 228 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -7721,13 +7765,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 227 */
+/* 229 */
 /***/ function(module, exports) {
 
 	module.exports = pageflow;
 
 /***/ },
-/* 228 */
+/* 230 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7748,11 +7792,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _mutation = __webpack_require__(226);
+	var _mutation = __webpack_require__(228);
 
 	var _mutation2 = _interopRequireDefault(_mutation);
 
-	var _pageflow = __webpack_require__(227);
+	var _pageflow = __webpack_require__(229);
 
 	var _pageflow2 = _interopRequireDefault(_pageflow);
 
@@ -7807,7 +7851,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 229 */
+/* 231 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7826,7 +7870,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _mutation = __webpack_require__(226);
+	var _mutation = __webpack_require__(228);
 
 	var _mutation2 = _interopRequireDefault(_mutation);
 
@@ -7853,7 +7897,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 230 */
+/* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -7907,7 +7951,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 /***/ },
-/* 231 */
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7930,51 +7974,51 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _page_wrapperJsx = __webpack_require__(232);
+	var _page_wrapperJsx = __webpack_require__(234);
 
 	var _page_wrapperJsx2 = _interopRequireDefault(_page_wrapperJsx);
 
-	var _page_backgroundJsx = __webpack_require__(233);
+	var _page_backgroundJsx = __webpack_require__(235);
 
 	var _page_backgroundJsx2 = _interopRequireDefault(_page_backgroundJsx);
 
-	var _page_shadowJsx = __webpack_require__(234);
+	var _page_shadowJsx = __webpack_require__(236);
 
 	var _page_shadowJsx2 = _interopRequireDefault(_page_shadowJsx);
 
-	var _page_foregroundJsx = __webpack_require__(235);
+	var _page_foregroundJsx = __webpack_require__(237);
 
 	var _page_foregroundJsx2 = _interopRequireDefault(_page_foregroundJsx);
 
-	var _page_scrollerJsx = __webpack_require__(236);
+	var _page_scrollerJsx = __webpack_require__(238);
 
 	var _page_scrollerJsx2 = _interopRequireDefault(_page_scrollerJsx);
 
-	var _page_headerJsx = __webpack_require__(238);
+	var _page_headerJsx = __webpack_require__(240);
 
 	var _page_headerJsx2 = _interopRequireDefault(_page_headerJsx);
 
-	var _page_textJsx = __webpack_require__(239);
+	var _page_textJsx = __webpack_require__(241);
 
 	var _page_textJsx2 = _interopRequireDefault(_page_textJsx);
 
-	var _PlayerControls = __webpack_require__(240);
+	var _PlayerControls = __webpack_require__(242);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _CloseButtonJsx = __webpack_require__(252);
+	var _CloseButtonJsx = __webpack_require__(254);
 
 	var _CloseButtonJsx2 = _interopRequireDefault(_CloseButtonJsx);
 
-	var _PlayerControlsMenuBar = __webpack_require__(253);
+	var _PlayerControlsMenuBar = __webpack_require__(255);
 
 	var _PlayerControlsMenuBar2 = _interopRequireDefault(_PlayerControlsMenuBar);
 
-	var _withPageLifecycleJsx = __webpack_require__(221);
+	var _withPageLifecycleJsx = __webpack_require__(223);
 
 	var _withPageLifecycleJsx2 = _interopRequireDefault(_withPageLifecycleJsx);
 
@@ -8114,7 +8158,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 232 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8135,7 +8179,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react = __webpack_require__(193);
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -8166,7 +8210,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 233 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8213,7 +8257,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 234 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8273,7 +8317,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 235 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8299,7 +8343,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 236 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8322,11 +8366,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _scroller = __webpack_require__(237);
+	var _scroller = __webpack_require__(239);
 
 	var _scroller2 = _interopRequireDefault(_scroller);
 
-	var _withPageLifecycleJsx = __webpack_require__(221);
+	var _withPageLifecycleJsx = __webpack_require__(223);
 
 	var _withPageLifecycleJsx2 = _interopRequireDefault(_withPageLifecycleJsx);
 
@@ -8403,7 +8447,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 237 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8424,7 +8468,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react = __webpack_require__(193);
 
-	var _reactDom = __webpack_require__(219);
+	var _reactDom = __webpack_require__(221);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -8499,7 +8543,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 238 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8568,7 +8612,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 239 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8622,7 +8666,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 240 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8637,15 +8681,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _InfoBox = __webpack_require__(241);
+	var _InfoBox = __webpack_require__(243);
 
 	var _InfoBox2 = _interopRequireDefault(_InfoBox);
 
-	var _PlayButton = __webpack_require__(242);
+	var _PlayButton = __webpack_require__(244);
 
 	var _PlayButton2 = _interopRequireDefault(_PlayButton);
 
-	var _QualityMenu = __webpack_require__(250);
+	var _QualityMenu = __webpack_require__(252);
 
 	var _QualityMenu2 = _interopRequireDefault(_QualityMenu);
 
@@ -8703,7 +8747,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 241 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8714,7 +8758,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -8752,7 +8796,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 242 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8763,11 +8807,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _componentsIcon = __webpack_require__(243);
+	var _componentsIcon = __webpack_require__(245);
 
 	var _componentsIcon2 = _interopRequireDefault(_componentsIcon);
 
@@ -8797,7 +8841,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 243 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8809,7 +8853,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _iconsMapping = __webpack_require__(244);
+	var _iconsMapping = __webpack_require__(246);
 
 	var _iconsMapping2 = _interopRequireDefault(_iconsMapping);
 
@@ -8826,7 +8870,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 244 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8837,7 +8881,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _icons = __webpack_require__(245);
+	var _icons = __webpack_require__(247);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -8848,7 +8892,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 245 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8859,15 +8903,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _CheckmarkJsx = __webpack_require__(246);
+	var _CheckmarkJsx = __webpack_require__(248);
 
 	var _CheckmarkJsx2 = _interopRequireDefault(_CheckmarkJsx);
 
-	var _DiskJsx = __webpack_require__(248);
+	var _DiskJsx = __webpack_require__(250);
 
 	var _DiskJsx2 = _interopRequireDefault(_DiskJsx);
 
-	var _GearJsx = __webpack_require__(249);
+	var _GearJsx = __webpack_require__(251);
 
 	var _GearJsx2 = _interopRequireDefault(_GearJsx);
 
@@ -8879,7 +8923,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 246 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8892,7 +8936,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _ContainerJsx = __webpack_require__(247);
+	var _ContainerJsx = __webpack_require__(249);
 
 	var _ContainerJsx2 = _interopRequireDefault(_ContainerJsx);
 
@@ -8907,7 +8951,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 247 */
+/* 249 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -8937,7 +8981,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 248 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8950,7 +8994,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _ContainerJsx = __webpack_require__(247);
+	var _ContainerJsx = __webpack_require__(249);
 
 	var _ContainerJsx2 = _interopRequireDefault(_ContainerJsx);
 
@@ -8965,7 +9009,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 249 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -8978,7 +9022,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _ContainerJsx = __webpack_require__(247);
+	var _ContainerJsx = __webpack_require__(249);
 
 	var _ContainerJsx2 = _interopRequireDefault(_ContainerJsx);
 
@@ -8999,7 +9043,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 250 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -9011,7 +9055,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-	var _MenuBarButton = __webpack_require__(251);
+	var _MenuBarButton = __webpack_require__(253);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -9039,7 +9083,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 251 */
+/* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9058,11 +9102,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _IconJsx = __webpack_require__(243);
+	var _IconJsx = __webpack_require__(245);
 
 	var _IconJsx2 = _interopRequireDefault(_IconJsx);
 
@@ -9232,7 +9276,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 252 */
+/* 254 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -9259,7 +9303,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports["default"];
 
 /***/ },
-/* 253 */
+/* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9271,15 +9315,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _QualityMenu = __webpack_require__(250);
+	var _QualityMenu = __webpack_require__(252);
 
 	var _QualityMenu2 = _interopRequireDefault(_QualityMenu);
 
-	var _MenuBarButton = __webpack_require__(251);
+	var _MenuBarButton = __webpack_require__(253);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -9333,7 +9377,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 254 */
+/* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9344,11 +9388,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _page_foregroundJsx = __webpack_require__(235);
+	var _page_foregroundJsx = __webpack_require__(237);
 
 	var _page_foregroundJsx2 = _interopRequireDefault(_page_foregroundJsx);
 
-	var _page_scrollerJsx = __webpack_require__(236);
+	var _page_scrollerJsx = __webpack_require__(238);
 
 	var _page_scrollerJsx2 = _interopRequireDefault(_page_scrollerJsx);
 
@@ -9367,7 +9411,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 255 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9390,7 +9434,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -9472,7 +9516,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 256 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9495,7 +9539,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _lazy_background_imageJsx = __webpack_require__(257);
+	var _lazy_background_imageJsx = __webpack_require__(259);
 
 	var _lazy_background_imageJsx2 = _interopRequireDefault(_lazy_background_imageJsx);
 
@@ -9531,7 +9575,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 257 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9544,11 +9588,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _background_imageJsx = __webpack_require__(255);
+	var _background_imageJsx = __webpack_require__(257);
 
 	var _background_imageJsx2 = _interopRequireDefault(_background_imageJsx);
 
-	var _withPageStateProp = __webpack_require__(222);
+	var _withPageStateProp = __webpack_require__(224);
 
 	var _withPageStateProp2 = _interopRequireDefault(_withPageStateProp);
 
@@ -9560,7 +9604,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 258 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9637,7 +9681,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9651,7 +9695,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
 
-	var _classnames = __webpack_require__(230);
+	var _classnames = __webpack_require__(232);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -9736,7 +9780,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 /***/ },
-/* 260 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9749,11 +9793,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _page_thumbnailJsx = __webpack_require__(259);
+	var _page_thumbnailJsx = __webpack_require__(261);
 
 	var _page_thumbnailJsx2 = _interopRequireDefault(_page_thumbnailJsx);
 
-	var _withPageStateProp = __webpack_require__(222);
+	var _withPageStateProp = __webpack_require__(224);
 
 	var _withPageStateProp2 = _interopRequireDefault(_withPageStateProp);
 
@@ -9765,22 +9809,22 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	module.exports = exports['default'];
 
 /***/ },
-/* 261 */
+/* 263 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(262);
+	module.exports = __webpack_require__(264);
 
 
 /***/ },
-/* 262 */
+/* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(193);
 	var emptyFunction = function(){};
-	var assign = __webpack_require__(263);
-	var classNames = __webpack_require__(264);
+	var assign = __webpack_require__(265);
+	var classNames = __webpack_require__(266);
 
 	//
 	// Helpers. See Element definition below this section.
@@ -10457,7 +10501,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 /***/ },
-/* 263 */
+/* 265 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10489,7 +10533,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 /***/ },
-/* 264 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
