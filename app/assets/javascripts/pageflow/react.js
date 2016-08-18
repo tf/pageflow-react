@@ -8778,7 +8778,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    return (0, _classnames2['default'])('add_info_box', {
 	      'empty': !props.title && !props.description,
 	      'title_empty': !props.title,
-	      'description_empty': props.description
+	      'description_empty': !props.description
 	    });
 	  }
 
