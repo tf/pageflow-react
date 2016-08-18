@@ -12,7 +12,7 @@ export default function(props) {
     return classNames('add_info_box', {
       'empty': !props.title && !props.description,
       'title_empty': !props.title,
-      'description_empty': props.description
+      'description_empty': !props.description
     });
   }
 
