@@ -31,10 +31,12 @@ describe('createPage', () => {
       const Page = createPage(withPageStateProp(PageComponent));
 
       const wrapper = mount(<Page pageId={5} resolverSeed={seed}
-                                  isPreloaded={true} isPrepared={false} />);
+                                  isActive={false}
+                                  isPreloaded={true}
+                                  isPrepared={false} />);
 
       expect(wrapper.find(PageComponent).prop('pageState'))
-                    .to.deep.eq({isPreloaded: true, isPrepared: false});
+                    .to.deep.eq({isActive: false, isPreloaded: true, isPrepared: false});
     });
   });
 });
