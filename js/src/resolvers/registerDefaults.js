@@ -4,6 +4,7 @@ import ChapterResolver from './ChapterResolver';
 import PageTypeResolver from './PageTypeResolver';
 import CurrentParentPageResolver from './CurrentParentPageResolver';
 import I18nResolver from './I18nResolver';
+import ImageFileResolver from './ImageFileResolver';
 import VideoFileResolver from './VideoFileResolver';
 import SettingResolver from './SettingResolver';
 
@@ -15,5 +16,6 @@ export default function registerDefaults(resolve) {
   resolve.register('currentParentPage', CurrentParentPageResolver);
   resolve.register('i18n', I18nResolver);
   resolve.register('videoFile', VideoFileResolver);
+  resolve.register('imageFile', ImageFileResolver);
   resolve.register('setting', SettingResolver);
 }
