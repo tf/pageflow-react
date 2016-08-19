@@ -13,7 +13,9 @@ plugins.
 
 ## Usage
 
-TODO
+* [Creating page types](/docs/guides/creating_page_types.md)
+* [Creating widget types](/docs/guides/creating_widget_types.md)
+* [Getting data with resolvers](/docs/guides/getting_data_with_resolvers.md)
 
 ## Development Mode
 
