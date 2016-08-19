@@ -1,9 +1,18 @@
+/*global module, require, __dirname*/
+
+var path = require('path');
+
 module.exports = {
   context: __dirname + '/src',
   entry: [
     'babel-polyfill',
     './index.js'
   ],
+
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+    root: [path.resolve('./src')]
+  },
 
   module: {
     loaders: [
@@ -26,6 +35,7 @@ module.exports = {
   externals: {
     pageflow: 'pageflow',
     react: 'React',
+    backbone: 'Backbone',
     'react-dom': 'ReactDOM'
   }
 };

@@ -1,6 +1,9 @@
 # Pageflow React
 
-React bindings for Pageflow page type development.
+[![Gem Version](https://badge.fury.io/rb/pageflow-react.svg)](http://badge.fury.io/rb/pageflow-react)
+[![Build Status](https://travis-ci.org/codevise/pageflow-react.svg?branch=master)](https://travis-ci.org/codevise/pageflow-react)
+
+React bindings for Pageflow plugin development.
 
 ## Installation
 
@@ -21,15 +24,15 @@ Enter js dir:
 Install npm dependencies:
 
     $ npm install
-    $ npm install -g karma-cli webpack
 
-Run webpack watcher to rebuild javascript files in `app/assets`
+Run webpack watcher to rebuild javascript files in `app/assets` and
+karma test suite:
 
-    $ webpack --watch
+    $ npm start
 
-Run test suite
+Run test suite only:
 
-    $ karma start
+    $ npm test
 
 ## Contributing
 

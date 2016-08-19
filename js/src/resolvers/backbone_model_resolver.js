@@ -2,6 +2,7 @@ import Resolver from './resolver';
 import createRecursiveResolver from './create_recursive_resolver';
 
 import camelize from '../utils/camelize';
+import Backbone from 'backbone';
 
 /**
  * Resolve a foreign key to an object of attributes.

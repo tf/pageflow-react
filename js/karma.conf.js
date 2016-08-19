@@ -1,3 +1,5 @@
+/*global module, require*/
+
 var webpack = require('webpack');
 var path = require('path');
 
@@ -9,16 +11,20 @@ module.exports = function (config) {
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
       'spec/*spec.js',
-      'spec/**/*spec.js'
+      'spec/*spec.jsx',
+      'spec/**/*spec.js',
+      'spec/**/*spec.jsx'
     ],
     exclude: [
-      'flycheck_*.js',
-      '**/flycheck_*.js',
-      '*/**/flycheck_*.js',
+      'flycheck_*.*',
+      '**/flycheck_*.*',
+      '*/**/flycheck_*.*',
     ],
     preprocessors: {
-      'spec/*spec.js': ['webpack', 'sourcemap'],
-      'spec/**/*spec.js': ['webpack', 'sourcemap']
+      'spec/*.js': ['webpack', 'sourcemap'],
+      'spec/*.jsx': ['webpack', 'sourcemap'],
+      'spec/**/*.js': ['webpack', 'sourcemap'],
+      'spec/**/*.jsx': ['webpack', 'sourcemap']
     },
     reporters: ['dots'],
     plugins: [
@@ -50,8 +56,16 @@ module.exports = function (config) {
           }
         ]
       },
+      externals: {
+        'jsdom': 'window',
+        'cheerio': 'window',
+        'react/lib/ReactContext': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/addons': true
+      },
       resolve: {
-        root: path.resolve('./src')
+        extensions: ['', '.js', '.jsx'],
+        root: [path.resolve('./src'), path.resolve('./spec')]
       }
     },
     webpackServer: {
