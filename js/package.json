@@ -1,10 +1,18 @@
 {
   "name": "pageflow-react",
-  "version": "1.0.0",
-  "description": "TODO: Write a gem description",
+  "version": "0.0.0",
+  "description": "React bindings for Pageflow plugin development.",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "noreman development",
+    "build": "grunt build",
+    "test": "grunt test"
+  },
+  "processes": {
+    "development": {
+      "webpack": "webpack --watch",
+      "karma": "karma start"
+    }
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +24,11 @@
     "chai-enzyme": "^0.5.0",
     "enzyme": "^2.4.1",
     "expose-loader": "^0.7.1",
+    "grunt": "^1.0.1",
+    "grunt-karma": "^2.0.0",
+    "grunt-webpack": "^1.0.14",
     "imports-loader": "^0.6.4",
+    "jquery": "^3.1.0",
     "karma": "^0.13.9",
     "karma-chai": "^0.1.0",
     "karma-chai-sinon": "^0.1.5",
@@ -27,12 +39,14 @@
     "karma-sourcemap-loader": "^0.3.5",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
+    "noreman": "0.0.0",
     "phantomjs": "^1.9.18",
     "react-addons-test-utils": "^0.14.7",
     "sinon": "git://github.com/cjohansen/Sinon.JS#b672042043517b9f84e14ed0fb8265126168778a",
     "sinon-chai": "^2.8.0",
     "underscore": "^1.8.3",
-    "webpack": "^1.11.0"
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
     "babel-polyfill": "^6.2.0",
