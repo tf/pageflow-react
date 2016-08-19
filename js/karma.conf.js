@@ -1,3 +1,5 @@
+/*global module, require*/
+
 var webpack = require('webpack');
 var path = require('path');
 
