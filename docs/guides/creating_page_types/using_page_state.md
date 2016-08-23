@@ -1,8 +1,8 @@
 # Using Page State Props
 
 React components inside pages can be coupled to the preloading or
-active state of the enclosing page. This can be useful to lazy load
-resource intentive media files or start and stop playback when
+active state of the enclosing page. This can be useful to lazily load
+resource-intensive media files or start and stop playback when
 entering or leaving the page.
 
 To access this information inside of a component that is used inside

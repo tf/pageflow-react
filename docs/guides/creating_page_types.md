@@ -26,8 +26,8 @@ app/
         page_type.js
 ```
 
-The main `rainbow.js` JavaScript file, that user's of our plugin will require from
-their `pageflow/application.js` file, looks like this:
+The main `rainbow.js` JavaScript file, that users of our plugin will
+require from their `pageflow/application.js` file, looks like this:
 
 ```js
 # rainbow/app/assets/javascripts/rainbow.js
@@ -42,10 +42,10 @@ their `pageflow/application.js` file, looks like this:
 window.rainbow = window.rainbow || {};
 ```
 
-We require `react` and `pageflow/react` and setup a variable in the
+We require `react` and `pageflow/react` and set up a variable in the
 global scope, which will act as a home for everything defined by our
 plugin. Then we require a file that defines the React components our
-page will be build from and a file which registers the page type with
+page will be built from and a file which registers the page type with
 Pageflow's JavaScript API.
 
 It's important to define the React components in a separate file, so
@@ -97,16 +97,16 @@ window.rainbow = rainbow || {};
 
 The basic layout consisting of `PageWrapper`, `PageBackground` and
 `PageContent` is required for the page to work correctly inside the
-entry. The contents of `PageBackground` and `PageContent` is just an
-example and depends on the things you wish to present inside your
+entry. The specifics inside `PageBackground` and `PageContent` are
+just an example and depend on the content you wish to present on your
 pages. See the [reference documentation of `pageflow-react`]() for a
 list of existing components that you can use to build your page. Of
-course, you are always free to create additional components on you
+course, you are always free to create additional components on your
 own.
 
 Passing the component to `createPage` ensures a `page` prop is set
-containing the attributes of the page's configuration. So for example
-the title of the page is available as `props.page.title`.
+containing the attributes of the page's configuration. So, for
+example, the title of the page is available as `props.page.title`.
 
 See [the guide on resolvers](getting_data_with_resolvers.md) for more
 advanced data retrieval techniques.
@@ -126,7 +126,7 @@ pageflow.pageType.register('rainbow',
 ## Creating the Ruby Plugin
 
 Finally, we need to create a plugin class in our engine's Ruby code
-that user's of our plugin can reference in their Pageflow initializer:
+that users of our plugin can reference in their Pageflow initializer:
 
 ```ruby
 # rainbow/lib/rainbow/some_plugin.rb

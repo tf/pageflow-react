@@ -25,8 +25,8 @@ app/
         widget_type.js
 ```
 
-The main `rainbow.js` JavaScript file, that user's of our plugin will require from
-their `pageflow/application.js` file, looks like this:
+The main `rainbow.js` JavaScript file, that users of our plugin will
+require from their `pageflow/application.js` file, looks like this:
 
 ```js
 # rainbow/app/assets/javascripts/rainbow.js
@@ -41,10 +41,10 @@ their `pageflow/application.js` file, looks like this:
 window.rainbow = window.rainbow || {};
 ```
 
-We require `react` and `pageflow/react` and setup a variable in the
+We require `react` and `pageflow/react` and set up a variable in the
 global scope, which will act as a home for everything defined by our
 plugin. Then we require a file that defines the React components our
-widget will be build from and a file which registers the widget type
+widget will be built from and a file which registers the widget type
 with Pageflow's JavaScript API.
 
 It's important to define the React components in a separate file, so
@@ -96,7 +96,7 @@ pageflow.widgetTypes.register('rainbow',
 ## Creating the Ruby Plugin
 
 Finally, we need to create a plugin class in our engine's Ruby code
-that user's of our plugin can reference in their Pageflow initializer:
+that users of our plugin can reference in their Pageflow initializer:
 
 ```ruby
 # rainbow/lib/rainbow/some_plugin.rb
@@ -121,4 +121,3 @@ end
 The first parameter of `Pageflow::React.create_widget_type` takes the
 widget type name, the second is a JavaScript expression returning the
 widget component to use for server side rendering.
-
