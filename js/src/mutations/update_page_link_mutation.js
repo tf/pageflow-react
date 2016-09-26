@@ -3,22 +3,22 @@ import Mutation from './mutation';
 import pageflow from 'pageflow';
 
 export default class extends Mutation {
-  perform() {
-    this._getPageLink().set(this.props.attributes);
+  perform(options) {
+    this._getPageLink(options.id).set(options.attributes);
   }
 
-  _getPageLink() {
-    var pageLink = this._getPage().pageLinks().get(this.props.id);
+  _getPageLink(pageLinkId) {
+    var pageLink = this._getPage(pageLinkId).pageLinks().get(pageLinkId);
 
     if (!pageLink) {
-      throw new Error(`Could not find page link with id ${this.props.pageLinkId}.`);
+      throw new Error(`Could not find page link with id ${pageLinkId}.`);
     }
 
     return pageLink;
   }
 
-  _getPage() {
-    var [pageId] = this.props.id.split(':');
+  _getPage(pageLinkId) {
+    var [pageId] = pageLinkId.split(':');
     var page = pageflow.pages.getByPermaId(pageId);
 
     if (!page) {
