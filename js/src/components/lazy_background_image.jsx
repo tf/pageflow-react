@@ -1,21 +1,10 @@
-import React from 'react';
-
 import BackgroundImage from './background_image.jsx';
+import withPageStateProp from 'withPageStateProp';
 
-class LazyBackgroundImage extends React.Component {
-  static contextTypes = {
-    pageIsPreloaded: React.PropTypes.bool
-  }
+function LazyBackgroundImage(props) {
+  return (
+    <BackgroundImage {...props} loaded={props.pageState.isPreloaded} />
+  );
+}
 
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <BackgroundImage {...this.props} loaded={this.context.pageIsPreloaded} />
-    );
-  }
-};
-
-export default LazyBackgroundImage;
+export default withPageStateProp(LazyBackgroundImage);

@@ -111,3 +111,13 @@ export default function withPageLifecycle(Component) {
 
   return Wrapper;
 }
+
+withPageLifecycle.hookMapping = {
+  prepare: 'pageDidPrepare',
+  unprepare: 'pageDidUnprepare',
+  activating: 'pageWillActivate',
+  activated: 'pageDidActivate',
+  deactivating: 'pageWillDeactivate',
+  deactivated: 'pageDidDeactivate',
+  resize: 'pageDidResize'
+};
