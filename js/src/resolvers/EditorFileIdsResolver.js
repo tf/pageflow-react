@@ -1,4 +1,4 @@
-import Resolver from './resolver';
+import Resolver from './Resolver';
 
 export default class extends Resolver {
   constructor(options, callback) {
@@ -27,4 +27,4 @@ export default class extends Resolver {
       collection.off('remove', this._handleChange, this)
     );
   }
-};
+}

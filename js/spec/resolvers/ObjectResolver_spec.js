@@ -1,5 +1,5 @@
-import ObjectResolver from 'resolvers/object_resolver';
-import Resolver from 'resolvers/resolver';
+import ObjectResolver from 'resolvers/ObjectResolver';
+import Resolver from 'resolvers/Resolver';
 
 import sinon from 'sinon';
 

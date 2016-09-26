@@ -1,5 +1,5 @@
-import Resolver from './resolver';
-import createRecursiveResolver from './create_recursive_resolver';
+import Resolver from './Resolver';
+import createRecursiveResolver from './createRecursiveResolver';
 
 import camelize from '../utils/camelize';
 import Backbone from 'backbone';
@@ -16,6 +16,14 @@ class BackboneModelResolver extends Resolver {
       includeConfiguration: false,
       ...options
     };
+
+    if (!this._options.collection) {
+      throw new Error('Required option collection missing.');
+    }
+
+    if (!this._options.property) {
+      throw new Error('Required option property missing.');
+    }
   }
 
   get(props, seed) {
@@ -37,7 +45,12 @@ class BackboneModelResolver extends Resolver {
   }
 
   _getModel(props, seed) {
-    var collection = this._options.collection(seed.ns);
+    var collection = this._options.collection();
+
+    if (!(collection instanceof Backbone.Collection)) {
+      throw new Error(`Expected collection option to return a Backbone.Collection but got ${collection}`);
+    }
+
     return collection.findWhere(this._getIdConditions(props));
   }
 
@@ -84,6 +97,7 @@ class BackboneModelResolver extends Resolver {
   _getSubscribedEvents() {
     return this._options.attributesForProps
                .map((attribute) => `change:${attribute}`)
+               .concat(['remove'])
                .join(' ');
   }
 

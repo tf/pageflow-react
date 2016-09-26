@@ -1,4 +1,4 @@
-import BackboneModelResolver from 'resolvers/backbone_model_resolver';
+import BackboneModelResolver from 'resolvers/BackboneModelResolver';
 
 import Backbone from 'backbone';
 
@@ -15,7 +15,7 @@ describe('BackboneModelResolver', () => {
 
     var result = modelResolver.get({modelId: 1});
 
-    expect(result).to.deep.eq({id: 1, title: 'Some title'})
+    expect(result).to.deep.eq({id: 1, title: 'Some title'});
   });
 
   it('can map attribute names', () => {
@@ -28,7 +28,7 @@ describe('BackboneModelResolver', () => {
 
     var result = modelResolver.get({modelId: 1});
 
-    expect(result).to.deep.eq({id: 1, type: 'background_image'})
+    expect(result).to.deep.eq({id: 1, type: 'background_image'});
   });
 
   it('camelizes attribute names', () => {
@@ -41,7 +41,7 @@ describe('BackboneModelResolver', () => {
 
     var result = modelResolver.get({modelId: 1});
 
-    expect(result).to.deep.eq({id: 1, imageId: 2})
+    expect(result).to.deep.eq({id: 1, imageId: 2});
   });
 
   it('resolves to null if property is missing', () => {
@@ -53,7 +53,7 @@ describe('BackboneModelResolver', () => {
 
     var result = modelResolver.get({});
 
-    expect(result).to.deep.eq(null)
+    expect(result).to.deep.eq(null);
   });
 
   it('resolves to null if model cannot be found', () => {
@@ -65,7 +65,7 @@ describe('BackboneModelResolver', () => {
 
     var result = modelResolver.get({modelId: 1000});
 
-    expect(result).to.deep.eq(null)
+    expect(result).to.deep.eq(null);
   });
 
   it('can use custom id attribute', () => {
@@ -112,6 +112,24 @@ describe('BackboneModelResolver', () => {
     collection.first().set('title', 'Changed title');
 
     expect(callback).to.have.been.called;
+  });
+
+  it('invokes callback when model is destroyed', () => {
+    var collection = new Backbone.Collection([{perma_id: 1, title: 'Some title'}]);
+    var valueAtCallback = 'not called';
+    var modelResolver = new BackboneModelResolver({
+      collection: () => collection,
+      idAttribute: 'perma_id',
+      attributesForProps: ['id', 'title'],
+      property: 'modelId'
+    }, () => {
+      valueAtCallback = modelResolver.get({modelId: 1});
+    });
+
+    modelResolver.get({modelId: 1});
+    collection.first().destroy();
+
+    expect(valueAtCallback).to.eq(null);
   });
 
   it('does not invoke callback when other attributes changes', () => {
@@ -183,6 +201,40 @@ describe('BackboneModelResolver', () => {
     expect(callback).not.to.have.been.called;
   });
 
+  it('throws helpful error when collection option is missing', () => {
+    expect(() => {
+      const modelResolver = new BackboneModelResolver({
+        attributesForProps: ['id', 'title'],
+        property: 'modelId'
+      }, () => {});
+
+      modelResolver.get({modelId: 1});
+    }).to.throw(/option collection missing/);
+  });
+
+  it('throws helpful error when collection option does not return Backbone.Collection', () => {
+    expect(() => {
+      const modelResolver = new BackboneModelResolver({
+        collection: () => null,
+        attributesForProps: ['id', 'title'],
+        property: 'modelId'
+      }, () => {});
+
+      modelResolver.get({modelId: 1});
+    }).to.throw(/Expected collection option to return/);
+  });
+
+  it('throws helpful error when property option is blank', () => {
+    expect(() => {
+      const modelResolver = new BackboneModelResolver({
+        collection: () => new Backbone.Collection(),
+        attributesForProps: ['id', 'title']
+      }, () => {});
+
+      modelResolver.get({modelId: 1});
+    }).to.throw(/option property missing/);
+  });
+
   context('with includeConfiguration option', () => {
     it('includes attributes from a nested configuration model', () => {
       var collection = new Backbone.Collection([{id: 1}]);
@@ -195,7 +247,7 @@ describe('BackboneModelResolver', () => {
 
       var result = modelResolver.get({modelId: 1});
 
-      expect(result).to.deep.eq({id: 1, text: 'Some text'})
+      expect(result).to.deep.eq({id: 1, text: 'Some text'});
     });
 
     it('invokes callback when configuration changes', () => {
@@ -250,7 +302,7 @@ describe('BackboneModelResolver', () => {
 
       var result = modelResolver.get({modelId: 1});
 
-      expect(result).to.deep.eq({id: 1, pageLinks: [{imageId: 1}]})
+      expect(result).to.deep.eq({id: 1, pageLinks: [{imageId: 1}]});
     });
   });
 });

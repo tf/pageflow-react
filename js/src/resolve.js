@@ -1,42 +1,8 @@
-import EditorFileIdsResolver from './resolvers/editor_file_ids_resolver';
-import EditorPageResolver from './resolvers/editor_page_resolver';
-import EditorChapterResolver from './resolvers/editor_chapter_resolver';
-import SeedFileIdsResolver from './resolvers/seed_file_ids_resolver';
-import SeedPageResolver from './resolvers/seed_page_resolver';
-import SeedChapterResolver from './resolvers/seed_chapter_resolver';
-import PageTypeResolver from './resolvers/page_type_resolver';
-import CurrentParentPageResolver from './resolvers/current_parent_page_resolver';
-import I18nResolver from './resolvers/i18n_resolver';
-import VideoFileResolver from './resolvers/VideoFileResolver';
-import SettingResolver from './resolvers/SettingResolver';
+import registerDefaultResolvers from 'resolvers/registerDefaults';
 
-var resolvers;
+const resolvers = {};
 
-if (PAGEFLOW_EDITOR) {
-  resolvers = {
-    fileIds: EditorFileIdsResolver,
-    chapter: EditorChapterResolver,
-    page: EditorPageResolver
-  };
-}
-else {
-  resolvers = {
-    fileIds: SeedFileIdsResolver,
-    chapter: SeedChapterResolver,
-    page: SeedPageResolver
-  };
-}
-
-resolvers = {
-  pageType: PageTypeResolver,
-  currentParentPage: CurrentParentPageResolver,
-  i18n: I18nResolver,
-  videoFile: VideoFileResolver,
-  setting: SettingResolver,
-  ...resolvers
-};
-
-export default function(resolverName, options) {
+export default function resolve(resolverName, options) {
   var resolver = resolvers[resolverName];
 
   if (!resolver) {
@@ -47,3 +13,13 @@ export default function(resolverName, options) {
     return new resolver(options, callback);
   };
 }
+
+resolve.register = function(name, Resolver) {
+  if (resolvers[name]) {
+    throw new Error(`A resolver with name ${name} is already registered.`);
+  }
+  
+  resolvers[name] = Resolver;
+};
+
+registerDefaultResolvers(resolve);
