@@ -5,4 +5,4 @@ import sinonChai from 'sinon-chai';
 chai.use(chaiEnzyme());
 chai.use(sinonChai);
 
-export default chai;
+export const expect = chai.expect;

@@ -12,6 +12,4 @@ export default class PageText extends Component {
   text() {
     return {__html: this.props.page.text};
   }
-};
-
-export default PageText;
+}

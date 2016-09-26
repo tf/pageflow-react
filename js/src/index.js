@@ -1,3 +1,5 @@
+/*global module*/
+
 import createPage from './createPage';
 import createWidget from './createWidget';
 import createContainer from './createContainer';
@@ -30,7 +32,10 @@ import SvgIcon from './components/icons/Container';
 
 import Draggable from 'react-draggable';
 
-export default {
+// `export default` does not play well with Webpack's `libraryTarget:
+// 'assign'` at the moment. See
+// https://github.com/webpack/webpack/issues/706
+module.exports = {
   /** @api public */
   createContainer,
 
