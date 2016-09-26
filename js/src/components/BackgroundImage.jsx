@@ -5,24 +5,6 @@ import classNames from 'classnames';
  * Display an element with a background image.
  */
 export default class BackgroundImage extends React.Component {
-  static propTypes = {
-    /** The id of the image file to display */
-    imageFileId: React.PropTypes.number,
-
-    /** Background position */
-    position: React.PropTypes.arrayOf(React.PropTypes.number),
-
-    /** Additional CSS classes. */
-    className: React.PropTypes.string,
-
-    /** Used to lazy load images. */
-    loaded: React.PropTypes.bool
-  }
-
-  static defaultProps = {
-    position: [50, 50]
-  }
-
   render() {
     return (
       <div className={this.cssClass()} style={this.style()}>
@@ -57,4 +39,22 @@ export default class BackgroundImage extends React.Component {
 
     return coordinate;
   }
+}
+
+BackgroundImage.propTypes = {
+  /** The id of the image file to display */
+  imageFileId: React.PropTypes.number,
+
+  /** Background position */
+  position: React.PropTypes.arrayOf(React.PropTypes.number),
+
+  /** Additional CSS classes. */
+  className: React.PropTypes.string,
+
+  /** Used to lazy load images. */
+  loaded: React.PropTypes.bool
+};
+
+BackgroundImage.defaultProps = {
+  position: [50, 50]
 };
