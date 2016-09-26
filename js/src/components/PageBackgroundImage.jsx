@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LazyBackgroundImage from './lazy_background_image.jsx';
+import LazyBackgroundImage from './LazyBackgroundImage';
 
 export default class PageBackgroundImage extends React.Component {
   render() {

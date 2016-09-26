@@ -1,6 +1,6 @@
-import BackgroundImage from 'components/background_image.jsx';
+import BackgroundImage from 'components/BackgroundImage';
 
-import renderComponent from '../support/render_component';
+import renderComponent from '../support/renderComponent';
 
 describe('BackgroundImage', () => {
   it('has image file css class', () => {

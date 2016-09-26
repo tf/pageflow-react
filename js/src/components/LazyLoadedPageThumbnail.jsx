@@ -1,4 +1,4 @@
-import PageThumbnail from './page_thumbnail.jsx';
+import PageThumbnail from './PageThumbnail';
 import withPageStateProp from 'withPageStateProp';
 
 function LazyLoadedPageThumbnail(props) {

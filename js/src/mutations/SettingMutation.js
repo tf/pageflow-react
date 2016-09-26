@@ -1,4 +1,4 @@
-import Mutation from './mutation';
+import Mutation from './Mutation';
 
 export default class extends Mutation {
   perform(value) {

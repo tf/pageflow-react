@@ -1,4 +1,4 @@
-import createPage from 'create_page';
+import createPage from 'createPage';
 import withPageStateProp from 'withPageStateProp';
 
 import React from 'react';

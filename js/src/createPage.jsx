@@ -1,7 +1,7 @@
 import React from 'react';
 
-import createContainer from './create_container.jsx';
-import createResolverRoot from './create_resolver_root.jsx';
+import createContainer from './createContainer.jsx';
+import createResolverRoot from './createResolverRoot.jsx';
 import resolve from './resolve';
 
 export default function(Component, options = {}) {

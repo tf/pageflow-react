@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import Icon from '../Icon.jsx';
+import Icon from '../Icon';
 
 export default class MenuBarButton extends React.Component {
   constructor(props, context) {

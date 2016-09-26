@@ -1,4 +1,4 @@
-import withPageLifecycle from 'withPageLifecycle.jsx';
+import withPageLifecycle from 'withPageLifecycle';
 
 import React from 'react';
 import {shallow, mount} from 'enzyme';

@@ -1,4 +1,4 @@
-import BackgroundImage from './background_image.jsx';
+import BackgroundImage from './BackgroundImage';
 import withPageStateProp from 'withPageStateProp';
 
 function LazyBackgroundImage(props) {

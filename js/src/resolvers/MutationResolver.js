@@ -1,7 +1,7 @@
 import Resolver from './Resolver';
 
-import UpdatePageMutation from 'mutations/update_page_mutation';
-import UpdatePageLinkMutation from 'mutations/update_page_link_mutation';
+import UpdatePageMutation from 'mutations/UpdatePageMutation';
+import UpdatePageLinkMutation from 'mutations/UpdatePageLinkMutation';
 import SettingMutation from 'mutations/SettingMutation';
 
 const mutations = {

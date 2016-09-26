@@ -1,8 +1,8 @@
-import createContainer from 'create_container.jsx';
+import createContainer from 'createContainer';
 import Resolver from 'resolvers/Resolver';
 
 import React from 'react';
-import renderComponent from './support/render_component';
+import renderComponent from './support/renderComponent';
 
 import TestUtils from 'react-addons-test-utils';
 
