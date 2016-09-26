@@ -3,7 +3,7 @@ import React from 'react';
 import Scroller from './Scroller';
 import withPageLifecycle from '../withPageLifecycle.jsx';
 
-export default class PageScroller extends React.Component {
+class PageScroller extends React.Component {
   getChildContext() {
     this._pageScroller = this._pageScroller || {
       disable: () => {
