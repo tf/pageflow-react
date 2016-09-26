@@ -1,4 +1,4 @@
-import Mutation from './mutation';
+import Mutation from './Mutation';
 
 import pageflow from 'pageflow';
 

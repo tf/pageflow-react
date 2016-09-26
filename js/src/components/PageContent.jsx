@@ -1,5 +1,5 @@
-import PageForeground from './page_foreground.jsx';
-import PageScroller from './page_scroller.jsx';
+import PageForeground from './PageForeground';
+import PageScroller from './PageScroller';
 
 export default function(props) {
   return (

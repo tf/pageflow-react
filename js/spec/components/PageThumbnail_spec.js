@@ -1,6 +1,6 @@
-import {PageThumbnail} from 'components/page_thumbnail.jsx';
+import {PageThumbnail} from 'components/PageThumbnail';
 
-import renderComponent from '../support/render_component';
+import renderComponent from '../support/renderComponent';
 
 describe('PageThumbnail', () => {
   it('has class names for thumbnail candidate', () => {

@@ -1,4 +1,4 @@
-import Container from './Container.jsx';
+import Container from './Container';
 
 export default function(props) {
   return (

@@ -1,28 +1,28 @@
-import createPage from './create_page.jsx';
-import createWidget from './create_widget.jsx';
-import createContainer from './create_container.jsx';
-import createPageType from './create_page_type';
-import createWidgetType from './create_widget_type';
-import withPageLifecycle from './withPageLifecycle.jsx';
-import withPageStateProp from './withPageStateProp.jsx';
+import createPage from './createPage';
+import createWidget from './createWidget';
+import createContainer from './createContainer';
+import createPageType from './createPageType';
+import createWidgetType from './createWidgetType';
+import withPageLifecycle from './withPageLifecycle';
+import withPageStateProp from './withPageStateProp';
 import resolve from './resolve';
 import mutate from './mutate';
 
 import classNames from 'classnames';
 
-import PageWithInteractiveBackground from './components/PageWithInteractiveBackground.jsx';
+import PageWithInteractiveBackground from './components/PageWithInteractiveBackground';
 
-import PageWrapper from './components/page_wrapper.jsx';
-import PageBackground from './components/page_background.jsx';
-import PageShadow from './components/page_shadow.jsx';
-import PageContent from './components/page_content.jsx';
-import PageHeader from './components/page_header.jsx';
-import PageText from './components/page_text.jsx';
-import BackgroundImage from './components/background_image.jsx';
-import PageBackgroundImage from './components/page_background_image.jsx';
-import PageLink from './components/page_link.jsx';
-import PageThumbnail from './components/page_thumbnail.jsx';
-import LazyLoadedPageThumbnail from './components/lazy_loaded_page_thumbnail.jsx';
+import PageWrapper from './components/PageWrapper';
+import PageBackground from './components/PageBackground';
+import PageShadow from './components/PageShadow';
+import PageContent from './components/PageContent';
+import PageHeader from './components/PageHeader';
+import PageText from './components/PageText';
+import BackgroundImage from './components/BackgroundImage';
+import PageBackgroundImage from './components/PageBackgroundImage';
+import PageLink from './components/PageLink';
+import PageThumbnail from './components/PageThumbnail';
+import LazyLoadedPageThumbnail from './components/LazyLoadedPageThumbnail';
 import Icon from './components/Icon';
 
 import iconMapping from './components/icons/mapping';

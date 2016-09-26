@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Scroller from './scroller';
+import Scroller from './Scroller';
 import withPageLifecycle from '../withPageLifecycle.jsx';
 
 export default class PageScroller extends React.Component {

@@ -1,18 +1,18 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import PageWrapper from './page_wrapper.jsx';
-import PageBackground from './page_background.jsx';
-import PageShadow from './page_shadow.jsx';
-import PageForeground from './page_foreground.jsx';
-import PageScroller from './page_scroller.jsx';
-import PageHeader from './page_header.jsx';
-import PageText from './page_text.jsx';
+import PageWrapper from './PageWrapper';
+import PageBackground from './PageBackground';
+import PageShadow from './PageShadow';
+import PageForeground from './PageForeground';
+import PageScroller from './PageScroller';
+import PageHeader from './PageHeader';
+import PageText from './PageText';
 import PlayerControls from './PlayerControls';
-import CloseButton from './CloseButton.jsx';
+import CloseButton from './CloseButton';
 import MenuBar from './PlayerControls/MenuBar';
 
-import withPageLifecycle from '../withPageLifecycle.jsx';
+import withPageLifecycle from '../withPageLifecycle';
 
 /**
  *

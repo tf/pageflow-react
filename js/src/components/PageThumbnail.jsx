@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import createContainer from '../create_container.jsx';
+import createContainer from '../createContainer';
 import resolve from '../resolve';
 import camelize from '../utils/camelize';
 
