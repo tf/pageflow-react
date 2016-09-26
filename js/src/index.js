@@ -22,6 +22,10 @@ import PageBackgroundImage from './components/page_background_image.jsx';
 import PageLink from './components/page_link.jsx';
 import PageThumbnail from './components/page_thumbnail.jsx';
 import LazyLoadedPageThumbnail from './components/lazy_loaded_page_thumbnail.jsx';
+import Icon from './components/Icon';
+
+import iconMapping from './components/icons/mapping';
+import SvgIcon from './components/icons/Container';
 
 import Draggable from 'react-draggable';
 
@@ -53,11 +57,16 @@ export default {
   /** @api public */
   mutate,
 
+  iconMapping,
+
+  SvgIcon,
+
   classNames,
 
   components: {
     PageWithInteractiveBackground,
 
+    Icon,
     PageWrapper,
     PageBackground,
     PageShadow,
@@ -66,7 +75,6 @@ export default {
     PageText,
     BackgroundImage,
     PageBackgroundImage,
-
     PageLink,
     PageThumbnail,
     LazyLoadedPageThumbnail,
