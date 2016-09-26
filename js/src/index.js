@@ -3,7 +3,7 @@ import createWidget from './create_widget.jsx';
 import createContainer from './create_container.jsx';
 import createPageType from './create_page_type';
 import createWidgetType from './create_widget_type';
-import createPageComponent from './create_page_component.jsx';
+import withPageLifecycle from './withPageLifecycle.jsx';
 import resolve from './resolve';
 import mutate from './mutate';
 
@@ -41,8 +41,11 @@ export default {
   /** @api public */
   createWidgetType,
 
-  /** @api public */
-  createPageComponent,
+  withPageLifecycle,
+
+  /** @deprecated Use withPageLifecycle instead. */
+  createPageComponent: withPageLifecycle,
+
 
   /** @api public */
   resolve,
