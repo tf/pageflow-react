@@ -2,13 +2,14 @@ import createModelResolver from './createModelResolver';
 import compose from './compose';
 
 export default function createFileResolver({collectionName}) {
-  return compose(toUrls, createModelResolver({
+  return compose(expandUrls, createModelResolver({
     backboneCollection: () => pageflow.files[collectionName],
     seedProperty: collectionName,
     attributesForProps: ['id', 'variants'],
+    includeConfiguration: true
   }));
 
-  function toUrls(file, seed) {
+  function expandUrls(file, seed) {
     if (!file) {
       return null;
     }
@@ -21,7 +22,7 @@ export default function createFileResolver({collectionName}) {
       }
 
       return result;
-    }, {});
+    }, file);
   }
 
   function getFileUrl(seed, fileId, quality) {
