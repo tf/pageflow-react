@@ -9826,15 +9826,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function createFileResolver(_ref) {
 	  var collectionName = _ref.collectionName;
 
-	  return (0, _compose2['default'])(toUrls, (0, _createModelResolver2['default'])({
+	  return (0, _compose2['default'])(expandUrls, (0, _createModelResolver2['default'])({
 	    backboneCollection: function backboneCollection() {
 	      return pageflow.files[collectionName];
 	    },
 	    seedProperty: collectionName,
-	    attributesForProps: ['id', 'variants']
+	    attributesForProps: ['id', 'variants'],
+	    includeConfiguration: true
 	  }));
 
-	  function toUrls(file, seed) {
+	  function expandUrls(file, seed) {
 	    if (!file) {
 	      return null;
 	    }
@@ -9847,7 +9848,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      }
 
 	      return result;
-	    }, {});
+	    }, file);
 	  }
 
 	  function getFileUrl(seed, fileId, quality) {
