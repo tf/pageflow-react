@@ -23,7 +23,8 @@ export default function(Component, options = {}) {
           isActive: this.props.isActive,
           isPreloaded: this.props.isPreloaded,
           isPrepared: this.props.isPrepared
-        }
+        },
+        mediaContext: this.props.mediaContext
       };
     }
 
@@ -38,6 +39,7 @@ export default function(Component, options = {}) {
     pageHooks: React.PropTypes.object,
     scrollIndicator: React.PropTypes.object,
     pageState: React.PropTypes.object,
+    mediaContext: React.PropTypes.object
   };
 
   return createResolverRoot(Page);

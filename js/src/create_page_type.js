@@ -88,6 +88,9 @@ export default function(Component) {
         pageId: parseInt(pageElement.attr('id'), 10),
         pageHooks: this._pageHooks,
         scrollIndicator: this.scrollIndicator,
+        mediaContext: {
+          page: pageElement.page('instance')
+        },
         isPreloaded: this._isPreloaded,
         isPrepared: this._isPrepared,
         isActive: this._isActive
