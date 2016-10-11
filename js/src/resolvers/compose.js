@@ -25,8 +25,10 @@
  *     })
  *   }
  * });
+ *
+ * @name compose
  */
-export default function(transform, InnerResolver) {
+export default function compose(transform, InnerResolver) {
   return function(options, callback) {
     const inner = new InnerResolver(options, callback);
 
