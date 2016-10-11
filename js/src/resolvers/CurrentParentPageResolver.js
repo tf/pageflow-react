@@ -3,6 +3,10 @@ import resolve from 'resolve';
 
 import createRecursiveResolver from './createRecursiveResolver';
 
+/**
+ * Foo
+ * @name pageflow.resolvers."'currentParentPage'"
+ */
 class CurrentPageResolver extends Resolver {
   constructor(options, callback) {
     super(callback);
