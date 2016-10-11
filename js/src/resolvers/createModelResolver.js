@@ -48,8 +48,10 @@ import BackboneModelResolver from 'resolvers/BackboneModelResolver';
  *     linkedPage: resolve('page', {property: 'linkedPageId'})
  *   }
  * });
+ *
+ * @name createModelResolver
  */
-export default function createModelResolver(options, {editorMode = PAGEFLOW_EDITOR} = {}) {
+export default function(options, {editorMode = PAGEFLOW_EDITOR} = {}) {
   const commonResolverOptions = {
     idAttribute: options.idAttribute || 'id',
     attributesForProps: options.attributesForProps || ['id'],
