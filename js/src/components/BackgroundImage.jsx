@@ -44,7 +44,10 @@ class BackgroundImage extends React.Component {
 }
 
 BackgroundImage.propTypes = {
-  /** The id of the image file to display */
+  /**
+   * The id of the image file to display
+   * @type {number}
+   */
   imageFileId: React.PropTypes.number,
 
   /** Background position */
