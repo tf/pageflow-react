@@ -4,9 +4,9 @@ import classNames from 'classnames';
 /**
  * Display an element with a background image.
  *
- * @name pageflow.react.components.BackgroundImage
+ * @memberof pageflow.react.components
  */
-export default class BackgroundImage extends React.Component {
+class BackgroundImage extends React.Component {
   render() {
     return (
       <div className={this.cssClass()} style={this.style()}>
@@ -60,3 +60,5 @@ BackgroundImage.propTypes = {
 BackgroundImage.defaultProps = {
   position: [50, 50]
 };
+
+export default BackgroundImage;
