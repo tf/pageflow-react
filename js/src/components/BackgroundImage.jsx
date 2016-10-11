@@ -3,7 +3,8 @@ import classNames from 'classnames';
 
 /**
  * Display an element with a background image.
- * @memberof pageflow.react.components
+ *
+ * @name pageflow.react.components.BackgroundImage
  */
 export default class BackgroundImage extends React.Component {
   render() {
