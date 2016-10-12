@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "pageflow", "~> 0.10"
-  spec.add_dependency "react-rails", "~> 1.6.0"
+  spec.add_dependency 'react-rails', '~> 1.8'
   spec.add_dependency "multi_json", "~> 1.11"
 
   spec.add_development_dependency "bundler", "~> 1.3"
