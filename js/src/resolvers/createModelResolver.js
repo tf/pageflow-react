@@ -10,11 +10,11 @@ import BackboneModelResolver from 'resolvers/BackboneModelResolver';
  * The resulting takes a `property` option, which determines the name
  * of prop that contains the id of the model that shall be found.
  *
- * @param {createModelResolver~backboneCollection} backboneCollection
+ * @param {pageflow.react.resolvers.createModelResolver~backboneCollectionCallback} options.backboneCollection
  *   A function that returns the Backbone collection in which to
  *   search for the models.
  *
- * @param {string} seedProperty
+ * @param {string} options.seedProperty
  *   The name of the property which contains the list of models in the
  *   seed data.
  *
@@ -48,6 +48,9 @@ import BackboneModelResolver from 'resolvers/BackboneModelResolver';
  *     linkedPage: resolve('page', {property: 'linkedPageId'})
  *   }
  * });
+ *
+ * @alias pageflow.react.resolvers.createModelResolver
+ * @since edge
  */
 export default function(options, {editorMode = PAGEFLOW_EDITOR} = {}) {
   const commonResolverOptions = {
@@ -85,6 +88,10 @@ export default function(options, {editorMode = PAGEFLOW_EDITOR} = {}) {
 }
 
 /**
- * @callback createModelResolver~backboneCollection
+ * Signature of the function passed to {@link
+ * pageflow.react.resolvers.createModelResolver|createModelResolver}
+ * as `backboneCollection` option.
+ *
+ * @callback pageflow.react.resolvers.createModelResolver~backboneCollectionCallback
  * @return {Backbone.Collection}
  */

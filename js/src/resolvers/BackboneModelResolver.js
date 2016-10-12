@@ -4,9 +4,6 @@ import createRecursiveResolver from './createRecursiveResolver';
 import camelize from '../utils/camelize';
 import Backbone from 'backbone';
 
-/**
- * Resolve a foreign key to an object of attributes.
- */
 class BackboneModelResolver extends Resolver {
   constructor(options, callback) {
     super(callback);
@@ -126,8 +123,8 @@ class BackboneModelResolver extends Resolver {
 
       result[name[0]] = model.get(name[1]);
       return result;
-    }, {})
+    }, {});
   }
-};
+}
 
 export default createRecursiveResolver(BackboneModelResolver);

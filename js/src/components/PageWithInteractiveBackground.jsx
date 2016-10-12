@@ -15,7 +15,14 @@ import MenuBar from './PlayerControls/MenuBar';
 import withPageLifecycle from '../withPageLifecycle';
 
 /**
+ * @desc
+ * Use to build pages that have a play button to hide the page's text
+ * and allow interacting with elements placed in the {@link
+ * pageflow.react.components.PageBackground|PageBackground}.
  *
+ * @alias pageflow.react.components.PageWithInteractiveBackground
+ * @class
+ * @since edge
  */
 class PageWithInteractiveBackground extends React.Component {
   constructor(props, context) {
