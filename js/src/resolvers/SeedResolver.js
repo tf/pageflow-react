@@ -3,10 +3,6 @@ import createRecursiveResolver from './createRecursiveResolver';
 
 import camelize from '../utils/camelize';
 
-/**
- * Resolves a foreign key to an object of attributes from the seed
- * data.
- */
 class SeedResolver extends Resolver {
   constructor(options, callback) {
     super(callback);

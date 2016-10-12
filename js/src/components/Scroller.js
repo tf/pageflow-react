@@ -1,7 +1,6 @@
 import {Component} from 'react';
 import ReactDom from 'react-dom';
 
-/** @api private */
 class Scroller extends Component {
   render() {
     return (

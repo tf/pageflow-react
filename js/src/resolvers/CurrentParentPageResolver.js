@@ -3,7 +3,15 @@ import resolve from 'resolve';
 
 import createRecursiveResolver from './createRecursiveResolver';
 
-class CurrentPageResolver extends Resolver {
+/**
+ * Resolves to a page object always representing the current parent
+ * page if one is present. Registered as `"currentParentPage"`.
+ *
+ * @alias pageflow.react.resolvers.CurrentParentPageResolver
+ * @class
+ * @since 0.1
+ */
+class CurrentParentPageResolver extends Resolver {
   constructor(options, callback) {
     super(callback);
 
@@ -33,6 +41,6 @@ class CurrentPageResolver extends Resolver {
   _unsubscribeFromPageChange() {
     pageflow.events.off('page:change', this._handleChange, this);
   }
-};
+}
 
-export default createRecursiveResolver(CurrentPageResolver);
+export default createRecursiveResolver(CurrentParentPageResolver);

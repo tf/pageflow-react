@@ -2,7 +2,23 @@ import React from 'react';
 import classNames from 'classnames';
 
 /**
- * Display an element with a background image.
+ * Display an element with a background image referenced by
+ * `ImageFile` id.
+ *
+ * @alias pageflow.react.components.BackgroundImage
+ * @since 0.1
+ *
+ * @prop imageFileId
+ *   The id of the image file to display.
+ *
+ * @prop position
+ *   Two element array of percent values specifying background position.
+ *
+ * @prop className
+ *   Additional CSS classes.
+ *
+ * @prop loaded
+ *   Used to lazy load images.
  */
 export default class BackgroundImage extends React.Component {
   render() {
@@ -42,16 +58,9 @@ export default class BackgroundImage extends React.Component {
 }
 
 BackgroundImage.propTypes = {
-  /** The id of the image file to display */
   imageFileId: React.PropTypes.number,
-
-  /** Background position */
   position: React.PropTypes.arrayOf(React.PropTypes.number),
-
-  /** Additional CSS classes. */
   className: React.PropTypes.string,
-
-  /** Used to lazy load images. */
   loaded: React.PropTypes.bool
 };
 

@@ -4,6 +4,17 @@ import createContainer from './createContainer.jsx';
 import createResolverRoot from './createResolverRoot.jsx';
 import resolve from './resolve';
 
+/**
+ * Prepare for usage with {pageflow.react.createPageType}.
+ *
+ * @param {Class<React.Component>} Component
+ *   The component which renders the page contents.
+ *
+ * @return {Class<React.Component>}
+ *
+ * @alias pageflow.react.createPage
+ * @since 0.1
+ */
 export default function(Component, options = {}) {
   const ContainerComponent = createContainer(Component, {
     fragments: {

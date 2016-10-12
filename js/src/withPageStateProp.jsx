@@ -19,6 +19,9 @@ import React from 'react';
  * }
  *
  * pageflow.my.SomeComponent = withPageStateProp(MyComponent);
+ *
+ * @alias pageflow.react.withPageStateProp
+ * @since edge
  */
 export default function withPageStateProp(Component) {
   class Container extends React.Component {

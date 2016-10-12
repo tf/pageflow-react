@@ -3,6 +3,14 @@ import React from 'react';
 import Scroller from './Scroller';
 import withPageLifecycle from '../withPageLifecycle.jsx';
 
+/**
+ * @desc Can be used inside
+ * {@link pageflow.react.components.PageForeground|PageForeground} to
+ * build the default page structure.
+ *
+ * @alias pageflow.react.components.PageScroller
+ * @since edge
+ */
 class PageScroller extends React.Component {
   getChildContext() {
     this._pageScroller = this._pageScroller || {
