@@ -11,6 +11,9 @@ import classNames from 'classnames';
  * @class
  * @since 0.1
  *
+ * @prop className
+ *   Additional class names.
+ *
  * @example
  *
  * <PageWrapper>

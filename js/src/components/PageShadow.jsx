@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 /**
  * @desc Can be used inside
@@ -18,7 +19,7 @@ export default class PageShadow extends React.Component {
   render() {
     return (
       <div className="shadow_wrapper">
-        <div className="shadow" style={this.style()} />
+        <div className={classNames('shadow', this.props.className)} style={this.style()} />
       </div>
     );
   }

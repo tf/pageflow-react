@@ -29,7 +29,7 @@ class PageScroller extends React.Component {
 
   render() {
     return (
-      <Scroller ref="scroller">
+      <Scroller ref="scroller" className={this.props.className}>
         <div className="contentWrapper">
           {this.props.children}
         </div>

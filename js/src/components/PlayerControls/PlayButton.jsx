@@ -15,6 +15,7 @@ export default function(props) {
 
 function className(props) {
   return classNames('vjs-play-control',
+                    {'vjs-playing': props.isPlaying},
                     {'player_controls-play_button-custom_icon': !!props.iconName});
 }
 
