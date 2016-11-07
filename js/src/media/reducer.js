@@ -1,5 +1,5 @@
 import {
-  PAGE_UPDATE, PAGE_WILL_ACTIVATE,
+  PAGE_UPDATER, PAGE_WILL_ACTIVATE,
 
   SHOULD_PLAY, SHOULD_PAUSE, SHOULD_SEEK_TO,
   SHOULD_FADE_OUT_AND_PAUSE, SHOULD_PLAY_AND_FADE_IN,
@@ -11,7 +11,7 @@ import {
 
 export default function reducer(state, action) {
   switch (action.type) {
-  case PAGE_UPDATE:
+  case PAGE_UPDATER:
     return {
       ...state,
       pageConfiguration: action.payload.pageConfiguration

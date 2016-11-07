@@ -4,9 +4,7 @@ import MediaPageShadow from './PageShadow';
 import MediaPageForeground from './PageForeground';
 import MediaPageScroller from './PageScroller';
 import PageHeader from 'components/PageHeader';
-import PageText from 'components/PageText';
-
-import MediaPlayerStateProvider from './PlayerStateProvider';
+import PageText from '../components/PageText';
 import MediaPlayerControls from './PlayerControls';
 
 export default class extends React.Component {
@@ -14,23 +12,21 @@ export default class extends React.Component {
     const page = this.props.page;
 
     return (
-      <MediaPlayerStateProvider page={page}>
-        <MediaPageWrapper className="videoPage">
-          <PageBackground>
-            {this.props.children}
-            <MediaPageShadow page={page} />
-          </PageBackground>
+      <MediaPageWrapper className="videoPage">
+        <PageBackground>
+          {this.props.children}
+          <MediaPageShadow page={page} />
+        </PageBackground>
 
-          <MediaPageForeground>
-            <MediaPlayerControls infoBox={{title: page.additionalTitle,
-                                           description: page.additionalDescription}} />
-            <MediaPageScroller>
-              <PageHeader page={page} />
-              <PageText page={page} />
-            </MediaPageScroller>
-          </MediaPageForeground>
-        </MediaPageWrapper>
-      </MediaPlayerStateProvider>
+        <MediaPageForeground>
+          <MediaPlayerControls infoBox={{title: page.additionalTitle,
+                                         description: page.additionalDescription}} />
+          <MediaPageScroller>
+            <PageHeader page={page} />
+            <PageText page={page} />
+          </MediaPageScroller>
+        </MediaPageForeground>
+      </MediaPageWrapper>
     );
   }
 }

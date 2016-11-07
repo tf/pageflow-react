@@ -23,9 +23,7 @@ describe('createFileResolver creates Resolver that', () => {
 
     var result = resolver.get({fileId: 2004}, seed);
 
-    expect(result).to.deep.eq({
-      '4k': 'https://somehost/dir/000/002/004/4k.mp4'
-    });
+    expect(result['4k']).to.eq('https://somehost/dir/000/002/004/4k.mp4');
   });
 
   it('returns null if video with id is not found', () => {

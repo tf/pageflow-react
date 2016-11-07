@@ -1,7 +1,5 @@
-import MediaPage from 'media/Page';
+import {Page as MediaPage, pageSagas as mediaPageSagas} from 'media';
 import PageVideoPlayer from 'media/PageVideoPlayer';
-
-import createPage from 'createPage';
 
 class VideoPage extends React.Component {
   constructor(props, context) {
@@ -25,4 +23,15 @@ class VideoPage extends React.Component {
   }
 }
 
-export default createPage(VideoPage);
+import createReduxPageType from 'createReduxPageType';
+
+import mediaReducers from 'media/reducers';
+
+export default createReduxPageType(VideoPage, {
+  reducers: {
+    ...mediaReducers
+  },
+  sagas: [
+    ...mediaPageSagas
+  ]
+});
