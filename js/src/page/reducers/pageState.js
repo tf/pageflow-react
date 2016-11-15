@@ -42,3 +42,12 @@ export default function(state = initalState, action) {
     return state;
   }
 }
+
+export function r(page, action) {
+  if (action.payload.pageId) {
+    return {
+      ...page,
+      state: pageStateReducers[page.type](page.state)
+    }
+  }
+}

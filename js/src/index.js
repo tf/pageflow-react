@@ -32,9 +32,9 @@ import SvgIcon from './components/icons/Container';
 
 import Draggable from 'react-draggable';
 
-import registerPageTypes from 'registerPageTypes';
-
-registerPageTypes();
+//import registerPageTypes from 'registerPageTypes';
+//
+//registerPageTypes();
 
 // `export default` does not play well with Webpack's `libraryTarget:
 // 'assign'` at the moment. See

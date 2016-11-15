@@ -7,26 +7,25 @@ import PageHeader from 'components/PageHeader';
 import PageText from '../components/PageText';
 import MediaPlayerControls from './PlayerControls';
 
-export default class extends React.Component {
-  render() {
-    const page = this.props.page;
+export default function(props) {
+  const page = props.page;
 
-    return (
-      <MediaPageWrapper className="videoPage">
-        <PageBackground>
-          {this.props.children}
-          <MediaPageShadow page={page} />
-        </PageBackground>
+  return (
+    <MediaPageWrapper className="videoPage">
+      <PageBackground>
+        {props.children}
+        <MediaPageShadow page={page} />
+      </PageBackground>
 
-        <MediaPageForeground>
-          <MediaPlayerControls infoBox={{title: page.additionalTitle,
-                                         description: page.additionalDescription}} />
-          <MediaPageScroller>
-            <PageHeader page={page} />
-            <PageText page={page} />
-          </MediaPageScroller>
-        </MediaPageForeground>
-      </MediaPageWrapper>
-    );
-  }
+      <MediaPageForeground>
+        <MediaPlayerControls playerState={props.playerState}
+                             infoBox={{title: page.additionalTitle,
+                                       description: page.additionalDescription}} />
+        <MediaPageScroller>
+          <PageHeader page={page} />
+          <PageText page={page} />
+        </MediaPageScroller>
+      </MediaPageForeground>
+    </MediaPageWrapper>
+  );
 }

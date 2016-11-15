@@ -20,7 +20,11 @@
         "mocha": true
     },
     "settings": {
-      "import/resolver": "webpack"
+      "import/resolver": {
+        "webpack": {
+          "config": "./webpack.karma.config.js"
+        }
+      }
     },
     "extends": [
       "eslint:recommended",

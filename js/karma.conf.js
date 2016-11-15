@@ -1,7 +1,6 @@
 /*global module, require*/
 
-var webpack = require('webpack');
-var path = require('path');
+var webpackConfig = require('./webpack.karma.config.js');
 
 module.exports = function (config) {
   config.set({
@@ -10,10 +9,7 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'chai-sinon', 'phantomjs-shim'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
-      'spec/*spec.js',
-      'spec/*spec.jsx',
-      'spec/**/*spec.js',
-      'spec/**/*spec.jsx'
+      'spec/index.js'
     ],
     exclude: [
       'flycheck_*.*',
@@ -21,10 +17,7 @@ module.exports = function (config) {
       '*/**/flycheck_*.*',
     ],
     preprocessors: {
-      'spec/*.js': ['webpack', 'sourcemap'],
-      'spec/*.jsx': ['webpack', 'sourcemap'],
-      'spec/**/*.js': ['webpack', 'sourcemap'],
-      'spec/**/*.jsx': ['webpack', 'sourcemap']
+      'spec/index.js': ['webpack', 'sourcemap']
     },
     reporters: ['dots'],
     plugins: [
@@ -36,38 +29,7 @@ module.exports = function (config) {
       require('karma-phantomjs-shim'),
       'karma-phantomjs-launcher'
     ],
-    webpack: {
-      devtool: 'inline-source-map',
-      plugins: [
-        new webpack.DefinePlugin({
-          PAGEFLOW_EDITOR: false
-        })
-      ],
-      module: {
-        loaders: [
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            loaders: ['babel-loader']
-          },
-          {
-            test: require.resolve('react'),
-            loader: 'expose?React'
-          }
-        ]
-      },
-      externals: {
-        'jsdom': 'window',
-        'cheerio': 'window',
-        'react/lib/ReactContext': true,
-        'react/lib/ExecutionEnvironment': true,
-        'react/addons': true
-      },
-      resolve: {
-        extensions: ['', '.js', '.jsx'],
-        root: [path.resolve('./src'), path.resolve('./spec')]
-      }
-    },
+    webpack: webpackConfig,
     webpackServer: {
       noInfo: true
     }
