@@ -1,20 +1,14 @@
 import createPageStateReducer from './createPageStateReducer';
 import createPageSaga from './createPageSaga';
+import createPageType from './createPageType';
 
 import {
   createReducer as createCollectionReducer,
   createItemSelector as createCollectionItemSelector,
-
   createSaga as createCollectionSaga,
-
   createItemScopeConnector as createCollectionItemScopeConnector,
-
-  watchBackboneCollection as watch
+  watch
 } from 'collections';
-
-import createPageType from './createPageType';
-
-const pageStateReducers = {};
 
 export function createReducers(pageStateReducers = {}) {
   return {
@@ -35,22 +29,17 @@ export function createSaga(pageTypeSagas) {
 
 export const connectInPage = createCollectionItemScopeConnector('pages');
 
-export const watchCollection = function(pageflow, dispatch) {
+export function watchCollection(pageflow, dispatch) {
   watch({
-    collectionName: 'pages',
     collection: pageflow.pages,
+    collectionName: 'pages',
     dispatch,
 
     attributes: ['perma_id', {type: 'template'}, 'chapter_id'],
     includeConfiguration: true
   });
-};
-
+}
 
 export {
   createPageType
 };
-
-export function registerPageStateReducer(name, reducer) {
-  pageStateReducers[name] = reducer;
-}

@@ -1,8 +1,12 @@
 import {reset, add, change, remove} from './actions';
 
-import camelize from 'utils/camelize';
+import pickAttributes from './pickAttributes';
 
-export default function({collection, dispatch, collectionName, attributes = ['id'], includeConfiguration = false}) {
+export default function({
+  collection, dispatch, collectionName,
+  attributes = ['id'],
+  includeConfiguration = false
+}) {
   dispatch(reset({
     collectionName,
     items: collection.map(modelToAttributes)
@@ -30,24 +34,9 @@ export default function({collection, dispatch, collectionName, attributes = ['id
   });
 
   function modelToAttributes(model) {
-    const result = camelize.deep(attributes.reduce((result, attribute) => {
-      if (typeof attribute == 'object') {
-        const key = Object.keys(attribute)[0];
-        const value = attribute[key];
-
-        result[key] = model.get(value);
-      }
-      else {
-        result[attribute] = model.get(attribute);
-      }
-      return result;
-    }, {}));
-
-    if (includeConfiguration) {
-      return {...result, ...model.configuration.attributes};
-    }
-
-    return result;
+    return pickAttributes(attributes,
+                          model.attributes,
+                          includeConfiguration && model.configuration.attributes);
   }
 
   function changeEvents() {

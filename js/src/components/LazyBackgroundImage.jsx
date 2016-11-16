@@ -3,7 +3,7 @@ import withPageStateProp from 'withPageStateProp';
 
 function LazyBackgroundImage(props) {
   return (
-    <BackgroundImage {...props} loaded={props.pageState.isPreloaded} />
+    <BackgroundImage {...props} loaded={!props.pageState || props.pageState.isPreloaded} />
   );
 }
 

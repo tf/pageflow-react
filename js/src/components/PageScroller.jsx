@@ -11,7 +11,7 @@ import withPageLifecycle from '../withPageLifecycle.jsx';
  * @alias pageflow.react.components.PageScroller
  * @since edge
  */
-class PageScroller extends React.Component {
+export default class PageScroller extends React.Component {
   getChildContext() {
     this._pageScroller = this._pageScroller || {
       disable: () => {
@@ -54,4 +54,4 @@ PageScroller.childContextTypes = {
   pageScroller: React.PropTypes.object
 };
 
-export default withPageLifecycle(PageScroller);
+//export default withPageLifecycle(PageScroller);

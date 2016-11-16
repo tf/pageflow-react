@@ -6,7 +6,7 @@ import createSaga from './createSaga';
 import createItemScopeConnector from './createItemScopeConnector';
 import createItemScopeProvider from './createItemScopeProvider';
 
-import watchBackboneCollection from './watchBackboneCollection';
+import watch from './watch';
 
 export {
   createItemSelector,
@@ -17,5 +17,5 @@ export {
   createItemScopeConnector,
   createItemScopeProvider,
 
-  watchBackboneCollection
+  watch
 };

@@ -4,10 +4,10 @@ import PageVideoPlayer from 'media/PageVideoPlayer';
 import registerPageType from 'registerPageType';
 
 import {selector as page, connectInPage} from 'pages';
-import {playerState, playerActions} from 'media/selectors';
-import {reducers as mediaReducers, sagas as mediaSagas} from 'media';
+//import {playerState, playerActions} from 'media/selectors';
+//import {reducers as mediaReducers, sagas as mediaSagas} from 'media';
 
-import {combineReducers} from 'redux';
+//import {combineReducers} from 'redux';
 import combineSelectors from 'combineSelectors';
 
 function VideoPage(props) {
@@ -19,23 +19,12 @@ function VideoPage(props) {
   );
 }
 
-export default registerPageType('video', {
-  component: connectInPage(
-    combineSelectors({
-      playerState,
-      page
-    }),
-    {
-      playerActions
-    }
-  )(VideoPage),
+const component = connectInPage(
+  combineSelectors({
+    page: page()
+  })
+)(VideoPage);
 
-  reducer: combineReducers({
-    ...mediaReducers
-  }),
-
-  sagas: [
-    ...mediaSagas
-  ]
+registerPageType('video', {
+  component
 });
-

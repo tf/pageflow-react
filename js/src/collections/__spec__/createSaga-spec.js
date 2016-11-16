@@ -1,11 +1,11 @@
-import createSaga from '../createSaga';
+import createSaga, {createMiddleware} from '../createSaga';
 import createReducer from '../createReducer';
 import createItemSelector from '../createItemSelector';
 import {reset, add, remove} from '../actions';
 
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import {call, select, put, take} from 'redux-saga/effects';
+import {call, select, put, take, fork} from 'redux-saga/effects';
 
 import {expect} from 'support/chai';
 import sinon from 'sinon';
@@ -13,14 +13,16 @@ import sinon from 'sinon';
 describe('createSaga', () => {
   describe('createSaga', () => {
     function createStoreWithCollectionSaga({itemSaga, itemReducer}) {
-      const collectionSaga = createSaga('posts', {itemSaga});
+      const m = createMiddleware();
+      const collectionSaga = createSaga('posts', {itemSaga, middleware: m});
       const sagaMiddleware = createSagaMiddleware();
 
       const store = createStore(combineReducers({
         posts: createReducer('posts', {itemReducer})
-      }), {}, applyMiddleware(sagaMiddleware));
+      }), {}, applyMiddleware(sagaMiddleware, m));
 
       sagaMiddleware.run(collectionSaga);
+
       return store;
     }
 
@@ -178,6 +180,49 @@ describe('createSaga', () => {
           {id: 6, title: 'Other post'}
         ]
       }));
+
+      expect(itemSelector({id: 5})(store.getState()).title).to.have.eq('Some post - new');
+      expect(itemSelector({id: 6})(store.getState()).title).to.have.eq('Other post');
+    });
+
+    it.only('dispatches actions in context of own item for forked sagas', () => {
+      const itemSelector = createItemSelector('posts');
+
+      const store = createStoreWithCollectionSaga({
+        itemSaga: function* () {
+          console.log('begin');
+          yield fork(function*() {
+            console.log('inside fork');
+
+            yield put({
+              type: 'RENAME_THIS_POST',
+              meta: {
+                collectionName: 'posts'
+              }
+            });
+            console.log('after put');
+
+          });
+          console.log('end');
+        },
+
+        itemReducer: function(state, action) {
+          switch (action.type) {
+          case 'RENAME_THIS_POST':
+            return {...state, title: `${state.title} - new`};
+          default:
+            return state;
+          }
+        }
+      });
+
+      store.dispatch(reset({
+        collectionName: 'posts',
+        items: [
+          {id: 5, title: 'Some post'}
+        ]
+      }));
+      console.log('after dispatch');
 
       expect(itemSelector({id: 5})(store.getState()).title).to.have.eq('Some post - new');
     });

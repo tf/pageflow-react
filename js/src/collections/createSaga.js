@@ -1,19 +1,20 @@
 import {isItemAction, getItemIdFromItemAction, ensureItemActionId} from './itemActionHelpers';
 import {addItemScope} from './itemScopeHelpers';
 
-import {select, fork, cancel} from 'redux-saga/effects';
-import {takeEvery} from 'redux-saga';
+import {select, fork, cancel, call} from 'redux-saga/effects';
+import {takeEvery, runSaga} from 'redux-saga';
 
 import {createItemsSelector} from './selectors';
 import {RESET, ADD, REMOVE} from './actions';
 
-export default function(collectionName, {itemSaga}) {
+export default function(collectionName, {itemSaga, middleware}) {
   const itemsSelector = createItemsSelector(collectionName);
 
   return saga;
 
   function* saga() {
     const runningItemSagas = {};
+    console.log('IIII');
 
     yield takeEvery([RESET, ADD, REMOVE],
                     syncItemSagas, runningItemSagas);
@@ -21,7 +22,7 @@ export default function(collectionName, {itemSaga}) {
 
   function* syncItemSagas(runningItemSagas) {
     const items = yield select(itemsSelector);
-
+    console.log('sync');
     yield* cancelStaleItemSagas(items, runningItemSagas);
     yield* forkNewItemSagas(items, runningItemSagas);
   }
@@ -49,15 +50,26 @@ export default function(collectionName, {itemSaga}) {
   }
 
   function* runItemSaga(itemId) {
-    const iterator = itemSaga();
+    console.log('starting');
+    const task = runSaga(itemSaga(), {
+      subscribe(callback) {
+        console.log('sub');
+        return middleware.subscribe(callback);
+      },
 
-    let result = {done: false};
-    let response;
+      dispatch(action) {
+        console.log('disp', action);
+        ensureItemActionId(action, collectionName, itemId);
+        middleware.dispatch(action);
+      },
 
-    while (!result.done) {
-      result = iterator.next(response);
-      response = yield* handleEffect(result.value, itemId);
-    }
+      getState() {
+        console.log('get');
+        return addItemScope(middleware.getState(), collectionName, itemId);
+      }
+    });
+
+    yield call(() => task.done);
   }
 
   function* handleEffect(effect, itemId) {
@@ -96,5 +108,55 @@ export default function(collectionName, {itemSaga}) {
              getItemIdFromItemAction(action) !== itemId);
 
     return action;
+  }
+}
+
+export function createMiddleware() {
+  return function middleware({getState, dispatch}) {
+    const sagaEmitter = emitter();
+
+    console.log('SETTING');
+
+    middleware.getState = getState;
+    middleware.dispatch = dispatch;
+    middleware.subscribe = sagaEmitter.subscribe;
+
+    return next => action => {
+      const result = next(action);
+      
+      console.log('middle', action);
+      sagaEmitter.emit(action);
+
+      return result;
+    };
+  };
+}
+
+function emitter() {
+  const subscribers = [];
+
+  function subscribe(sub) {
+    subscribers.push(sub);
+    return () => remove(subscribers, sub);
+  }
+
+  function emit(item) {
+    const arr = subscribers.slice();
+    for (var i = 0, len =  arr.length; i < len; i++) {
+      arr[i](item);
+    }
+  }
+
+  return {
+    subscribe,
+    emit
+  };
+}
+
+function remove(array, item) {
+  const index = array.indexOf(item);
+
+  if (index >= 0) {
+    array.splice(index, 1);
   }
 }

@@ -23,7 +23,7 @@ export default function(collectionName,
     case CHANGE:
       return {
         ...state,
-        [action.payload.attributes[idAttribute]]: itemReducer(action.payload.attributes)
+        [action.payload.attributes[idAttribute]]: itemReducer(action.payload.attributes, action)
       };
 
     case REMOVE:

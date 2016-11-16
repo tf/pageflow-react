@@ -5,7 +5,7 @@ import {call, take} from 'redux-saga/effects';
 
 import {expect} from 'support/chai';
 import sinon from 'sinon';
-import {runInPageScope} from 'support/sagas';
+import {runSagaInPageScope} from 'support/sagas';
 
 describe('createPageSaga', () => {
   describe('creates saga that', () => {
@@ -14,7 +14,7 @@ describe('createPageSaga', () => {
       const videoPageTypeSaga = function*() { yield call(spy); };
       const pageSaga = createPageSaga({video: videoPageTypeSaga});
 
-      runInPageScope(pageSaga, {
+      runSagaInPageScope(pageSaga, {
         page: {type: 'video'}
       });
 
@@ -26,7 +26,7 @@ describe('createPageSaga', () => {
       const videoPageTypeSaga = function*() { yield call(spy); };
       const pageSaga = createPageSaga({video: videoPageTypeSaga});
 
-      runInPageScope(pageSaga, {
+      runSagaInPageScope(pageSaga, {
         page: {type: 'video'}
       })
         .dispatch(enhance());
@@ -46,7 +46,7 @@ describe('createPageSaga', () => {
       };
       const pageSaga = createPageSaga({video: videoPageTypeSaga});
 
-      runInPageScope(pageSaga, {
+      runSagaInPageScope(pageSaga, {
         page: {type: 'video'}
       })
         .dispatch(enhance())

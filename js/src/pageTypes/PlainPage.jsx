@@ -1,13 +1,15 @@
 import PageWrapper from 'components/PageWrapper';
 import PageBackground from 'components/PageBackground';
-import PageBackgroundVideo from 'media/PageBackgroundVideo';
+import PageBackgroundImage from 'components/PageBackgroundImage';
 import PageShadow from 'components/PageShadow';
 import PageForeground from 'components/PageForeground';
 import PageScroller from 'components/PageScroller';
 import PageHeader from 'components/PageHeader';
 import PageText from 'components/PageText';
 
-import createPage from 'createPage';
+import registerPageType from 'registerPageType';
+import {selector as page, connectInPage} from 'pages';
+import combineSelectors from 'combineSelectors';
 
 function PlainPage(props) {
   const page = props.page;
@@ -15,7 +17,7 @@ function PlainPage(props) {
   return (
     <PageWrapper>
       <PageBackground>
-        <PageBackgroundVideo page={page} />
+        <PageBackgroundImage page={page} />
         <PageShadow page={page} />
       </PageBackground>
 
@@ -29,4 +31,12 @@ function PlainPage(props) {
   );
 }
 
-export default createPage(PlainPage);
+export function register() {
+  registerPageType('plain', {
+    component: connectInPage(
+      combineSelectors({
+        page: page()
+      })
+    )(PlainPage)
+  });
+}

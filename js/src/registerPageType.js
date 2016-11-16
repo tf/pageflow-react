@@ -1,9 +1,9 @@
 export const registry = [];
 
-export default function(name, {Component, reducer, saga}) {
+export default function(name, {component, reducer, saga}) {
   registry.push({
     name,
-    Component,
+    component,
     reducer,
     saga
   });

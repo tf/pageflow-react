@@ -32,9 +32,17 @@ import SvgIcon from './components/icons/Container';
 
 import Draggable from 'react-draggable';
 
-//import registerPageTypes from 'registerPageTypes';
-//
-//registerPageTypes();
+import ServerSidePage from 'pages/ServerSidePage';
+
+import {register as registerBuiltInPageTypes} from 'pageTypes';
+registerBuiltInPageTypes();
+
+import pageflow from 'pageflow';
+import boot from 'boot';
+
+if (pageflow.events) {
+  pageflow.events.on('seed:loaded', () => boot(pageflow));
+}
 
 // `export default` does not play well with Webpack's `libraryTarget:
 // 'assign'` at the moment. See
@@ -66,6 +74,8 @@ module.exports = {
   SvgIcon,
 
   classNames,
+
+  ServerSidePage,
 
   components: {
     PageWithInteractiveBackground,

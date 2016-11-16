@@ -1,4 +1,4 @@
-import {watchBackboneCollection,
+import {watch,
         createReducer as createCollectionReducer,
         createItemSelector as createCollectionItemSelector} from '../collections';
 
@@ -8,20 +8,20 @@ import {createStore, combineReducers} from 'redux';
 import {expect} from 'support/chai';
 
 describe('collections', () => {
+  beforeEach(function() {
+    this.store = createStore(combineReducers({
+      posts: createCollectionReducer('posts')
+    }));
+
+    this.getPost = createCollectionItemSelector('posts');
+  });
+
   describe('keeping store data in sync with a Backbone collection', () => {
-    beforeEach(function() {
-      this.store = createStore(combineReducers({
-        posts: createCollectionReducer('posts')
-      }));
-
-      this.getPost = createCollectionItemSelector('posts');
-    });
-
     it('initializes the store', function() {
       const postAttributes = {id: 5, title: 'Big news'};
       const collection = new Backbone.Collection([postAttributes]);
 
-      watchBackboneCollection({
+      watch({
         collection: collection,
         dispatch: this.store.dispatch,
         collectionName: 'posts',
@@ -35,7 +35,7 @@ describe('collections', () => {
       const collection = new Backbone.Collection();
       const postAttributes = {id: 5, title: 'Big news'};
 
-      watchBackboneCollection({
+      watch({
         collection: collection,
         dispatch: this.store.dispatch,
         collectionName: 'posts',
@@ -50,7 +50,7 @@ describe('collections', () => {
     it('handles models changes', function() {
       const collection = new Backbone.Collection([{id: 5, title: 'Big news'}]);
 
-      watchBackboneCollection({
+      watch({
         collection: collection,
         dispatch: this.store.dispatch,
         collectionName: 'posts',
@@ -65,7 +65,7 @@ describe('collections', () => {
     it('handles removing models', function() {
       const collection = new Backbone.Collection([{id: 5, title: 'Big news'}]);
 
-      watchBackboneCollection({
+      watch({
         collection: collection,
         dispatch: this.store.dispatch,
         collectionName: 'posts',
@@ -75,6 +75,22 @@ describe('collections', () => {
       collection.remove(5);
 
       expect(this.getPost({id: 5})(this.store.getState())).to.eq(undefined);
+    });
+  });
+
+  describe('loading from seed data', () => {
+    it('initializes the store', function() {
+      const post = {id: 5, title: 'Big news'};
+      const collection = [post];
+
+      watch({
+        collection: collection,
+        dispatch: this.store.dispatch,
+        collectionName: 'posts',
+        attributes: ['id', 'title']
+      });
+
+      expect(this.getPost({id: 5})(this.store.getState())).to.eql(post);
     });
   });
 });

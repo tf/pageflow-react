@@ -1,10 +1,7 @@
-import sagaMatchers from './matchers';
-import runSaga from './run';
-
-import runInPageScope from './runInPageScope';
+import runSaga from './runSaga';
+import runSagaInPageScope from './runSagaInPageScope';
 
 export {
-  sagaMatchers,
   runSaga,
-  runInPageScope
+  runSagaInPageScope
 };
