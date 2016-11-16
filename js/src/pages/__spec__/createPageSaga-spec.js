@@ -15,7 +15,7 @@ describe('createPageSaga', () => {
       const pageSaga = createPageSaga({video: videoPageTypeSaga});
 
       runSagaInPageScope(pageSaga, {
-        page: {type: 'video'}
+        page: {attributes: {type: 'video'}}
       });
 
       expect(spy).not.to.have.been.called;
@@ -27,7 +27,7 @@ describe('createPageSaga', () => {
       const pageSaga = createPageSaga({video: videoPageTypeSaga});
 
       runSagaInPageScope(pageSaga, {
-        page: {type: 'video'}
+        page: {attributes: {type: 'video'}}
       })
         .dispatch(enhance());
 
@@ -47,7 +47,7 @@ describe('createPageSaga', () => {
       const pageSaga = createPageSaga({video: videoPageTypeSaga});
 
       runSagaInPageScope(pageSaga, {
-        page: {type: 'video'}
+        page: {attributes: {type: 'video'}}
       })
         .dispatch(enhance())
         .dispatch(cleanup());

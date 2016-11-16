@@ -14,7 +14,6 @@ export default function(collectionName, {itemSaga, middleware}) {
 
   function* saga() {
     const runningItemSagas = {};
-    console.log('IIII');
 
     yield takeEvery([RESET, ADD, REMOVE],
                     syncItemSagas, runningItemSagas);
@@ -22,7 +21,7 @@ export default function(collectionName, {itemSaga, middleware}) {
 
   function* syncItemSagas(runningItemSagas) {
     const items = yield select(itemsSelector);
-    console.log('sync');
+
     yield* cancelStaleItemSagas(items, runningItemSagas);
     yield* forkNewItemSagas(items, runningItemSagas);
   }
@@ -50,64 +49,33 @@ export default function(collectionName, {itemSaga, middleware}) {
   }
 
   function* runItemSaga(itemId) {
-    console.log('starting');
     const task = runSaga(itemSaga(), {
       subscribe(callback) {
-        console.log('sub');
-        return middleware.subscribe(callback);
+        return middleware.subscribe(action => {
+          if (!isItemAction(action, collectionName) ||
+              getItemIdFromItemAction(action) == itemId) {
+
+            callback(action);
+          }
+        });
       },
 
       dispatch(action) {
-        console.log('disp', action);
         ensureItemActionId(action, collectionName, itemId);
         middleware.dispatch(action);
       },
 
       getState() {
-        console.log('get');
         return addItemScope(middleware.getState(), collectionName, itemId);
       }
     });
 
-    yield call(() => task.done);
-  }
-
-  function* handleEffect(effect, itemId) {
-    if (effect && effect.SELECT) {
-      return yield* handleSelect(effect, itemId);
+    try {
+      yield call(() => task.done);
     }
-    else if (effect && effect.PUT) {
-      return yield* handlePut(effect, itemId);
+    finally {
+      task.cancel();
     }
-    else if (effect && effect.TAKE) {
-      return yield* handleTake(effect, itemId);
-    }
-    else {
-      return yield effect;
-    }
-  }
-
-  function* handleSelect(effect, itemId) {
-    return yield select(state => effect.SELECT.selector(
-      addItemScope(state, collectionName, itemId),
-      ...effect.SELECT.args)
-    );
-  }
-
-  function* handlePut(effect, itemId) {
-    ensureItemActionId(effect.PUT.action, collectionName, itemId);
-    return yield effect;
-  }
-
-  function* handleTake(effect, itemId) {
-    let action;
-
-    do {
-      action = yield effect;
-    } while (isItemAction(action, collectionName) &&
-             getItemIdFromItemAction(action) !== itemId);
-
-    return action;
   }
 }
 
@@ -115,16 +83,13 @@ export function createMiddleware() {
   return function middleware({getState, dispatch}) {
     const sagaEmitter = emitter();
 
-    console.log('SETTING');
-
     middleware.getState = getState;
     middleware.dispatch = dispatch;
     middleware.subscribe = sagaEmitter.subscribe;
 
     return next => action => {
       const result = next(action);
-      
-      console.log('middle', action);
+
       sagaEmitter.emit(action);
 
       return result;

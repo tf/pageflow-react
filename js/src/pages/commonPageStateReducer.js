@@ -1,40 +1,64 @@
 import {
   PAGE_DID_PRELOAD, PAGE_DID_PREPARE, PAGE_DID_UNPREPARE,
-  PAGE_WILL_ACTIVATE, PAGE_WILL_DEACTIVATE
+  PAGE_WILL_ACTIVATE, PAGE_DID_ACTIVATE, PAGE_WILL_DEACTIVATE
 } from './actions';
 
-export default function(state = {}, action) {
+import {combineReducers} from 'redux';
+
+export default combineReducers({
+  isPreloaded,
+  isPrepared,
+  isActive,
+  isActivated
+});
+
+function isPreloaded(state = false, action) {
   switch (action.type) {
   case PAGE_DID_PRELOAD:
-    return {...state, isPreloaded: true};
-
-  case PAGE_DID_PREPARE:
-    return {...state, isPrepared: true};
-
-  case PAGE_DID_UNPREPARE:
-    return {...state, isPrepared: false};
-
-  case PAGE_WILL_ACTIVATE:
-    return {...state, isActive: true};
-
-  case PAGE_WILL_DEACTIVATE:
-    return {...state, isActive: false};
+    return true;
 
   default:
-    return ensureDefaults(state);
+    return state;
   }
 }
 
-function ensureDefaults(state) {
-  if ('isActive' in state) {
+function isPrepared(state = false, action) {
+  switch (action.type) {
+  case PAGE_DID_PREPARE:
+  case PAGE_WILL_ACTIVATE:
+    return true;
+
+  case PAGE_DID_UNPREPARE:
+    return false;
+
+  default:
     return state;
   }
-  else {
-    return {
-      ...state,
-      isActive: false,
-      isPreloaded: false,
-      isPrepared: false
-    };
+}
+
+function isActive(state = false, action) {
+  switch (action.type) {
+  case PAGE_WILL_ACTIVATE:
+    return true;
+
+  case PAGE_WILL_DEACTIVATE:
+    return false;
+
+  default:
+    return state;
   }
 }
+
+function isActivated(state = false, action) {
+  switch (action.type) {
+  case PAGE_DID_ACTIVATE:
+    return true;
+
+  case PAGE_WILL_DEACTIVATE:
+    return false;
+
+  default:
+    return state;
+  }
+}
+

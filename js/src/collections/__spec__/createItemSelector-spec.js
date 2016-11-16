@@ -58,5 +58,18 @@ describe('createItemSelector', () => {
 
       expect(result.title).to.eq('Big news');
     });
+
+    it('can map value', () => {
+      const state = {
+        posts: {
+          4: {id: 4, attributes: {title: 'Minor news'}}
+        }
+      };
+      const selector = createItemSelector('posts');
+
+      const result = selector({id: 4, map: post => post.attributes.title})(state);
+
+      expect(result).to.eq('Minor news');
+    });
   });
 });

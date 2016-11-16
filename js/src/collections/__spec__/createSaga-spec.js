@@ -116,6 +116,8 @@ describe('createSaga', () => {
       const store = createStoreWithCollectionSaga({
         itemSaga: function* () {
           const thisPost = yield select(itemSelector());
+          console.log(thisPost);
+
           yield call(spy, thisPost.title);
         }
       });
@@ -155,18 +157,19 @@ describe('createSaga', () => {
 
       const store = createStoreWithCollectionSaga({
         itemSaga: function* () {
+          yield take('VISIT');
           yield put({
-            type: 'RENAME_THIS_POST',
+            type: 'SEEN',
             meta: {
               collectionName: 'posts'
             }
           });
         },
 
-        itemReducer: function(state, action) {
+        itemReducer: function(state = {}, action) {
           switch (action.type) {
-          case 'RENAME_THIS_POST':
-            return {...state, title: `${state.title} - new`};
+          case 'SEEN':
+            return {...state, seen: true};
           default:
             return state;
           }
@@ -176,40 +179,38 @@ describe('createSaga', () => {
       store.dispatch(reset({
         collectionName: 'posts',
         items: [
-          {id: 5, title: 'Some post'},
-          {id: 6, title: 'Other post'}
+          {id: 5},
+          {id: 6}
         ]
       }));
+      store.dispatch({type: 'VISIT', meta: {
+        collectionName: 'posts',
+        itemId: 5
+      }});
 
-      expect(itemSelector({id: 5})(store.getState()).title).to.have.eq('Some post - new');
-      expect(itemSelector({id: 6})(store.getState()).title).to.have.eq('Other post');
+      expect(itemSelector({id: 5})(store.getState()).seen).to.eq(true);
+      expect(itemSelector({id: 6})(store.getState()).seen).to.eq(undefined);
     });
 
-    it.only('dispatches actions in context of own item for forked sagas', () => {
+    it('dispatches actions in context of own item', () => {
       const itemSelector = createItemSelector('posts');
 
       const store = createStoreWithCollectionSaga({
         itemSaga: function* () {
-          console.log('begin');
           yield fork(function*() {
-            console.log('inside fork');
-
             yield put({
-              type: 'RENAME_THIS_POST',
+              type: 'SEEN',
               meta: {
                 collectionName: 'posts'
               }
             });
-            console.log('after put');
-
           });
-          console.log('end');
         },
 
-        itemReducer: function(state, action) {
+        itemReducer: function(state = {}, action) {
           switch (action.type) {
-          case 'RENAME_THIS_POST':
-            return {...state, title: `${state.title} - new`};
+          case 'SEEN':
+            return {...state, seen: true};
           default:
             return state;
           }
@@ -219,12 +220,11 @@ describe('createSaga', () => {
       store.dispatch(reset({
         collectionName: 'posts',
         items: [
-          {id: 5, title: 'Some post'}
+          {id: 5}
         ]
       }));
-      console.log('after dispatch');
 
-      expect(itemSelector({id: 5})(store.getState()).title).to.have.eq('Some post - new');
+      expect(itemSelector({id: 5})(store.getState()).seen).to.eq(true);
     });
 
     it('takes collection actions for own item', () => {

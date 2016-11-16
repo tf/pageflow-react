@@ -1,6 +1,4 @@
 import {
-  PAGE_UPDATER, PAGE_WILL_ACTIVATE,
-
   SHOULD_PLAY, SHOULD_PAUSE, SHOULD_SEEK_TO,
   SHOULD_FADE_OUT_AND_PAUSE, SHOULD_PLAY_AND_FADE_IN,
   DID_START_SCRUBBING, DID_STOP_SCRUBBING,
@@ -9,14 +7,12 @@ import {
   USER_INTERACTION, USER_IDLE, ENTER_CONTROLS, LEAVE_CONTROLS
 } from './actions';
 
+import {
+  PAGE_WILL_ACTIVATE
+} from 'pages/actions';
+
 export default function reducer(state, action) {
   switch (action.type) {
-  case PAGE_UPDATER:
-    return {
-      ...state,
-      pageConfiguration: action.payload.pageConfiguration
-    };
-
   case PAGE_WILL_ACTIVATE:
     return {
       ...state,

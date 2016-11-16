@@ -1,18 +1,25 @@
 import commonPageStateReducer from './commonPageStateReducer';
+import attributesItemReducer from 'collections/attributesItemReducer';
+
+import {combineReducers} from 'redux';
 
 export default function(pageStateReducers) {
-  return function(page, action) {
-    const pageStateReducer = pageStateReducers[page.type] || (item => item);
+  const pageReducers = {};
+  
+  function getPageReducer(type) {
+    pageReducers[type] = pageReducers[type] || combineReducers({
+      attributes: attributesItemReducer,
+      state: combineReducers({
+        custom: pageStateReducers[type] || ((item = {}) => item),
+        common: commonPageStateReducer
+      })
+    });
 
-    const newPageState = commonPageStateReducer(
-      pageStateReducer(page.state, action),
-      action
-    );
+    return pageReducers[type];
+  }
 
-    if (page.state !== newPageState) {
-      return {...page, state: newPageState};
-    }
-
-    return page;
+  return function(page = {}, action) {
+    const attributes = attributesItemReducer(page.attributes, action);
+    return getPageReducer(attributes.type)(page, action);
   };
 }

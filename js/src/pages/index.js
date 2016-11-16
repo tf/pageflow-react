@@ -21,9 +21,10 @@ export function createReducers(pageStateReducers = {}) {
 
 export const selector = createCollectionItemSelector('pages');
 
-export function createSaga(pageTypeSagas) {
+export function createSaga(pageTypeSagas, middleware) {
   return createCollectionSaga('pages', {
-    itemSaga: createPageSaga(pageTypeSagas)
+    itemSaga: createPageSaga(pageTypeSagas),
+    middleware
   });
 }
 

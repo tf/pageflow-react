@@ -1,12 +1,13 @@
-import {RESET, ADD, CHANGE, REMOVE} from './actions';
+import {RESET, ADD, CHANGE, REMOVE, add} from './actions';
+import attributesItemReducer from './attributesItemReducer';
 
 export default function(collectionName,
                         {
                           idAttribute = 'id',
-                          itemReducer = item => item
+                          itemReducer = attributesItemReducer
                         } = {}) {
   return function(state = {}, action) {
-    let clone;
+    let clone, id;
 
     if (!action.meta || action.meta.collectionName != collectionName) {
       return state;
@@ -15,15 +16,26 @@ export default function(collectionName,
     switch (action.type) {
     case RESET:
       return action.payload.items.reduce((result, item) => {
-        result[item[idAttribute]] = itemReducer(item, action);
+        result[item[idAttribute]] = itemReducer(undefined, add({
+          collectioName: action.payload.collectioName,
+          attributes: item
+        }));
+
         return result;
       }, {});
 
     case ADD:
-    case CHANGE:
       return {
         ...state,
-        [action.payload.attributes[idAttribute]]: itemReducer(action.payload.attributes, action)
+        [action.payload.attributes[idAttribute]]: itemReducer(undefined, action)
+      };
+
+    case CHANGE:
+      id = action.payload.attributes[idAttribute];
+
+      return {
+        ...state,
+        [id]: itemReducer(state[id], action)
       };
 
     case REMOVE:

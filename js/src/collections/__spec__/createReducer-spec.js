@@ -210,6 +210,25 @@ describe('createReducer', () => {
         expect(result['5'].some).to.eq('default');
       });
 
+      it('applies reducer when item changes', () => {
+        const state = {
+          5: {id: 5, title: 'News'}
+        };
+        const reducer = createReducer('posts', {
+          itemReducer: function(item, action) {
+            return {...item, some: 'default'};
+          }
+        });
+
+        const result = reducer(state, change({
+          collectionName: 'posts',
+          attributes: {id: 5}
+        }));
+
+        expect(result['5'].some).to.eq('default');
+        expect(result['5'].title).to.eq('News');
+      });
+
       it('applies reducer to item for unknown action', () => {
         const state = {
           5: {id: 5, title: 'News'}

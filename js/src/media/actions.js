@@ -21,12 +21,6 @@ export const USER_IDLE = 'USER_IDLE';
 export const ENTER_CONTROLS = 'ENTER_CONTROLS';
 export const LEAVE_CONTROLS = 'LEAVE_CONTROLS';
 
-export const PAGE_DID_ACTIVATE = 'PAGE_DID_ACTIVATE';
-export const PAGE_WILL_ACTIVATE = 'PAGE_WILL_ACTIVATE';
-export const PAGE_DID_DEACTIVATE = 'PAGE_DID_DEACTIVATE';
-export const PAGE_WILL_DEACTIVATE = 'PAGE_WILL_DEACTIVATE';
-
-export const PAGE_UPDATE = 'PAGE_UPDATE';
 
 export function shouldTogglePlaying() {
   return {
@@ -155,39 +149,5 @@ export function enterControls() {
 export function leaveControls() {
   return {
     type: LEAVE_CONTROLS
-  };
-}
-
-
-export function pageWillActivate() {
-  return {
-    type: PAGE_WILL_ACTIVATE
-  };
-}
-
-export function pageDidActivate() {
-  return {
-    type: PAGE_DID_ACTIVATE
-  };
-}
-
-export function pageWillDeactivate() {
-  return {
-    type: PAGE_WILL_DEACTIVATE
-  };
-}
-
-export function pageDidDeactivate() {
-  return {
-    type: PAGE_DID_DEACTIVATE
-  };
-}
-
-export function pageUpdate(pageConfiguration) {
-  return {
-    type: PAGE_UPDATE,
-    payload: {
-      pageConfiguration
-    }
   };
 }

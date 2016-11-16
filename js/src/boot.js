@@ -1,5 +1,6 @@
 import {registry as pageTypeRegistry} from 'registerPageType';
 import createStore from 'createStore';
+import {createMiddleware} from 'collections/createSaga';
 
 import {createReducers as createPagesReducers,
         createSaga as createPagesSaga,
@@ -23,9 +24,10 @@ export default function(pageflow) {
   });
 
   const pageTypeSagas = pageTypeRegistry.map(({name, saga}) => saga);
-  const saga = createPagesSaga(pageTypeSagas);
+  const m = createMiddleware();
+  const saga = createPagesSaga(pageTypeSagas, m);
 
-  const store = createStore(reducer, saga);
+  const store = createStore(reducer, saga, m);
 
   watchPagesCollection(pageflow, store.dispatch);
   watchFilesCollections(pageflow.files || {}, store.dispatch);

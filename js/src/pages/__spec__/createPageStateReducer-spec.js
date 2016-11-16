@@ -15,35 +15,35 @@ describe('createPageStateReducer', () => {
       }
     };
 
-    it('applies reducer for page type of page', () => {
-      const page = {type: 'video'};
+    it('applies reducer for page type of page to custom page state', () => {
+      const page = {attributes: {type: 'video'}};
       const reducer = createPageStateReducer(pageTypeStateReducers);
 
       const reducedPage = reducer(page, 'PLAY');
 
-      expect(reducedPage.state.isPlaying).to.eq(true);
+      expect(reducedPage.state.custom.isPlaying).to.eq(true);
     });
 
-    it('does not alter other page properties', () => {
-      const page = {type: 'video'};
+    it('does not alter attributes', () => {
+      const page = {attributes: {type: 'video'}};
       const reducer = createPageStateReducer(pageTypeStateReducers);
 
       const reducedPage = reducer(page, 'PLAY');
 
-      expect(reducedPage.type).to.eq('video');
+      expect(reducedPage.attributes.type).to.eq('video');
     });
 
     it('does not applies reducer for other page type', () => {
-      const page = {type: 'audio'};
+      const page = {attributes: {type: 'audio'}};
       const reducer = createPageStateReducer(pageTypeStateReducers);
 
       const reducedPage = reducer(page, 'PLAY');
 
-      expect(reducedPage.state.isPlaying).to.eq(undefined);
+      expect(reducedPage.state.custom.isPlaying).to.eq(undefined);
     });
 
     it('returns same page if state did not change', () => {
-      const page = {type: 'video'};
+      const page = {attributes: {type: 'video'}};
       const reducer = createPageStateReducer(pageTypeStateReducers);
 
       const initializedPage = reducer(page, 'INIT');

@@ -5,6 +5,9 @@ import {createReducers as createPagesReducers,
         createPageType,
         connectInPage} from '../pages';
 import {enhance as pageEnhance} from '../pages/actions';
+import {pageAttribute, pageState} from '../pages/selectors';
+
+import {createMiddleware} from 'collections/createSaga';
 
 import createStore from 'createStore';
 import combineSelectors from 'combineSelectors';
@@ -30,10 +33,8 @@ describe('pages', () => {
 
     watchCollection(pageflow, store.dispatch);
 
-    const result = selector({id: 5})(store.getState());
-
-    expect(result.type).to.eq('video');
-    expect(result.title).to.eq('First page');
+    expect(pageAttribute('type', {id: 5})(store.getState())).to.eq('video');
+    expect(pageAttribute('title', {id: 5})(store.getState())).to.eq('First page');
   });
 
   it('supports page type state reducers', () => {
@@ -51,9 +52,9 @@ describe('pages', () => {
 
     watchCollection(pageflow, store.dispatch);
 
-    const result = selector({id: 5})(store.getState());
+    const result = pageState('isPlaying', {id: 5})(store.getState());
 
-    expect(result.state.isPlaying).to.eq(true);
+    expect(result).to.eq(true);
   });
 
   it('supports page type sagas', () => {
@@ -63,8 +64,9 @@ describe('pages', () => {
       yield call(spy);
     }
 
-    const pagesSaga = createPagesSaga({video: pageTypeSaga});
-    const store = createStore(combineReducers(createPagesReducers()), pagesSaga);
+    const m = createMiddleware();
+    const pagesSaga = createPagesSaga({video: pageTypeSaga}, m);
+    const store = createStore(combineReducers(createPagesReducers()), pagesSaga, m);
     const pageModel = new Backbone.Model({perma_id: 5, template: 'video'});
     pageModel.configuration = new Backbone.Model();
     const pageflow = {
@@ -98,7 +100,8 @@ describe('pages', () => {
 
       const result = selector({id: 5})(store.getState());
 
-      expect(result.state.isActive).to.eq(true);
+      // TODO
+      expect(result.state.common.isActive).to.eq(true);
     });
   });
 
@@ -120,7 +123,8 @@ describe('pages', () => {
 
       it('allows to use selectors which refer to the surrounding page', function() {
         const Component = function(props) {
-          return (<span>{props.page.state.isPrepared ? 'prepared' : '-'}</span>);
+          // TODO
+          return (<span>{props.page.state.common.isPrepared ? 'prepared' : '-'}</span>);
         };
         const ComponentConntectedToPage = connectInPage(combineSelectors({
           page: selector()
@@ -139,7 +143,7 @@ describe('pages', () => {
     describe('given a store with a page state reducer for the page type', () => {
       beforeEach(function() {
         const pagesReducers = createPagesReducers({
-          video: function(state, action) {
+          video: function(state = {}, action) {
             switch (action.type) {
             case 'TOGGLE':
               return {...state, toggled: !state.toggled};
@@ -160,12 +164,12 @@ describe('pages', () => {
           }
 
           render() {
-            return (<span>{this.props.page.state.toggled ? 'toggled' : '-'}</span>);
+            return (<span>{this.props.toggled ? 'toggled' : '-'}</span>);
           }
         };
         const ComponentConntectedToPage = connectInPage(
           combineSelectors({
-            page: selector()
+            toggled: pageState('toggled')
           }),
           dispatch => ({
             onMount: () => dispatch({type: 'TOGGLE', meta: {collectionName: 'pages'}})

@@ -15,7 +15,7 @@ export default function(attributeNames, record, additionalAttributes) {
   }, {}));
 
   if (additionalAttributes) {
-    return {...result, ...additionalAttributes};
+    return {...result, ...camelize.deep(additionalAttributes)};
   }
 
   return result;

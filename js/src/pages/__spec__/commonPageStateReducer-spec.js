@@ -9,7 +9,7 @@ describe('commonPageStateReducer', () => {
 
     const result = commonPageStateReducer(state, {type: 'INIT'});
 
-    expect(result).to.have.keys(['isActive', 'isPrepared', 'isPreloaded']);
+    expect(result).to.have.keys(['isActive', 'isActivated', 'isPrepared', 'isPreloaded']);
   });
 
   it('on "will activate" action sets isActive to true', () => {

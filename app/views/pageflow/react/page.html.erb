@@ -2,6 +2,7 @@
   <% concat React::ServerRendering.render(
      Pageflow.config.page_types.find_by_name!(page.template).component_name, sanitize_json(MultiJson.dump(
      resolverSeed: @_pageflow_react_entry_seed ||= entry_seed(@entry),
-     pageId: page.perma_id
+     pageId: page.perma_id,
+     pageType: page.template
    )), true) %>
 <% end %>
