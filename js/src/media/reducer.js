@@ -11,7 +11,7 @@ import {
   PAGE_WILL_ACTIVATE
 } from 'pages/actions';
 
-export default function reducer(state, action) {
+export default function reducer(state = {}, action) {
   switch (action.type) {
   case PAGE_WILL_ACTIVATE:
     return {

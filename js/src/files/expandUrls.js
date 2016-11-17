@@ -1,0 +1,48 @@
+export default function(collectionName, file, urlTemplates) {
+  if (!file) {
+    return null;
+  }
+
+  file.urls = file.variants.reduce((result, variant) => {
+    const url = getFileUrl(collectionName,
+                           file.id,
+                           variant,
+                           urlTemplates);
+
+    if (url) {
+      result[variant] = url;
+    }
+
+    return result;
+  }, {});
+
+  return file;
+}
+
+function getFileUrl(collectionName, fileId, quality, urlTemplates) {
+  const templates = urlTemplates[collectionName];
+
+  if (!templates) {
+    throw new Error(`No file url templates found for ${collectionName}`);
+  }
+
+  const template = templates[quality];
+
+  if (template) {
+    return template.replace(':id_partition', idPartition(fileId));
+  }
+}
+
+function idPartition(id) {
+  return partition(pad(id, 9), '/');
+}
+
+function partition(string, separator) {
+  return string.replace(/./g, function(c, i, a) {
+    return i && ((a.length - i) % 3 === 0) ? '/' + c : c;
+  });
+}
+
+function pad(string, size) {
+  return (Array(size).fill(0).join('') + string).slice(-size);
+}

@@ -116,8 +116,6 @@ describe('createSaga', () => {
       const store = createStoreWithCollectionSaga({
         itemSaga: function* () {
           const thisPost = yield select(itemSelector());
-          console.log(thisPost);
-
           yield call(spy, thisPost.title);
         }
       });

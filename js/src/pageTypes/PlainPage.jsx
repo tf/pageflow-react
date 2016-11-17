@@ -8,7 +8,8 @@ import PageHeader from 'components/PageHeader';
 import PageText from 'components/PageText';
 
 import registerPageType from 'registerPageType';
-import {selector as page, connectInPage} from 'pages';
+import {connectInPage} from 'pages';
+import {pageAttributes} from 'pages/selectors';
 import combineSelectors from 'combineSelectors';
 
 function PlainPage(props) {
@@ -35,7 +36,7 @@ export function register() {
   registerPageType('plain', {
     component: connectInPage(
       combineSelectors({
-        page: page()
+        page: pageAttributes()
       })
     )(PlainPage)
   });

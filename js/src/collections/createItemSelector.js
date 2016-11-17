@@ -7,7 +7,7 @@ export default function(collectionName) {
       modelId = modelId || state[getItemScopeProperty(collectionName)];
 
       if (!modelId) {
-        throw new Error('Selector expects either id option or item scope.');
+        return null;
       }
 
       return map(state[collectionName][modelId]);

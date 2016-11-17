@@ -1,11 +1,10 @@
 import {createReducers as createPagesReducers,
         createSaga as createPagesSaga,
         watchCollection,
-        selector,
         createPageType,
         connectInPage} from '../pages';
 import {enhance as pageEnhance} from '../pages/actions';
-import {pageAttribute, pageState} from '../pages/selectors';
+import {pageAttribute, pageState, pageIsActive, pageIsPrepared} from '../pages/selectors';
 
 import {createMiddleware} from 'collections/createSaga';
 
@@ -22,16 +21,14 @@ import {expect} from 'support/chai';
 import sinon from 'sinon';
 
 describe('pages', () => {
-  it('exports reducer, selector and watcher for pages collection', () => {
+  it('exports reducer, selectors and watcher for pages collection', () => {
     const pagesReducers = createPagesReducers();
     const store = createStore(combineReducers(pagesReducers));
     const pageModel = new Backbone.Model({perma_id: 5, template: 'video'});
     pageModel.configuration = new Backbone.Model({title: 'First page'});
-    const pageflow = {
-      pages: new Backbone.Collection([pageModel])
-    };
+    const pages = new Backbone.Collection([pageModel]);
 
-    watchCollection(pageflow, store.dispatch);
+    watchCollection(pages, store.dispatch);
 
     expect(pageAttribute('type', {id: 5})(store.getState())).to.eq('video');
     expect(pageAttribute('title', {id: 5})(store.getState())).to.eq('First page');
@@ -46,11 +43,9 @@ describe('pages', () => {
     const store = createStore(combineReducers(pagesReducers));
     const pageModel = new Backbone.Model({perma_id: 5, template: 'video'});
     pageModel.configuration = new Backbone.Model();
-    const pageflow = {
-      pages: new Backbone.Collection([pageModel])
-    };
+    const pages = new Backbone.Collection([pageModel]);
 
-    watchCollection(pageflow, store.dispatch);
+    watchCollection(pages, store.dispatch);
 
     const result = pageState('isPlaying', {id: 5})(store.getState());
 
@@ -69,11 +64,9 @@ describe('pages', () => {
     const store = createStore(combineReducers(createPagesReducers()), pagesSaga, m);
     const pageModel = new Backbone.Model({perma_id: 5, template: 'video'});
     pageModel.configuration = new Backbone.Model();
-    const pageflow = {
-      pages: new Backbone.Collection([pageModel])
-    };
+    const pages = new Backbone.Collection([pageModel]);
 
-    watchCollection(pageflow, store.dispatch);
+    watchCollection(pages, store.dispatch);
 
     store.dispatch(pageEnhance({id: 5}));
 
@@ -86,48 +79,42 @@ describe('pages', () => {
       const store = createStore(combineReducers(pagesReducers));
       const pageModel = new Backbone.Model({perma_id: 5});
       pageModel.configuration = new Backbone.Model();
-      const pageflow = {
-        pages: new Backbone.Collection([pageModel])
-      };
+      const pages = new Backbone.Collection([pageModel]);
       const pageType = createPageType(() => '', store);
       const element = jQuery(document.createElement('div'));
       element.attr('id', '5');
 
-      watchCollection(pageflow, store.dispatch);
+      watchCollection(pages, store.dispatch);
 
       pageType.activating(element, {}, {});
       pageType.activated(element, {}, {});
 
-      const result = selector({id: 5})(store.getState());
+      const result = pageIsActive({id: 5})(store.getState());
 
-      // TODO
-      expect(result.state.common.isActive).to.eq(true);
+      expect(result).to.eq(true);
     });
   });
 
   describe('connectInPage', () => {
-    beforeEach('given a world with a page', function() {
+    beforeEach('given a collection of pages', function() {
       const pageModel = new Backbone.Model({perma_id: 5, template: 'video'});
       pageModel.configuration = new Backbone.Model();
 
-      this.world = {
-        pages: new Backbone.Collection([pageModel])
-      };
+      this.pages = new Backbone.Collection([pageModel]);
     });
 
-    describe('given a store synced with the world', () => {
+    describe('given a store synced with the collection', () => {
       beforeEach(function() {
         this.store = createStore(combineReducers(createPagesReducers()));
-        watchCollection(this.world, this.store.dispatch);
+        watchCollection(this.pages, this.store.dispatch);
       });
 
       it('allows to use selectors which refer to the surrounding page', function() {
         const Component = function(props) {
-          // TODO
-          return (<span>{props.page.state.common.isPrepared ? 'prepared' : '-'}</span>);
+          return (<span>{props.pageIsPrepared ? 'prepared' : '-'}</span>);
         };
         const ComponentConntectedToPage = connectInPage(combineSelectors({
-          page: selector()
+          pageIsPrepared: pageIsPrepared()
         }))(Component);
 
         const pageType = createPageType(ComponentConntectedToPage, this.store);
@@ -154,7 +141,7 @@ describe('pages', () => {
         });
 
         this.store = createStore(combineReducers(pagesReducers));
-        watchCollection(this.world, this.store.dispatch);
+        watchCollection(this.pages, this.store.dispatch);
       });
 
       it('allows to dispatch page actions for the surrounding page', function() {

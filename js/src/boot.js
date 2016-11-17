@@ -10,17 +10,24 @@ import {createReducers as createPagesReducers,
 import {createReducers as createFilesReducers,
         watchCollections as watchFilesCollections} from 'files';
 
+import {reducers as i18nReducers,
+        initFromSeed as initI18nFromSeed} from 'i18n';
+
 import {combineReducers} from 'redux';
 
 export default function(pageflow) {
+  const seed = pageflow.seed || pageflow;
+  const collections = pageflow;
+
   const pageStateReducers = pageTypeRegistry.reduce((result, {name, reducer}) => {
     result[name] = reducer;
     return result;
   }, {});
 
   const reducer = combineReducers({
+    ...i18nReducers,
     ...createPagesReducers(pageStateReducers),
-    ...createFilesReducers(pageflow.files || {})
+    ...createFilesReducers(collections.files || {}, seed['file_url_templates'])
   });
 
   const pageTypeSagas = pageTypeRegistry.map(({name, saga}) => saga);
@@ -29,8 +36,10 @@ export default function(pageflow) {
 
   const store = createStore(reducer, saga, m);
 
-  watchPagesCollection(pageflow, store.dispatch);
-  watchFilesCollections(pageflow.files || {}, store.dispatch);
+  initI18nFromSeed(seed, store.dispatch);
+
+  watchPagesCollection(collections.pages, store.dispatch);
+  watchFilesCollections(collections.files || {}, store.dispatch);
 
   if (pageflow.pageType) {
     pageTypeRegistry.forEach(({name, component}) =>

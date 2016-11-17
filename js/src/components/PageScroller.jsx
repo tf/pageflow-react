@@ -55,6 +55,11 @@ class PageScroller extends React.Component {
   }
 }
 
+PageScroller.propTypes = {
+  className: React.PropTypes.string,
+  foo: React.PropTypes.string.isRequired
+};
+
 PageScroller.childContextTypes = {
   pageScroller: React.PropTypes.object
 };

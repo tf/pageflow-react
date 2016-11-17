@@ -1,10 +1,10 @@
 import React from 'react';
 
-class VideoFilePlayer extends React.Component {
+export default class VideoFilePlayer extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    const actions = props.playerState.actions;
+    const actions = props.playerActions;
 
     this.bindPlayer = videoElement => {
       if (videoElement) {
@@ -74,7 +74,3 @@ class VideoFilePlayer extends React.Component {
     );
   }
 }
-
-import withPlayerStateProp from './withPlayerStateProp';
-
-export default withPlayerStateProp(VideoFilePlayer);

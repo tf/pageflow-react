@@ -1,7 +1,13 @@
 export default function(selectors) {
-  return function(state, props) {
+  return function(...args) {
     return Object.keys(selectors).reduce((result, key) => {
-      result[key] = selectors[key](state, props);
+      if (typeof selectors[key] == 'function') {
+        result[key] = selectors[key](...args);
+      }
+      else {
+        result[key] = selectors[key];
+      }
+      
       return result;
     }, {});
   };

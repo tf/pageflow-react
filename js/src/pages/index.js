@@ -4,7 +4,6 @@ import createPageType from './createPageType';
 
 import {
   createReducer as createCollectionReducer,
-  createItemSelector as createCollectionItemSelector,
   createSaga as createCollectionSaga,
   createItemScopeConnector as createCollectionItemScopeConnector,
   watch
@@ -19,8 +18,6 @@ export function createReducers(pageStateReducers = {}) {
   };
 }
 
-export const selector = createCollectionItemSelector('pages');
-
 export function createSaga(pageTypeSagas, middleware) {
   return createCollectionSaga('pages', {
     itemSaga: createPageSaga(pageTypeSagas),
@@ -28,11 +25,9 @@ export function createSaga(pageTypeSagas, middleware) {
   });
 }
 
-export const connectInPage = createCollectionItemScopeConnector('pages');
-
-export function watchCollection(pageflow, dispatch) {
+export function watchCollection(pages, dispatch) {
   watch({
-    collection: pageflow.pages,
+    collection: pages,
     collectionName: 'pages',
     dispatch,
 
@@ -40,6 +35,8 @@ export function watchCollection(pageflow, dispatch) {
     includeConfiguration: true
   });
 }
+
+export const connectInPage = createCollectionItemScopeConnector('pages');
 
 export {
   createPageType
