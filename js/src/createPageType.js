@@ -1,6 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+/**
+ * Create a page type from the given component.
+ *
+ * @param {React.Component} Component
+ *   The component which renders the page contents.
+ *
+ * @return {Class<pageflow.PageType>}
+ *
+ * @alias pageflow.react.createPageType
+ * @since 0.1
+ */
 export default function(Component) {
   return {
     scroller: false,

@@ -2,6 +2,27 @@ import React from 'react';
 
 import ObjectResolver from './resolvers/ObjectResolver';
 
+/**
+ * Create a wrapper component which renders the given component
+ * passing additional props which are retrieved via resolvers.
+ *
+ * @param {React.Component} Component
+ *   The constructor of the component for which a wrapper shall be
+ *   created.
+ *
+ * @param {Object} options.fragments [{}]
+ *   An object mapping prop names to resolvers and mutations.
+ *
+ * @param {Object} options.editorOnly [false]
+ *   Do not render the component outside of the editor. Can be used
+ *   for in place editing components that shall only be available
+ *   in the editor.
+ *
+ * @return {React.Component}
+ *
+ * @alias pageflow.react.createContainer
+ * @since 0.1
+ */
 export default function(Component, options) {
   options = options || {};
 

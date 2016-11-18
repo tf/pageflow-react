@@ -1,13 +1,13 @@
 /**
  * Creates a new Resolver by transforming the results with a function.
  *
- * @param {compose~transform} transform
+ * @param {pageflow.react.resolvers.compose~transformCallback} transform
  *   Function to apply to inner resolver props to get resolved props.
  *
  * @param {Class<Resolver>} InnerResolver
  *   Resolver supplying inputs to the transform function.
  *
- * @return {Class<Resolver}
+ * @return {Class<Resolver>}
  *
  * @example
  *
@@ -25,6 +25,9 @@
  *     })
  *   }
  * });
+ *
+ * @alias pageflow.react.resolvers.compose
+ * @since edge
  */
 export default function(transform, InnerResolver) {
   return function(options, callback) {
@@ -43,13 +46,16 @@ export default function(transform, InnerResolver) {
 }
 
 /**
- * @callback compose~transform
+ * Signature of the function passed to {@link
+ * pageflow.react.resolvers.compose|compose} as `transform` parameter.
+ *
+ * @callback pageflow.react.resolvers.compose~transformCallback
  *
  * @param {Object} props
- *   Result of the inner resolver.
+ * Result of the inner resolver.
  *
  * @param {Object} seed
- *   Resolver seed data
+ * Resolver seed data
  *
  * @return {Object}
  */

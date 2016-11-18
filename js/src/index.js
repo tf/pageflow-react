@@ -36,32 +36,25 @@ import Draggable from 'react-draggable';
 // 'assign'` at the moment. See
 // https://github.com/webpack/webpack/issues/706
 module.exports = {
-  /** @api public */
   createContainer,
 
-  /** @api public */
   createPage,
 
-  /** @api public */
   createWidget,
 
-  /** @api public */
   createPageType,
 
-  /** @api public */
   createWidgetType,
 
   withPageLifecycle,
 
-  /** @deprecated Use withPageLifecycle instead. */
+  // deprecated
   createPageComponent: withPageLifecycle,
 
   withPageStateProp,
 
-  /** @api public */
   resolve,
 
-  /** @api public */
   mutate,
 
   iconMapping,

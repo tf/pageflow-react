@@ -23,7 +23,7 @@ import React from 'react';
  * display, for example when the user enters the preceeding page or a
  * page that links to the page.
  *
- * `pageDidUnprepare`: Called when the page should no longer be
+ * - `pageDidUnprepare`: Called when the page should no longer be
  * prepared because the user moved to a different page without
  * actually entering the page.
  *
@@ -53,6 +53,8 @@ import React from 'react';
  * }
  *
  * pageflow.my.VideoPlayer = withPageLifecycle(VideoPlayer);
+ *
+ * @alias pageflow.react.withPageLifecycle
  */
 export default function withPageLifecycle(Component) {
   class Wrapper extends React.Component {
