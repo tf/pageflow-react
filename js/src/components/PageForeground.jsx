@@ -11,7 +11,7 @@ import React from 'react';
  */
 export default function(props) {
   return (
-    <div className="content">
+    <div className="content" onTouchStart={props.onInteraction} onMouseMove={props.onInteraction}>
       {props.children}
     </div>
   );
