@@ -1,10 +1,11 @@
 import {
-  SHOULD_PLAY, SHOULD_PAUSE, SHOULD_SEEK_TO,
-  SHOULD_FADE_OUT_AND_PAUSE, SHOULD_PLAY_AND_FADE_IN,
-  DID_START_SCRUBBING, DID_STOP_SCRUBBING,
-  DID_LOAD_META_DATA, DID_TIME_UPDATE, DID_END,
+  PLAY, PAUSE, SEEK_TO,
+  FADE_OUT_AND_PAUSE, PLAY_AND_FADE_IN,
+  SCRUBBING_STARTED, SCRUBBING_ENDED,
+  META_DATA_LOADED, TIME_UPDATE, ENDED,
   UPDATE_HAS_BEEN_PLAYING_JUST_NOW,
-  USER_INTERACTION, USER_IDLE, ENTER_CONTROLS, LEAVE_CONTROLS
+  USER_INTERACTION, USER_IDLE,
+  CONTROLS_ENTERED, CONTROLS_LEFT
 } from './actions';
 
 import {
@@ -20,7 +21,7 @@ export default function reducer(state = {}, action) {
       userHasBeenIdle: false
     };
 
-  case SHOULD_PLAY:
+  case PLAY:
     return {
       ...state,
       shouldPlay: true,
@@ -28,7 +29,7 @@ export default function reducer(state = {}, action) {
       hasPlayed: true,
       fadeDuration: null
     };
-  case SHOULD_PLAY_AND_FADE_IN:
+  case PLAY_AND_FADE_IN:
     return {
       ...state,
       shouldPlay: true,
@@ -36,14 +37,14 @@ export default function reducer(state = {}, action) {
       hasPlayed: true,
       fadeDuration: action.payload.fadeDuration
     };
-  case SHOULD_PAUSE:
+  case PAUSE:
     return {
       ...state,
       shouldPlay: false,
       isPlaying: false,
       fadeDuration: null
     };
-  case SHOULD_FADE_OUT_AND_PAUSE:
+  case FADE_OUT_AND_PAUSE:
     return {
       ...state,
       shouldPlay: false,
@@ -51,34 +52,34 @@ export default function reducer(state = {}, action) {
       fadeDuration: action.payload.fadeDuration
     };
 
-  case SHOULD_SEEK_TO:
+  case SEEK_TO:
     return {
       ...state,
       shouldSeekTo: action.payload.time
     };
 
-  case DID_START_SCRUBBING:
+  case SCRUBBING_STARTED:
     return {
       ...state,
       isScrubbing: true
     };
-  case DID_STOP_SCRUBBING:
+  case SCRUBBING_ENDED:
     return {
       ...state,
       isScrubbing: false
     };
 
-  case DID_LOAD_META_DATA:
+  case META_DATA_LOADED:
     return {
       ...state,
       duration: action.payload.duration
     };
-  case DID_TIME_UPDATE:
+  case TIME_UPDATE:
     return {
       ...state,
       currentTime: action.payload.currentTime
     };
-  case DID_END:
+  case ENDED:
     return {
       ...state,
       shouldPlay: false,
@@ -103,12 +104,12 @@ export default function reducer(state = {}, action) {
       userHasBeenIdle: true
     };
 
-  case ENTER_CONTROLS:
+  case CONTROLS_ENTERED:
     return {
       ...state,
       userHoveringControls: true
     };
-  case LEAVE_CONTROLS:
+  case CONTROLS_LEFT:
     return {
       ...state,
       userHoveringControls: false

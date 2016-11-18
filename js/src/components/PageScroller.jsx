@@ -3,7 +3,7 @@ import React from 'react';
 import Scroller from './Scroller';
 
 import {connectInPage} from 'pages';
-import {pageState} from 'pages/selectors';
+import {pageIsActivated} from 'pages/selectors';
 
 import combineSelectors from 'combineSelectors';
 
@@ -56,8 +56,7 @@ class PageScroller extends React.Component {
 }
 
 PageScroller.propTypes = {
-  className: React.PropTypes.string,
-  foo: React.PropTypes.string.isRequired
+  className: React.PropTypes.string
 };
 
 PageScroller.childContextTypes = {
@@ -65,5 +64,5 @@ PageScroller.childContextTypes = {
 };
 
 export default connectInPage(combineSelectors({
-  enabled: pageState('isActivated')
+  enabled: pageIsActivated()
 }))(PageScroller);

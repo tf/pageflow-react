@@ -1,153 +1,123 @@
-export const SHOULD_TOGGLE_PLAYING = 'SHOULD_TOGGLE_PLAYING';
-export const SHOULD_PLAY = 'SHOULD_PLAY';
-export const SHOULD_PLAY_AND_FADE_IN = 'SHOULD_PLAY_AND_FADE_IN';
-export const SHOULD_PAUSE = 'SHOULD_PAUSE';
-export const SHOULD_FADE_OUT_AND_PAUSE = 'SHOULD_FADE_OUT_AND_PAUSE';
-export const SHOULD_SEEK_TO = 'SHOULD_SEEK_TO';
+export const TOGGLE_PLAYING = 'MEDIA_TOGGLE_PLAYING';
+export const PLAY = 'MEDIA_PLAY';
+export const PLAY_AND_FADE_IN = 'MEDIA_PLAY_AND_FADE_IN';
+export const PAUSE = 'MEDIA_PAUSE';
+export const FADE_OUT_AND_PAUSE = 'MEDIA_FADE_OUT_AND_PAUSE';
+export const SEEK_TO = 'MEDIA_SEEK_TO';
 
-export const DID_START_SCRUBBING = 'DID_START_SCRUBBING';
-export const DID_STOP_SCRUBBING = 'DID_STOP_SCRUBBING';
+export const SCRUBBING_STARTED = 'MEDIA_SCRUBBING_STARTED';
+export const SCRUBBING_ENDED = 'MEDIA_SCRUBBING_ENDED';
 
-export const DID_LOAD_META_DATA = 'DID_LOAD_META_DATA';
-export const WILL_PLAY = 'WILL_PLAY';
-export const DID_PAUSE = 'DID_PAUSE';
-export const DID_TIME_UPDATE = 'DID_TIME_UPDATE';
-export const DID_END = 'DID_END';
+export const META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
+export const PLAYING = 'MEDIA_PLAYING';
+export const PAUSED = 'MEDIA_PAUSED';
+export const TIME_UPDATE = 'MEDIA_TIME_UPDATE';
+export const ENDED = 'MEDIA_ENDED';
 
-export const UPDATE_HAS_BEEN_PLAYING_JUST_NOW = 'UPDATE_HAS_BEEN_PLAYING_JUST_NOW';
+export const UPDATE_HAS_BEEN_PLAYING_JUST_NOW = 'MEDIA_UPDATE_HAS_BEEN_PLAYING_JUST_NOW';
 
-export const USER_INTERACTION = 'USER_INTERACTION';
-export const USER_IDLE = 'USER_IDLE';
-export const ENTER_CONTROLS = 'ENTER_CONTROLS';
-export const LEAVE_CONTROLS = 'LEAVE_CONTROLS';
+export const USER_INTERACTION = 'MEDIA_USER_INTERACTION';
+export const USER_IDLE = 'MEDIA_USER_IDLE';
+
+export const CONTROLS_ENTERED = 'MEDIA_CONTROLS_ENTERED';
+export const CONTROLS_LEFT = 'MEDIA_CONTROLS_LEFT';
 
 
-export function shouldTogglePlaying() {
-  return {
-    type: SHOULD_TOGGLE_PLAYING
-  };
+export function togglePlaying() {
+  return pageAction(TOGGLE_PLAYING);
 }
 
-export function shouldPlay() {
-  return {
-    type: SHOULD_PLAY
-  };
+export function play() {
+  return pageAction(PLAY);
 }
 
-export function shouldPlayAndFadeIn({fadeDuration}) {
-  return {
-    type: SHOULD_PLAY_AND_FADE_IN,
-    payload: {
-      fadeDuration
-    }
-  };
+export function playAndFadeIn({fadeDuration}) {
+  return pageAction(PLAY_AND_FADE_IN, {
+    fadeDuration
+  });
 }
 
-export function shouldPause() {
-  return {
-    type: SHOULD_PAUSE
-  };
+export function pause() {
+  return pageAction(PAUSE);
 }
 
-export function shouldFadeOutAndPause({fadeDuration}) {
-  return {
-    type: SHOULD_FADE_OUT_AND_PAUSE,
-    payload: {
-      fadeDuration
-    }
-  };
+export function fadeOutAndPause({fadeDuration}) {
+  return pageAction(FADE_OUT_AND_PAUSE, {
+    fadeDuration
+  });
 }
 
-export function shouldSeekTo(time) {
-  return {
-    type: SHOULD_SEEK_TO,
-    payload: {
-      time
-    }
-  };
+export function seekTo(time) {
+  return pageAction(SEEK_TO, {
+    time
+  });
 }
 
 
-export function didStartScrubbing() {
-  return {
-    type: DID_START_SCRUBBING
-  };
+export function scrubbingStarted() {
+  return pageAction(SCRUBBING_STARTED);
 }
 
-export function didStopScrubbing() {
-  return {
-    type: DID_STOP_SCRUBBING
-  };
+export function scrubbingEnded() {
+  return pageAction(SCRUBBING_STARTED);
 }
 
 
-export function willPlay() {
-  return {
-    type: WILL_PLAY
-  };
+export function playing() {
+  return pageAction(PLAYING);
 }
 
-export function didPause() {
-  return {
-    type: DID_PAUSE
-  };
+export function paused() {
+  return pageAction(PAUSED);
 }
 
-export function didTimeUpdate({currentTime}) {
-  return {
-    type: DID_TIME_UPDATE,
-    payload: {
-      currentTime
-    }
-  };
+export function timeUpdate({currentTime}) {
+  return pageAction(TIME_UPDATE, {
+    currentTime
+  });
 }
 
-export function didLoadMetaData({duration}) {
-  return {
-    type: DID_LOAD_META_DATA,
-    payload: {
-      duration
-    }
-  };
+export function metaDataLoaded({duration}) {
+  return pageAction(META_DATA_LOADED, {
+    duration
+  });
 }
 
-export function didEnd() {
-  return {
-    type: DID_END
-  };
+export function ended() {
+  return pageAction(ENDED);
 }
 
 
 export function updateHasBeenPlayingJustNow(value) {
-  return {
-    type: UPDATE_HAS_BEEN_PLAYING_JUST_NOW,
-    payload: {
-      value
-    }
-  };
+  return pageAction(UPDATE_HAS_BEEN_PLAYING_JUST_NOW, {
+    value
+  });
 }
 
 
 export function userInteraction() {
-  return {
-    type: USER_INTERACTION
-  };
+  return pageAction(USER_INTERACTION);
 }
 
 export function userIdle() {
-  return {
-    type: USER_IDLE
-  };
+  return pageAction(USER_IDLE);
 }
 
-export function enterControls() {
-  return {
-    type: ENTER_CONTROLS
-  };
+export function controlsEntered() {
+  return pageAction(CONTROLS_ENTERED);
 }
 
-export function leaveControls() {
+export function controlsLeft() {
+  return pageAction(CONTROLS_LEFT);
+}
+
+
+function pageAction(type, payload = {}) {
   return {
-    type: LEAVE_CONTROLS
+    type,
+    meta: {
+      collectionName: 'pages'
+    },
+    payload
   };
 }

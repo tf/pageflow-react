@@ -2,13 +2,13 @@ import Page from './components/Page';
 import PageVideoPlayer from './components/PageVideoPlayer';
 
 import reducer from './reducer';
-import sagas from './sagas';
+import pageSaga from './sagas';
 
-export const reducers = {media: reducer};
+export const pageReducers = {media: reducer};
 
 export {
   Page,
   PageVideoPlayer,
 
-  sagas,
+  pageSaga
 };

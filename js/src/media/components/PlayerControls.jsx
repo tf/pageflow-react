@@ -17,13 +17,13 @@ export default function MediaPlayerControls(props) {
                     duration={playerState.duration}
                     isScrubbing={playerState.isScrubbing}
 
-                    onPlayButtonClick={actions.shouldTogglePlaying}
-                    onSeekStart={actions.didStartScrubbing}
-                    onSeek={actions.shouldSeekTo}
-                    onSeekStop={actions.didStopScrubbing}
+                    onPlayButtonClick={actions.togglePlaying}
+                    onSeekStart={actions.scrubbingStarted}
+                    onSeek={actions.seekTo}
+                    onSeekEnd={actions.scrubbingEnded}
 
-                    onMouseEnter={actions.enterControls}
-                    onMouseLeave={actions.leaveControls}
+                    onMouseEnter={actions.controlsEntered}
+                    onMouseLeave={actions.controlsLeft}
 
                     {...props}
 

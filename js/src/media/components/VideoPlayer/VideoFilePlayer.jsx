@@ -15,15 +15,15 @@ export default class VideoFilePlayer extends React.Component {
           volumeFading: true
         });
 
-        this.player.on('loadedmetadata', () => actions.didLoadMetaData({
+        this.player.on('loadedmetadata', () => actions.metaDataLoaded({
           duration: this.player.duration()
         }));
-        this.player.on('play', actions.willPlay);
-        this.player.on('pause', actions.didPause);
-        this.player.on('timeupdate', () => actions.didTimeUpdate({
+        this.player.on('play', actions.playing);
+        this.player.on('pause', actions.paused);
+        this.player.on('timeupdate', () => actions.timeUpdate({
           currentTime: this.player.currentTime()
         }));
-        this.player.on('ended', actions.didEnd);
+        this.player.on('ended', actions.ended);
       }
       else if (this.player) {
         this.player.dispose();
@@ -67,9 +67,9 @@ export default class VideoFilePlayer extends React.Component {
 
     return (
       <video ref={this.bindPlayer} preload="auto" style={this.props.style}>
-        <source type="video/webm" src={videoFile.webm_medium} />
-        <source type="application/x-mpegURL" src={videoFile['hls-playlist']} />
-        <source type="video/mp4" src={videoFile.medium} />
+        <source type="video/webm" src={videoFile.urls.webm_medium} />
+        <source type="application/x-mpegURL" src={videoFile.urls['hls-playlist']} />
+        <source type="video/mp4" src={videoFile.urls.medium} />
       </video>
     );
   }

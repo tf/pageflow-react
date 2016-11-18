@@ -8289,7 +8289,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _ServerSidePage2 = _interopRequireDefault(_ServerSidePage);
 
-	var _pageTypes = __webpack_require__(450);
+	var _pageTypes = __webpack_require__(453);
 
 	var _pageflow = __webpack_require__(336);
 
@@ -11450,8 +11450,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}(_react2.default.Component);
 
 	PageScroller.propTypes = {
-	  className: _react2.default.PropTypes.string,
-	  foo: _react2.default.PropTypes.string.isRequired
+	  className: _react2.default.PropTypes.string
 	};
 
 	PageScroller.childContextTypes = {
@@ -11459,7 +11458,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 	exports.default = (0, _pages.connectInPage)((0, _combineSelectors2.default)({
-	  enabled: (0, _selectors.pageState)('isActivated')
+	  enabled: (0, _selectors.pageIsActivated)()
 	}))(PageScroller);
 
 /***/ },
@@ -13136,6 +13135,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.pageAttributes = pageAttributes;
 	exports.pageState = pageState;
 	exports.pageIsActive = pageIsActive;
+	exports.pageIsActivated = pageIsActivated;
 	exports.pageIsPreloaded = pageIsPreloaded;
 	exports.pageIsPrepared = pageIsPrepared;
 
@@ -13163,6 +13163,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function pageIsActive(options) {
 	  return commonPageState('isActive', options);
+	}
+
+	function pageIsActivated(options) {
+	  return commonPageState('isActivated', options);
 	}
 
 	function pageIsPreloaded(options) {
@@ -19952,23 +19956,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _BackgroundImage = __webpack_require__(439);
 
 	var _BackgroundImage2 = _interopRequireDefault(_BackgroundImage);
 
-	var _withPageStateProp = __webpack_require__(331);
+	var _pages = __webpack_require__(347);
 
-	var _withPageStateProp2 = _interopRequireDefault(_withPageStateProp);
+	var _selectors = __webpack_require__(375);
+
+	var _combineSelectors = __webpack_require__(413);
+
+	var _combineSelectors2 = _interopRequireDefault(_combineSelectors);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function LazyBackgroundImage(props) {
-	  return React.createElement(_BackgroundImage2.default, _extends({}, props, { loaded: !props.pageState || props.pageState.isPreloaded }));
-	}
-
-	exports.default = (0, _withPageStateProp2.default)(LazyBackgroundImage);
+	exports.default = (0, _pages.connectInPage)((0, _combineSelectors2.default)({
+	  loaded: (0, _selectors.pageIsPreloaded)()
+	}))(_BackgroundImage2.default);
 
 /***/ },
 /* 442 */
@@ -20305,11 +20309,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	  var reducer = (0, _redux.combineReducers)(_extends({}, _i18n.reducers, (0, _pages.createReducers)(pageStateReducers), (0, _files.createReducers)(collections.files || {}, seed['file_url_templates'])));
 
-	  var pageTypeSagas = _registerPageType.registry.map(function (_ref2) {
+	  var pageTypeSagas = _registerPageType.registry.reduce(function (result, _ref2) {
 	    var name = _ref2.name,
 	        saga = _ref2.saga;
-	    return saga;
-	  });
+
+	    result[name] = saga;
+	    return result;
+	  }, {});
+
 	  var m = (0, _createSaga.createMiddleware)();
 	  var saga = (0, _pages.createSaga)(pageTypeSagas, m);
 
@@ -20343,7 +20350,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _files = __webpack_require__(449);
 
-	var _i18n = __webpack_require__(474);
+	var _i18n = __webpack_require__(450);
 
 	var _redux = __webpack_require__(351);
 
@@ -20455,11 +20462,86 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.reducers = undefined;
+	exports.initFromSeed = initFromSeed;
+
+	var _actions = __webpack_require__(451);
+
+	var _reducer = __webpack_require__(452);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { i18n: _reducer2.default };
+
+	function initFromSeed(_ref, dispatch) {
+	  var locale = _ref.locale;
+
+	  dispatch((0, _actions.init)({ locale: locale }));
+	}
+
+/***/ },
+/* 451 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.init = init;
+	var INIT = exports.INIT = 'I18N_INIT';
+
+	function init(_ref) {
+	  var locale = _ref.locale;
+
+	  return {
+	    type: INIT,
+	    payload: {
+	      locale: locale
+	    }
+	  };
+	}
+
+/***/ },
+/* 452 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.INIT:
+	      return { locale: action.payload.locale };
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(451);
+
+/***/ },
+/* 453 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.register = register;
 
-	var _PlainPage = __webpack_require__(451);
+	var _PlainPage = __webpack_require__(454);
 
-	var _videoPageType = __webpack_require__(452);
+	var _videoPageType = __webpack_require__(455);
 
 	function register() {
 	  (0, _PlainPage.register)();
@@ -20467,7 +20549,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 451 */
+/* 454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20557,7 +20639,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 452 */
+/* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20570,7 +20652,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.register = register;
 
-	var _media = __webpack_require__(453);
+	var _media = __webpack_require__(456);
 
 	var _registerPageType = __webpack_require__(446);
 
@@ -20578,11 +20660,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _pages = __webpack_require__(347);
 
-	var _selectors = __webpack_require__(463);
+	var _selectors = __webpack_require__(472);
 
 	var _selectors2 = __webpack_require__(375);
 
-	var _selectors3 = __webpack_require__(476);
+	var _selectors3 = __webpack_require__(477);
 
 	var _redux = __webpack_require__(351);
 
@@ -20591,8 +20673,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _combineSelectors2 = _interopRequireDefault(_combineSelectors);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function VideoPage(props) {
 	  return React.createElement(
@@ -20618,7 +20698,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      playerActions: _selectors.playerActions
 	    }))(VideoPage),
 
-	    reducer: (0, _redux.combineReducers)(_extends({}, _media.reducers)),
+	    reducer: (0, _redux.combineReducers)(_extends({}, _media.pageReducers)),
 
 	    saga: regeneratorRuntime.mark(function saga() {
 	      return regeneratorRuntime.wrap(function saga$(_context) {
@@ -20626,7 +20706,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          switch (_context.prev = _context.next) {
 	            case 0:
 	              _context.next = 2;
-	              return [].concat(_toConsumableArray(_media.sagas));
+	              return [(0, _media.pageSaga)()];
 
 	            case 2:
 	            case 'end':
@@ -20635,11 +20715,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        }
 	      }, saga, this);
 	    })
+
 	  });
 	}
 
 /***/ },
-/* 453 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20647,34 +20728,34 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.sagas = exports.PageVideoPlayer = exports.Page = exports.reducers = undefined;
+	exports.pageSaga = exports.PageVideoPlayer = exports.Page = exports.pageReducers = undefined;
 
-	var _Page = __webpack_require__(454);
+	var _Page = __webpack_require__(457);
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _PageVideoPlayer = __webpack_require__(457);
+	var _PageVideoPlayer = __webpack_require__(461);
 
 	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
 
-	var _reducer = __webpack_require__(458);
+	var _reducer = __webpack_require__(467);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _sagas = __webpack_require__(460);
+	var _sagas = __webpack_require__(469);
 
 	var _sagas2 = _interopRequireDefault(_sagas);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var reducers = exports.reducers = { media: _reducer2.default };
+	var pageReducers = exports.pageReducers = { media: _reducer2.default };
 
 	exports.Page = _Page2.default;
 	exports.PageVideoPlayer = _PageVideoPlayer2.default;
-	exports.sagas = _sagas2.default;
+	exports.pageSaga = _sagas2.default;
 
 /***/ },
-/* 454 */
+/* 457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20684,13 +20765,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = MediaPage;
 
-	var _components = __webpack_require__(468);
+	var _components = __webpack_require__(458);
 
-	var _PlayerControls = __webpack_require__(455);
+	var _PlayerControls = __webpack_require__(459);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _playerStateClassNames = __webpack_require__(456);
+	var _playerStateClassNames = __webpack_require__(460);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
@@ -20746,901 +20827,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 455 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = MediaPlayerControls;
-
-	var _playerStateClassNames = __webpack_require__(456);
-
-	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
-
-	var _PlayerControls = __webpack_require__(416);
-
-	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
-
-	var _classnames = __webpack_require__(339);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function MediaPlayerControls(props) {
-	  var actions = props.playerActions;
-	  var playerState = props.playerState;
-
-	  return React.createElement(_PlayerControls2.default, _extends({ hasProgress: true,
-	    controlBarText: props.controlBarText,
-
-	    isLoading: playerState.isLoading,
-	    isPlaying: playerState.shouldPlay,
-	    currentTime: playerState.currentTime,
-	    duration: playerState.duration,
-	    isScrubbing: playerState.isScrubbing,
-
-	    onPlayButtonClick: actions.shouldTogglePlaying,
-	    onSeekStart: actions.didStartScrubbing,
-	    onSeek: actions.shouldSeekTo,
-	    onSeekStop: actions.didStopScrubbing,
-
-	    onMouseEnter: actions.enterControls,
-	    onMouseLeave: actions.leaveControls
-
-	  }, props, {
-
-	    className: className(playerState) }));
-	}
-
-	function className(playerState) {
-	  return (0, _classnames2.default)((0, _playerStateClassNames2.default)(playerState), { 'has_been_faded': playerState.userHasBeenIdle });
-	}
-
-/***/ },
-/* 456 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function (playerState) {
-	  return (0, _classnames2.default)({
-	    'is_playing': playerState.isPlaying,
-	    'is_playing_delayed': playerState.hasBeenPlayingJustNow,
-	    'is_paused': !playerState.isPlaying
-	  });
-	};
-
-	var _classnames = __webpack_require__(339);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 457 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.PageVideoPlayer = PageVideoPlayer;
-
-	var _VideoPlayer = __webpack_require__(469);
-
-	var _VideoPlayer2 = _interopRequireDefault(_VideoPlayer);
-
-	var _pages = __webpack_require__(347);
-
-	var _selectors = __webpack_require__(375);
-
-	var _combineSelectors = __webpack_require__(413);
-
-	var _combineSelectors2 = _interopRequireDefault(_combineSelectors);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function PageVideoPlayer(props) {
-	  var page = props.page;
-	  var property = props.videoPropertyBaseName;
-
-	  if (props.pageIsPrepared) {
-	    return React.createElement(_VideoPlayer2.default, { videoFileId: page[property + 'Id'],
-	      playerState: props.playerState,
-	      playerActions: props.playerActions,
-	      position: [page[property + 'X'], page[property + 'Y']] });
-	  } else {
-	    return null;
-	  }
-	}
-
-	PageVideoPlayer.defaultProps = {
-	  videoPropertyBaseName: 'videoFile'
-	};
-
-	exports.default = (0, _pages.connectInPage)((0, _combineSelectors2.default)({
-	  pageIsPrepared: (0, _selectors.pageIsPrepared)()
-	}))(PageVideoPlayer);
-
-/***/ },
 /* 458 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = reducer;
-
-	var _actions = __webpack_require__(459);
-
-	var _actions2 = __webpack_require__(350);
-
-	function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions2.PAGE_WILL_ACTIVATE:
-	      return _extends({}, state, {
-	        hasPlayed: false,
-	        userHasBeenIdle: false
-	      });
-
-	    case _actions.SHOULD_PLAY:
-	      return _extends({}, state, {
-	        shouldPlay: true,
-	        isPlaying: true,
-	        hasPlayed: true,
-	        fadeDuration: null
-	      });
-	    case _actions.SHOULD_PLAY_AND_FADE_IN:
-	      return _extends({}, state, {
-	        shouldPlay: true,
-	        isPlaying: true,
-	        hasPlayed: true,
-	        fadeDuration: action.payload.fadeDuration
-	      });
-	    case _actions.SHOULD_PAUSE:
-	      return _extends({}, state, {
-	        shouldPlay: false,
-	        isPlaying: false,
-	        fadeDuration: null
-	      });
-	    case _actions.SHOULD_FADE_OUT_AND_PAUSE:
-	      return _extends({}, state, {
-	        shouldPlay: false,
-	        isPlaying: false,
-	        fadeDuration: action.payload.fadeDuration
-	      });
-
-	    case _actions.SHOULD_SEEK_TO:
-	      return _extends({}, state, {
-	        shouldSeekTo: action.payload.time
-	      });
-
-	    case _actions.DID_START_SCRUBBING:
-	      return _extends({}, state, {
-	        isScrubbing: true
-	      });
-	    case _actions.DID_STOP_SCRUBBING:
-	      return _extends({}, state, {
-	        isScrubbing: false
-	      });
-
-	    case _actions.DID_LOAD_META_DATA:
-	      return _extends({}, state, {
-	        duration: action.payload.duration
-	      });
-	    case _actions.DID_TIME_UPDATE:
-	      return _extends({}, state, {
-	        currentTime: action.payload.currentTime
-	      });
-	    case _actions.DID_END:
-	      return _extends({}, state, {
-	        shouldPlay: false,
-	        isPlaying: false
-	      });
-
-	    case _actions.UPDATE_HAS_BEEN_PLAYING_JUST_NOW:
-	      return _extends({}, state, {
-	        hasBeenPlayingJustNow: action.payload.value
-	      });
-
-	    case _actions.USER_INTERACTION:
-	      return _extends({}, state, {
-	        userIsIdle: false
-	      });
-	    case _actions.USER_IDLE:
-	      return _extends({}, state, {
-	        userIsIdle: true,
-	        userHasBeenIdle: true
-	      });
-
-	    case _actions.ENTER_CONTROLS:
-	      return _extends({}, state, {
-	        userHoveringControls: true
-	      });
-	    case _actions.LEAVE_CONTROLS:
-	      return _extends({}, state, {
-	        userHoveringControls: false
-	      });
-
-	    default:
-	      return state;
-	  }
-	}
-
-/***/ },
-/* 459 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.shouldTogglePlaying = shouldTogglePlaying;
-	exports.shouldPlay = shouldPlay;
-	exports.shouldPlayAndFadeIn = shouldPlayAndFadeIn;
-	exports.shouldPause = shouldPause;
-	exports.shouldFadeOutAndPause = shouldFadeOutAndPause;
-	exports.shouldSeekTo = shouldSeekTo;
-	exports.didStartScrubbing = didStartScrubbing;
-	exports.didStopScrubbing = didStopScrubbing;
-	exports.willPlay = willPlay;
-	exports.didPause = didPause;
-	exports.didTimeUpdate = didTimeUpdate;
-	exports.didLoadMetaData = didLoadMetaData;
-	exports.didEnd = didEnd;
-	exports.updateHasBeenPlayingJustNow = updateHasBeenPlayingJustNow;
-	exports.userInteraction = userInteraction;
-	exports.userIdle = userIdle;
-	exports.enterControls = enterControls;
-	exports.leaveControls = leaveControls;
-	var SHOULD_TOGGLE_PLAYING = exports.SHOULD_TOGGLE_PLAYING = 'SHOULD_TOGGLE_PLAYING';
-	var SHOULD_PLAY = exports.SHOULD_PLAY = 'SHOULD_PLAY';
-	var SHOULD_PLAY_AND_FADE_IN = exports.SHOULD_PLAY_AND_FADE_IN = 'SHOULD_PLAY_AND_FADE_IN';
-	var SHOULD_PAUSE = exports.SHOULD_PAUSE = 'SHOULD_PAUSE';
-	var SHOULD_FADE_OUT_AND_PAUSE = exports.SHOULD_FADE_OUT_AND_PAUSE = 'SHOULD_FADE_OUT_AND_PAUSE';
-	var SHOULD_SEEK_TO = exports.SHOULD_SEEK_TO = 'SHOULD_SEEK_TO';
-
-	var DID_START_SCRUBBING = exports.DID_START_SCRUBBING = 'DID_START_SCRUBBING';
-	var DID_STOP_SCRUBBING = exports.DID_STOP_SCRUBBING = 'DID_STOP_SCRUBBING';
-
-	var DID_LOAD_META_DATA = exports.DID_LOAD_META_DATA = 'DID_LOAD_META_DATA';
-	var WILL_PLAY = exports.WILL_PLAY = 'WILL_PLAY';
-	var DID_PAUSE = exports.DID_PAUSE = 'DID_PAUSE';
-	var DID_TIME_UPDATE = exports.DID_TIME_UPDATE = 'DID_TIME_UPDATE';
-	var DID_END = exports.DID_END = 'DID_END';
-
-	var UPDATE_HAS_BEEN_PLAYING_JUST_NOW = exports.UPDATE_HAS_BEEN_PLAYING_JUST_NOW = 'UPDATE_HAS_BEEN_PLAYING_JUST_NOW';
-
-	var USER_INTERACTION = exports.USER_INTERACTION = 'USER_INTERACTION';
-	var USER_IDLE = exports.USER_IDLE = 'USER_IDLE';
-	var ENTER_CONTROLS = exports.ENTER_CONTROLS = 'ENTER_CONTROLS';
-	var LEAVE_CONTROLS = exports.LEAVE_CONTROLS = 'LEAVE_CONTROLS';
-
-	function shouldTogglePlaying() {
-	  return {
-	    type: SHOULD_TOGGLE_PLAYING
-	  };
-	}
-
-	function shouldPlay() {
-	  return {
-	    type: SHOULD_PLAY
-	  };
-	}
-
-	function shouldPlayAndFadeIn(_ref) {
-	  var fadeDuration = _ref.fadeDuration;
-
-	  return {
-	    type: SHOULD_PLAY_AND_FADE_IN,
-	    payload: {
-	      fadeDuration: fadeDuration
-	    }
-	  };
-	}
-
-	function shouldPause() {
-	  return {
-	    type: SHOULD_PAUSE
-	  };
-	}
-
-	function shouldFadeOutAndPause(_ref2) {
-	  var fadeDuration = _ref2.fadeDuration;
-
-	  return {
-	    type: SHOULD_FADE_OUT_AND_PAUSE,
-	    payload: {
-	      fadeDuration: fadeDuration
-	    }
-	  };
-	}
-
-	function shouldSeekTo(time) {
-	  return {
-	    type: SHOULD_SEEK_TO,
-	    payload: {
-	      time: time
-	    }
-	  };
-	}
-
-	function didStartScrubbing() {
-	  return {
-	    type: DID_START_SCRUBBING
-	  };
-	}
-
-	function didStopScrubbing() {
-	  return {
-	    type: DID_STOP_SCRUBBING
-	  };
-	}
-
-	function willPlay() {
-	  return {
-	    type: WILL_PLAY
-	  };
-	}
-
-	function didPause() {
-	  return {
-	    type: DID_PAUSE
-	  };
-	}
-
-	function didTimeUpdate(_ref3) {
-	  var currentTime = _ref3.currentTime;
-
-	  return {
-	    type: DID_TIME_UPDATE,
-	    payload: {
-	      currentTime: currentTime
-	    }
-	  };
-	}
-
-	function didLoadMetaData(_ref4) {
-	  var duration = _ref4.duration;
-
-	  return {
-	    type: DID_LOAD_META_DATA,
-	    payload: {
-	      duration: duration
-	    }
-	  };
-	}
-
-	function didEnd() {
-	  return {
-	    type: DID_END
-	  };
-	}
-
-	function updateHasBeenPlayingJustNow(value) {
-	  return {
-	    type: UPDATE_HAS_BEEN_PLAYING_JUST_NOW,
-	    payload: {
-	      value: value
-	    }
-	  };
-	}
-
-	function userInteraction() {
-	  return {
-	    type: USER_INTERACTION
-	  };
-	}
-
-	function userIdle() {
-	  return {
-	    type: USER_IDLE
-	  };
-	}
-
-	function enterControls() {
-	  return {
-	    type: ENTER_CONTROLS
-	  };
-	}
-
-	function leaveControls() {
-	  return {
-	    type: LEAVE_CONTROLS
-	  };
-	}
-
-/***/ },
-/* 460 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee;
-
-	var _togglePlaying = __webpack_require__(461);
-
-	var _togglePlaying2 = _interopRequireDefault(_togglePlaying);
-
-	var _autoplay = __webpack_require__(462);
-
-	var _autoplay2 = _interopRequireDefault(_autoplay);
-
-	var _disableScrollIndicatorDuringPlayback = __webpack_require__(464);
-
-	var _disableScrollIndicatorDuringPlayback2 = _interopRequireDefault(_disableScrollIndicatorDuringPlayback);
-
-	var _keepHasBeenPlayingJustNowUpdated = __webpack_require__(465);
-
-	var _keepHasBeenPlayingJustNowUpdated2 = _interopRequireDefault(_keepHasBeenPlayingJustNowUpdated);
-
-	var _keepUserIsIdleUpdated = __webpack_require__(466);
-
-	var _keepUserIsIdleUpdated2 = _interopRequireDefault(_keepUserIsIdleUpdated);
-
-	var _fadeOutWhenPageWillDeactivate = __webpack_require__(467);
-
-	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var _marked = [_callee].map(regeneratorRuntime.mark);
-
-	function _callee(scrollIndicator) {
-	  return regeneratorRuntime.wrap(function _callee$(_context) {
-	    while (1) {
-	      switch (_context.prev = _context.next) {
-	        case 0:
-	          _context.next = 2;
-	          return [(0, _togglePlaying2.default)(), (0, _autoplay2.default)(), (0, _disableScrollIndicatorDuringPlayback2.default)(scrollIndicator), (0, _keepHasBeenPlayingJustNowUpdated2.default)(), (0, _keepUserIsIdleUpdated2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
-
-	        case 2:
-	        case 'end':
-	          return _context.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-/***/ },
-/* 461 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee;
-
-	var _reduxSaga = __webpack_require__(386);
-
-	var _effects = __webpack_require__(382);
-
-	var _actions = __webpack_require__(459);
-
-	var _marked = [_callee, toggle].map(regeneratorRuntime.mark);
-
-	function _callee() {
-	  return regeneratorRuntime.wrap(function _callee$(_context) {
-	    while (1) {
-	      switch (_context.prev = _context.next) {
-	        case 0:
-	          _context.next = 2;
-	          return (0, _reduxSaga.takeEvery)(_actions.SHOULD_TOGGLE_PLAYING, toggle);
-
-	        case 2:
-	        case 'end':
-	          return _context.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-	function toggle() {
-	  var isPlaying;
-	  return regeneratorRuntime.wrap(function toggle$(_context2) {
-	    while (1) {
-	      switch (_context2.prev = _context2.next) {
-	        case 0:
-	          _context2.next = 2;
-	          return (0, _effects.select)(function (playerState) {
-	            return playerState.shouldPlay;
-	          });
-
-	        case 2:
-	          isPlaying = _context2.sent;
-
-	          if (!isPlaying) {
-	            _context2.next = 8;
-	            break;
-	          }
-
-	          _context2.next = 6;
-	          return (0, _effects.put)((0, _actions.shouldPause)());
-
-	        case 6:
-	          _context2.next = 10;
-	          break;
-
-	        case 8:
-	          _context2.next = 10;
-	          return (0, _effects.put)((0, _actions.shouldPlay)());
-
-	        case 10:
-	        case 'end':
-	          return _context2.stop();
-	      }
-	    }
-	  }, _marked[1], this);
-	}
-
-/***/ },
-/* 462 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee2;
-
-	var _reduxSaga = __webpack_require__(386);
-
-	var _effects = __webpack_require__(382);
-
-	var _actions = __webpack_require__(459);
-
-	var _selectors = __webpack_require__(463);
-
-	var _marked = [_callee2].map(regeneratorRuntime.mark);
-
-	function _callee2() {
-	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
-	    while (1) {
-	      switch (_context2.prev = _context2.next) {
-	        case 0:
-	          _context2.next = 2;
-	          return (0, _reduxSaga.takeEvery)(_actions.PAGE_DID_ACTIVATE, regeneratorRuntime.mark(function _callee() {
-	            var autoplay;
-	            return regeneratorRuntime.wrap(function _callee$(_context) {
-	              while (1) {
-	                switch (_context.prev = _context.next) {
-	                  case 0:
-	                    _context.next = 2;
-	                    return (0, _effects.select)((0, _selectors.pageConfiguration)('autoplay'));
-
-	                  case 2:
-	                    autoplay = _context.sent;
-
-	                    if (!(autoplay !== false)) {
-	                      _context.next = 6;
-	                      break;
-	                    }
-
-	                    _context.next = 6;
-	                    return (0, _effects.put)((0, _actions.shouldPlay)());
-
-	                  case 6:
-	                  case 'end':
-	                    return _context.stop();
-	                }
-	              }
-	            }, _callee, this);
-	          }));
-
-	        case 2:
-	        case 'end':
-	          return _context2.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-/***/ },
-/* 463 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.playerState = playerState;
-	exports.playerActions = playerActions;
-
-	var _actions = __webpack_require__(459);
-
-	var _redux = __webpack_require__(351);
-
-	function playerState(state) {
-	  return state;
-	}
-
-	function playerActions(dispatch) {
-	  return (0, _redux.bindActionCreators)({
-	    play: _actions.shouldPlay
-	  }, dispatch);
-	}
-
-/***/ },
-/* 464 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee3;
-
-	var _reduxSaga = __webpack_require__(386);
-
-	var _effects = __webpack_require__(382);
-
-	var _actions = __webpack_require__(459);
-
-	var _marked = [_callee3].map(regeneratorRuntime.mark);
-
-	function _callee3(scrollIndicator) {
-	  return regeneratorRuntime.wrap(function _callee3$(_context3) {
-	    while (1) {
-	      switch (_context3.prev = _context3.next) {
-	        case 0:
-	          _context3.next = 2;
-	          return (0, _reduxSaga.takeEvery)([_actions.SHOULD_PLAY], regeneratorRuntime.mark(function _callee() {
-	            return regeneratorRuntime.wrap(function _callee$(_context) {
-	              while (1) {
-	                switch (_context.prev = _context.next) {
-	                  case 0:
-	                    _context.next = 2;
-	                    return (0, _effects.call)(disable, scrollIndicator);
-
-	                  case 2:
-	                  case 'end':
-	                    return _context.stop();
-	                }
-	              }
-	            }, _callee, this);
-	          }));
-
-	        case 2:
-	          _context3.next = 4;
-	          return (0, _reduxSaga.takeEvery)([_actions.SHOULD_PAUSE, _actions.DID_END], regeneratorRuntime.mark(function _callee2() {
-	            return regeneratorRuntime.wrap(function _callee2$(_context2) {
-	              while (1) {
-	                switch (_context2.prev = _context2.next) {
-	                  case 0:
-	                    _context2.next = 2;
-	                    return (0, _effects.call)(enable, scrollIndicator);
-
-	                  case 2:
-	                  case 'end':
-	                    return _context2.stop();
-	                }
-	              }
-	            }, _callee2, this);
-	          }));
-
-	        case 4:
-	        case 'end':
-	          return _context3.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-	function disable(scrollIndicator) {
-	  if (pageflow.widgets.isPresent('classic_player_controls')) {
-	    scrollIndicator.scheduleDisable();
-	  } else {
-	    scrollIndicator.disable();
-	  }
-	}
-
-	function enable(scrollIndicator) {
-	  scrollIndicator.enable();
-	}
-
-/***/ },
-/* 465 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee;
-
-	var _reduxSaga = __webpack_require__(386);
-
-	var _effects = __webpack_require__(382);
-
-	var _actions = __webpack_require__(459);
-
-	var _marked = [_callee, updateAttribute].map(regeneratorRuntime.mark);
-
-	function _callee() {
-	  return regeneratorRuntime.wrap(function _callee$(_context) {
-	    while (1) {
-	      switch (_context.prev = _context.next) {
-	        case 0:
-	          _context.next = 2;
-	          return (0, _reduxSaga.takeLatest)([_actions.IS_PLAYING, _actions.DID_PAUSE, _actions.DID_END], updateAttribute);
-
-	        case 2:
-	        case 'end':
-	          return _context.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-	function updateAttribute(action) {
-	  return regeneratorRuntime.wrap(function updateAttribute$(_context2) {
-	    while (1) {
-	      switch (_context2.prev = _context2.next) {
-	        case 0:
-	          if (!(action.type == _actions.IS_PLAYING)) {
-	            _context2.next = 5;
-	            break;
-	          }
-
-	          _context2.next = 3;
-	          return (0, _effects.put)((0, _actions.updateHasBeenPlayingJustNow)(true));
-
-	        case 3:
-	          _context2.next = 9;
-	          break;
-
-	        case 5:
-	          _context2.next = 7;
-	          return (0, _effects.call)(_reduxSaga.delay, 700);
-
-	        case 7:
-	          _context2.next = 9;
-	          return (0, _effects.put)((0, _actions.updateHasBeenPlayingJustNow)(false));
-
-	        case 9:
-	        case 'end':
-	          return _context2.stop();
-	      }
-	    }
-	  }, _marked[1], this);
-	}
-
-/***/ },
-/* 466 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee;
-
-	var _reduxSaga = __webpack_require__(386);
-
-	var _effects = __webpack_require__(382);
-
-	var _actions = __webpack_require__(459);
-
-	var _marked = [_callee, putUserIdleAfterDelay].map(regeneratorRuntime.mark);
-
-	function _callee() {
-	  return regeneratorRuntime.wrap(function _callee$(_context) {
-	    while (1) {
-	      switch (_context.prev = _context.next) {
-	        case 0:
-	          _context.next = 2;
-	          return (0, _reduxSaga.takeLatest)([_actions.WILL_PLAY, _actions.USER_INTERACTION], putUserIdleAfterDelay);
-
-	        case 2:
-	        case 'end':
-	          return _context.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-	function putUserIdleAfterDelay(action) {
-	  return regeneratorRuntime.wrap(function putUserIdleAfterDelay$(_context2) {
-	    while (1) {
-	      switch (_context2.prev = _context2.next) {
-	        case 0:
-	          _context2.next = 2;
-	          return (0, _effects.call)(_reduxSaga.delay, 1000);
-
-	        case 2:
-	          _context2.next = 4;
-	          return (0, _effects.put)((0, _actions.userIdle)());
-
-	        case 4:
-	        case 'end':
-	          return _context2.stop();
-	      }
-	    }
-	  }, _marked[1], this);
-	}
-
-/***/ },
-/* 467 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = _callee2;
-
-	var _reduxSaga = __webpack_require__(386);
-
-	var _effects = __webpack_require__(382);
-
-	var _actions = __webpack_require__(459);
-
-	var _marked = [_callee2].map(regeneratorRuntime.mark);
-
-	function _callee2() {
-	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
-	    while (1) {
-	      switch (_context2.prev = _context2.next) {
-	        case 0:
-	          _context2.next = 2;
-	          return (0, _reduxSaga.takeEvery)(_actions.PAGE_WILL_DEACTIVATE, regeneratorRuntime.mark(function _callee() {
-	            return regeneratorRuntime.wrap(function _callee$(_context) {
-	              while (1) {
-	                switch (_context.prev = _context.next) {
-	                  case 0:
-	                    _context.next = 2;
-	                    return (0, _effects.put)((0, _actions.shouldFadeOutAndPause)({ fadeDuration: 400 }));
-
-	                  case 2:
-	                  case 'end':
-	                    return _context.stop();
-	                }
-	              }
-	            }, _callee, this);
-	          }));
-
-	        case 2:
-	        case 'end':
-	          return _context2.stop();
-	      }
-	    }
-	  }, _marked[0], this);
-	}
-
-/***/ },
-/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21689,7 +20876,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.PageText = _PageText2.default;
 
 /***/ },
-/* 469 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21698,15 +20885,144 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _VideoFilePlayer = __webpack_require__(470);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = MediaPlayerControls;
+
+	var _playerStateClassNames = __webpack_require__(460);
+
+	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
+
+	var _PlayerControls = __webpack_require__(416);
+
+	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
+
+	var _classnames = __webpack_require__(339);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function MediaPlayerControls(props) {
+	  var actions = props.playerActions;
+	  var playerState = props.playerState;
+
+	  return React.createElement(_PlayerControls2.default, _extends({ hasProgress: true,
+	    controlBarText: props.controlBarText,
+
+	    isLoading: playerState.isLoading,
+	    isPlaying: playerState.shouldPlay,
+	    currentTime: playerState.currentTime,
+	    duration: playerState.duration,
+	    isScrubbing: playerState.isScrubbing,
+
+	    onPlayButtonClick: actions.togglePlaying,
+	    onSeekStart: actions.scrubbingStarted,
+	    onSeek: actions.seekTo,
+	    onSeekEnd: actions.scrubbingEnded,
+
+	    onMouseEnter: actions.controlsEntered,
+	    onMouseLeave: actions.controlsLeft
+
+	  }, props, {
+
+	    className: className(playerState) }));
+	}
+
+	function className(playerState) {
+	  return (0, _classnames2.default)((0, _playerStateClassNames2.default)(playerState), { 'has_been_faded': playerState.userHasBeenIdle });
+	}
+
+/***/ },
+/* 460 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (playerState) {
+	  return (0, _classnames2.default)({
+	    'is_playing': playerState.isPlaying,
+	    'is_playing_delayed': playerState.hasBeenPlayingJustNow,
+	    'is_paused': !playerState.isPlaying
+	  });
+	};
+
+	var _classnames = __webpack_require__(339);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 461 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.PageVideoPlayer = PageVideoPlayer;
+
+	var _VideoPlayer = __webpack_require__(462);
+
+	var _VideoPlayer2 = _interopRequireDefault(_VideoPlayer);
+
+	var _pages = __webpack_require__(347);
+
+	var _selectors = __webpack_require__(375);
+
+	var _combineSelectors = __webpack_require__(413);
+
+	var _combineSelectors2 = _interopRequireDefault(_combineSelectors);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function PageVideoPlayer(props) {
+	  var page = props.page;
+	  var property = props.videoPropertyBaseName;
+
+	  if (props.pageIsPrepared) {
+	    return React.createElement(_VideoPlayer2.default, { videoFileId: page[property + 'Id'],
+	      playerState: props.playerState,
+	      playerActions: props.playerActions,
+	      position: [page[property + 'X'], page[property + 'Y']] });
+	  } else {
+	    return null;
+	  }
+	}
+
+	PageVideoPlayer.defaultProps = {
+	  videoPropertyBaseName: 'videoFile'
+	};
+
+	exports.default = (0, _pages.connectInPage)((0, _combineSelectors2.default)({
+	  pageIsPrepared: (0, _selectors.pageIsPrepared)()
+	}))(PageVideoPlayer);
+
+/***/ },
+/* 462 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _VideoFilePlayer = __webpack_require__(463);
 
 	var _VideoFilePlayer2 = _interopRequireDefault(_VideoFilePlayer);
 
-	var _Positioner = __webpack_require__(471);
+	var _Positioner = __webpack_require__(464);
 
 	var _Positioner2 = _interopRequireDefault(_Positioner);
 
-	var _selectors = __webpack_require__(472);
+	var _selectors = __webpack_require__(465);
 
 	var _combineSelectors = __webpack_require__(413);
 
@@ -21738,7 +21054,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(VideoPlayer);
 
 /***/ },
-/* 470 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21781,18 +21097,18 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        });
 
 	        _this.player.on('loadedmetadata', function () {
-	          return actions.didLoadMetaData({
+	          return actions.metaDataLoaded({
 	            duration: _this.player.duration()
 	          });
 	        });
-	        _this.player.on('play', actions.willPlay);
-	        _this.player.on('pause', actions.didPause);
+	        _this.player.on('play', actions.playing);
+	        _this.player.on('pause', actions.paused);
 	        _this.player.on('timeupdate', function () {
-	          return actions.didTimeUpdate({
+	          return actions.timeUpdate({
 	            currentTime: _this.player.currentTime()
 	          });
 	        });
-	        _this.player.on('ended', actions.didEnd);
+	        _this.player.on('ended', actions.ended);
 	      } else if (_this.player) {
 	        _this.player.dispose();
 	        _this.player = null;
@@ -21837,9 +21153,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      return _react2.default.createElement(
 	        'video',
 	        { ref: this.bindPlayer, preload: 'auto', style: this.props.style },
-	        _react2.default.createElement('source', { type: 'video/webm', src: videoFile.webm_medium }),
-	        _react2.default.createElement('source', { type: 'application/x-mpegURL', src: videoFile['hls-playlist'] }),
-	        _react2.default.createElement('source', { type: 'video/mp4', src: videoFile.medium })
+	        _react2.default.createElement('source', { type: 'video/webm', src: videoFile.urls.webm_medium }),
+	        _react2.default.createElement('source', { type: 'application/x-mpegURL', src: videoFile.urls['hls-playlist'] }),
+	        _react2.default.createElement('source', { type: 'video/mp4', src: videoFile.urls.medium })
 	      );
 	    }
 	  }]);
@@ -21850,7 +21166,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = VideoFilePlayer;
 
 /***/ },
-/* 471 */
+/* 464 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21893,7 +21209,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 472 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21905,7 +21221,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _collections = __webpack_require__(376);
 
-	var _expandUrls = __webpack_require__(473);
+	var _expandUrls = __webpack_require__(466);
 
 	var _expandUrls2 = _interopRequireDefault(_expandUrls);
 
@@ -21920,7 +21236,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 473 */
+/* 466 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21976,7 +21292,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 474 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21984,27 +21300,112 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.reducers = undefined;
-	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(475);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _reducer = __webpack_require__(477);
+	exports.default = reducer;
 
-	var _reducer2 = _interopRequireDefault(_reducer);
+	var _actions = __webpack_require__(468);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _actions2 = __webpack_require__(350);
 
-	var reducers = exports.reducers = { i18n: _reducer2.default };
+	function reducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
 
-	function initFromSeed(_ref, dispatch) {
-	  var locale = _ref.locale;
+	  switch (action.type) {
+	    case _actions2.PAGE_WILL_ACTIVATE:
+	      return _extends({}, state, {
+	        hasPlayed: false,
+	        userHasBeenIdle: false
+	      });
 
-	  dispatch((0, _actions.init)({ locale: locale }));
+	    case _actions.PLAY:
+	      return _extends({}, state, {
+	        shouldPlay: true,
+	        isPlaying: true,
+	        hasPlayed: true,
+	        fadeDuration: null
+	      });
+	    case _actions.PLAY_AND_FADE_IN:
+	      return _extends({}, state, {
+	        shouldPlay: true,
+	        isPlaying: true,
+	        hasPlayed: true,
+	        fadeDuration: action.payload.fadeDuration
+	      });
+	    case _actions.PAUSE:
+	      return _extends({}, state, {
+	        shouldPlay: false,
+	        isPlaying: false,
+	        fadeDuration: null
+	      });
+	    case _actions.FADE_OUT_AND_PAUSE:
+	      return _extends({}, state, {
+	        shouldPlay: false,
+	        isPlaying: false,
+	        fadeDuration: action.payload.fadeDuration
+	      });
+
+	    case _actions.SEEK_TO:
+	      return _extends({}, state, {
+	        shouldSeekTo: action.payload.time
+	      });
+
+	    case _actions.SCRUBBING_STARTED:
+	      return _extends({}, state, {
+	        isScrubbing: true
+	      });
+	    case _actions.SCRUBBING_ENDED:
+	      return _extends({}, state, {
+	        isScrubbing: false
+	      });
+
+	    case _actions.META_DATA_LOADED:
+	      return _extends({}, state, {
+	        duration: action.payload.duration
+	      });
+	    case _actions.TIME_UPDATE:
+	      return _extends({}, state, {
+	        currentTime: action.payload.currentTime
+	      });
+	    case _actions.ENDED:
+	      return _extends({}, state, {
+	        shouldPlay: false,
+	        isPlaying: false
+	      });
+
+	    case _actions.UPDATE_HAS_BEEN_PLAYING_JUST_NOW:
+	      return _extends({}, state, {
+	        hasBeenPlayingJustNow: action.payload.value
+	      });
+
+	    case _actions.USER_INTERACTION:
+	      return _extends({}, state, {
+	        userIsIdle: false
+	      });
+	    case _actions.USER_IDLE:
+	      return _extends({}, state, {
+	        userIsIdle: true,
+	        userHasBeenIdle: true
+	      });
+
+	    case _actions.CONTROLS_ENTERED:
+	      return _extends({}, state, {
+	        userHoveringControls: true
+	      });
+	    case _actions.CONTROLS_LEFT:
+	      return _extends({}, state, {
+	        userHoveringControls: false
+	      });
+
+	    default:
+	      return state;
+	  }
 	}
 
 /***/ },
-/* 475 */
+/* 468 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22012,22 +21413,359 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.init = init;
-	var INIT = exports.INIT = 'I18N_INIT';
+	exports.togglePlaying = togglePlaying;
+	exports.play = play;
+	exports.playAndFadeIn = playAndFadeIn;
+	exports.pause = pause;
+	exports.fadeOutAndPause = fadeOutAndPause;
+	exports.seekTo = seekTo;
+	exports.scrubbingStarted = scrubbingStarted;
+	exports.scrubbingEnded = scrubbingEnded;
+	exports.playing = playing;
+	exports.paused = paused;
+	exports.timeUpdate = timeUpdate;
+	exports.metaDataLoaded = metaDataLoaded;
+	exports.ended = ended;
+	exports.updateHasBeenPlayingJustNow = updateHasBeenPlayingJustNow;
+	exports.userInteraction = userInteraction;
+	exports.userIdle = userIdle;
+	exports.controlsEntered = controlsEntered;
+	exports.controlsLeft = controlsLeft;
+	var TOGGLE_PLAYING = exports.TOGGLE_PLAYING = 'MEDIA_TOGGLE_PLAYING';
+	var PLAY = exports.PLAY = 'MEDIA_PLAY';
+	var PLAY_AND_FADE_IN = exports.PLAY_AND_FADE_IN = 'MEDIA_PLAY_AND_FADE_IN';
+	var PAUSE = exports.PAUSE = 'MEDIA_PAUSE';
+	var FADE_OUT_AND_PAUSE = exports.FADE_OUT_AND_PAUSE = 'MEDIA_FADE_OUT_AND_PAUSE';
+	var SEEK_TO = exports.SEEK_TO = 'MEDIA_SEEK_TO';
 
-	function init(_ref) {
-	  var locale = _ref.locale;
+	var SCRUBBING_STARTED = exports.SCRUBBING_STARTED = 'MEDIA_SCRUBBING_STARTED';
+	var SCRUBBING_ENDED = exports.SCRUBBING_ENDED = 'MEDIA_SCRUBBING_ENDED';
+
+	var META_DATA_LOADED = exports.META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
+	var PLAYING = exports.PLAYING = 'MEDIA_PLAYING';
+	var PAUSED = exports.PAUSED = 'MEDIA_PAUSED';
+	var TIME_UPDATE = exports.TIME_UPDATE = 'MEDIA_TIME_UPDATE';
+	var ENDED = exports.ENDED = 'MEDIA_ENDED';
+
+	var UPDATE_HAS_BEEN_PLAYING_JUST_NOW = exports.UPDATE_HAS_BEEN_PLAYING_JUST_NOW = 'MEDIA_UPDATE_HAS_BEEN_PLAYING_JUST_NOW';
+
+	var USER_INTERACTION = exports.USER_INTERACTION = 'MEDIA_USER_INTERACTION';
+	var USER_IDLE = exports.USER_IDLE = 'MEDIA_USER_IDLE';
+
+	var CONTROLS_ENTERED = exports.CONTROLS_ENTERED = 'MEDIA_CONTROLS_ENTERED';
+	var CONTROLS_LEFT = exports.CONTROLS_LEFT = 'MEDIA_CONTROLS_LEFT';
+
+	function togglePlaying() {
+	  return pageAction(TOGGLE_PLAYING);
+	}
+
+	function play() {
+	  return pageAction(PLAY);
+	}
+
+	function playAndFadeIn(_ref) {
+	  var fadeDuration = _ref.fadeDuration;
+
+	  return pageAction(PLAY_AND_FADE_IN, {
+	    fadeDuration: fadeDuration
+	  });
+	}
+
+	function pause() {
+	  return pageAction(PAUSE);
+	}
+
+	function fadeOutAndPause(_ref2) {
+	  var fadeDuration = _ref2.fadeDuration;
+
+	  return pageAction(FADE_OUT_AND_PAUSE, {
+	    fadeDuration: fadeDuration
+	  });
+	}
+
+	function seekTo(time) {
+	  return pageAction(SEEK_TO, {
+	    time: time
+	  });
+	}
+
+	function scrubbingStarted() {
+	  return pageAction(SCRUBBING_STARTED);
+	}
+
+	function scrubbingEnded() {
+	  return pageAction(SCRUBBING_STARTED);
+	}
+
+	function playing() {
+	  return pageAction(PLAYING);
+	}
+
+	function paused() {
+	  return pageAction(PAUSED);
+	}
+
+	function timeUpdate(_ref3) {
+	  var currentTime = _ref3.currentTime;
+
+	  return pageAction(TIME_UPDATE, {
+	    currentTime: currentTime
+	  });
+	}
+
+	function metaDataLoaded(_ref4) {
+	  var duration = _ref4.duration;
+
+	  return pageAction(META_DATA_LOADED, {
+	    duration: duration
+	  });
+	}
+
+	function ended() {
+	  return pageAction(ENDED);
+	}
+
+	function updateHasBeenPlayingJustNow(value) {
+	  return pageAction(UPDATE_HAS_BEEN_PLAYING_JUST_NOW, {
+	    value: value
+	  });
+	}
+
+	function userInteraction() {
+	  return pageAction(USER_INTERACTION);
+	}
+
+	function userIdle() {
+	  return pageAction(USER_IDLE);
+	}
+
+	function controlsEntered() {
+	  return pageAction(CONTROLS_ENTERED);
+	}
+
+	function controlsLeft() {
+	  return pageAction(CONTROLS_LEFT);
+	}
+
+	function pageAction(type) {
+	  var payload = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
 	  return {
-	    type: INIT,
-	    payload: {
-	      locale: locale
-	    }
+	    type: type,
+	    meta: {
+	      collectionName: 'pages'
+	    },
+	    payload: payload
 	  };
 	}
 
 /***/ },
+/* 469 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = _callee;
+
+	var _togglePlaying = __webpack_require__(470);
+
+	var _togglePlaying2 = _interopRequireDefault(_togglePlaying);
+
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(476);
+
+	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var _marked = [_callee].map(regeneratorRuntime.mark);
+	//import autoplay from './autoplay';
+	//import disableScrollIndicatorDuringPlayback from './disableScrollIndicatorDuringPlayback';
+	//import keepHasBeenPlayingJustNowUpdated from './keepHasBeenPlayingJustNowUpdated';
+	//import keepUserIsIdleUpdated from './keepUserIsIdleUpdated';
+
+
+	function _callee(scrollIndicator) {
+	  return regeneratorRuntime.wrap(function _callee$(_context) {
+	    while (1) {
+	      switch (_context.prev = _context.next) {
+	        case 0:
+	          _context.next = 2;
+	          return [(0, _togglePlaying2.default)(),
+	          //    autoplay(),
+	          //  disableScrollIndicatorDuringPlayback(scrollIndicator),
+	          // keepHasBeenPlayingJustNowUpdated(),
+	          // keepUserIsIdleUpdated(),
+	          (0, _fadeOutWhenPageWillDeactivate2.default)()];
+
+	        case 2:
+	        case 'end':
+	          return _context.stop();
+	      }
+	    }
+	  }, _marked[0], this);
+	}
+
+/***/ },
+/* 470 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = _callee;
+
+	var _actions = __webpack_require__(468);
+
+	var _selectors = __webpack_require__(472);
+
+	var _reduxSaga = __webpack_require__(386);
+
+	var _effects = __webpack_require__(382);
+
+	var _marked = [_callee, toggle].map(regeneratorRuntime.mark);
+
+	function _callee() {
+	  return regeneratorRuntime.wrap(function _callee$(_context) {
+	    while (1) {
+	      switch (_context.prev = _context.next) {
+	        case 0:
+	          _context.next = 2;
+	          return (0, _reduxSaga.takeEvery)(_actions.TOGGLE_PLAYING, toggle);
+
+	        case 2:
+	        case 'end':
+	          return _context.stop();
+	      }
+	    }
+	  }, _marked[0], this);
+	}
+
+	function toggle() {
+	  var state;
+	  return regeneratorRuntime.wrap(function toggle$(_context2) {
+	    while (1) {
+	      switch (_context2.prev = _context2.next) {
+	        case 0:
+	          _context2.next = 2;
+	          return (0, _effects.select)(_selectors.playerState);
+
+	        case 2:
+	          state = _context2.sent;
+
+	          if (!state.isPlaying) {
+	            _context2.next = 8;
+	            break;
+	          }
+
+	          _context2.next = 6;
+	          return (0, _effects.put)((0, _actions.pause)());
+
+	        case 6:
+	          _context2.next = 10;
+	          break;
+
+	        case 8:
+	          _context2.next = 10;
+	          return (0, _effects.put)((0, _actions.play)());
+
+	        case 10:
+	        case 'end':
+	          return _context2.stop();
+	      }
+	    }
+	  }, _marked[1], this);
+	}
+
+/***/ },
+/* 471 */,
+/* 472 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.playerState = undefined;
+	exports.playerActions = playerActions;
+
+	var _actions = __webpack_require__(468);
+
+	var actions = _interopRequireWildcard(_actions);
+
+	var _selectors = __webpack_require__(375);
+
+	var _redux = __webpack_require__(351);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	var playerState = exports.playerState = (0, _selectors.pageState)('media');
+
+	function playerActions(dispatch) {
+	  return (0, _redux.bindActionCreators)(actions, dispatch);
+	}
+
+/***/ },
+/* 473 */,
+/* 474 */,
+/* 475 */,
 /* 476 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = _callee2;
+
+	var _reduxSaga = __webpack_require__(386);
+
+	var _effects = __webpack_require__(382);
+
+	var _actions = __webpack_require__(468);
+
+	var _actions2 = __webpack_require__(350);
+
+	var _marked = [_callee2].map(regeneratorRuntime.mark);
+
+	function _callee2() {
+	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+	    while (1) {
+	      switch (_context2.prev = _context2.next) {
+	        case 0:
+	          _context2.next = 2;
+	          return (0, _reduxSaga.takeEvery)(_actions2.PAGE_WILL_DEACTIVATE, regeneratorRuntime.mark(function _callee() {
+	            return regeneratorRuntime.wrap(function _callee$(_context) {
+	              while (1) {
+	                switch (_context.prev = _context.next) {
+	                  case 0:
+	                    _context.next = 2;
+	                    return (0, _effects.put)((0, _actions.fadeOutAndPause)({ fadeDuration: 400 }));
+
+	                  case 2:
+	                  case 'end':
+	                    return _context.stop();
+	                }
+	              }
+	            }, _callee, this);
+	          }));
+
+	        case 2:
+	        case 'end':
+	          return _context2.stop();
+	      }
+	    }
+	  }, _marked[0], this);
+	}
+
+/***/ },
+/* 477 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22044,30 +21782,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    return I18n.t(key, _extends({ locale: state.i18n.locale }, options));
 	  };
 	}
-
-/***/ },
-/* 477 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.INIT:
-	      return { locale: action.payload.locale };
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(475);
 
 /***/ }
 /******/ ]);

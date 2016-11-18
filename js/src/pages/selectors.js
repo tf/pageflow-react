@@ -18,6 +18,10 @@ export function pageIsActive(options) {
   return commonPageState('isActive', options);
 }
 
+export function pageIsActivated(options) {
+  return commonPageState('isActivated', options);
+}
+
 export function pageIsPreloaded(options) {
   return commonPageState('isPreloaded', options);
 }

@@ -30,7 +30,11 @@ export default function(pageflow) {
     ...createFilesReducers(collections.files || {}, seed['file_url_templates'])
   });
 
-  const pageTypeSagas = pageTypeRegistry.map(({name, saga}) => saga);
+  const pageTypeSagas = pageTypeRegistry.reduce((result, {name, saga}) => {
+    result[name] = saga;
+    return result;
+  }, {});
+  
   const m = createMiddleware();
   const saga = createPagesSaga(pageTypeSagas, m);
 

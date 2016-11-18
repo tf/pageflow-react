@@ -1,7 +1,7 @@
 import {Page as MediaPage,
         PageVideoPlayer,
-        reducers as mediaReducers,
-        sagas as mediaSagas} from 'media';
+        pageReducers as mediaPageReducers,
+        pageSaga as mediaPageSaga} from 'media';
 
 import registerPageType from 'registerPageType';
 
@@ -43,13 +43,14 @@ export function register() {
     )(VideoPage),
 
     reducer: combineReducers({
-      ...mediaReducers
+      ...mediaPageReducers
     }),
 
     saga: function*() {
       yield [
-        ...mediaSagas
+        mediaPageSaga()
       ];
     }
+
   });
 }

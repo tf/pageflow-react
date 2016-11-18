@@ -1,14 +1,14 @@
 import {takeEvery} from 'redux-saga';
 import {put, select} from 'redux-saga/effects';
 
-import {PLAYER_DID_END} from 'media/actions';
-import {goToNextPage} from 'media/actions';
+import {ENDED} from '../actions';
+import {goToNextPage} from 'foo/actions';
 
-import {pageConfiguration} from '../selectors';
+import {pageAttribute} from 'pages/selectors';
 
 export default function*() {
-  yield takeEvery(PLAYER_DID_END, function*() {
-    const autoChangePage = yield select(pageConfiguration('autoChangePage'));
+  yield takeEvery(ENDED, function*() {
+    const autoChangePage = yield select(pageAttribute('autoChangePage'));
 
     if (autoChangePage) {
       yield put(goToNextPage());

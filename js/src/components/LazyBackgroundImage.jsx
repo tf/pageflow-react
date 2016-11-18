@@ -1,10 +1,9 @@
 import BackgroundImage from './BackgroundImage';
-import withPageStateProp from 'withPageStateProp';
 
-function LazyBackgroundImage(props) {
-  return (
-    <BackgroundImage {...props} loaded={!props.pageState || props.pageState.isPreloaded} />
-  );
-}
+import {connectInPage} from 'pages';
+import {pageIsPreloaded} from 'pages/selectors';
+import combine from 'combineSelectors';
 
-export default withPageStateProp(LazyBackgroundImage);
+export default connectInPage(combine({
+  loaded: pageIsPreloaded()
+}))(BackgroundImage);
