@@ -1,6 +1,7 @@
-import {PageThumbnail} from 'components/PageThumbnail';
+import {PageThumbnail} from '../PageThumbnail';
 
-import renderComponent from '../support/renderComponent';
+import {expect} from 'support/chai';
+import {shallow} from 'enzyme';
 
 describe('PageThumbnail', () => {
   it('has class names for thumbnail candidate', () => {
@@ -16,14 +17,17 @@ describe('PageThumbnail', () => {
       },
       thumbnailFileId: 10
     };
-    const fileIds = {
-      'image_files': [10]
+    const props = {
+      page,
+      fileIds: {
+        'image_files': [10]
+      },
+      imageStyle: 'thumbnail'
     };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds, imageStyle: 'thumbnail'});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).to.contain('pageflow_image_file_thumbnail_10');
+    expect(result).to.have.className('pageflow_image_file_thumbnail_10');
   });
 
   it('supports lazy thumbnail css class', () => {
@@ -39,19 +43,18 @@ describe('PageThumbnail', () => {
       },
       thumbnailFileId: 10
     };
-    const fileIds = {
-      'image_files': [10]
-    };
-
-    const pageThumbnail = renderComponent(PageThumbnail, {
+    const props = {
       page,
-      fileIds,
+      fileIds: {
+        'image_files': [10]
+      },
       imageStyle: 'thumbnail',
       lazy: true
-    });
-    const className = pageThumbnail.props.className;
+    };
 
-    expect(className).to.contain('lazy_pageflow_image_file_thumbnail_10');
+    const result = shallow(<PageThumbnail {...props} />);
+
+    expect(result).to.have.className('lazy_pageflow_image_file_thumbnail_10');
   });
 
   it('adds load_image class if loaded prop is present', () => {
@@ -67,20 +70,19 @@ describe('PageThumbnail', () => {
       },
       thumbnailFileId: 10
     };
-    const fileIds = {
-      'image_files': [10]
-    };
-
-    const pageThumbnail = renderComponent(PageThumbnail, {
+    const props = {
       page,
-      fileIds,
+      fileIds: {
+        'image_files': [10]
+      },
       imageStyle: 'thumbnail',
       lazy: true,
       loaded: true
-    });
-    const className = pageThumbnail.props.className;
+    };
 
-    expect(className).to.contain('load_image');
+    const result = shallow(<PageThumbnail {...props} />);
+
+    expect(result).to.have.className('load_image');
   });
 
   it('skips candidates whose attributes point to non existing files', () => {
@@ -102,15 +104,18 @@ describe('PageThumbnail', () => {
       thumbnailFileId: 10,
       videoId: 5
     };
-    const fileIds = {
-      'image_files': [],
-      'video_files': [5, 10],
+    const props = {
+      page,
+      fileIds: {
+        'image_files': [],
+        'video_files': [5, 10],
+      },
+      imageStyle: 'thumbnail'
     };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds, imageStyle: 'thumbnail'});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).to.contain('pageflow_video_file_thumbnail_5');
+    expect(result).to.have.className('pageflow_video_file_thumbnail_5');
   });
 
   it('skips candidates whose attributes are not defined', () => {
@@ -124,12 +129,14 @@ describe('PageThumbnail', () => {
         ]
       },
     };
-    const fileIds = {};
+    const props = {
+      page,
+      fileIds: {}
+    };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).not.to.contain('pageflow_image_file');
+    expect(result).not.to.have.className('pageflow_image_file');
   });
 
   it('prefers custom thumbnail id', () => {
@@ -145,14 +152,18 @@ describe('PageThumbnail', () => {
       },
       thumbnailFileId: 10
     };
-    const fileIds = {
-      'image_files': [10, 11]
+    const props = {
+      page,
+      fileIds: {
+        'image_files': [10, 11]
+      },
+      customThumbnailId: 11,
+      imageStyle: 'thumbnail'
     };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds, customThumbnailId: 11, imageStyle: 'thumbnail'});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).to.contain('pageflow_image_file_thumbnail_11');
+    expect(result).to.have.className('pageflow_image_file_thumbnail_11');
   });
 
   it('skips custom thumbnail id pointing to non existent file', () => {
@@ -161,14 +172,18 @@ describe('PageThumbnail', () => {
         thumbnailCandidates: []
       }
     };
-    const fileIds = {
-      'image_files': []
+    const props = {
+      page,
+      fileIds: {
+        'image_files': []
+      },
+      customThumbnailId: 11,
+      imageStyle: 'thumbnail'
     };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds, customThumbnailId: 11, imageStyle: 'thumbnail'});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).not.to.contain('pageflow_image_file_thumbnail_11');
+    expect(result).not.to.have.className('pageflow_image_file_thumbnail_11');
   });
 
   it('takes className prop', () => {
@@ -177,12 +192,15 @@ describe('PageThumbnail', () => {
         thumbnailCandidates: []
       }
     };
-    const fileIds = {};
+    const props = {
+      page,
+      fileIds: {},
+      className: 'custom'
+    };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds, className: 'custom'});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).to.contain('custom');
+    expect(result).to.have.className('custom');
   });
 
   it('sets page type modifier class name', () => {
@@ -192,22 +210,26 @@ describe('PageThumbnail', () => {
         thumbnailCandidates: []
       }
     };
-    const fileIds = {};
+    const props = {
+      page,
+      fileIds: {}
+    };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page, fileIds});
-    const className = pageThumbnail.props.className;
+    const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).to.contain('is_video');
+    expect(result).to.have.className('is_video');
   });
 
   context('when page is null', function() {
     it('sets is_dangling class name', () => {
-    const fileIds = {};
+      const props =  {
+        page: null,
+        fileIds: {}
+      };
 
-    const pageThumbnail = renderComponent(PageThumbnail, {page: null, fileIds});
-    const className = pageThumbnail.props.className;
+      const result = shallow(<PageThumbnail {...props} />);
 
-    expect(className).to.contain('is_dangling');
+      expect(result).to.have.className('is_dangling');
     });
   });
-})
+});
