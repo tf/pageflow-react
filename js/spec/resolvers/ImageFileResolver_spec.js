@@ -19,8 +19,6 @@ describe('ImageFileResolver', () => {
 
     var result = resolver.get({imageId: 2004}, seed);
 
-    expect(result).to.deep.eq({
-      ultra: 'https://somehost/dir/000/002/004/ultra.jpg'
-    });
+    expect(result.ultra).to.eq('https://somehost/dir/000/002/004/ultra.jpg');
   });
 });

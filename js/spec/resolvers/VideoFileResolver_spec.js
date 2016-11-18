@@ -20,9 +20,7 @@ describe('VideoFileResolver', () => {
 
     var result = resolver.get({videoId: 2004}, seed);
 
-    expect(result).to.deep.eq({
-      '4k': 'https://somehost/dir/000/002/004/4k.mp4',
-      poster: 'https://somehost/dir/000/002/004/poster.jpg'
-    });
+    expect(result['4k']).to.eq('https://somehost/dir/000/002/004/4k.mp4');
+    expect(result.poster).to.eq('https://somehost/dir/000/002/004/poster.jpg');
   });
 });
