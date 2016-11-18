@@ -9,10 +9,7 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'chai-sinon', 'phantomjs-shim'],
     files: [
       'node_modules/babel-polyfill/dist/polyfill.js',
-      'spec/*spec.js',
-      'spec/*spec.jsx',
-      'spec/**/*spec.js',
-      'spec/**/*spec.jsx'
+      'spec/index.js'
     ],
     exclude: [
       'flycheck_*.*',
@@ -20,10 +17,7 @@ module.exports = function (config) {
       '*/**/flycheck_*.*',
     ],
     preprocessors: {
-      'spec/*.js': ['webpack', 'sourcemap'],
-      'spec/*.jsx': ['webpack', 'sourcemap'],
-      'spec/**/*.js': ['webpack', 'sourcemap'],
-      'spec/**/*.jsx': ['webpack', 'sourcemap']
+      'spec/index.js': ['webpack', 'sourcemap']
     },
     reporters: ['dots'],
     plugins: [
