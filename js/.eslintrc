@@ -19,7 +19,19 @@
         "browser": true,
         "mocha": true
     },
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "settings": {
+      "import/resolver": {
+        "webpack": {
+          "config": "./webpack.karma.config.js"
+        }
+      }
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
     "parserOptions": {
       "sourceType": "module",
       "ecmaFeatures": {
@@ -28,7 +40,7 @@
           "modules": true
       }
     },
-    "plugins": [ "react" ],
+    "plugins": ["react", "import"],
     "globals": {
       "React": true,
       "pageflow": true,
