@@ -1,10 +1,13 @@
 import {Component} from 'react';
-import ReactDom from 'react-dom';
+import ReactDOM from 'react-dom';
+import classNames from 'classnames';
 
 class Scroller extends Component {
   render() {
     return (
-      <div ref="wrapper" className="scroller"><div>{this.props.children}</div></div>
+      <div ref="wrapper" className={classNames('scroller', this.props.className)}>
+        <div>{this.props.children}</div>
+      </div>
     );
   }
 
