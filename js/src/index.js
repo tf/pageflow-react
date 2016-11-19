@@ -1,14 +1,14 @@
 /*global module*/
 
-import createPage from './createPage';
-import createWidget from './createWidget';
-import createContainer from './createContainer';
-import createPageType from './createPageType';
-import createWidgetType from './createWidgetType';
-import withPageLifecycle from './withPageLifecycle';
-import withPageStateProp from './withPageStateProp';
-import resolve from './resolve';
-import mutate from './mutate';
+import createPage from './legacy/createPage';
+import createWidget from './legacy/createWidget';
+import createContainer from './legacy/createContainer';
+import createPageType from './legacy/createPageType';
+import createWidgetType from './legacy/createWidgetType';
+import withPageLifecycle from './legacy/withPageLifecycle';
+import withPageStateProp from './legacy/withPageStateProp';
+import resolve from './legacy/resolve';
+import mutate from './legacy/mutate';
 
 import classNames from 'classnames';
 
