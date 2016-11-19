@@ -5,8 +5,11 @@ import {shallow} from 'enzyme';
 
 describe('PageThumbnail', () => {
   it('has class names for thumbnail candidate', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -15,13 +18,9 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
-      fileIds: {
-        'image_files': [10]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10]
+      }),
       imageStyle: 'thumbnail'
     };
 
@@ -31,8 +30,11 @@ describe('PageThumbnail', () => {
   });
 
   it('supports lazy thumbnail css class', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType:{
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -41,13 +43,9 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
-      fileIds: {
-        'image_files': [10]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10]
+      }),
       imageStyle: 'thumbnail',
       lazy: true
     };
@@ -58,8 +56,11 @@ describe('PageThumbnail', () => {
   });
 
   it('adds load_image class if loaded prop is present', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -68,13 +69,9 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
-      fileIds: {
-        'image_files': [10]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10]
+      }),
       imageStyle: 'thumbnail',
       lazy: true,
       loaded: true
@@ -86,8 +83,12 @@ describe('PageThumbnail', () => {
   });
 
   it('skips candidates whose attributes point to non existing files', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10,
+        videoId: 5
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -101,15 +102,10 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10,
-      videoId: 5
-    };
-    const props = {
-      page,
-      fileIds: {
-        'image_files': [],
-        'video_files': [5, 10],
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [],
+        'videoFiles': [5, 10],
+      }),
       imageStyle: 'thumbnail'
     };
 
@@ -119,8 +115,9 @@ describe('PageThumbnail', () => {
   });
 
   it('skips candidates whose attributes are not defined', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {},
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -128,10 +125,7 @@ describe('PageThumbnail', () => {
             cssClassPrefix: 'pageflow_image_file'},
         ]
       },
-    };
-    const props = {
-      page,
-      fileIds: {}
+      fileExists: fileExistsFn({})
     };
 
     const result = shallow(<PageThumbnail {...props} />);
@@ -140,23 +134,23 @@ describe('PageThumbnail', () => {
   });
 
   it('prefers custom thumbnail id', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
-            collectionName: 'image_files',
+            collectionName: 'imageFiles',
             cssClassPrefix: 'pageflow_image_file'
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
-      fileIds: {
-        'image_files': [10, 11]
-      },
+
+      fileExists: fileExistsFn({
+        'imageFiles': [10, 11]
+      }),
       customThumbnailId: 11,
       imageStyle: 'thumbnail'
     };
@@ -167,16 +161,14 @@ describe('PageThumbnail', () => {
   });
 
   it('skips custom thumbnail id pointing to non existent file', () => {
-    const page = {
-      type: {
-        thumbnailCandidates: []
-      }
-    };
     const props = {
-      page,
-      fileIds: {
-        'image_files': []
+      page: {},
+      pageType: {
+        thumbnailCandidates: []
       },
+      fileExists: fileExistsFn({
+        'imageFiles': []
+      }),
       customThumbnailId: 11,
       imageStyle: 'thumbnail'
     };
@@ -187,14 +179,12 @@ describe('PageThumbnail', () => {
   });
 
   it('takes className prop', () => {
-    const page = {
-      type: {
-        thumbnailCandidates: []
-      }
-    };
     const props = {
-      page,
-      fileIds: {},
+      page: {},
+      pageType: {
+        thumbnailCandidates: []
+      },
+      fileExists: fileExistsFn({}),
       className: 'custom'
     };
 
@@ -204,15 +194,13 @@ describe('PageThumbnail', () => {
   });
 
   it('sets page type modifier class name', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {},
+      pageType: {
         name: 'video',
         thumbnailCandidates: []
-      }
-    };
-    const props = {
-      page,
-      fileIds: {}
+      },
+      fileExists: fileExistsFn({})
     };
 
     const result = shallow(<PageThumbnail {...props} />);
@@ -224,7 +212,8 @@ describe('PageThumbnail', () => {
     it('sets is_dangling class name', () => {
       const props =  {
         page: null,
-        fileIds: {}
+        pageType: null,
+        fileExists: fileExistsFn({})
       };
 
       const result = shallow(<PageThumbnail {...props} />);
@@ -232,4 +221,10 @@ describe('PageThumbnail', () => {
       expect(result).to.have.className('is_dangling');
     });
   });
+
+  function fileExistsFn(fileIds) {
+    return function(collectionName, id) {
+      return fileIds[collectionName] && fileIds[collectionName].includes(id);
+    };
+  }
 });

@@ -12,8 +12,6 @@ import PlayerControls from './PlayerControls';
 import CloseButton from './CloseButton';
 import MenuBar from './PlayerControls/MenuBar';
 
-import withPageLifecycle from '../withPageLifecycle';
-
 /**
  * @desc
  * Use to build pages that have a play button to hide the page's text
@@ -98,6 +96,7 @@ class PageWithInteractiveBackground extends React.Component {
     );
   }
 
+  // TODO
   pageWillActivate() {
     this.setState({didPlay: false, menuBarHiddenOnPhone: false});
   }
@@ -133,4 +132,4 @@ PageWithInteractiveBackground.contextTypes = {
   scrollIndicator: React.PropTypes.object
 };
 
-export default withPageLifecycle(PageWithInteractiveBackground);
+export default PageWithInteractiveBackground;
