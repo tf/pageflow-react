@@ -1,10 +1,9 @@
 import PageThumbnail from './PageThumbnail';
-import withPageStateProp from 'withPageStateProp';
+import {connectInPage} from 'pages';
+import {pageIsPreloaded} from 'pages/selectors';
+import {combine} from 'utils';
 
-function LazyLoadedPageThumbnail(props) {
-  return (
-    <PageThumbnail {...props} lazy={true} loaded={props.pageState.isPreloaded} />
-  );
-}
-
-export default withPageStateProp(LazyLoadedPageThumbnail);
+export default connectInPage(combine({
+  loaded: pageIsPreloaded(),
+  lazy: true
+}))(PageThumbnail);

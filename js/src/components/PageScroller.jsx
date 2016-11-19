@@ -1,7 +1,11 @@
 import React from 'react';
 
 import Scroller from './Scroller';
-import withPageLifecycle from '../withPageLifecycle.jsx';
+
+import {connectInPage} from 'pages';
+import {pageIsActivated} from 'pages/selectors';
+
+import {combine} from 'utils';
 
 /**
  * @desc Can be used inside
@@ -12,6 +16,15 @@ import withPageLifecycle from '../withPageLifecycle.jsx';
  * @since edge
  */
 class PageScroller extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.enabled && nextProps.enabled) {
+      this.refs.scroller.enable();
+    }
+    else if (this.props.enabled && !nextProps.enabled) {
+      this.refs.scroller.disable();
+    }
+  }
+
   getChildContext() {
     this._pageScroller = this._pageScroller || {
       disable: () => {
@@ -40,14 +53,6 @@ class PageScroller extends React.Component {
   pageWillActivate(options) {
     this.refs.scroller.resetPosition({position: options.position});
   }
-
-  pageDidActivate() {
-    this.refs.scroller.enable();
-  }
-
-  pageWillDeactivate() {
-    this.refs.scroller.disable();
-  }
 }
 
 PageScroller.propTypes = {
@@ -58,4 +63,6 @@ PageScroller.childContextTypes = {
   pageScroller: React.PropTypes.object
 };
 
-export default withPageLifecycle(PageScroller);
+export default connectInPage(combine({
+  enabled: pageIsActivated()
+}))(PageScroller);

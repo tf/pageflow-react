@@ -1,14 +1,16 @@
 import classNames from 'classnames';
 
-import createContainer from '../createContainer';
-import resolve from '../resolve';
-import camelize from '../utils/camelize';
+import {connectInPage} from 'pages';
+import {pageType} from 'pageTypes/selectors';
+import {fileIds} from 'files/selectors';
+
+import {combine, camelize} from 'utils';
 
 export function PageThumbnail(props) {
   return (
     <div className={className(props)} />
   );
-};
+}
 
 PageThumbnail.defaultProps = {
   imageStyle: 'navigation_thumbnail_large'
@@ -18,13 +20,13 @@ function className(props) {
   return classNames(
     {load_image: props.lazy && props.loaded},
     props.className,
-    typeClassName(props.page),
+    typeClassName(props.pageType),
     thumbnailClassName(props)
   );
 }
 
-function typeClassName(page) {
-  return page ? `is_${page.type.name}` : 'is_dangling';
+function typeClassName(pageType) {
+  return pageType ? `is_${pageType.name}` : 'is_dangling';
 }
 
 function thumbnailClassName(props) {
@@ -47,7 +49,7 @@ function firstPresentCandidate(props) {
 function thumbnailCandidates(props) {
   return [
     customThumbnailCandidate(props),
-    ...pageTypeCandidates(props.page)
+    ...pageTypeCandidates(props.pageType)
   ];
 }
 
@@ -56,11 +58,11 @@ function customThumbnailCandidate(props) {
     id: props.customThumbnailId,
     cssClassPrefix: 'pageflow_image_file',
     collectionName: 'image_files'
-  }
+  };
 }
 
-function pageTypeCandidates(page) {
-  return page ? page.type.thumbnailCandidates : [];
+function pageTypeCandidates(pageType) {
+  return pageType ? pageType.thumbnailCandidates : [];
 }
 
 function thumbnailCandidateClassName(props, candidate) {
@@ -76,11 +78,7 @@ function thumbnailCandidateId(props, candidate) {
   return 'id' in candidate ? candidate.id : props.page[camelize(candidate.attribute)];
 }
 
-export default createContainer(PageThumbnail, {
-  fragments: {
-    page: {
-      type: resolve('pageType')
-    },
-    fileIds: resolve('fileIds')
-  }
-});
+export default connectInPage(combine({
+  pageType: pageType({page: props => props.page}),
+  fileIds: fileIds('imageFiles')
+}))(PageThumbnail);

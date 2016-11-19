@@ -5,8 +5,11 @@ import {shallow} from 'enzyme';
 
 describe('PageThumbnail', () => {
   it('has class names for thumbnail candidate', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -15,10 +18,6 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
       fileIds: {
         'image_files': [10]
       },
@@ -31,8 +30,11 @@ describe('PageThumbnail', () => {
   });
 
   it('supports lazy thumbnail css class', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType:{
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -41,10 +43,6 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
       fileIds: {
         'image_files': [10]
       },
@@ -58,8 +56,11 @@ describe('PageThumbnail', () => {
   });
 
   it('adds load_image class if loaded prop is present', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -68,10 +69,6 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
       fileIds: {
         'image_files': [10]
       },
@@ -86,8 +83,12 @@ describe('PageThumbnail', () => {
   });
 
   it('skips candidates whose attributes point to non existing files', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10,
+        videoId: 5
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -101,11 +102,6 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10,
-      videoId: 5
-    };
-    const props = {
-      page,
       fileIds: {
         'image_files': [],
         'video_files': [5, 10],
@@ -119,8 +115,9 @@ describe('PageThumbnail', () => {
   });
 
   it('skips candidates whose attributes are not defined', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {},
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -128,9 +125,6 @@ describe('PageThumbnail', () => {
             cssClassPrefix: 'pageflow_image_file'},
         ]
       },
-    };
-    const props = {
-      page,
       fileIds: {}
     };
 
@@ -140,8 +134,11 @@ describe('PageThumbnail', () => {
   });
 
   it('prefers custom thumbnail id', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {
+        thumbnailFileId: 10
+      },
+      pageType: {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
@@ -150,10 +147,7 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      thumbnailFileId: 10
-    };
-    const props = {
-      page,
+
       fileIds: {
         'image_files': [10, 11]
       },
@@ -167,13 +161,11 @@ describe('PageThumbnail', () => {
   });
 
   it('skips custom thumbnail id pointing to non existent file', () => {
-    const page = {
-      type: {
-        thumbnailCandidates: []
-      }
-    };
     const props = {
-      page,
+      page: {},
+      pageType: {
+        thumbnailCandidates: []
+      },
       fileIds: {
         'image_files': []
       },
@@ -187,13 +179,11 @@ describe('PageThumbnail', () => {
   });
 
   it('takes className prop', () => {
-    const page = {
-      type: {
-        thumbnailCandidates: []
-      }
-    };
     const props = {
-      page,
+      page: {},
+      pageType: {
+        thumbnailCandidates: []
+      },
       fileIds: {},
       className: 'custom'
     };
@@ -204,14 +194,12 @@ describe('PageThumbnail', () => {
   });
 
   it('sets page type modifier class name', () => {
-    const page = {
-      type: {
+    const props = {
+      page: {},
+      pageType: {
         name: 'video',
         thumbnailCandidates: []
-      }
-    };
-    const props = {
-      page,
+      },
       fileIds: {}
     };
 
@@ -224,6 +212,7 @@ describe('PageThumbnail', () => {
     it('sets is_dangling class name', () => {
       const props =  {
         page: null,
+        pageType: null,
         fileIds: {}
       };
 
