@@ -1,5 +1,5 @@
 import Resolver from './Resolver';
-import resolve from 'resolve';
+import resolve from '../resolve';
 
 import createRecursiveResolver from './createRecursiveResolver';
 

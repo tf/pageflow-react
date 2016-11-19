@@ -1,7 +1,7 @@
 import Resolver from './Resolver';
 import createRecursiveResolver from './createRecursiveResolver';
 
-import camelize from '../utils/camelize';
+import camelize from 'utils/camelize';
 import Backbone from 'backbone';
 
 class BackboneModelResolver extends Resolver {

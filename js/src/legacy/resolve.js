@@ -1,4 +1,4 @@
-import registerDefaultResolvers from 'resolvers/registerDefaults';
+import registerDefaultResolvers from './resolvers/registerDefaults';
 
 const resolvers = {};
 

@@ -1,6 +1,6 @@
 import Resolver from './Resolver';
 
-import camelize from '../utils/camelize';
+import camelize from 'utils/camelize';
 
 /**
  * Turn a page type name given as `type` prop into an object providing

@@ -1,5 +1,5 @@
-import SeedResolver from 'resolvers/SeedResolver';
-import BackboneModelResolver from 'resolvers/BackboneModelResolver';
+import SeedResolver from './SeedResolver';
+import BackboneModelResolver from './BackboneModelResolver';
 
 /**
  * Creates a resolver that
