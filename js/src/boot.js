@@ -2,6 +2,9 @@ import {registry as pageTypeRegistry} from 'registerPageType';
 import createStore from 'createStore';
 import {createMiddleware} from 'collections/createSaga';
 
+import {reducers as chaptersReducers,
+        watchCollection as watchChaptersCollection} from 'chapters';
+
 import {createReducers as createPagesReducers,
         createSaga as createPagesSaga,
         watchCollection as watchPagesCollection,
@@ -29,6 +32,7 @@ export default function(pageflow) {
 
   const reducer = combineReducers({
     ...i18nReducers,
+    ...chaptersReducers,
     ...createPagesReducers(pageStateReducers),
     ...pageTypesReducers,
     ...createFilesReducers(collections.files || {}, seed['file_url_templates'])
@@ -47,6 +51,7 @@ export default function(pageflow) {
   initI18nFromSeed(seed, store.dispatch);
   initPageTypesFromSeed(seed, store.dispatch);
 
+  watchChaptersCollection(collections.chapters, store.dispatch);
   watchPagesCollection(collections.pages, store.dispatch);
   watchFilesCollections(collections.files || {}, store.dispatch);
 
