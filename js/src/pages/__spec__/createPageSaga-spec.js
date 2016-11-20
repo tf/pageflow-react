@@ -12,7 +12,7 @@ describe('createPageSaga', () => {
     it('does not run page type saga automatically', () => {
       const spy = sinon.spy();
       const videoPageTypeSaga = function*() { yield call(spy); };
-      const pageSaga = createPageSaga({video: videoPageTypeSaga});
+      const pageSaga = createPageSaga({pageTypeSagas: {video: videoPageTypeSaga}});
 
       runSagaInPageScope(pageSaga, {
         page: {attributes: {type: 'video'}}
@@ -24,7 +24,7 @@ describe('createPageSaga', () => {
     it('runs page type saga on enhance', () => {
       const spy = sinon.spy();
       const videoPageTypeSaga = function*() { yield call(spy); };
-      const pageSaga = createPageSaga({video: videoPageTypeSaga});
+      const pageSaga = createPageSaga({pageTypeSagas: {video: videoPageTypeSaga}});
 
       runSagaInPageScope(pageSaga, {
         page: {attributes: {type: 'video'}}
@@ -44,7 +44,7 @@ describe('createPageSaga', () => {
           spy();
         }
       };
-      const pageSaga = createPageSaga({video: videoPageTypeSaga});
+      const pageSaga = createPageSaga({pageTypeSagas: {video: videoPageTypeSaga}});
 
       runSagaInPageScope(pageSaga, {
         page: {attributes: {type: 'video'}}

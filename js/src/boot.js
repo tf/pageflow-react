@@ -36,7 +36,7 @@ export default function(pageflow) {
   }, {});
 
   const m = createMiddleware();
-  const saga = createPagesSaga(pageTypeSagas, m);
+  const saga = createPagesSaga(collections.pages, pageTypeSagas, m);
 
   const store = createStore(reducer, saga, m);
 
