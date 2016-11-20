@@ -13,6 +13,9 @@ export const PAGE_DID_RESIZE = 'PAGE_DID_RESIZE';
 export const ENHANCE = 'PAGE_ENHANCE';
 export const CLEANUP = 'PAGE_CLEANUP';
 
+export const UPDATE_PAGE_ATTRIBUTE = 'UPDATE_PAGE_ATTRIBUTE';
+export const UPDATE_PAGE_LINK = 'UPDATE_PAGE_LINK';
+
 export function pageWillActivate({id, position}) {
   return pageAction(PAGE_WILL_ACTIVATE, id, {position});
 }
@@ -55,6 +58,14 @@ export function enhance({id} = {}) {
 
 export function cleanup({id} = {}) {
   return pageAction(CLEANUP, id);
+}
+
+export function updatePageAttribute({id, name, value} = {}) {
+  return pageAction(UPDATE_PAGE_ATTRIBUTE, id, {name, value});
+}
+
+export function updatePageLink({pageId, linkId, name, value} = {}) {
+  return pageAction(UPDATE_PAGE_LINK, pageId, {linkId, name, value});
 }
 
 function pageAction(type, pageId, payload = {}) {

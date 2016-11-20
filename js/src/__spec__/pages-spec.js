@@ -3,7 +3,7 @@ import {createReducers as createPagesReducers,
         watchCollection,
         createPageType,
         connectInPage} from '../pages';
-import {enhance as pageEnhance} from '../pages/actions';
+import {enhance as pageEnhance, updatePageAttribute} from '../pages/actions';
 import {pageAttribute, pageState, pageIsActive, pageIsPrepared} from '../pages/selectors';
 
 import {createMiddleware} from 'collections/createSaga';
@@ -52,6 +52,25 @@ describe('pages', () => {
     expect(result).to.eq(true);
   });
 
+  it('provides actions to update pages', () => {
+    const pageModel = new Backbone.Model({perma_id: 5});
+    pageModel.configuration = new Backbone.Model();
+    const pages = new Backbone.Collection([pageModel]);
+    const m = createMiddleware();
+    const pagesSaga = createPagesSaga(pages, {}, m);
+    const store = createStore(combineReducers(createPagesReducers()), pagesSaga, m);
+
+    watchCollection(pages, store.dispatch);
+    
+    store.dispatch(updatePageAttribute({
+      id: 5,
+      name: 'title',
+      value: 'Updated'
+    }));
+
+    expect(pageModel.configuration.get('title')).to.eq('Updated');
+  });
+
   it('supports page type sagas', () => {
     const spy = sinon.spy();
 
@@ -59,12 +78,12 @@ describe('pages', () => {
       yield call(spy);
     }
 
-    const m = createMiddleware();
-    const pagesSaga = createPagesSaga({video: pageTypeSaga}, m);
-    const store = createStore(combineReducers(createPagesReducers()), pagesSaga, m);
     const pageModel = new Backbone.Model({perma_id: 5, template: 'video'});
     pageModel.configuration = new Backbone.Model();
     const pages = new Backbone.Collection([pageModel]);
+    const m = createMiddleware();
+    const pagesSaga = createPagesSaga(pages, {video: pageTypeSaga}, m);
+    const store = createStore(combineReducers(createPagesReducers()), pagesSaga, m);
 
     watchCollection(pages, store.dispatch);
 

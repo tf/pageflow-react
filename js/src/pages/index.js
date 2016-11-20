@@ -18,9 +18,9 @@ export function createReducers(pageStateReducers = {}) {
   };
 }
 
-export function createSaga(pageTypeSagas, middleware) {
+export function createSaga(pages, pageTypeSagas, middleware) {
   return createCollectionSaga('pages', {
-    itemSaga: createPageSaga(pageTypeSagas),
+    itemSaga: createPageSaga({pages, pageTypeSagas}),
     middleware
   });
 }

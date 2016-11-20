@@ -6,7 +6,7 @@ import sinon from 'sinon';
 
 export const RETURN_FROM_CALL = 'SAGA_HELPERS__RETURN_FROM_CALL';
 
-export default function(saga, {initialState = {}} = {}) {
+export default function(saga, {initialState = {}, args = []} = {}) {
   const putSpy = sinon.spy();
   const callStubs = [];
 
@@ -28,7 +28,7 @@ export default function(saga, {initialState = {}} = {}) {
   function ensureRunning() {
     if (!running) {
       running = true;
-      sagaMiddleware.run(saga);
+      sagaMiddleware.run(saga, ...args);
     }
   }
 
