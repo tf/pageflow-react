@@ -61,7 +61,7 @@ describe('pages', () => {
     const store = createStore(combineReducers(createPagesReducers()), pagesSaga, m);
 
     watchCollection(pages, store.dispatch);
-    
+
     store.dispatch(updatePageAttribute({
       id: 5,
       name: 'title',

@@ -16,6 +16,9 @@ import {createReducers as createPagesReducers,
 import {reducers as pageTypesReducers,
         initFromSeed as initPageTypesFromSeed} from 'pageTypes';
 
+import {reducers as currentReducers,
+        watch as watchCurrent} from 'current';
+
 import {createReducers as createFilesReducers,
         watchCollections as watchFilesCollections} from 'files';
 
@@ -35,6 +38,7 @@ export default function(pageflow) {
 
   const reducer = combineReducers({
     ...i18nReducers,
+    ...currentReducers,
     ...storylinesReducers,
     ...chaptersReducers,
     ...createPagesReducers(pageStateReducers),
@@ -59,6 +63,7 @@ export default function(pageflow) {
   watchChaptersCollection(collections.chapters, store.dispatch);
   watchPagesCollection(collections.pages, store.dispatch);
   watchFilesCollections(collections.files || {}, store.dispatch);
+  watchCurrent(pageflow.events, store.dispatch);
 
   if (pageflow.pageType) {
     pageTypeRegistry.forEach(({name, component}) =>
