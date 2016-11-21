@@ -13,6 +13,8 @@ import {createReducers as createPagesReducers,
         watchCollection as watchPagesCollection,
         createPageType} from 'pages';
 
+import {reducers as currentReducers} from 'current';
+
 import {createReducers as createFilesReducers,
         watchCollections as watchFilesCollections} from 'files';
 
@@ -32,6 +34,7 @@ export default function(pageflow) {
 
   const reducer = combineReducers({
     ...i18nReducers,
+    ...currentReducers,
     ...storylinesReducers,
     ...chaptersReducers,
     ...createPagesReducers(pageStateReducers),
