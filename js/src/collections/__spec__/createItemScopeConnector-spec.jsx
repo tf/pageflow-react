@@ -41,13 +41,48 @@ describe('createItemScopeConnector', () => {
       const Component = class extends React.Component {
         render() { return (<div />); }
 
-        trigger() { this.props.onTrigger(); }
+        componentDidMount() { this.props.onTrigger(); }
       };
       const Connected = connectInItemScope(
         null,
         dispatch => ({
-          onTrigger: dispatch({type: 'PAGE_ACTION', meta: {collectionName: 'pages'}})
+          onTrigger: () => dispatch({type: 'PAGE_ACTION', meta: {collectionName: 'pages'}})
         })
+      )(Component);
+      const reducer = sinon.spy();
+      const store = createStore(reducer);
+
+      mount(
+        <Provider store={store}>
+          <ItemScopeProvider itemId={5}>
+            <Connected />
+          </ItemScopeProvider>
+        </Provider>
+      );
+
+      expect(reducer).to.have.been.calledWith(undefined, sinon.match({
+        type: 'PAGE_ACTION',
+        meta: {
+          collectionName: 'pages',
+          itemId: 5
+        }
+      }));
+    });
+
+    it('sets meta info of item actions created by passed action creators', () => {
+      const connectInItemScope = createItemScopeConnector('pages');
+      const ItemScopeProvider = createItemScopeProvider('pages');
+
+      const Component = class extends React.Component {
+        render() { return (<div />); }
+
+        componentDidMount() { this.props.onTrigger(); }
+      };
+      const Connected = connectInItemScope(
+        null,
+        {
+          onTrigger: () => ({type: 'PAGE_ACTION', meta: {collectionName: 'pages'}})
+        }
       )(Component);
       const reducer = sinon.spy();
       const store = createStore(reducer);
