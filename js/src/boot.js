@@ -1,4 +1,6 @@
 import {registry as pageTypeRegistry} from 'registerPageType';
+import {registry as widgetTypeRegistry} from 'registerWidgetType';
+
 import createStore from 'createStore';
 import {createMiddleware} from 'collections/createSaga';
 
@@ -24,6 +26,8 @@ import {createReducers as createFilesReducers,
 
 import {reducers as i18nReducers,
         initFromSeed as initI18nFromSeed} from 'i18n';
+
+import {createWidgetType} from 'widgets';
 
 import {combineReducers} from 'redux';
 
@@ -68,6 +72,10 @@ export default function(pageflow) {
   if (pageflow.pageType) {
     pageTypeRegistry.forEach(({name, component}) =>
       pageflow.pageType.register(name, createPageType(component, store))
+    );
+
+    widgetTypeRegistry.forEach(({name, component}) =>
+      pageflow.widgetTypes.register(name, createWidgetType(component, store))
     );
   }
 
