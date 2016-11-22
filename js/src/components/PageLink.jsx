@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default class PageLink extends React.Component {
+import {connect} from 'react-redux';
+import {combine} from 'utils';
+import {pageAttributes} from 'pages/selectors';
+
+class PageLink extends React.Component {
   render() {
     return (
       <a href={this._href()}
@@ -30,6 +34,10 @@ export default class PageLink extends React.Component {
   }
 
   _targetPage() {
-    return this.props.pageLink.targetPage;
+    return this.props.targetPage;
   }
-};
+}
+
+export default connect(combine({
+  targetPage: pageAttributes({id: props => props.pageLink.targetPageId})
+}))(PageLink);
