@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 import {connectInPage} from 'pages';
 import {pageType} from 'pageTypes/selectors';
-import {fileIds} from 'files/selectors';
+import {fileExists} from 'files/selectors';
 
 import {combine, camelize} from 'utils';
 
@@ -40,9 +40,7 @@ function thumbnailClassName(props) {
 function firstPresentCandidate(props) {
   return thumbnailCandidates(props).find(candidate => {
     var id = thumbnailCandidateId(props, candidate);
-    var ids = props.fileIds[candidate.collectionName] || [];
-
-    return (id && ids.includes(id));
+    return props.fileExists(camelize(candidate.collectionName), id);
   });
 }
 
@@ -80,5 +78,5 @@ function thumbnailCandidateId(props, candidate) {
 
 export default connectInPage(combine({
   pageType: pageType({page: props => props.page}),
-  fileIds: fileIds('imageFiles')
+  fileExists: fileExists()
 }))(PageThumbnail);

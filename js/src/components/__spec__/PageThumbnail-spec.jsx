@@ -18,9 +18,9 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      fileIds: {
-        'image_files': [10]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10]
+      }),
       imageStyle: 'thumbnail'
     };
 
@@ -43,9 +43,9 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      fileIds: {
-        'image_files': [10]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10]
+      }),
       imageStyle: 'thumbnail',
       lazy: true
     };
@@ -69,9 +69,9 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      fileIds: {
-        'image_files': [10]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10]
+      }),
       imageStyle: 'thumbnail',
       lazy: true,
       loaded: true
@@ -102,10 +102,10 @@ describe('PageThumbnail', () => {
           }
         ]
       },
-      fileIds: {
-        'image_files': [],
-        'video_files': [5, 10],
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [],
+        'videoFiles': [5, 10],
+      }),
       imageStyle: 'thumbnail'
     };
 
@@ -125,7 +125,7 @@ describe('PageThumbnail', () => {
             cssClassPrefix: 'pageflow_image_file'},
         ]
       },
-      fileIds: {}
+      fileExists: fileExistsFn({})
     };
 
     const result = shallow(<PageThumbnail {...props} />);
@@ -142,15 +142,15 @@ describe('PageThumbnail', () => {
         thumbnailCandidates: [
           {
             attribute: 'thumbnailFileId',
-            collectionName: 'image_files',
+            collectionName: 'imageFiles',
             cssClassPrefix: 'pageflow_image_file'
           }
         ]
       },
 
-      fileIds: {
-        'image_files': [10, 11]
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': [10, 11]
+      }),
       customThumbnailId: 11,
       imageStyle: 'thumbnail'
     };
@@ -166,9 +166,9 @@ describe('PageThumbnail', () => {
       pageType: {
         thumbnailCandidates: []
       },
-      fileIds: {
-        'image_files': []
-      },
+      fileExists: fileExistsFn({
+        'imageFiles': []
+      }),
       customThumbnailId: 11,
       imageStyle: 'thumbnail'
     };
@@ -184,7 +184,7 @@ describe('PageThumbnail', () => {
       pageType: {
         thumbnailCandidates: []
       },
-      fileIds: {},
+      fileExists: fileExistsFn({}),
       className: 'custom'
     };
 
@@ -200,7 +200,7 @@ describe('PageThumbnail', () => {
         name: 'video',
         thumbnailCandidates: []
       },
-      fileIds: {}
+      fileExists: fileExistsFn({})
     };
 
     const result = shallow(<PageThumbnail {...props} />);
@@ -213,7 +213,7 @@ describe('PageThumbnail', () => {
       const props =  {
         page: null,
         pageType: null,
-        fileIds: {}
+        fileExists: fileExistsFn({})
       };
 
       const result = shallow(<PageThumbnail {...props} />);
@@ -221,4 +221,10 @@ describe('PageThumbnail', () => {
       expect(result).to.have.className('is_dangling');
     });
   });
+
+  function fileExistsFn(fileIds) {
+    return function(collectionName, id) {
+      return fileIds[collectionName] && fileIds[collectionName].includes(id);
+    };
+  }
 });
