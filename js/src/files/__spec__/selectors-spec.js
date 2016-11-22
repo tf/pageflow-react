@@ -1,4 +1,4 @@
-import {file, fileIds} from '../selectors';
+import {file, fileExists} from '../selectors';
 import {createReducers, watchCollections} from 'files';
 
 import {combineReducers} from 'redux';
@@ -36,14 +36,19 @@ describe('file', () => {
   });
 });
 
-describe('fileIds', () => {
-  it('returns ids of files of fiven type', () => {
-    const files = {'image_files': [{id: 1}, {id: 5}]};
+describe('fileExists', () => {
+  it('returns function to check if given file exists', () => {
+    const files = {
+      'image_files': [{id: 1}, {id: 5}],
+      'video_files': []
+    };
     const state = sample(files);
 
-    const result = fileIds('imageFiles')(state);
+    const fn = fileExists()(state);
 
-    expect(result).to.eql([1, 5]);
+    expect(fn('imageFiles', 5)).to.eq(true);
+    expect(fn('imageFiles', 6)).to.eq(false);
+    expect(fn('videoFiles', 5)).to.eq(false);
   });
 });
 

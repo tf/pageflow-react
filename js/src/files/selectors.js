@@ -1,6 +1,5 @@
 import {
-  createItemSelector as createCollectionItemSelector,
-  createItemsSelector as createCollectionItemsSelector
+  createItemSelector as createCollectionItemSelector
 } from 'collections';
 
 import expandUrls from './expandUrls';
@@ -13,11 +12,11 @@ export function file(collectionName, options) {
   };
 }
 
-export function fileIds(collectionName) {
-  const selector = createCollectionItemsSelector(collectionName);
-
+export function fileExists() {
   return function(state, props) {
-    const files = selector(state, props);
-    return Object.keys(files).map(key => parseInt(key, 10));
+    return function(collectionName, id) {
+      return id &&
+             !!createCollectionItemSelector(collectionName)({id})(state, props);
+    };
   };
 }
