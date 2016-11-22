@@ -8,18 +8,18 @@ import {expect} from 'support/chai';
 describe('pageType', () => {
   it('provides selector to get page type config of a page', () => {
     const store = createStore(combineReducers(reducers));
-    const videoPageTypeConfig = {};
+    const videoPageTypeConfig = {name: 'video'};
 
     initFromSeed({page_types: {video: videoPageTypeConfig}}, store.dispatch);
 
     const result = pageType({page: {type: 'video'}})(store.getState());
 
-    expect(result).to.eq(videoPageTypeConfig);
+    expect(result.name).to.eq('video');
   });
 
   it('allows to get page from selector props', () => {
     const store = createStore(combineReducers(reducers));
-    const videoPageTypeConfig = {};
+    const videoPageTypeConfig = {name: 'video'};
     const props = {
       targetPage: {type: 'video'}
     };
@@ -30,7 +30,7 @@ describe('pageType', () => {
       page: props => props.targetPage
     })(store.getState(), props);
 
-    expect(result).to.eq(videoPageTypeConfig);
+    expect(result.name).to.eq('video');
   });
 
   it('return null if page is null', () => {

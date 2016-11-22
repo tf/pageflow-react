@@ -13,6 +13,9 @@ import {createReducers as createPagesReducers,
         watchCollection as watchPagesCollection,
         createPageType} from 'pages';
 
+import {reducers as pageTypesReducers,
+        initFromSeed as initPageTypesFromSeed} from 'pageTypes';
+
 import {reducers as currentReducers} from 'current';
 
 import {createReducers as createFilesReducers,
@@ -38,6 +41,7 @@ export default function(pageflow) {
     ...storylinesReducers,
     ...chaptersReducers,
     ...createPagesReducers(pageStateReducers),
+    ...pageTypesReducers,
     ...createFilesReducers(collections.files || {}, seed['file_url_templates'])
   });
 
@@ -52,6 +56,7 @@ export default function(pageflow) {
   const store = createStore(reducer, saga, m);
 
   initI18nFromSeed(seed, store.dispatch);
+  initPageTypesFromSeed(seed, store.dispatch);
 
   watchStorylinesCollection(collections.storylines, store.dispatch);
   watchChaptersCollection(collections.chapters, store.dispatch);
