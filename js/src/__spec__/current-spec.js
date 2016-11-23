@@ -12,7 +12,7 @@ import {reducers as chaptersReducers,
 import {createReducers as createPagesReducers,
         watchCollection as watchPagesCollection} from 'pages';
 
-import {pageWillActivate} from 'pages/actions';
+import {pageChange} from 'current/actions';
 
 import createStore from 'createStore';
 
@@ -55,7 +55,7 @@ describe('current', () => {
         ]
       });
 
-      store.dispatch(pageWillActivate({id: 2}));
+      store.dispatch(pageChange({id: 2}));
 
       const result = currentParentPageAttributes()(store.getState());
 
@@ -75,7 +75,7 @@ describe('current', () => {
         ]
       });
 
-      store.dispatch(pageWillActivate({id: 1}));
+      store.dispatch(pageChange({id: 1}));
 
       const result = currentParentPageAttributes()(store.getState());
 
@@ -100,7 +100,7 @@ describe('current', () => {
         ]
       });
 
-      store.dispatch(pageWillActivate({id: 2}));
+      store.dispatch(pageChange({id: 2}));
 
       const result = currentParentChapterAttributes()(store.getState());
 
@@ -120,7 +120,7 @@ describe('current', () => {
         ]
       });
 
-      store.dispatch(pageWillActivate({id: 1}));
+      store.dispatch(pageChange({id: 1}));
 
       const result = currentParentChapterAttributes()(store.getState());
 

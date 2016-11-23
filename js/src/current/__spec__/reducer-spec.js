@@ -1,11 +1,11 @@
 import reducer from '../reducer';
-import {pageWillActivate} from 'pages/actions';
+import {pageChange} from '../actions';
 
 import {expect} from 'support/chai';
 
 describe('reducer', () => {
   it('updates id when page is activating', () => {
-    const result = reducer(5, pageWillActivate({id: 6}));
+    const result = reducer(5, pageChange({id: 6}));
 
     expect(result).to.eq(6);
   });

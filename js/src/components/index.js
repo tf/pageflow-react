@@ -1,11 +1,22 @@
-import PageWrapper from 'components/PageWrapper';
-import PageBackground from 'components/PageBackground';
-import PageBackgroundImage from 'components/PageBackgroundImage';
-import PageShadow from 'components/PageShadow';
-import PageForeground from 'components/PageForeground';
-import PageScroller from 'components/PageScroller';
-import PageHeader from 'components/PageHeader';
-import PageText from 'components/PageText';
+import PageWrapper from './PageWrapper';
+import PageBackground from './PageBackground';
+import PageBackgroundImage from './PageBackgroundImage';
+import PageShadow from './PageShadow';
+import PageContent from './PageContent';
+import PageForeground from './PageForeground';
+import PageScroller from './PageScroller';
+import PageHeader from './PageHeader';
+import PageText from './PageText';
+import PageLink from './PageLink';
+import PageThumbnail from './PageThumbnail';
+import LazyLoadedPageThumbnail from './LazyLoadedPageThumbnail';
+
+import PageWithInteractiveBackground from './PageWithInteractiveBackground';
+
+import Icon from './Icon';
+import editorOnly from './editorOnly';
+
+import Draggable from 'react-draggable';
 
 export {
   PageWrapper,
@@ -13,7 +24,18 @@ export {
   PageBackgroundImage,
   PageShadow,
   PageForeground,
+  PageContent,
   PageScroller,
   PageHeader,
-  PageText
+  PageText,
+  PageLink,
+  PageThumbnail,
+  LazyLoadedPageThumbnail,
+
+  PageWithInteractiveBackground,
+
+  Icon,
+  editorOnly,
+
+  Draggable
 };

@@ -8,13 +8,17 @@ export const SEEK_TO = 'MEDIA_SEEK_TO';
 export const SCRUBBING_STARTED = 'MEDIA_SCRUBBING_STARTED';
 export const SCRUBBING_ENDED = 'MEDIA_SCRUBBING_ENDED';
 
+export const PREBUFFER = 'MEDIA_PREBUFFER';
+export const PREBUFFERED = 'MEDIA_PREBUFFERED';
+export const ABORT_PREBUFFERING = 'MEDIA_ABORT_PREBUFFERING';
+
 export const META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
 export const PLAYING = 'MEDIA_PLAYING';
 export const PAUSED = 'MEDIA_PAUSED';
 export const TIME_UPDATE = 'MEDIA_TIME_UPDATE';
 export const ENDED = 'MEDIA_ENDED';
 
-export const UPDATE_HAS_BEEN_PLAYING_JUST_NOW = 'MEDIA_UPDATE_HAS_BEEN_PLAYING_JUST_NOW';
+export const HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT = 'MEDIA_HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT';
 
 export const USER_INTERACTION = 'MEDIA_USER_INTERACTION';
 export const USER_IDLE = 'MEDIA_USER_IDLE';
@@ -54,6 +58,25 @@ export function seekTo(time) {
 }
 
 
+export function prebuffer() {
+  return {
+    type: PREBUFFER
+  };
+}
+
+export function prebuffered() {
+  return {
+    type: PREBUFFERED
+  };
+}
+
+export function abortPrebuffering() {
+  return {
+    type: ABORT_PREBUFFERING
+  };
+}
+
+
 export function scrubbingStarted() {
   return pageAction(SCRUBBING_STARTED);
 }
@@ -88,10 +111,8 @@ export function ended() {
 }
 
 
-export function updateHasBeenPlayingJustNow(value) {
-  return pageAction(UPDATE_HAS_BEEN_PLAYING_JUST_NOW, {
-    value
-  });
+export function hasNotBeenPlayingForAMoment(value) {
+  return pageAction(HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT);
 }
 
 

@@ -3,7 +3,7 @@ import {
   FADE_OUT_AND_PAUSE, PLAY_AND_FADE_IN,
   SCRUBBING_STARTED, SCRUBBING_ENDED,
   META_DATA_LOADED, TIME_UPDATE, ENDED,
-  UPDATE_HAS_BEEN_PLAYING_JUST_NOW,
+  HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
   USER_INTERACTION, USER_IDLE,
   CONTROLS_ENTERED, CONTROLS_LEFT
 } from './actions';
@@ -27,6 +27,7 @@ export default function reducer(state = {}, action) {
       shouldPlay: true,
       isPlaying: true,
       hasPlayed: true,
+      hasBeenPlayingJustNow: true,
       fadeDuration: null
     };
   case PLAY_AND_FADE_IN:
@@ -35,6 +36,7 @@ export default function reducer(state = {}, action) {
       shouldPlay: true,
       isPlaying: true,
       hasPlayed: true,
+      hasBeenPlayingJustNow: true,
       fadeDuration: action.payload.fadeDuration
     };
   case PAUSE:
@@ -86,10 +88,10 @@ export default function reducer(state = {}, action) {
       isPlaying: false
     };
 
-  case UPDATE_HAS_BEEN_PLAYING_JUST_NOW:
+  case HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT:
     return {
       ...state,
-      hasBeenPlayingJustNow: action.payload.value
+      hasBeenPlayingJustNow: false
     };
 
   case USER_INTERACTION:

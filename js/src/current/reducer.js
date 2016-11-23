@@ -1,10 +1,9 @@
-import {PAGE_WILL_ACTIVATE} from 'pages/actions';
-import {getItemIdFromItemAction} from 'collections/itemActionHelpers';
+import {PAGE_CHANGE} from './actions';
 
 export default function(state = null, action) {
   switch (action.type) {
-  case PAGE_WILL_ACTIVATE:
-    return getItemIdFromItemAction(action);
+  case PAGE_CHANGE:
+    return action.payload.id;
   default:
     return state;
   }
