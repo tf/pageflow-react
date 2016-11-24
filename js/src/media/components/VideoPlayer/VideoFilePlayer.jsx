@@ -6,12 +6,16 @@ export default class VideoFilePlayer extends React.Component {
 
     const actions = props.playerActions;
 
+    this.updateAtmoSettings();
+
     this.bindPlayer = videoElement => {
       if (videoElement) {
         this.player = new pageflow.VideoPlayer(videoElement, {
           width: '100%',
           height: '100%',
 
+          volumeFading: true,
+          hooks: pageflow.atmo.createMediaPlayerHooks(this.atmoSettings),
 
           mediaEvents: true,
           context: this.context.mediaContext
@@ -32,6 +36,11 @@ export default class VideoFilePlayer extends React.Component {
         this.player = null;
       }
     };
+  }
+
+  updateAtmoSettings() {
+    this.atmoSettings = this.atmoSettings || {};
+    this.atmoSettings['atmo_during_playback'] = this.props.atmoDuringPlayback;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,6 +71,8 @@ export default class VideoFilePlayer extends React.Component {
     if (nextPlayerState.shouldSeekTo && nextPlayerState.shouldSeekTo !== playerState.shouldSeekTo) {
       this.player.currentTime(nextPlayerState.shouldSeekTo);
     }
+
+    this.updateAtmoSettings();
   }
 
   render() {

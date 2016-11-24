@@ -14,7 +14,8 @@ function VideoPlayer(props) {
 
         <VideoFilePlayer videoFile={props.videoFile}
                          playerState={props.playerState}
-                         playerActions={props.playerActions} />
+                         playerActions={props.playerActions}
+                         atmoDuringPlayback={props.atmoDuringPlayback} />
       </Positioner>
     );
   }
