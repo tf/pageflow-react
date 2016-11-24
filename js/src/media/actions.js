@@ -8,13 +8,23 @@ export const SEEK_TO = 'MEDIA_SEEK_TO';
 export const SCRUBBING_STARTED = 'MEDIA_SCRUBBING_STARTED';
 export const SCRUBBING_ENDED = 'MEDIA_SCRUBBING_ENDED';
 
+export const PREBUFFER = 'MEDIA_PREBUFFER';
+export const PREBUFFERED = 'MEDIA_PREBUFFERED';
+export const ABORT_PREBUFFERING = 'MEDIA_ABORT_PREBUFFERING';
+
+export const BUFFER_UNDERRUN = 'MEDIA_BUFFER_UNDERRUN';
+
 export const META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
 export const PLAYING = 'MEDIA_PLAYING';
 export const PAUSED = 'MEDIA_PAUSED';
 export const TIME_UPDATE = 'MEDIA_TIME_UPDATE';
 export const ENDED = 'MEDIA_ENDED';
 
-export const UPDATE_HAS_BEEN_PLAYING_JUST_NOW = 'MEDIA_UPDATE_HAS_BEEN_PLAYING_JUST_NOW';
+export const SEEKING = 'MEDIA_SEEKING';
+export const SEEKED = 'MEDIA_SEEKED';
+export const WAITING = 'MEDIA_WAITING';
+
+export const HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT = 'MEDIA_HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT';
 
 export const USER_INTERACTION = 'MEDIA_USER_INTERACTION';
 export const USER_IDLE = 'MEDIA_USER_IDLE';
@@ -54,6 +64,24 @@ export function seekTo(time) {
 }
 
 
+export function prebuffer() {
+  return pageAction(PREBUFFER);
+}
+
+export function prebuffered() {
+  return pageAction(PREBUFFERED);
+}
+
+export function abortPrebuffering() {
+  return pageAction(ABORT_PREBUFFERING);
+}
+
+
+export function bufferUnderrun() {
+  return pageAction(BUFFER_UNDERRUN);
+}
+
+
 export function scrubbingStarted() {
   return pageAction(SCRUBBING_STARTED);
 }
@@ -88,10 +116,21 @@ export function ended() {
 }
 
 
-export function updateHasBeenPlayingJustNow(value) {
-  return pageAction(UPDATE_HAS_BEEN_PLAYING_JUST_NOW, {
-    value
-  });
+export function seeking() {
+  return pageAction(SEEKING);
+}
+
+export function seeked() {
+  return pageAction(SEEKED);
+}
+
+export function waiting() {
+  return pageAction(WAITING);
+}
+
+
+export function hasNotBeenPlayingForAMoment(value) {
+  return pageAction(HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT);
 }
 
 

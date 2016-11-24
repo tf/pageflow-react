@@ -1,27 +1,32 @@
 import {takeEvery} from 'redux-saga';
-import {call} from 'redux-saga/effects';
+import {call, select} from 'redux-saga/effects';
 
-import {SHOULD_PLAY, SHOULD_PAUSE, DID_END} from '../actions';
+import {PLAY, PAUSE, ENDED} from '../actions';
+import {pageIsActive} from 'pages/selectors';
 
-export default function*(scrollIndicator) {
-  yield takeEvery([SHOULD_PLAY], function*() {
-    yield call(disable, scrollIndicator);
+export default function*() {
+  yield takeEvery(PLAY, function*() {
+    if (yield select(pageIsActive())) {
+      yield call(disable);
+    }
   });
 
-  yield takeEvery([SHOULD_PAUSE, DID_END], function*() {
-    yield call(enable, scrollIndicator);
+  yield takeEvery([PAUSE, ENDED], function*() {
+    if (yield select(pageIsActive())) {
+      yield call(enable);
+    }
   });
 }
 
-function disable(scrollIndicator) {
+function disable() {
   if (pageflow.widgets.isPresent('classic_player_controls')) {
-    scrollIndicator.scheduleDisable();
+    pageflow.events.trigger('scroll_indicator:schedule_disable');
   }
   else {
-    scrollIndicator.disable();
+    pageflow.events.trigger('scroll_indicator:disable');
   }
 }
 
-function enable(scrollIndicator) {
-  scrollIndicator.enable();
+function enable() {
+  pageflow.events.trigger('scroll_indicator:enable');
 }

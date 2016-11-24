@@ -1,17 +1,22 @@
 import togglePlaying from './togglePlaying';
-//import autoplay from './autoplay';
-//import disableScrollIndicatorDuringPlayback from './disableScrollIndicatorDuringPlayback';
-//import keepHasBeenPlayingJustNowUpdated from './keepHasBeenPlayingJustNowUpdated';
-//import keepUserIsIdleUpdated from './keepUserIsIdleUpdated';
+import handlePageDidActivate from './handlePageDidActivate';
+import disableScrollIndicatorDuringPlayback from './disableScrollIndicatorDuringPlayback';
+import hasNotBeenPlayingForAMoment from './hasNotBeenPlayingForAMoment';
+import idling from './idling';
 import fadeOutWhenPageWillDeactivate from './fadeOutWhenPageWillDeactivate';
+import goToNextPageOnEnd from './goToNextPageOnEnd';
 
-export default function*(scrollIndicator) {
+export default function*() {
   yield [
     togglePlaying(),
-//    autoplay(),
-  //  disableScrollIndicatorDuringPlayback(scrollIndicator),
-   // keepHasBeenPlayingJustNowUpdated(),
-   // keepUserIsIdleUpdated(),
+    handlePageDidActivate(),
+
+    disableScrollIndicatorDuringPlayback(),
+
+    hasNotBeenPlayingForAMoment(),
+    idling(),
+
+    goToNextPageOnEnd(),
     fadeOutWhenPageWillDeactivate()
   ];
 }

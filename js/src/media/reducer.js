@@ -1,9 +1,11 @@
 import {
   PLAY, PAUSE, SEEK_TO,
   FADE_OUT_AND_PAUSE, PLAY_AND_FADE_IN,
+  PREBUFFER, PREBUFFERED,
+  BUFFER_UNDERRUN, WAITING, SEEKING, SEEKED,
   SCRUBBING_STARTED, SCRUBBING_ENDED,
   META_DATA_LOADED, TIME_UPDATE, ENDED,
-  UPDATE_HAS_BEEN_PLAYING_JUST_NOW,
+  HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
   USER_INTERACTION, USER_IDLE,
   CONTROLS_ENTERED, CONTROLS_LEFT
 } from './actions';
@@ -27,7 +29,9 @@ export default function reducer(state = {}, action) {
       shouldPlay: true,
       isPlaying: true,
       hasPlayed: true,
-      fadeDuration: null
+      hasBeenPlayingJustNow: true,
+      fadeDuration: null,
+      isLoading: true
     };
   case PLAY_AND_FADE_IN:
     return {
@@ -35,27 +39,61 @@ export default function reducer(state = {}, action) {
       shouldPlay: true,
       isPlaying: true,
       hasPlayed: true,
-      fadeDuration: action.payload.fadeDuration
+      hasBeenPlayingJustNow: true,
+      fadeDuration: action.payload.fadeDuration,
+      isLoading: true
     };
   case PAUSE:
     return {
       ...state,
       shouldPlay: false,
       isPlaying: false,
-      fadeDuration: null
+      fadeDuration: null,
+      isLoading: false
     };
   case FADE_OUT_AND_PAUSE:
     return {
       ...state,
       shouldPlay: false,
       isPlaying: false,
-      fadeDuration: action.payload.fadeDuration
+      fadeDuration: action.payload.fadeDuration,
+      isLoading: false
     };
 
   case SEEK_TO:
     return {
       ...state,
       shouldSeekTo: action.payload.time
+    };
+
+  case PREBUFFER:
+    return {
+      ...state,
+      shouldPrebuffer: true
+    };
+  case PREBUFFERED:
+    return {
+      ...state,
+      shouldPrebuffer: false
+    };
+
+  case WAITING:
+  case BUFFER_UNDERRUN:
+    return {
+      ...state,
+      isLoading: true
+    };
+  case SEEKING:
+    return {
+      ...state,
+      isSeeking: true,
+      isLoading: true
+    };
+  case SEEKED:
+    return {
+      ...state,
+      isSeeking: false,
+      isLoading: false
     };
 
   case SCRUBBING_STARTED:
@@ -77,7 +115,8 @@ export default function reducer(state = {}, action) {
   case TIME_UPDATE:
     return {
       ...state,
-      currentTime: action.payload.currentTime
+      currentTime: action.payload.currentTime,
+      isLoading: false
     };
   case ENDED:
     return {
@@ -86,10 +125,10 @@ export default function reducer(state = {}, action) {
       isPlaying: false
     };
 
-  case UPDATE_HAS_BEEN_PLAYING_JUST_NOW:
+  case HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT:
     return {
       ...state,
-      hasBeenPlayingJustNow: action.payload.value
+      hasBeenPlayingJustNow: false
     };
 
   case USER_INTERACTION:
