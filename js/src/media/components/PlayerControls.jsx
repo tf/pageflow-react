@@ -16,6 +16,7 @@ export default function MediaPlayerControls(props) {
                     currentTime={playerState.currentTime}
                     duration={playerState.duration}
                     isScrubbing={playerState.isScrubbing}
+                    isSeeking={playerState.isSeeking}
 
                     onPlayButtonClick={actions.togglePlaying}
                     onSeekStart={actions.scrubbingStarted}

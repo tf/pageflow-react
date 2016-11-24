@@ -1,11 +1,12 @@
 import React from 'react';
 import {DraggableCore} from 'react-draggable';
 
-export default class extends React.Component {
+export default class ProgressSlider extends React.Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
+      isScrubbing: false,
       scrubbingAt: false
     };
 
@@ -19,7 +20,7 @@ export default class extends React.Component {
 
     this.handleStop = (mouseEvent, dragEvent) => {
       this.handleDrag(mouseEvent, dragEvent);
-      this.setState({scrubbingAt: false});
+      this.setState({isScrubbing: false});
     };
 
     this.handleDrag = (mouseEvent, dragEvent) => {
@@ -27,7 +28,7 @@ export default class extends React.Component {
         const fraction = Math.max(0, Math.min(1, dragEvent.x / this.progressHolder.clientWidth));
         const scrubbingAt = fraction * this.props.duration;
 
-        this.setState({scrubbingAt});
+        this.setState({scrubbingAt, isScrubbing: true});
         this.props.onSeek(scrubbingAt);
       }
     };
@@ -61,7 +62,7 @@ export default class extends React.Component {
   }
 
   playProgress() {
-    const currentTime = this.state.scrubbingAt !== false ? this.state.scrubbingAt : this.props.currentTime;
+    const currentTime = (this.props.isSeeking || this.state.isScrubbing) ? this.state.scrubbingAt : this.props.currentTime;
     return this.props.duration > 0 ? (currentTime / this.props.duration) : 0;
   }
 }

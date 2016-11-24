@@ -29,7 +29,8 @@ export default function MediaPage(props) {
         <PageShadow page={page} className={playerStateClassNames(playerState)} />
       </PageBackground>
 
-      <PageForeground trackUserInteraction={true}
+      <PageForeground onInteraction={() => playerState.userIsIdle &&
+                                         props.playerActions.userInteraction()}
                       classNames={playerStateClassNames(playerState)}>
 
 
