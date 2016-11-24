@@ -14,12 +14,7 @@ export default function(saga, {initialState = {}, args = []} = {}) {
     sagaMonitor: createSagaMonitor(callStubs, putSpy)
   });
 
-  const reducer = (state, action) => {
-    putSpy(action);
-    return state;
-  };
-
-  const store = createReduxStore(reducer,
+  const store = createReduxStore(state => state,
                                  initialState,
                                  applyMiddleware(sagaMiddleware));
 
@@ -47,6 +42,16 @@ export default function(saga, {initialState = {}, args = []} = {}) {
           (action.type == RETURN_FROM_CALL && action.payload.fn == fn)
         );
         return action.payload.result;
+      }});
+
+      return this;
+    },
+
+    stubCall(fn, result) {
+      ensureNotYetRunning();
+
+      callStubs.push({calledFn: fn, stubFn: function() {
+        return result;
       }});
 
       return this;
@@ -101,6 +106,8 @@ function createSagaMonitor(callStubs, putSpy) {
 
     effectCancelled() {},
 
-    actionDispatched() {}
+    actionDispatched(action) {
+      putSpy(action);
+    }
   };
 }
