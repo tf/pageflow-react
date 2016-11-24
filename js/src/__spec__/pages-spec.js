@@ -100,8 +100,7 @@ describe('pages', () => {
       pageModel.configuration = new Backbone.Model();
       const pages = new Backbone.Collection([pageModel]);
       const pageType = createPageType(() => '', store);
-      const element = jQuery(document.createElement('div'));
-      element.attr('id', '5');
+      const element = pageElement({id: 5});
 
       watchCollection(pages, store.dispatch);
 
@@ -137,7 +136,7 @@ describe('pages', () => {
         }))(Component);
 
         const pageType = createPageType(ComponentConntectedToPage, this.store);
-        const element = jQuery('<div id="5" />');
+        const element = pageElement({id: 5});
 
         pageType.enhance(element);
         pageType.prepare(element);
@@ -183,7 +182,7 @@ describe('pages', () => {
         )(Component);
 
         const pageType = createPageType(ComponentConntectedToPage, this.store);
-        const element = jQuery('<div id="5" />');
+        const element = pageElement({id: 5});
 
         pageType.enhance(element);
 
@@ -191,4 +190,12 @@ describe('pages', () => {
       });
     });
   });
+
+  function pageElement({id}) {
+    const element = jQuery(document.createElement('div'));
+    element.attr('id', id);
+    element.page = function() {};
+
+    return element;
+  }
 });

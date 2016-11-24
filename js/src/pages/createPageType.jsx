@@ -2,6 +2,7 @@ import {createItemScopeProvider} from 'collections';
 import {pageDidPreload, pageDidPrepare, pageScheduleUnprepare,
         pageWillActivate, pageDidActivate, pageWillDeactivate, pageDidDeactivate,
         pageDidResize, enhance, cleanup} from './actions';
+import MediaContextProvider from './MediaContextProvider';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -17,7 +18,9 @@ export default function(Component, store) {
       ReactDOM.render(
         <Provider store={store}>
           <PageProvider itemId={pageId(pageElement)}>
-            <Component />
+            <MediaContextProvider mediaContext={{page: pageElement.page('instance')}}>
+              <Component />
+            </MediaContextProvider>
           </PageProvider>
         </Provider>,
         pageElement[0]

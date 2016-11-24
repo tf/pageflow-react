@@ -16,7 +16,7 @@ describe('createPageType', () => {
       };
       const store = createStore(state => state);
       const pageType = createPageType(Component, store);
-      const element = jQuery(document.createElement('div'));
+      const element = pageElement();
 
       pageType.enhance(element);
 
@@ -29,7 +29,7 @@ describe('createPageType', () => {
       });
       const store = createStore(state => state, {text: 'Text from store'});
       const pageType = createPageType(Component, store);
-      const element = jQuery(document.createElement('div'));
+      const element = pageElement();
 
       pageType.enhance(element);
 
@@ -54,7 +54,7 @@ describe('createPageType', () => {
         const reducer = sinon.spy();
         const store = createStore(reducer);
         const pageType = createPageType(Component, store);
-        const element = jQuery(document.createElement('div'));
+        const element = pageElement();
         const configuration = {};
         const options = {};
 
@@ -77,7 +77,7 @@ describe('createPageType', () => {
       const reducer = sinon.spy();
       const store = createStore(reducer);
       const pageType = createPageType(Component, store);
-      const element = jQuery(document.createElement('div'));
+      const element = pageElement();
       const configuration = {};
       const options = {position: 'bottom'};
 
@@ -98,7 +98,7 @@ describe('createPageType', () => {
       };
       const store = createStore(state => state);
       const pageType = createPageType(Component, store);
-      const element = jQuery(document.createElement('div'));
+      const element = pageElement();
 
       pageType.enhance(element);
       pageType.cleanup(element);
@@ -106,4 +106,11 @@ describe('createPageType', () => {
       expect(element.html()).to.eql('');
     });
   });
+
+  function pageElement() {
+    const element = jQuery(document.createElement('div'));
+    element.page = function() {};
+
+    return element;
+  }
 });

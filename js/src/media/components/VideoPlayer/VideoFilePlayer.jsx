@@ -12,7 +12,9 @@ export default class VideoFilePlayer extends React.Component {
           width: '100%',
           height: '100%',
 
-          volumeFading: true
+
+          mediaEvents: true,
+          context: this.context.mediaContext
         });
 
         this.player.on('loadedmetadata', () => actions.metaDataLoaded({
@@ -74,3 +76,7 @@ export default class VideoFilePlayer extends React.Component {
     );
   }
 }
+
+VideoFilePlayer.contextTypes = {
+  mediaContext: React.PropTypes.object
+};
