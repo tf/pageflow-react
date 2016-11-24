@@ -1,12 +1,16 @@
 import classNames from 'classnames';
 
-export default function(props) {
+export default function TimeDisplay(props) {
   return (
     <div className={classNames(props.className, 'vjs-current-time')}>
       {format(props.value)}
     </div>
   );
 }
+
+TimeDisplay.defaultProps = {
+  value: 0
+};
 
 function format(value) {
   const seconds = Math.floor(value) % 60;

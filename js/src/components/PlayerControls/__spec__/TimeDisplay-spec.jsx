@@ -27,4 +27,10 @@ describe('TimeDisplay', () => {
 
     expect(result).to.have.text('1:05:00');
   });
+
+  it('displays 0:00 if value is undefined', () => {
+    const result = shallow(<TimeDisplay value={undefined} />);
+
+    expect(result).to.have.text('0:00');
+  });
 });

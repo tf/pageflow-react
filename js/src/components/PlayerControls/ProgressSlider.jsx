@@ -66,6 +66,10 @@ export default class extends React.Component {
   }
 }
 
+ProgressSlider.defaultProps = {
+  currentTime: 0
+};
+
 function toPercent(value) {
   return value > 0 ? (value * 100) + '%' : 0;
 }
