@@ -3,9 +3,16 @@ export default function(collectionName, file, urlTemplates) {
     return null;
   }
 
-  file.urls = file.variants.reduce((result, variant) => {
+  if (!urlTemplates[collectionName]) {
+    throw new Error(`No file url templates found for ${collectionName}`);
+  }
+
+  const variants = file.variants ||
+                   Object.keys(urlTemplates[collectionName]);
+
+  file.urls = variants.reduce((result, variant) => {
     const url = getFileUrl(collectionName,
-                           file.id,
+                           file,
                            variant,
                            urlTemplates);
 
@@ -19,17 +26,15 @@ export default function(collectionName, file, urlTemplates) {
   return file;
 }
 
-function getFileUrl(collectionName, fileId, quality, urlTemplates) {
+function getFileUrl(collectionName, file, quality, urlTemplates) {
   const templates = urlTemplates[collectionName];
-
-  if (!templates) {
-    throw new Error(`No file url templates found for ${collectionName}`);
-  }
 
   const template = templates[quality];
 
   if (template) {
-    return template.replace(':id_partition', idPartition(fileId));
+    return template
+      .replace(':id_partition', idPartition(file.id))
+      .replace(':basename', file.basename);
   }
 }
 

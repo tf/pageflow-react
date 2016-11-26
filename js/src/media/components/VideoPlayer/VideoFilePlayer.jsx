@@ -90,15 +90,32 @@ export default class VideoFilePlayer extends React.Component {
   }
 
   render() {
-    const videoFile = this.props.videoFile;
-
     return (
       <video ref={this.bindPlayer} preload="auto" style={this.props.style}>
-        <source type="video/webm" src={`${videoFile.urls.webm_medium}?u=1`} />
-        <source type="application/x-mpegURL" src={`${videoFile.urls['hls-playlist']}?u=1`} />
-        <source type="video/mp4" src={`${videoFile.urls.medium}?u=1`} />
+        {this.renderSources()}
+        {this.renderTextTracks()}
       </video>
     );
+  }
+
+  renderSources() {
+    const videoFile = this.props.videoFile;
+
+    return [
+      <source key="webm" type="video/webm" src={`${videoFile.urls.webm_medium}?u=1`} />,
+      <source key="hls" type="application/x-mpegURL" src={`${videoFile.urls['hls-playlist']}?u=1`} />,
+      <source key="mp4" type="video/mp4" src={`${videoFile.urls.medium}?u=1`} />
+    ];
+  }
+
+  renderTextTracks() {
+    return this.props.textTrackFiles.map(textTrackFile => (
+      <track key={textTrackFile.id}
+             kind={textTrackFile.kind}
+             label={textTrackFile.label}
+             srcLang={textTrackFile.srclang}
+             src={textTrackFile.urls.original} />
+    ));
   }
 }
 

@@ -1,7 +1,7 @@
 import VideoFilePlayer from './VideoFilePlayer';
 import Positioner from './Positioner';
 
-import {file} from 'files/selectors';
+import {file, nestedFiles} from 'files/selectors';
 
 import {combine} from 'utils';
 import {connect} from 'react-redux';
@@ -13,6 +13,7 @@ function VideoPlayer(props) {
                   position={props.position}>
 
         <VideoFilePlayer videoFile={props.videoFile}
+                         textTrackFiles={props.textTrackFiles}
                          playerState={props.playerState}
                          playerActions={props.playerActions}
                          atmoDuringPlayback={props.atmoDuringPlayback} />
@@ -24,8 +25,13 @@ function VideoPlayer(props) {
   }
 }
 
+const videoFile = file('videoFiles', {id: props => props.videoFileId});
+
 export default connect(
   combine({
-    videoFile: file('videoFiles', {id: props => props.videoFileId})
+    videoFile,
+    textTrackFiles: nestedFiles('textTrackFiles', {
+      parent: videoFile
+    })
   })
 )(VideoPlayer);

@@ -5,7 +5,10 @@ import {
 
 import {camelize} from 'utils';
 
-export function createReducers(fileCollections, fileUrlTemplates = {}) {
+export function createReducers(fileCollections, {
+  fileUrlTemplates = {},
+  modelTypes = {}
+}) {
   const reducers = Object.keys(fileCollections).reduce((result, collectionName) => {
     collectionName = camelize(collectionName);
     result[collectionName] = createCollectionReducer(collectionName);
@@ -14,6 +17,9 @@ export function createReducers(fileCollections, fileUrlTemplates = {}) {
 
   fileUrlTemplates = camelize.keys(fileUrlTemplates);
   reducers.fileUrlTemplates = (state => fileUrlTemplates);
+
+  modelTypes = camelize.keys(modelTypes);
+  reducers.modelTypes = (state => modelTypes);
 
   return reducers;
 }
@@ -25,7 +31,7 @@ export function watchCollections(fileCollections, dispatch) {
       collectionName: camelize(collectionName),
       dispatch,
 
-      attributes: ['id', 'variants'],
+      attributes: ['id', 'basename', 'variants', 'parent_file_id', 'parent_file_model_type'],
       includeConfiguration: true
     });
   });
