@@ -47,7 +47,10 @@ export default function(pageflow) {
     ...chaptersReducers,
     ...createPagesReducers(pageStateReducers),
     ...pageTypesReducers,
-    ...createFilesReducers(collections.files || {}, seed['file_url_templates'])
+    ...createFilesReducers(collections.files || {}, {
+      fileUrlTemplates: seed['file_url_templates'],
+      modelTypes: seed['file_model_types']
+    })
   });
 
   const pageTypeSagas = pageTypeRegistry.reduce((result, {name, saga}) => {

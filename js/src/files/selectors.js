@@ -3,12 +3,18 @@ import {
 } from 'collections';
 
 import expandUrls from './expandUrls';
+import addModelType from './addModelType';
 
 export function file(collectionName, options) {
   const selector = createCollectionItemSelector(collectionName)(options);
 
   return function(state, props) {
-    return expandUrls(collectionName, selector(state, props), state.fileUrlTemplates);
+    return addModelType(
+      collectionName,
+      expandUrls(collectionName,
+                 selector(state, props),
+                 state.fileUrlTemplates),
+      state.modelTypes);
   };
 }
 
