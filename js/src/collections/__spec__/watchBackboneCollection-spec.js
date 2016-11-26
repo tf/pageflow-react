@@ -90,7 +90,7 @@ describe('watchBackboneCollection', () => {
     }));
   });
 
-  it('dispatches change action when mapped attribute changes', () => {
+  it('dispatches change action when used attribute changes', () => {
     const model = new Backbone.Model();
     const collection = new Backbone.Collection([model]);
     const dispatch = sinon.spy();
@@ -109,6 +109,47 @@ describe('watchBackboneCollection', () => {
       payload: {
         attributes: {title: 'changed'}
       }
+    }));
+  });
+
+  it('dispatches change action when attribute with mapped name changes', () => {
+    const model = new Backbone.Model();
+    const collection = new Backbone.Collection([model]);
+    const dispatch = sinon.spy();
+
+    watchBackboneCollection({
+      collectionName: 'posts',
+      collection,
+      dispatch,
+      attributes: [{fullTitle: 'full_title'}]
+    });
+
+    model.set('full_title', 'changed');
+
+    expect(dispatch).to.have.been.calledWith(sinon.match({
+      type: CHANGE,
+      payload: {
+        attributes: {fullTitle: 'changed'}
+      }
+    }));
+  });
+
+  it('does not dispatch change action when unused attribute changes', () => {
+    const model = new Backbone.Model();
+    const collection = new Backbone.Collection([model]);
+    const dispatch = sinon.spy();
+
+    watchBackboneCollection({
+      collectionName: 'posts',
+      collection,
+      dispatch,
+      attributes: ['title']
+    });
+
+    model.set('other', 'changed');
+
+    expect(dispatch).not.to.have.been.calledWith(sinon.match({
+      type: CHANGE
     }));
   });
 

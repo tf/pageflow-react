@@ -40,6 +40,22 @@ export default function({
   }
 
   function changeEvents() {
-    return includeConfiguration ? 'change change:configuration' : 'change';
+    const watchedAttributes = attributes.map(attribute =>
+      typeof attribute == 'object' ? mappedAttributeSource(attribute) : attribute
+    );
+
+    const attributeChangeEvents = watchedAttributes.map(attribute =>
+      `change:${attribute}`
+    );
+
+    if (includeConfiguration) {
+      attributeChangeEvents.push('change:configuration');
+    }
+
+    return attributeChangeEvents.join(' ');
+  }
+
+  function mappedAttributeSource(attribute) {
+    return attribute[Object.keys(attribute)[0]];
   }
 }
