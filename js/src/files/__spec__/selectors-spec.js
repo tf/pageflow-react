@@ -1,4 +1,4 @@
-import {file, fileExists} from '../selectors';
+import {file, nestedFiles, fileExists} from '../selectors';
 import {createReducers, watchCollections} from 'files';
 
 import {combineReducers} from 'redux';
@@ -90,6 +90,75 @@ describe('file', () => {
     expect(result).to.have.deep.property('urls.high');
   });
 });
+
+describe('nestedFiles', () => {
+  it('selects nested files of given parent', () => {
+    const files = {
+      'video_files': [{id: 2004, variants: ['unknown']}],
+      'text_track_files': [
+        {
+          id: 3001,
+          parent_file_id: 2004,
+          parent_file_model_type: 'Pageflow::VideoFile'
+        }
+      ]
+    };
+    const modelTypes = {
+      'video_files': 'Pageflow::VideoFile',
+      'text_track_files': 'Pageflow::TextTrackFile'
+    };
+    const state = sample({files, modelTypes});
+
+    const result = nestedFiles('textTrackFiles', {
+      parent: file('videoFiles', {id: 2004})
+    })(state);
+
+    expect(result).to.have.deep.property('[0].id', 3001);
+  });
+
+  it('selects empty array if parent is undefined', () => {
+    const files = {
+      'video_files': [{id: 2004, variants: ['unknown']}],
+      'text_track_files': [
+        {
+          id: 3001,
+          parent_file_id: 2004,
+          parent_file_model_type: 'Pageflow::VideoFile'
+        }
+      ]
+    };
+    const state = sample({files});
+
+    const result = nestedFiles('textTrackFiles', {
+      parent: file('videoFiles', {id: 'not_there'})
+    })(state);
+
+    expect(result).to.eql([]);
+  });
+
+  it('expands urls in files', () => {
+    const files = {
+      'video_files': [{id: 2004, variants: ['unknown']}],
+      'text_track_files': [
+        {
+          id: 3001,
+          parent_file_id: 2004,
+          parent_file_model_type: 'Pageflow::VideoFile'
+        }
+      ]
+    };
+    const fileUrlTemplates = {
+      'video_files': {},
+      'text_track_files': {'original': 'http://example.com/:id_partition/file.vtt'}
+    };
+    const state = sample({files, fileUrlTemplates});
+
+    const result = nestedFiles('textTrackFiles', {
+      parent: file('videoFiles', {id: 2004})
+    })(state);
+
+    expect(result).to.have.deep.property('[0].urls.original');
+  });
 });
 
 describe('fileExists', () => {
