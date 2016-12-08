@@ -8,7 +8,7 @@ import CurrentTime from './CurrentTime';
 import TimeDivider from './TimeDivider';
 import Duration from './Duration';
 import ProgressSlider from './ProgressSlider';
-import QualityMenu from './QualityMenu';
+import MenuBar from './MenuBar';
 
 function PlayerControls(props) {
   return (
@@ -29,10 +29,14 @@ function PlayerControls(props) {
         <div className="control_bar_text">
           {props.controlBarText}
         </div>
-        <QualityMenu buttonTitle={props.qualityMenuButtonTitle}
-                     items={props.qualityMenuItems}
-                     onItemClick={props.onQualityMenuItemClick} />
       </div>
+
+      <MenuBar qualityMenuButtonTitle={props.qualityMenuButtonTitle}
+               qualityMenuItems={props.qualityMenuItems}
+               onQualityMenuItemClick={props.onQualityMenuItemClick}
+               textTracksMenuButtonTitle={props.textTracksMenuButtonTitle}
+               textTracksMenuItems={props.textTracksMenuItems}
+               onTextTracksMenuItemClick={props.onTextTracksMenuItemClick} />
     </Container>
   );
 }
@@ -71,13 +75,7 @@ PlayerControls.propTypes = {
 
   infoBox: React.PropTypes.object,
 
-  qualityMenuButtonTitle: React.PropTypes.string,
-
-  qualityMenuItems: QualityMenu.propTypes.items,
-
-  onPlayButtonClick: React.PropTypes.func,
-
-  onQualityMenuItemClick: React.PropTypes.func,
+  onPlayButtonClick: React.PropTypes.func
 };
 
 export default PlayerControls;

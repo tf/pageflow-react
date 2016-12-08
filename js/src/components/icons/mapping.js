@@ -20,5 +20,6 @@ import icons from '../icons';
  */
 export default {
   mediaQuality: icons.Gear,
+  textTracks: icons.Subtitles,
   activeMenuItem: icons.Checkmark,
 };

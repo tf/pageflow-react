@@ -65,7 +65,10 @@ MenuBarButton.propTypes = {
   subMenuItems: React.PropTypes.arrayOf(
     React.PropTypes.shape({
       label: React.PropTypes.node.isRequired,
-      value: React.PropTypes.string.isRequired,
+      value: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number
+      ]).isRequired,
       annotation: React.PropTypes.string,
       active: React.PropTypes.bool,
     })

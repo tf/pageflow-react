@@ -1,15 +1,21 @@
 import classNames from 'classnames';
 
 import QualityMenu from './QualityMenu';
+import TextTracksMenu from './TextTracksMenu';
 import MenuBarButton from './MenuBarButton';
 
 export default function MenuBar(props) {
   return (
     <div className={className(props)}>
       {renderAdditionalButtons(props)}
+
       <QualityMenu buttonTitle={props.qualityMenuButtonTitle}
                    items={props.qualityMenuItems}
                    onItemClick={props.onQualityMenuItemClick} />
+
+      <TextTracksMenu buttonTitle={props.textTracksMenuButtonTitle}
+                      items={props.textTracksMenuItems}
+                      onItemClick={props.onTextTracksMenuItemClick} />
     </div>
   );
 }
@@ -25,7 +31,11 @@ MenuBar.propTypes = {
   onAdditionalButtonClick: React.PropTypes.func,
   qualityMenuButtonTitle: React.PropTypes.string,
   qualityMenuItems: QualityMenu.propTypes.items,
-  onQualityMenuItemClick: React.PropTypes.func
+  onQualityMenuItemClick: React.PropTypes.func,
+
+  textTracksMenuButtonTitle: React.PropTypes.string,
+  textTracksMenuItems: TextTracksMenu.propTypes.items,
+  onTextTracksMenuItemClick: React.PropTypes.func
 };
 
 MenuBar.defaultProps = {
