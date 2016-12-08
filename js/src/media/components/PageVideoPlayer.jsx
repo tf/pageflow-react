@@ -1,33 +1,29 @@
-import VideoPlayer from './VideoPlayer';
-
-import {connectInPage} from 'pages';
-import {pageIsPrepared, pageAttribute} from 'pages/selectors';
-
+import VideoFilePlayer from './VideoFilePlayer';
+import createPageFilePlayer from './createPageFilePlayer';
+import {file} from 'files/selectors';
+import {prop} from 'selectors';
 import {combine} from 'utils';
 
-export function PageVideoPlayer(props) {
+import {connect} from 'react-redux';
+
+const VideoPlayer = connect(combine({
+  file: file('videoFiles', {id: prop('videoFileId')})
+}))(createPageFilePlayer(VideoFilePlayer));
+
+export default function PageVideoPlayer(props) {
   const page = props.page;
   const property = props.videoPropertyBaseName;
 
-  if (props.pageIsPrepared) {
-    return (
-      <VideoPlayer videoFileId={page[`${property}Id`]}
-                   playerState={props.playerState}
-                   playerActions={props.playerActions}
-                   atmoDuringPlayback={props.atmoDuringPlayback}
-                   position={[page[`${property}X`], page[`${property}Y`]]} />
-    );
-  }
-  else {
-    return null;
-  }
+  return (
+    <VideoPlayer videoFileId={page[`${property}Id`]}
+                 playerState={props.playerState}
+                 playerActions={props.playerActions}
+                 position={[page[`${property}X`], page[`${property}Y`]]}
+                 textTracksEnabled={props.textTracksEnabled}
+                 loop={props.loop} />
+  );
 }
 
 PageVideoPlayer.defaultProps = {
   videoPropertyBaseName: 'videoFile'
 };
-
-export default connectInPage(combine({
-  pageIsPrepared: pageIsPrepared(),
-  atmoDuringPlayback: pageAttribute('atmoDuringPlayback')
-}))(PageVideoPlayer);
