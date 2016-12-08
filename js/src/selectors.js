@@ -21,6 +21,10 @@ import {
   file
 } from 'files/selectors';
 
+import {
+  prop
+} from 'utils/selectors';
+
 export {
   pageAttributes,
   pageIsActive,
@@ -32,5 +36,7 @@ export {
   t,
 
   setting,
-  file
+  file,
+
+  prop
 };

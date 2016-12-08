@@ -2,6 +2,7 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 import {combine} from 'utils';
+import {prop} from 'utils/selectors';
 import {pageAttributes} from 'pages/selectors';
 
 class PageLink extends React.Component {
@@ -39,5 +40,5 @@ class PageLink extends React.Component {
 }
 
 export default connect(combine({
-  targetPage: pageAttributes({id: props => props.pageLink.targetPageId})
+  targetPage: pageAttributes({id: prop('pageLink.targetPageId')})
 }))(PageLink);

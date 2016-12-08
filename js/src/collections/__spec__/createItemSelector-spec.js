@@ -18,17 +18,31 @@ describe('createItemSelector', () => {
       expect(result.title).to.eq('Big news');
     });
 
-    it('id can be a function taking props', () => {
+    it('throws descriptive error if collection is unknown', () => {
+      const state = {
+      };
+      const selector = createItemSelector('ufos');
+
+      expect(() => {
+        selector({id: 5})(state);
+      }).to.throw(/unknown collection/);
+    });
+
+    it('id can be a function taking state and props', () => {
       const state = {
         posts: {
           4: {id: 4, title: 'Minor news'},
           5: {id: 5, title: 'Big news'}
+        },
+        comments: {
+          50: {id: 50, postId: 5}
         }
       };
       const selector = createItemSelector('posts');
-      const props = {id: 5};
+      const props = {commentId: 50};
+      const commentPostId = (s, p) => s.comments[p.commentId].postId;
 
-      const result = selector({id: p => p.id})(state, props);
+      const result = selector({id: commentPostId})(state, props);
 
       expect(result.title).to.eq('Big news');
     });
