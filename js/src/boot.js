@@ -24,6 +24,10 @@ import {reducers as currentReducers,
 import {createReducers as createFilesReducers,
         watchCollections as watchFilesCollections} from 'files';
 
+import {reducers as settingsReducers,
+        createSaga as createSettingsSaga,
+        watch as watchSettings} from 'settings';
+
 import {reducers as i18nReducers,
         initFromSeed as initI18nFromSeed} from 'i18n';
 
@@ -50,7 +54,8 @@ export default function(pageflow) {
     ...createFilesReducers(collections.files || {}, {
       fileUrlTemplates: seed['file_url_templates'],
       modelTypes: seed['file_model_types']
-    })
+    }),
+    ...settingsReducers
   });
 
   const pageTypeSagas = pageTypeRegistry.reduce((result, {name, saga}) => {
@@ -59,7 +64,12 @@ export default function(pageflow) {
   }, {});
 
   const m = createMiddleware();
-  const saga = createPagesSaga(collections.pages, pageTypeSagas, m);
+  const saga = function*() {
+    yield [
+      createPagesSaga(collections.pages, pageTypeSagas, m)(),
+      createSettingsSaga(pageflow.settings)()
+    ];
+  };
 
   const store = createStore(reducer, saga, m);
 
@@ -71,6 +81,7 @@ export default function(pageflow) {
   watchPagesCollection(collections.pages, store.dispatch);
   watchFilesCollections(collections.files || {}, store.dispatch);
   watchCurrent(pageflow.events, store.dispatch);
+  watchSettings(pageflow.settings, store.dispatch);
 
   if (pageflow.pageType) {
     pageTypeRegistry.forEach(({name, component}) =>
