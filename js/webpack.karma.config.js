@@ -13,6 +13,10 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: ['babel-loader']
@@ -26,7 +30,6 @@ module.exports = {
   externals: {
     'pageflow': true,
     'jsdom': 'window',
-    'cheerio': 'window',
     'react/lib/ReactContext': true,
     'react/lib/ExecutionEnvironment': true,
     'react/addons': true
