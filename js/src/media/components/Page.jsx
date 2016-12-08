@@ -34,7 +34,8 @@ export default function MediaPage(props) {
                       classNames={playerStateClassNames(playerState)}>
 
 
-        <MediaPlayerControls playerState={playerState}
+        <MediaPlayerControls file={props.file}
+                             playerState={playerState}
                              playerActions={props.playerActions}
                              controlBarText={props.controlBarText}
                              infoBox={infoBox} />

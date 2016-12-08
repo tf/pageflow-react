@@ -1,3 +1,5 @@
+import {update as updateSetting} from 'settings/actions';
+
 export const TOGGLE_PLAYING = 'MEDIA_TOGGLE_PLAYING';
 export const PLAY = 'MEDIA_PLAY';
 export const PLAY_AND_FADE_IN = 'MEDIA_PLAY_AND_FADE_IN';
@@ -148,6 +150,17 @@ export function controlsEntered() {
 
 export function controlsLeft() {
   return pageAction(CONTROLS_LEFT);
+}
+
+
+export function updateTextTrackSettings(textTrack) {
+  return updateSetting({
+    property: 'textTrack',
+    value: textTrack ? {
+      srclang: textTrack.srclang,
+      kind: textTrack.kind
+    } : {}
+  });
 }
 
 
