@@ -7,6 +7,7 @@ module Pageflow
         @name = name
         @component_name = component_name
         @thumbnail_candidates = options[:thumbnail_candidates]
+        @translation_key_prefix = options[:translation_key_prefix]
       end
 
       def template_path
@@ -15,6 +16,10 @@ module Pageflow
 
       def thumbnail_candidates
         @thumbnail_candidates || super
+      end
+
+      def translation_key_prefix
+        @translation_key_prefix || super
       end
     end
   end
