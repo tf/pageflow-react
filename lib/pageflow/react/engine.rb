@@ -6,6 +6,7 @@ module Pageflow
       isolate_namespace Pageflow::React
 
       config.autoload_paths << File.join(config.root, 'lib')
+      config.i18n.load_path += Dir[config.root.join('config', 'locales', '**', '*.yml').to_s]
 
       initializer "pageflow-react.add_watchable_files", group: :all do |app|
         app.config.watchable_files.concat Dir["#{config.root}/app/assets/javascripts/**/*.jsx*"]

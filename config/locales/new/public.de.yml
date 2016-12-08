@@ -1,0 +1,16 @@
+de:
+  pageflow:
+    public:
+      none: "(Kein)"
+      text_tracks: "Untertitel"
+      media_quality: "Qualität"
+      video_qualities:
+        labels:
+          auto: 'Automatisch'
+          4k: '2160p'
+          fullhd: '1080p'
+          medium: '720p'
+        annotations:
+          4k: '4K'
+          fullhd: 'HD'
+          medium: 'HD'

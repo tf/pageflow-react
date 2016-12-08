@@ -2,9 +2,10 @@ import playerStateClassNames from './playerStateClassNames';
 import PlayerControls from 'components/PlayerControls';
 import {combine} from 'utils';
 
-import {textTracks} from 'media/selectors';
+import {textTracks, videoQualitySetting} from 'media/selectors';
 import {prop} from 'selectors';
-import {updateTextTrackSettings} from 'media/actions';
+import {t} from 'i18n/selectors';
+import {updateTextTrackSettings, updateVideoQualitySetting} from 'media/actions';
 
 import React from 'react';
 import classNames from 'classnames';
@@ -40,7 +41,16 @@ export function MediaPlayerControls(props) {
                     onMouseEnter={actions.controlsEntered}
                     onMouseLeave={actions.controlsLeft}
 
-                    textTracksMenuItems={textTracksMenuItems(props.textTracks)}
+                    qualityMenuItems={qualityMenuItems(props.qualities,
+                                                       props.file,
+                                                       props.activeQuality,
+                                                       props.t)}
+
+                    qualityMenuButtonTitle={props.t('pageflow.public.media_quality')}
+                    onQualityMenuItemClick={props.updateVideoQualitySetting}
+
+                    textTracksMenuItems={textTracksMenuItems(props.textTracks, props.t)}
+                    textTracksMenuButtonTitle={props.t('pageflow.public.text_tracks')}
                     onTextTracksMenuItemClick={onTextTracksMenuItemClick}
 
                     {...props}
@@ -50,6 +60,7 @@ export function MediaPlayerControls(props) {
 }
 
 MediaPlayerControls.defaultProps = {
+  qualities: [],
   textTracks: {
     files: []
   }
@@ -59,10 +70,13 @@ export default connect(
   combine({
     textTracks: textTracks({
       file: prop('file')
-    })
+    }),
+    activeQuality: videoQualitySetting(),
+    t
   }),
   {
-    updateTextTrackSettings
+    updateTextTrackSettings,
+    updateVideoQualitySetting
   }
 )(MediaPlayerControls);
 
@@ -71,10 +85,10 @@ function className(playerState) {
                     {'has_been_faded': playerState.userHasBeenIdle});
 }
 
-function textTracksMenuItems(textTracks) {
+function textTracksMenuItems(textTracks, t) {
   const noTextTrackItem = {
     value: -1,
-    label: '(Kein)',
+    label: t('pageflow.public.none'),
     active: !textTracks.activeFileId
   };
 
@@ -85,4 +99,24 @@ function textTracksMenuItems(textTracks) {
       active: textTrackFile.id == textTracks.activeFileId,
     };
   }));
+}
+
+function qualityMenuItems(qualities, videoFile, activeQuality, t) {
+  activeQuality = activeQuality || 'auto';
+
+  return availableQualities(qualities, videoFile).map(value => ({
+    value,
+    label: t(`pageflow.public.video_qualities.labels.${value}`),
+    annotation: t(`pageflow.public.video_qualities.annotations.${value}`,
+                  {defaultValue: ''}),
+    active: value == activeQuality
+  }));
+}
+
+function availableQualities(qualities, videoFile) {
+  if (!videoFile) {
+    return [];
+  }
+
+  return qualities.filter(quality => (!!videoFile.urls[quality] || quality == 'auto'));
 }

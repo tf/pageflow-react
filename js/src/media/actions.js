@@ -163,6 +163,13 @@ export function updateTextTrackSettings(textTrack) {
   });
 }
 
+export function updateVideoQualitySetting(value) {
+  return updateSetting({
+    property: 'videoQuality',
+    value
+  });
+}
+
 
 function pageAction(type, payload = {}) {
   return {
