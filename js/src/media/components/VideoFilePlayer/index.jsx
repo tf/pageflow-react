@@ -4,16 +4,26 @@ import Positioner from './Positioner';
 const VideoFilePlayer = createFilePlayer({
   tagName: 'video',
   sources: (videoFile, quality) => {
-    return [
-      {
-        type: 'application/x-mpegURL',
-        src: `${videoFile.urls['hls-playlist']}?u=1`
-      },
-      {
-        type: 'video/mp4',
-        src: `${videoFile.urls.high}?u=1`
-      }
-    ];
+    if (quality == 'medium') {
+      return [
+        {
+          type: 'video/mp4',
+          src: `${videoFile.urls.medium}?u=1`
+        }
+      ];
+    }
+    else {
+      return [
+        {
+          type: 'application/x-mpegURL',
+          src: `${videoFile.urls['hls-playlist']}?u=1`
+        },
+        {
+          type: 'video/mp4',
+          src: `${videoFile.urls.high}?u=1`
+        }
+      ];
+    }
   }
 });
 
