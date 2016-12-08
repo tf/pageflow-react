@@ -1,0 +1,16 @@
+en:
+  pageflow:
+    public:
+      none: "(None)"
+      text_tracks: "Subtitles"
+      media_quality: "Quality"
+      video_qualities:
+        labels:
+          auto: 'Auto'
+          4k: '2160p'
+          fullhd: '1080p'
+          medium: '720p'
+        annotations:
+          4k: '4K'
+          fullhd: 'HD'
+          medium: 'HD'

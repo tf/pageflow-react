@@ -7,7 +7,8 @@ describe('PlayerControls', () => {
   it('renders ok', () => {
     const props = {
       playerState: {},
-      playerActions: {}
+      playerActions: {},
+      t: () => {}
     };
 
     const result = shallow(<PlayerControls {...props} />);
