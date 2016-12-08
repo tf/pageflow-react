@@ -23,7 +23,7 @@ export default function MediaPage(props) {
   };
 
   return (
-    <PageWrapper className={pageWraperClassName(page, playerState)}>
+    <PageWrapper className={pageWraperClassName(props.className, page, playerState)}>
       <PageBackground>
         {props.children}
         <PageShadow page={page} className={playerStateClassNames(playerState)} />
@@ -50,8 +50,8 @@ export default function MediaPage(props) {
   );
 }
 
-function pageWraperClassName(page, playerState) {
-  return classNames('videoPage', {
+function pageWraperClassName(className, page, playerState) {
+  return classNames(className, {
     'is_idle': playerState.isPlaying && playerState.userIsIdle,
     'is_control_bar_hovered': playerState.userHoveringControls,
     'unplayed': !playerState.hasPlayed && !page.autoplay,
