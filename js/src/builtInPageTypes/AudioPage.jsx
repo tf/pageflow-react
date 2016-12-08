@@ -1,7 +1,10 @@
+import {PageBackgroundImage} from 'components';
+
 import {Page as MediaPage,
-        PageVideoPlayer,
         pageReducers as mediaPageReducers,
         pageSaga as mediaPageSaga} from 'media';
+
+import PageAudioFilePlayer from 'media/components/PageAudioFilePlayer';
 
 import registerPageType from 'registerPageType';
 
@@ -15,39 +18,37 @@ import {file} from 'files/selectors';
 import {combineReducers} from 'redux';
 import {combine} from 'utils';
 
-const qualities = ['auto', '4k', 'fullhd', 'medium'];
-
-function VideoPage(props) {
+function AudioPage(props) {
   return (
-    <MediaPage className="videoPage"
+    <MediaPage className="audioPage"
                page={props.page}
-               file={props.videoFile}
-               qualities={qualities}
+               file={props.audioFile}
                playerState={props.playerState}
                playerActions={props.playerActions}
                controlBarText={props.t('pageflow.public.start_video')}>
 
-      <PageVideoPlayer page={props.page}
-                       playerState={props.playerState}
-                       playerActions={props.playerActions}/>
+      <PageBackgroundImage page={props.page} />
+      <PageAudioFilePlayer file={props.audioFile}
+                           playerState={props.playerState}
+                           playerActions={props.playerActions} />
     </MediaPage>
   );
 }
 
 export function register() {
-  registerPageType('new_video', {
+  registerPageType('new_audio', {
 
     component: connectInPage(
       combine({
         page: pageAttributes(),
-        videoFile: file('videoFiles', {id: pageAttribute('videoFileId')}),
+        audioFile: file('audioFiles', {id: pageAttribute('audioFileId')}),
         playerState,
         t
       }),
       combine({
         playerActions
       })
-    )(VideoPage),
+    )(AudioPage),
 
     reducer: combineReducers({
       ...mediaPageReducers
