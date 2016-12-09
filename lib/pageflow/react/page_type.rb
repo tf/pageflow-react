@@ -3,9 +3,8 @@ module Pageflow
     class PageType < Pageflow::PageType
       attr_reader :name, :component_name
 
-      def initialize(name, component_name, options)
+      def initialize(name, options)
         @name = name
-        @component_name = component_name
         @thumbnail_candidates = options[:thumbnail_candidates]
         @translation_key_prefix = options[:translation_key_prefix]
       end
