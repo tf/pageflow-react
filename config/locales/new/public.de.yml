@@ -2,6 +2,8 @@ de:
   pageflow:
     public:
       none: "(Kein)"
+      open_audio: "Audio öffnen"
+      open_video: "Video öffnen"
       text_tracks: "Untertitel"
       media_quality: "Qualität"
       video_qualities:
