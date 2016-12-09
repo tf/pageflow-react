@@ -17,6 +17,7 @@ export default class PageText extends Component {
     return (
       <div className="contentText">
         <p dangerouslySetInnerHTML={this.text()} />
+        {this.props.children}
       </div>
     );
   }

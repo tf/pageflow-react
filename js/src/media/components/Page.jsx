@@ -9,6 +9,7 @@ import {
 } from 'components';
 
 import MediaPlayerControls from './PlayerControls';
+import NonJsLinks from './NonJsLinks';
 import playerStateClassNames from './playerStateClassNames';
 
 import classNames from 'classnames';
@@ -43,7 +44,9 @@ export default function MediaPage(props) {
 
         <PageScroller className={playerStateClassNames(playerState)}>
           <PageHeader page={page} />
-          <PageText page={page} />
+          <PageText page={page}>
+            <NonJsLinks file={props.file} />
+          </PageText>
         </PageScroller>
       </PageForeground>
     </PageWrapper>
