@@ -36,8 +36,11 @@ import {createWidgetType} from 'widgets';
 import {combineReducers} from 'redux';
 
 export default function(pageflow) {
-  const seed = pageflow.seed || pageflow;
-  const collections = pageflow;
+  const isEditor = !!pageflow.storylines;
+  const isServerSide = !pageflow.settings;
+
+  const seed = pageflow.seed;
+  const collections = isEditor ? pageflow : seed;
 
   const pageStateReducers = pageTypeRegistry.reduce((result, {name, reducer}) => {
     result[name] = reducer;
@@ -58,18 +61,23 @@ export default function(pageflow) {
     ...settingsReducers
   });
 
-  const pageTypeSagas = pageTypeRegistry.reduce((result, {name, saga}) => {
-    result[name] = saga;
-    return result;
-  }, {});
+  let saga, m;
 
-  const m = createMiddleware();
-  const saga = function*() {
-    yield [
-      createPagesSaga(collections.pages, pageTypeSagas, m)(),
-      createSettingsSaga(pageflow.settings)()
-    ];
-  };
+  if (!isServerSide) {
+    const pageTypeSagas = pageTypeRegistry.reduce((result, {name, saga}) => {
+      result[name] = saga;
+      return result;
+    }, {});
+
+    m = createMiddleware();
+
+    saga = function*() {
+      yield [
+        createPagesSaga(collections.pages, pageTypeSagas, m)(),
+        createSettingsSaga(pageflow.settings)()
+      ];
+    };
+  }
 
   const store = createStore(reducer, saga, m);
 
@@ -80,10 +88,11 @@ export default function(pageflow) {
   watchChaptersCollection(collections.chapters, store.dispatch);
   watchPagesCollection(collections.pages, store.dispatch);
   watchFilesCollections(collections.files || {}, store.dispatch);
-  watchCurrent(pageflow.events, store.dispatch);
-  watchSettings(pageflow.settings, store.dispatch);
 
-  if (pageflow.pageType) {
+  if (!isServerSide) {
+    watchCurrent(pageflow.events, store.dispatch);
+    watchSettings(pageflow.settings, store.dispatch);
+
     pageTypeRegistry.forEach(({name, component}) =>
       pageflow.pageType.register(name, createPageType(component, store))
     );
