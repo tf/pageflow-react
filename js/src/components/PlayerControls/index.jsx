@@ -20,7 +20,8 @@ function PlayerControls(props) {
       <div className="vjs-control-bar">
         {renderLoadingSpinner(props)}
         <div className="play_button">
-          <PlayButton title={props.playButtonTitle}
+          <PlayButton id={props.playButtonId}
+                      title={props.playButtonTitle}
                       iconName={props.playButtonIconName}
                       isPlaying={props.isPlaying}
                       onClick={props.onPlayButtonClick} />

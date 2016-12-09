@@ -20,7 +20,7 @@ export default function handlePlayStatePropChanges(player, playerState, nextPlay
     }
   }
 
-  if (nextPlayerState.shouldSeekTo && nextPlayerState.shouldSeekTo !== playerState.shouldSeekTo) {
+  if (nextPlayerState.shouldSeekTo !== undefined && nextPlayerState.shouldSeekTo !== playerState.shouldSeekTo) {
     player.currentTime(nextPlayerState.shouldSeekTo);
   }
 }

@@ -68,7 +68,7 @@ export function updatePageLink({pageId, linkId, name, value} = {}) {
   return pageAction(UPDATE_PAGE_LINK, pageId, {linkId, name, value});
 }
 
-function pageAction(type, pageId, payload = {}) {
+export function pageAction(type, pageId, payload = {}) {
   return {
     type,
     meta: {

@@ -10,6 +10,8 @@ import {
   CONTROLS_ENTERED, CONTROLS_LEFT
 } from './actions';
 
+import {HOTKEY_TAB} from 'hotkeys/actions';
+
 import {
   PAGE_WILL_ACTIVATE
 } from 'pages/actions';
@@ -131,6 +133,7 @@ export default function reducer(state = {}, action) {
       hasBeenPlayingJustNow: false
     };
 
+  case HOTKEY_TAB:
   case USER_INTERACTION:
     return {
       ...state,

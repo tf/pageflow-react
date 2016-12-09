@@ -6,6 +6,7 @@ export default function(props) {
     <a className={className(props)}
        href="#"
        tabIndex="4"
+       id={props.id}
        title={props.title}
        onClick={props.onClick}>
       {icon(props)}

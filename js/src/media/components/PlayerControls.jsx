@@ -2,14 +2,15 @@ import playerStateClassNames from './playerStateClassNames';
 import PlayerControls from 'components/PlayerControls';
 import {combine} from 'utils';
 
+import {pageIsActive} from 'pages/selectors';
 import {textTracks, videoQualitySetting} from 'media/selectors';
 import {prop} from 'selectors';
 import {t} from 'i18n/selectors';
 import {updateTextTrackSettings, updateVideoQualitySetting} from 'media/actions';
+import {connectInPage} from 'pages';
 
 import React from 'react';
 import classNames from 'classnames';
-import {connect} from 'react-redux';
 
 export function MediaPlayerControls(props) {
   const actions = props.playerActions;
@@ -26,6 +27,8 @@ export function MediaPlayerControls(props) {
     <PlayerControls hasProgress={true}
                     controlBarText={props.controlBarText}
 
+                    playButtonId={props.skipLinkTarget ? 'firstContent' : undefined}
+
                     isLoading={playerState.isLoading}
                     isPlaying={playerState.shouldPlay}
                     currentTime={playerState.currentTime}
@@ -40,6 +43,8 @@ export function MediaPlayerControls(props) {
 
                     onMouseEnter={actions.controlsEntered}
                     onMouseLeave={actions.controlsLeft}
+                    onFocus={actions.controlsEntered}
+                    onBlur={actions.controlsLeft}
 
                     qualityMenuItems={qualityMenuItems(props.qualities,
                                                        props.file,
@@ -66,8 +71,9 @@ MediaPlayerControls.defaultProps = {
   }
 };
 
-export default connect(
+export default connectInPage(
   combine({
+    skipLinkTarget: pageIsActive(),
     textTracks: textTracks({
       file: prop('file')
     }),
