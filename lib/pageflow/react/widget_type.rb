@@ -1,12 +1,11 @@
 module Pageflow
   module React
     class WidgetType < Pageflow::WidgetType
-      attr_reader :name, :role, :component_name
+      attr_reader :name, :role
 
-      def initialize(name, role, component_name)
+      def initialize(name, role)
         @name = name
         @role = role
-        @component_name = component_name
       end
 
       def roles
