@@ -4,18 +4,17 @@ import {
 } from 'collections';
 
 import expandUrls from './expandUrls';
-import addModelType from './addModelType';
+import addTypeInfo from './addTypeInfo';
 
 export function file(collectionName, options) {
   const selector = createCollectionItemSelector(collectionName)(options);
 
   return function(state, props) {
-    return addModelType(
+    return extendFile(
       collectionName,
-      expandUrls(collectionName,
-                 selector(state, props),
-                 state.fileUrlTemplates),
-      state.modelTypes);
+      selector(state, props),
+      state
+    );
   };
 }
 
@@ -35,7 +34,7 @@ export function nestedFiles(collectionName, {parent}) {
 
       if (file.parentFileId == parentFile.id &&
           file.parentFileModelType == parentFile.modelType) {
-        result.push(expandUrls(collectionName, file, state.fileUrlTemplates));
+        result.push(extendFile(collectionName, file, state));
       }
 
       return result;
@@ -50,4 +49,14 @@ export function fileExists() {
              !!createCollectionItemSelector(collectionName)({id})(state, props);
     };
   };
+}
+
+function extendFile(collectionName, file, state) {
+  return addTypeInfo(
+    collectionName,
+    expandUrls(collectionName,
+               file,
+               state.fileUrlTemplates),
+    state.modelTypes
+  );
 }

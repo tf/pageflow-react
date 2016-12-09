@@ -50,6 +50,16 @@ describe('file', () => {
     expect(result).to.have.property('modelType', 'Pageflow::VideoFile');
   });
 
+  it('sets collectionName', () => {
+    const files = {'video_files': [{id: 5, variants: ['high']}]};
+    const modelTypes = {'video_files': 'Pageflow::VideoFile'};
+    const state = sample({files, modelTypes});
+
+    const result = file('videoFiles', {id: 5})(state);
+
+    expect(result).to.have.property('collectionName', 'videoFiles');
+  });
+
   it('interpolates id partition into file url template', () => {
     const files = {'video_files': [{id: 2004, variants: ['high']}]};
     const fileUrlTemplates = {'video_files': {'high': 'http://example.com/:id_partition/high.mp4'}};
