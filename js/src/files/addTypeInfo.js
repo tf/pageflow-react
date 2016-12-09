@@ -9,6 +9,7 @@ export default function(collectionName, file, modelTypes) {
 
   return {
     ...file,
+    collectionName,
     modelType: modelTypes[collectionName]
   };
 }
