@@ -1,6 +1,6 @@
-import {register as registerAudioPage} from './AudioPage';
-import {register as registerPlainPage} from './PlainPage';
-import {register as registerVideoPage} from './videoPageType';
+import {register as registerAudioPage} from './audio';
+import {register as registerPlainPage} from './plain';
+import {register as registerVideoPage} from './video';
 
 export function register() {
   registerPlainPage();
