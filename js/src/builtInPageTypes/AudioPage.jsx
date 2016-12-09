@@ -25,7 +25,7 @@ function AudioPage(props) {
                file={props.audioFile}
                playerState={props.playerState}
                playerActions={props.playerActions}
-               controlBarText={props.t('pageflow.public.start_video')}>
+               controlBarText={props.t('pageflow.public.start_audio')}>
 
       <PageBackgroundImage page={props.page} />
       <PageAudioFilePlayer file={props.audioFile}
