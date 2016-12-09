@@ -31,6 +31,9 @@ import {reducers as settingsReducers,
 import {reducers as i18nReducers,
         initFromSeed as initI18nFromSeed} from 'i18n';
 
+import {reducers as entryReducers,
+        initFromSeed as initEntryFromSeed} from 'entry';
+
 import {createWidgetType} from 'widgets';
 
 import {combineReducers} from 'redux';
@@ -49,6 +52,7 @@ export default function(pageflow) {
 
   const reducer = combineReducers({
     ...i18nReducers,
+    ...entryReducers,
     ...currentReducers,
     ...storylinesReducers,
     ...chaptersReducers,
@@ -81,6 +85,7 @@ export default function(pageflow) {
 
   const store = createStore(reducer, saga, m);
 
+  initEntryFromSeed(seed, store.dispatch);
   initI18nFromSeed(seed, store.dispatch);
   initPageTypesFromSeed(seed, store.dispatch);
 
