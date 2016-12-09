@@ -9,7 +9,7 @@ const PageProvider = createItemScopeProvider('pages');
 
 export default class extends React.Component {
   componentWillMount() {
-    this.store = boot(this.props.resolverSeed);
+    this.store = boot({seed: this.props.resolverSeed});
     this.pageComponent = findPageComponent(this.props.pageType);
   }
 
