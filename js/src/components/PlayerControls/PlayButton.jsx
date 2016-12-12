@@ -1,17 +1,21 @@
 import classNames from 'classnames';
 import Icon from 'components/Icon';
+import pageSkipLinkTarget from 'components/pageSkipLinkTarget';
 
-export default function(props) {
+function PlayButton(props) {
   return (
     <a className={className(props)}
        href="#"
        tabIndex="4"
+       id={props.id}
        title={props.title}
        onClick={props.onClick}>
       {icon(props)}
     </a>
   );
 }
+
+export default pageSkipLinkTarget(PlayButton);
 
 function className(props) {
   return classNames('vjs-play-control',
