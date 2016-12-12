@@ -1,6 +1,8 @@
 import React from 'react';
 import {DraggableCore} from 'react-draggable';
 
+import {ARROW_LEFT, ARROW_RIGHT} from 'utils/keyCodes';
+
 export default class ProgressSlider extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -32,13 +34,29 @@ export default class ProgressSlider extends React.Component {
         this.props.onSeek(scrubbingAt);
       }
     };
+
+    this.handleKeyDown = (event) => {
+      let destination;
+
+      if (event.keyCode == ARROW_LEFT) {
+        destination = Math.max(0, this.props.currentTime - 1);
+      }
+      else if (event.keyCode == ARROW_RIGHT) {
+        destination = Math.min(this.props.currentTime + 1, this.props.duration || Infinity);
+      }
+
+      this.props.onSeek(destination);
+      this.setState({scrubbingAt: destination});
+    };
   }
 
   render() {
     const props = this.props;
 
     return (
-      <div className="vjs-progress-control">
+      <div className="vjs-progress-control"
+           tabIndex="4"
+           onKeyDown={this.handleKeyDown}>
         <DraggableCore onStart={this.handleDrag}
                        onDrag={this.handleDrag}
                        onStop={this.handleStop}>
