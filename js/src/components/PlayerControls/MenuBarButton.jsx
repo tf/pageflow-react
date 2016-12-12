@@ -12,7 +12,7 @@ export default class MenuBarButton extends React.Component {
 
     this.onLinkClick = () => {
       if (this.props.subMenuItems.length > 0) {
-        this.setState({subMenuVisible: true});
+        this.setState({subMenuVisible: !this.state.subMenuVisible});
       }
 
       if (this.props.onClick) {
@@ -27,9 +27,19 @@ export default class MenuBarButton extends React.Component {
     };
 
     this.onMouseLeave = () => {
-      if (this.props.subMenuItems.length > 0) {
-        this.setState({subMenuVisible: false});
-      }
+      this.closeMenu();
+    };
+
+    this.onFocus = () => {
+      clearTimeout(this.closeMenuTimeout);
+    };
+
+    this.onBlur = () => {
+      clearTimeout(this.closeMenuTimeout);
+
+      this.closeMenuTimeout = setTimeout(() => {
+        this.closeMenu();
+      }, 100);
     };
 
     this.closeMenu = () => {
@@ -44,7 +54,9 @@ export default class MenuBarButton extends React.Component {
       <div className={wrapperClassName(props, this.state.subMenuVisible)}
            ref={(wrapper) => this.wrapper = wrapper}
            onMouseEnter={this.onMouseEnter}
-           onMouseLeave={this.onMouseLeave}>
+           onMouseLeave={this.onMouseLeave}
+           onFocus={this.onFocus}
+           onBlur={this.onBlur}>
         <a className={className(props, 'link')}
            href="#"
            tabIndex="4"
@@ -97,6 +109,7 @@ function renderSubMenuItems(props, closeMenu) {
       <li className={itemClassName(item)} key={item.value}>
         <a className="player_controls-menu_bar_button_sub_menu_item_link"
            href="#"
+           tabIndex="4"
            onClick={subMenuItemClickHandler(props, item.value, closeMenu)} >
 
           {renderSubMenuItemIcon(item)}
