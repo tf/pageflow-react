@@ -9,3 +9,10 @@ export function prop(path) {
     return names.reduce((p, name) => (p && p[name]), props);
   };
 }
+
+export function map(selector, fn) {
+  return function(state, props) {
+    const result = selector(state, props);
+    return fn(result);
+  };
+}

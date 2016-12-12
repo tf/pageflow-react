@@ -1,4 +1,4 @@
-import {prop} from '../selectors';
+import {prop, map} from '../selectors';
 
 import {expect} from 'support/chai';
 
@@ -37,5 +37,18 @@ describe('prop selector', () => {
     const result = prop('nested.not.there')(state, props);
 
     expect(result).to.eq(undefined);
+  });
+});
+
+describe('map selector', () => {
+  it('returns selector that applies function to  result of given selector', () => {
+    const selector = (state, props) => state.a + props.b;
+    const fn = c => c * 10;
+    const state = {a: 2};
+    const props = {b: 3};
+
+    const result = map(selector, fn)(state, props);
+
+    expect(result).to.eq(50);
   });
 });
