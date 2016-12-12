@@ -40,6 +40,8 @@ export function MediaPlayerControls(props) {
 
                     onMouseEnter={actions.controlsEntered}
                     onMouseLeave={actions.controlsLeft}
+                    onFocus={actions.focusEnteredControls}
+                    onBlur={actions.focusLeftControls}
 
                     qualityMenuItems={qualityMenuItems(props.qualities,
                                                        props.file,

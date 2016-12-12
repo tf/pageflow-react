@@ -5,7 +5,9 @@ export default function Container(props) {
     <div className={classNames('controls', props.className)}
          data-role="player_controls"
          onMouseEnter={props.onMouseEnter}
-         onMouseLeave={props.onMouseLeave}>
+         onMouseLeave={props.onMouseLeave}
+         onFocus={props.onFocus}
+         onBlur={props.onBlur}>
       {props.children}
     </div>
   );

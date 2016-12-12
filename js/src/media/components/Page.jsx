@@ -56,7 +56,7 @@ export default function MediaPage(props) {
 function pageWraperClassName(className, page, playerState) {
   return classNames(className, {
     'is_idle': playerState.isPlaying && playerState.userIsIdle,
-    'is_control_bar_hovered': playerState.userHoveringControls,
+    'is_control_bar_hovered': playerState.userHoveringControls || playerState.focusInsideControls,
     'unplayed': !playerState.hasPlayed && !page.autoplay,
     'has_played': playerState.hasPlayed
   });

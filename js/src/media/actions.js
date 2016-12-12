@@ -33,7 +33,8 @@ export const USER_IDLE = 'MEDIA_USER_IDLE';
 
 export const CONTROLS_ENTERED = 'MEDIA_CONTROLS_ENTERED';
 export const CONTROLS_LEFT = 'MEDIA_CONTROLS_LEFT';
-
+export const FOCUS_ENTERED_CONTROLS = 'MEDIA_FOCUS_ENTERED_CONTROLS';
+export const FOCUS_LEFT_CONTROLS = 'MEDIA_FOCUS_LEFT_CONTROLS';
 
 export function togglePlaying() {
   return pageAction(TOGGLE_PLAYING);
@@ -150,6 +151,14 @@ export function controlsEntered() {
 
 export function controlsLeft() {
   return pageAction(CONTROLS_LEFT);
+}
+
+export function focusEnteredControls() {
+  return pageAction(FOCUS_ENTERED_CONTROLS);
+}
+
+export function focusLeftControls() {
+  return pageAction(FOCUS_LEFT_CONTROLS);
 }
 
 

@@ -7,8 +7,11 @@ import {
   META_DATA_LOADED, TIME_UPDATE, ENDED,
   HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
   USER_INTERACTION, USER_IDLE,
-  CONTROLS_ENTERED, CONTROLS_LEFT
+  CONTROLS_ENTERED, CONTROLS_LEFT,
+  FOCUS_ENTERED_CONTROLS, FOCUS_LEFT_CONTROLS
 } from './actions';
+
+import {HOTKEY_TAB} from 'hotkeys/actions';
 
 import {
   PAGE_WILL_ACTIVATE
@@ -131,6 +134,7 @@ export default function reducer(state = {}, action) {
       hasBeenPlayingJustNow: false
     };
 
+  case HOTKEY_TAB:
   case USER_INTERACTION:
     return {
       ...state,
@@ -153,6 +157,17 @@ export default function reducer(state = {}, action) {
       ...state,
       userHoveringControls: false
     };
+  case FOCUS_ENTERED_CONTROLS:
+    return {
+      ...state,
+      focusInsideControls: true
+    };
+  case FOCUS_LEFT_CONTROLS:
+    return {
+      ...state,
+      focusInsideControls: false
+    };
+
 
   default:
     return state;
