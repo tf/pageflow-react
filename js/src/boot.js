@@ -34,6 +34,8 @@ import {reducers as i18nReducers,
 import {reducers as entryReducers,
         initFromSeed as initEntryFromSeed} from 'entry';
 
+import {watchEvents as watchHotkeyEvents} from 'hotkeys';
+
 import {createWidgetType} from 'widgets';
 
 import {combineReducers} from 'redux';
@@ -97,6 +99,7 @@ export default function(pageflow) {
   if (!isServerSide) {
     watchCurrent(pageflow.events, store.dispatch);
     watchSettings(pageflow.settings, store.dispatch);
+    watchHotkeyEvents(window, store);
 
     pageTypeRegistry.forEach(({name, component}) =>
       pageflow.pageType.register(name, createPageType(component, store))
