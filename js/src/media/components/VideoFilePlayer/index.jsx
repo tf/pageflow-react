@@ -1,20 +1,10 @@
 import createFilePlayer from '../createFilePlayer';
 import Positioner from './Positioner';
+import sources from './sources';
 
 const VideoFilePlayer = createFilePlayer({
   tagName: 'video',
-  sources: (videoFile, quality) => {
-    return [
-      {
-        type: 'application/x-mpegURL',
-        src: `${videoFile.urls['hls-playlist']}?u=1`
-      },
-      {
-        type: 'video/mp4',
-        src: `${videoFile.urls.high}?u=1`
-      }
-    ];
-  },
+  sources,
   poster: (videoFile, posterImageFile) => {
     return posterImageFile ? posterImageFile.urls.large : videoFile.urls['poster_large'];
   }
