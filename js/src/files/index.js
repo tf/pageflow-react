@@ -31,7 +31,7 @@ export function watchCollections(fileCollections, dispatch) {
       collectionName: camelize(collectionName),
       dispatch,
 
-      attributes: ['id', 'basename', 'variants', 'parent_file_id', 'parent_file_model_type'],
+      attributes: ['id', 'basename', 'variants', 'parent_file_id', 'parent_file_model_type', 'width', 'height'],
       includeConfiguration: true
     });
   });

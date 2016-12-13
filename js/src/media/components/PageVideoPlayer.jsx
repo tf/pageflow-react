@@ -18,6 +18,7 @@ export default function PageVideoPlayer(props) {
     <VideoPlayer videoFileId={page[`${property}Id`]}
                  playerState={props.playerState}
                  playerActions={props.playerActions}
+                 fit="smart_contain"
                  position={[page[`${property}X`], page[`${property}Y`]]}
                  textTracksEnabled={props.textTracksEnabled}
                  loop={props.loop} />

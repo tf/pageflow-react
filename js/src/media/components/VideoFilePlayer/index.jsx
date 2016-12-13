@@ -19,7 +19,7 @@ const VideoFilePlayer = createFilePlayer({
 
 export default function(props) {
   return (
-    <Positioner videoFile={props.file} position={props.position}>
+    <Positioner videoFile={props.file} fit={props.fit} position={props.position}>
       <VideoFilePlayer file={props.file}
                        playerState={props.playerState}
                        playerActions={props.playerActions}

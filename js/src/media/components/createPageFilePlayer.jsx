@@ -11,6 +11,8 @@ export default function(FilePlayer) {
                     playerState={props.playerState}
                     playerActions={props.playerActions}
                     atmoDuringPlayback={props.atmoDuringPlayback}
+                    fit={props.fit}
+                    position={props.position}
                     loop={props.loop}
                     textTracksEnabled={props.textTracksEnabled} />
       );
