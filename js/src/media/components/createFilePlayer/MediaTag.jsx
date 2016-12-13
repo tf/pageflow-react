@@ -28,6 +28,7 @@ export default class MediaTag extends React.Component {
 
   shouldComponentUpdate(nextProps) {
     return nextProps.tagName !== this.props.tagName ||
+           nextProps.poster !== this.props.poster ||
            !deepEqual(nextProps.sources, this.props.sources) ||
            !deepEqual(nextProps.tracks, this.props.tracks);
   }
@@ -65,7 +66,11 @@ export default class MediaTag extends React.Component {
     const mediaElement = document.createElement(this.props.tagName);
 
     mediaElement.setAttribute('preload', 'auto');
-    mediaElement.setAttribute('crossorigin', 'true');
+    mediaElement.setAttribute('crossorigin', 'anonymous');
+
+    if (this.props.poster) {
+      mediaElement.setAttribute('poster', this.props.poster);
+    }
 
     this.props.sources.forEach(source => {
       const sourceElement = document.createElement('source');

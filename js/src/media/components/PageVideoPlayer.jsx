@@ -7,7 +7,8 @@ import {combine} from 'utils';
 import {connect} from 'react-redux';
 
 const VideoPlayer = connect(combine({
-  file: file('videoFiles', {id: prop('videoFileId')})
+  file: file('videoFiles', {id: prop('videoFileId')}),
+  posterImageFile: file('imageFiles', {id: prop('posterImageFileId')})
 }))(createPageFilePlayer(VideoFilePlayer));
 
 export default function PageVideoPlayer(props) {
@@ -16,6 +17,7 @@ export default function PageVideoPlayer(props) {
 
   return (
     <VideoPlayer videoFileId={page[`${property}Id`]}
+                 posterImageFileId={page.posterImageId}
                  playerState={props.playerState}
                  playerActions={props.playerActions}
                  fit="smart_contain"

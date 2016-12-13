@@ -10,6 +10,7 @@ describe('createFilePlayer', () => {
     function setup({
       tagName = 'video',
       sources = () => [],
+      poster,
       emulateTextTracksDisplay,
       createPlayer,
     } = {}) {
@@ -18,6 +19,7 @@ describe('createFilePlayer', () => {
       const FilePlayer = createFilePlayer({
         tagName,
         sources,
+        poster,
         emulateTextTracksDisplay,
         createPlayer: createPlayer || (el => {
           mockPlayer.el = el;
@@ -68,6 +70,19 @@ describe('createFilePlayer', () => {
                                         playerActions={{}}/>);
 
       expect(wrapper.render()).to.have.descendants('source[src="high.mp4"]');
+    });
+
+    it('renders media tag with poster given by option', () => {
+      const {FilePlayer} = setup({
+        poster: file => file.posterUrl
+      });
+      const file = {
+        posterUrl: 'some-poster.png'
+      };
+
+      const wrapper = mount(<FilePlayer file={file} playerState={{}} playerActions={{}}/>);
+
+      expect(wrapper.render()).to.have.descendants('video[poster="some-poster.png"]');
     });
 
     it('renders media tag with text tracks from props', () => {

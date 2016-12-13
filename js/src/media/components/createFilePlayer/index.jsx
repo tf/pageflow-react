@@ -15,6 +15,7 @@ import {connect} from 'react-redux';
 export default function({
   tagName,
   sources,
+  poster = () => {},
   emulateTextTracksDisplay = false,
   createPlayer = createPageflowPlayer
 }) {
@@ -67,6 +68,7 @@ export default function({
                   sources={sources(this.props.file, this.props.quality)}
                   tracks={textTracksFromFiles(this.props.textTracks.files,
                                               this.props.textTracksEnabled)}
+                  poster={poster(this.props.file, this.props.posterImageFile)}
 
                   onSetup={this.setupMediaTag}
                   onDispose={this.disposeMediaTag} />

@@ -8,6 +8,7 @@ export default function(FilePlayer) {
     if (props.file && props.pageIsPrepared) {
       return (
         <FilePlayer file={props.file}
+                    posterImageFile={props.posterImageFile}
                     playerState={props.playerState}
                     playerActions={props.playerActions}
                     atmoDuringPlayback={props.atmoDuringPlayback}

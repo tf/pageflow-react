@@ -34,6 +34,12 @@ describe('MediaTag', () => {
     expect(wrapper).to.have.descendants('track[src="some.vtt"]');
   });
 
+  it('renders poster attribute for given poster', () => {
+    const wrapper = render(<MediaTag poster="http://example.com/poster.png" />);
+
+    expect(wrapper).to.have.descendants('video[poster*="poster.png"]');
+  });
+
   it('re-renders when source changes', () => {
     const sources = [{type: 'video/mp4', src: 'some.mp4'}];
     const changedSources = [{type: 'video/mp4', src: 'new.mp4'}];
@@ -42,6 +48,14 @@ describe('MediaTag', () => {
     wrapper.setProps({sources: changedSources});
 
     expect(wrapper.render()).to.have.descendants('source[src="new.mp4"]');
+  });
+
+  it('re-renders when poster changes', () => {
+    const wrapper = mount(<MediaTag />);
+
+    wrapper.setProps({poster: 'http://example.com/poster.png'});
+
+    expect(wrapper.render()).to.have.descendants('video[poster*="poster.png"]');
   });
 
   it('re-renders when track changes', () => {
