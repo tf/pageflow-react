@@ -126,6 +126,25 @@ describe('nestedFiles', () => {
     expect(result).to.have.deep.property('[0].id', 3001);
   });
 
+  it('filters out unsaved files', () => {
+    const files = {
+      'video_files': [{id: 2004, variants: ['unknown']}],
+      'text_track_files': [
+        {
+          parent_file_id: 2004,
+          parent_file_model_type: 'Pageflow::VideoFile'
+        }
+      ]
+    };
+    const state = sample({files});
+
+    const result = nestedFiles('textTrackFiles', {
+      parent: file('videoFiles', {id: 2004})
+    })(state);
+
+    expect(result).to.eql([]);
+  });
+
   it('selects empty array if parent is undefined', () => {
     const files = {
       'video_files': [{id: 2004, variants: ['unknown']}],

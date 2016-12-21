@@ -32,7 +32,8 @@ export function nestedFiles(collectionName, {parent}) {
     return Object.keys(files).reduce((result, fileId) => {
       const file = files[fileId];
 
-      if (file.parentFileId == parentFile.id &&
+      if (file.id &&
+          file.parentFileId == parentFile.id &&
           file.parentFileModelType == parentFile.modelType) {
         result.push(extendFile(collectionName, file, state));
       }
