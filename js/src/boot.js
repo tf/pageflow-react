@@ -36,7 +36,9 @@ import {reducers as entryReducers,
 
 import {watchEvents as watchHotkeyEvents} from 'hotkeys';
 
-import {createWidgetType} from 'widgets';
+import {reducers as widgetsReducers,
+        watch as watchWidgets,
+        createWidgetType} from 'widgets';
 
 import {combineReducers} from 'redux';
 
@@ -64,7 +66,8 @@ export default function(pageflow) {
       fileUrlTemplates: seed['file_url_templates'],
       modelTypes: seed['file_model_types']
     }),
-    ...settingsReducers
+    ...settingsReducers,
+    ...widgetsReducers
   });
 
   let saga, m;
@@ -99,6 +102,7 @@ export default function(pageflow) {
   if (!isServerSide) {
     watchCurrent(pageflow.events, store.dispatch);
     watchSettings(pageflow.settings, store.dispatch);
+    watchWidgets(pageflow.events, pageflow.widgets, store.dispatch);
     watchHotkeyEvents(window, store);
 
     pageTypeRegistry.forEach(({name, component}) =>
