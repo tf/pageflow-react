@@ -11,13 +11,12 @@ export default class Positioner extends React.Component {
       this.wrapper = wrapper;
 
       if (wrapper) {
-        window.addEventListener('resize', this.measure);
+        pageflow.events.on('resize', this.measure);
         this.measure();
       }
       else {
-        window.removeEventListener('resize', this.measure);
+        pageflow.events.off('resize', this.measure);
       }
-
     };
 
     this.measure = () => {
