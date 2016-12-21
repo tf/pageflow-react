@@ -2,6 +2,7 @@ import * as actions from './actions';
 import {nestedFiles} from 'files/selectors';
 import {pageState} from 'pages/selectors';
 import {setting} from 'settings/selectors';
+import {t} from 'i18n/selectors';
 
 import {bindActionCreators} from 'redux';
 
@@ -20,12 +21,24 @@ export function textTracks({file}) {
   return (state, props) => {
     const settings = settingsSelector(state, props);
     const files = filesSelector(state, props);
+    const translate = t(state, props);
 
     return {
-      files,
+      files: files.map(textTrackFile => ({
+        displayLabel: displayLabel(textTrackFile, translate),
+        ...textTrackFile
+      })).sort((file1, file2) =>
+        file1.displayLabel.localeCompare(file2.displayLabel)
+      ),
       activeFileId: getActiveTextTrackFileId(files, settings)
     };
   };
+}
+
+function displayLabel(textTrackFile, t) {
+  return textTrackFile.label ||
+         t('pageflow.languages.' + textTrackFile.srclang || 'unknown',
+           {defaultValue: t('pageflow.languages.unknown')});
 }
 
 function getActiveTextTrackFileId(textTrackFiles, options) {

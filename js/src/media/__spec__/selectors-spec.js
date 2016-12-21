@@ -10,11 +10,22 @@ import {
 
 import {reducers as settingsReducers} from 'settings';
 
+import {reducers as i18nReducers,
+        initFromSeed as initI18nFromSeed} from 'i18n';
+
 import {combineReducers} from 'redux';
 
 import {expect} from 'support/chai';
 
 describe('textTracks selector', () => {
+  beforeEach(() => {
+    window.I18n = {
+      t() {
+        return '(translation)';
+      }
+    };
+  });
+
   const files = {
     'video_files': [{id: 2004, variants: []}],
     'text_track_files': [
@@ -33,7 +44,8 @@ describe('textTracks selector', () => {
         parent_file_model_type: 'Pageflow::VideoFile',
         configuration: {
           kind: 'captions',
-          srclang: 'de'
+          srclang: 'de',
+          label: 'English'
         }
       }
     ]
@@ -61,6 +73,16 @@ describe('textTracks selector', () => {
 
     expect(result).to.have.deep.property('activeFileId', 3002);
   });
+
+  it('adds displayLabel', () => {
+    const state = sample({files});
+
+    const result = textTracks({
+      file: file('videoFiles', {id: 2004})
+    })(state);
+
+    expect(result).to.have.deep.property('files[1].displayLabel', 'English');
+  });
 });
 
 function sample({
@@ -77,8 +99,13 @@ function sample({
 }) {
   let state;
   const reducer = combineReducers({
+    ...i18nReducers,
     ...createFilesReducers(files, {fileUrlTemplates, modelTypes}),
     ...settingsReducers
+  });
+
+  initI18nFromSeed({locale: 'en'}, action => {
+    state = reducer(state, action);
   });
 
   watchFilesCollections(files, action => {

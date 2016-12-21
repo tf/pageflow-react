@@ -97,7 +97,7 @@ function textTracksMenuItems(textTracks, t) {
   return [noTextTrackItem].concat(textTracks.files.map(textTrackFile => {
     return {
       value: textTrackFile.id,
-      label: textTrackFile.label,
+      label: textTrackFile.displayLabel,
       active: textTrackFile.id == textTracks.activeFileId,
     };
   }));
