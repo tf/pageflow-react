@@ -31,7 +31,8 @@ function PlayerControls(props) {
         </div>
       </div>
 
-      <MenuBar qualityMenuButtonTitle={props.qualityMenuButtonTitle}
+      <MenuBar standAlone={false}
+               qualityMenuButtonTitle={props.qualityMenuButtonTitle}
                qualityMenuItems={props.qualityMenuItems}
                onQualityMenuItemClick={props.onQualityMenuItemClick}
                textTracksMenuButtonTitle={props.textTracksMenuButtonTitle}

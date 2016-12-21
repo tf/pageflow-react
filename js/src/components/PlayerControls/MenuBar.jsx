@@ -9,13 +9,13 @@ export default function MenuBar(props) {
     <div className={className(props)}>
       {renderAdditionalButtons(props)}
 
-      <QualityMenu buttonTitle={props.qualityMenuButtonTitle}
-                   items={props.qualityMenuItems}
-                   onItemClick={props.onQualityMenuItemClick} />
-
       <TextTracksMenu buttonTitle={props.textTracksMenuButtonTitle}
                       items={props.textTracksMenuItems}
                       onItemClick={props.onTextTracksMenuItemClick} />
+
+      <QualityMenu buttonTitle={props.qualityMenuButtonTitle}
+                   items={props.qualityMenuItems}
+                   onItemClick={props.onQualityMenuItemClick} />
     </div>
   );
 }
@@ -35,17 +35,21 @@ MenuBar.propTypes = {
 
   textTracksMenuButtonTitle: React.PropTypes.string,
   textTracksMenuItems: TextTracksMenu.propTypes.items,
-  onTextTracksMenuItemClick: React.PropTypes.func
+  onTextTracksMenuItemClick: React.PropTypes.func,
+
+  standAlone: React.PropTypes.bool
 };
 
 MenuBar.defaultProps = {
-  additionalButtons: []
+  additionalButtons: [],
+  standAlone: true
 };
 
 function className(props) {
-  return classNames('player_controls-menu_bar',
-                    {'player_controls-menu_bar-hidden_on_phone': props.hiddenOnPhone},
-                    props.className);
+  return classNames(props.className, 'player_controls-menu_bar', {
+    'player_controls-menu_bar-hidden_on_phone': props.hiddenOnPhone,
+    'player_controls-menu_bar-stand_alone': props.standAlone
+  });
 }
 
 function renderAdditionalButtons(props) {
