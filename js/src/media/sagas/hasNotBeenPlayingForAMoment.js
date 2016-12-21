@@ -7,10 +7,10 @@ import {PLAYING, PAUSED, ENDED,
 export default function*() {
   yield takeEvery([PAUSED, ENDED], function*() {
     yield race({
-      task: function*(action) {
+      task: call(function*(action) {
         yield call(delay, 700);
         yield put(hasNotBeenPlayingForAMoment(false));
-      },
+      }),
       cancel: take(PLAYING)
     });
   });
