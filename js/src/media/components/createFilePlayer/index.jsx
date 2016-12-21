@@ -32,6 +32,14 @@ export default function({
           mediaContext: this.context.mediaContext
         });
 
+        if (this.props.playerState.currentTime > 0) {
+          this.player.currentTime(this.props.playerState.currentTime);
+        }
+
+        if (this.props.playerState.isPlaying) {
+          this.player.play();
+        }
+
         watchPlayer(this.player, this.props.playerActions);
         updateTextTrackModes(this.player, this.props.textTracks.activeFileId);
       };
