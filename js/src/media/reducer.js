@@ -8,7 +8,8 @@ import {
   HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
   USER_INTERACTION, USER_IDLE,
   CONTROLS_ENTERED, CONTROLS_LEFT,
-  FOCUS_ENTERED_CONTROLS, FOCUS_LEFT_CONTROLS
+  FOCUS_ENTERED_CONTROLS, FOCUS_LEFT_CONTROLS,
+  CONTROLS_HIDDEN
 } from './actions';
 
 import {HOTKEY_TAB} from 'hotkeys/actions';
@@ -139,6 +140,7 @@ export default function reducer(state = {}, action) {
     return {
       ...state,
       userIsIdle: false,
+      controlsHidden: false
     };
   case USER_IDLE:
     return {
@@ -166,6 +168,12 @@ export default function reducer(state = {}, action) {
     return {
       ...state,
       focusInsideControls: false
+    };
+
+  case CONTROLS_HIDDEN:
+    return {
+      ...state,
+      controlsHidden: true
     };
 
 

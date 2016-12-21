@@ -35,6 +35,7 @@ export const CONTROLS_ENTERED = 'MEDIA_CONTROLS_ENTERED';
 export const CONTROLS_LEFT = 'MEDIA_CONTROLS_LEFT';
 export const FOCUS_ENTERED_CONTROLS = 'MEDIA_FOCUS_ENTERED_CONTROLS';
 export const FOCUS_LEFT_CONTROLS = 'MEDIA_FOCUS_LEFT_CONTROLS';
+export const CONTROLS_HIDDEN = 'MEDIA_CONTROLS_HIDDEN';
 
 export function togglePlaying() {
   return pageAction(TOGGLE_PLAYING);
@@ -159,6 +160,10 @@ export function focusEnteredControls() {
 
 export function focusLeftControls() {
   return pageAction(FOCUS_LEFT_CONTROLS);
+}
+
+export function controlsHidden() {
+  return pageAction(CONTROLS_HIDDEN);
 }
 
 

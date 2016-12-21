@@ -5,6 +5,7 @@ import hasNotBeenPlayingForAMoment from './hasNotBeenPlayingForAMoment';
 import idling from './idling';
 import fadeOutWhenPageWillDeactivate from './fadeOutWhenPageWillDeactivate';
 import goToNextPageOnEnd from './goToNextPageOnEnd';
+import controlsHidden from './controlsHidden';
 
 export default function*() {
   yield [
@@ -15,6 +16,7 @@ export default function*() {
 
     hasNotBeenPlayingForAMoment(),
     idling(),
+    controlsHidden(),
 
     goToNextPageOnEnd(),
     fadeOutWhenPageWillDeactivate()
