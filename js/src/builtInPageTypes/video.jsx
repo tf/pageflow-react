@@ -35,7 +35,7 @@ function VideoPage(props) {
 }
 
 export function register() {
-  registerPageType('new_video', {
+  registerPageType('video', {
 
     component: connectInPage(
       combine({

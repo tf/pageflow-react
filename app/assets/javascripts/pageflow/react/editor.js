@@ -1,4 +1,4 @@
-pageflow.ConfigurationEditorView.register('plain', {
+pageflow.ConfigurationEditorView.register('background_image', {
   configure: function() {
     this.tab('general', function() {
       this.group('general');
@@ -23,7 +23,7 @@ pageflow.ConfigurationEditorView.register('plain', {
   }
 });
 
-pageflow.ConfigurationEditorView.register('new_video', {
+pageflow.ConfigurationEditorView.register('video', {
   configure: function() {
     this.tab('general', function() {
       this.group('general');
@@ -35,11 +35,12 @@ pageflow.ConfigurationEditorView.register('new_video', {
     this.tab('files', function() {
       this.input('video_file_id', pageflow.FileInputView, {
         collection: pageflow.videoFiles,
-        positioning: false
+        positioning: true,
+        defaultTextTrackFilePropertyName: 'default_text_track_file_id'
       });
       this.input('poster_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
-        positioning: false
+        positioning: true
       });
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
@@ -63,7 +64,7 @@ pageflow.ConfigurationEditorView.register('new_video', {
   }
 });
 
-pageflow.ConfigurationEditorView.register('new_audio', {
+pageflow.ConfigurationEditorView.register('audio', {
   configure: function() {
     this.tab('general', function() {
       this.group('general');

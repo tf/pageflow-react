@@ -2,6 +2,10 @@ require 'pageflow/react/engine'
 
 module Pageflow
   module React
+    def self.plugin
+      Pageflow::React::Plugin.new
+    end
+
     def self.create_page_type(name,
                               options_or_legacy_component_name = {},
                               _legacy_options = nil)

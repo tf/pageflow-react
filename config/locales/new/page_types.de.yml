@@ -1,0 +1,14 @@
+de:
+  pageflow:
+    background_image:
+      page_type_category_name: Basic
+      page_type_description: Bildschirmfüllendes Bild oder Video-Loop mit Text
+      page_type_name: Hintergrund Bild/Video
+    video:
+      page_type_category_name: Media
+      page_type_description: Wiedergabe einer Videodatei mit Steuerelementen
+      page_type_name: Video
+    audio:
+      page_type_category_name: Media
+      page_type_description: Wiedergabe von Audiodatei mit Steuerelementen
+      page_type_name: Audio

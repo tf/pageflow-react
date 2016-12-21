@@ -35,7 +35,7 @@ function PlainPage(props) {
 }
 
 export function register() {
-  registerPageType('plain', {
+  registerPageType('background_image', {
     component: connectInPage(
       combine({
         page: pageAttributes()

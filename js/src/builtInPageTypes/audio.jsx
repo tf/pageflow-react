@@ -36,7 +36,7 @@ function AudioPage(props) {
 }
 
 export function register() {
-  registerPageType('new_audio', {
+  registerPageType('audio', {
 
     component: connectInPage(
       combine({
