@@ -6,6 +6,7 @@ import {textTracksFromFiles, updateTextTrackModes, updateTextTrackPosition} from
 
 import {textTracks} from 'media/selectors';
 import {setting} from 'settings/selectors';
+import {widgetPresent} from 'widgets/selectors';
 import {prop} from 'selectors';
 
 import React from 'react';
@@ -117,4 +118,14 @@ export default function({
   result.WrappedComponent = FilePlayer;
 
   return result;
+}
+
+const classicPlayerControlsPresent = widgetPresent('classicPlayerControls');
+
+function textTrackPosition(state, {playerState}) {
+  if (classicPlayerControlsPresent(state) && !playerState.controlsHidden) {
+    return 'top';
+  }
+
+  return 'auto';
 }
