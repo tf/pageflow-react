@@ -11,10 +11,14 @@ import {
 import MediaPlayerControls from './PlayerControls';
 import NonJsLinks from './NonJsLinks';
 import playerStateClassNames from './playerStateClassNames';
+import {combine} from 'utils';
+import {prop} from 'utils/selectors';
+import {textTracks} from 'media/selectors';
 
 import classNames from 'classnames';
+import {connect} from 'react-redux';
 
-export default function MediaPage(props) {
+export function MediaPage(props) {
   const page = props.page;
   const playerState = props.playerState;
 
@@ -24,7 +28,7 @@ export default function MediaPage(props) {
   };
 
   return (
-    <PageWrapper className={pageWraperClassName(props.className, page, playerState)}>
+    <PageWrapper className={pageWraperClassName(props.className, page, props.textTracks, playerState)}>
       <PageBackground>
         {props.children}
         <PageShadow page={page} className={playerStateClassNames(playerState)} />
@@ -53,8 +57,15 @@ export default function MediaPage(props) {
   );
 }
 
-function pageWraperClassName(className, page, playerState) {
+export default connect(combine({
+  textTracks: textTracks({
+    file: prop('file')
+  }),
+}))(MediaPage);
+
+function pageWraperClassName(className, page, textTracks, playerState) {
   return classNames(className, {
+    'has_text_tracks': !!textTracks.activeFileId,
     'is_idle': playerState.isPlaying && playerState.userIsIdle,
     'is_control_bar_hovered': playerState.userHoveringControls || playerState.focusInsideControls,
     'unplayed': !playerState.hasPlayed && !page.autoplay,
