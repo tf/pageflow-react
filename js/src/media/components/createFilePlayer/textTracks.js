@@ -9,6 +9,25 @@ export function updateTextTrackModes(player, activeTextTrackFileId) {
   });
 }
 
+export function updateTextTrackPosition(player, position) {
+  if (position == 'top') {
+    updateCueLineSettings(player, 1);
+  }
+  else  {
+    updateCueLineSettings(player, 'auto');
+  }
+}
+
+function updateCueLineSettings(player, line) {
+  [].slice.call(player.textTracks()).forEach(textTrack => {
+    if (textTrack.mode == 'showing' && textTrack.cues) {
+      for (let i = 0; i < textTrack.cues.length; i++) {
+        textTrack.cues[i].line = line;
+      }
+    }
+  });
+}
+
 export function textTracksFromFiles(textTrackFiles, textTracksEnabled) {
   if (!textTracksEnabled) {
     return [];

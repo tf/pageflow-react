@@ -2,7 +2,7 @@ import MediaTag from './MediaTag';
 import createPageflowPlayer from './createPageflowPlayer';
 import watchPlayer from './watchPlayer';
 import handlePlayStatePropChanges from './handlePlayStatePropChanges';
-import {textTracksFromFiles, updateTextTrackModes} from './textTracks';
+import {textTracksFromFiles, updateTextTrackModes, updateTextTrackPosition} from './textTracks';
 
 import {textTracks} from 'media/selectors';
 import {setting} from 'settings/selectors';
@@ -42,6 +42,7 @@ export default function({
 
         watchPlayer(this.player, this.props.playerActions);
         updateTextTrackModes(this.player, this.props.textTracks.activeFileId);
+        updateTextTrackPosition(this.player, this.props.textTrackPosition);
       };
 
       this.disposeMediaTag = () => {
@@ -59,6 +60,10 @@ export default function({
                                  prevProps.playerState,
                                  this.props.playerState,
                                  this.props.playerActions);
+
+      if (prevProps.textTrackPosition !== this.props.textTrackPosition) {
+        updateTextTrackPosition(this.player, this.props.textTrackPosition);
+      }
 
       updateTextTrackModes(this.player, this.props.textTracks.activeFileId);
       this.updateAtmoSettings();
@@ -104,7 +109,8 @@ export default function({
       textTracks: textTracks({
         file: prop('file')
       }),
-      quality: setting({property: 'videoQuality'})
+      quality: setting({property: 'videoQuality'}),
+      textTrackPosition
     })
   )(FilePlayer);
 
