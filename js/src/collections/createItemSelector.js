@@ -19,7 +19,9 @@ export default function(collectionName) {
         return null;
       }
 
-      return map(state[collectionName][modelId]);
+      const model = state[collectionName][modelId];
+
+      return model && map(model);
     };
   };
 }

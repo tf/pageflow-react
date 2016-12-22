@@ -39,8 +39,10 @@ export default function(collectionName,
       };
 
     case REMOVE:
+      id = action.payload.attributes[idAttribute];
+
       clone = {...state};
-      delete clone[action.payload.id];
+      delete clone[id];
       return clone;
 
     default:

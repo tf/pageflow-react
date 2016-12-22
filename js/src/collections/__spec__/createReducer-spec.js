@@ -138,7 +138,7 @@ describe('createReducer', () => {
 
         const result = reducer(state, remove({
           collectionName: 'posts',
-          id: 5
+          attributes: {id: 5}
         }));
 
         expect(result['5']).to.eq(undefined);
@@ -152,7 +152,7 @@ describe('createReducer', () => {
 
         const result = reducer(state, remove({
           collectionName: 'posts',
-          id: 5
+          attributes: {perma_id: 5}
         }));
 
         expect(result['5']).to.eq(undefined);
@@ -166,7 +166,7 @@ describe('createReducer', () => {
 
         const result = reducer(state, remove({
           collectionName: 'comments',
-          id: 5
+          attributes: {id: 5}
         }));
 
         expect(result['5'].title).to.eq('News');

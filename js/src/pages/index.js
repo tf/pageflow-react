@@ -31,6 +31,7 @@ export function watchCollection(pages, dispatch) {
     collectionName: 'pages',
     dispatch,
 
+    idAttribute: 'perma_id',
     attributes: ['perma_id', {type: 'template'}, 'chapter_id'],
     includeConfiguration: true
   });

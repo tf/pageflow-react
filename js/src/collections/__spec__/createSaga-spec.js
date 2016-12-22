@@ -79,7 +79,7 @@ describe('createSaga', () => {
       }));
       store.dispatch(remove({
         collectionName: 'posts',
-        id: 5
+        attributes: {id: 5}
       }));
       store.dispatch({type: 'DISPATCHED_AFTER_REMOVAL'});
 

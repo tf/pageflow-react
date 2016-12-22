@@ -40,14 +40,14 @@ export function change({collectionName, attributes}) {
   };
 }
 
-export function remove({collectionName, id}) {
+export function remove({collectionName, attributes}) {
   return {
     type: REMOVE,
     meta: {
       collectionName
     },
     payload: {
-      id
+      attributes
     }
   };
 }

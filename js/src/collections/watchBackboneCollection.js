@@ -13,6 +13,15 @@ export default function({
   }));
 
   collection.on('add', (model) => {
+    if (!model.isNew()) {
+      dispatch(add({
+        collectionName,
+        attributes: modelToAttributes(model)
+      }));
+    }
+  });
+
+  collection.on('change:id', (model) => {
     dispatch(add({
       collectionName,
       attributes: modelToAttributes(model)
@@ -27,10 +36,12 @@ export default function({
   });
 
   collection.on('remove', (model) => {
-    dispatch(remove({
-      collectionName,
-      id: model.id
-    }));
+    setTimeout(() => {
+      dispatch(remove({
+        collectionName,
+        attributes: modelToAttributes(model)
+      }));
+    }, 0);
   });
 
   function modelToAttributes(model) {

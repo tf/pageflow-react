@@ -8,14 +8,13 @@ import {takeEvery} from 'redux-saga';
 
 export default function({pages, pageTypeSagas}) {
   return function*() {
-    const thisPageType = yield select(pageAttribute('type'));
-
     yield* scheduleUnprepare();
     yield* updating(pages);
 
     let task;
 
     yield takeEvery(ENHANCE, function*() {
+      const thisPageType = yield select(pageAttribute('type'));
       const pageTypeSaga = pageTypeSagas[thisPageType];
 
       if (pageTypeSaga) {
