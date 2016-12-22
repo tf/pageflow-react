@@ -1,4 +1,5 @@
 import getDimensions from './getDimensions';
+import getCueOffsetClassName from './getCueOffsetClassName';
 
 import React from 'react';
 
@@ -30,12 +31,15 @@ export default class Positioner extends React.Component {
   }
 
   render() {
+    const dimensions = getDimensions(this.props.videoFile,
+                                     this.props.fit,
+                                     this.props.position,
+                                     this.state.wrapperDimensions);
+
     return (
       <div ref={this.bindWrapper} className="videoWrapper">
-        <div style={style(this.props.videoFile,
-                          this.props.fit,
-                          this.props.position,
-                          this.state.wrapperDimensions)}>
+        <div className={getCueOffsetClassName(dimensions, this.state.wrapperDimensions)}
+             style={style(dimensions)}>
           {this.props.children}
         </div>
       </div>
@@ -49,9 +53,7 @@ Positioner.propTypes = {
   position: React.PropTypes.arrayOf(React.PropTypes.number)
 };
 
-function style(videoFile, fit, position, wrapperDimensions) {
-  const dimensions = getDimensions(videoFile, fit, position, wrapperDimensions);
-
+function style(dimensions) {
   return dimensions && {
     position: 'absolute',
     ...dimensions
