@@ -37,8 +37,8 @@ export function textTracks({file}) {
 
 function displayLabel(textTrackFile, t) {
   return textTrackFile.label ||
-         t('pageflow.languages.' + textTrackFile.srclang || 'unknown',
-           {defaultValue: t('pageflow.languages.unknown')});
+         t('pageflow.public.languages.' + textTrackFile.srclang || 'unknown',
+           {defaultValue: t('pageflow.public.languages.unknown')});
 }
 
 function getActiveTextTrackFileId(textTrackFiles, options) {

@@ -16,3 +16,25 @@ de:
           4k: '4K'
           fullhd: 'HD'
           medium: 'HD'
+      languages:
+        ar: Arabisch
+        cs: Tschechisch
+        de: Deutsch
+        dk: Dänisch
+        el: Griechisch
+        en: Englisch
+        es: Spanisch
+        fr: Französisch
+        fy: Friesisch
+        hi: Hindi
+        it: Italienisch
+        lb: Luxemburgisch
+        nl: Holländisch
+        pl: Polnisch
+        pt: Portugiesisch
+        rm: Rätoromanisch
+        ru: Russisch
+        sr: Serbisch
+        tr: Türkisch
+        zh: Chinesisch
+        unknown: (Unbekannt)
