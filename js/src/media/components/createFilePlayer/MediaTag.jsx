@@ -29,6 +29,7 @@ export default class MediaTag extends React.Component {
   shouldComponentUpdate(nextProps) {
     return nextProps.tagName !== this.props.tagName ||
            nextProps.poster !== this.props.poster ||
+           nextProps.loop !== this.props.loop ||
            !deepEqual(nextProps.sources, this.props.sources) ||
            !deepEqual(nextProps.tracks, this.props.tracks);
   }
@@ -70,6 +71,10 @@ export default class MediaTag extends React.Component {
 
     if (this.props.poster) {
       mediaElement.setAttribute('poster', this.props.poster);
+    }
+
+    if (this.props.loop) {
+      mediaElement.setAttribute('loop', 'true');
     }
 
     this.props.sources.forEach(source => {
