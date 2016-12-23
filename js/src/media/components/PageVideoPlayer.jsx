@@ -20,7 +20,7 @@ export default function PageVideoPlayer(props) {
                  posterImageFileId={page.posterImageId}
                  playerState={props.playerState}
                  playerActions={props.playerActions}
-                 fit="smart_contain"
+                 fit={props.fit}
                  position={[page[`${property}X`], page[`${property}Y`]]}
                  textTracksEnabled={props.textTracksEnabled}
                  loop={props.loop} />
@@ -28,5 +28,6 @@ export default function PageVideoPlayer(props) {
 }
 
 PageVideoPlayer.defaultProps = {
-  videoPropertyBaseName: 'videoFile'
+  videoPropertyBaseName: 'videoFile',
+  fit: 'smart_contain'
 };
