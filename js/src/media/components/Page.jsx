@@ -67,7 +67,8 @@ function pageWraperClassName(className, page, textTracks, playerState) {
   return classNames(className, {
     'has_text_tracks': !!textTracks.activeFileId,
     'is_idle': playerState.isPlaying && playerState.userIsIdle,
-    'is_control_bar_hovered': playerState.userHoveringControls || playerState.focusInsideControls,
+    // TODO: handle playerState.focusInsideControls
+    'is_control_bar_hovered': playerState.userHoveringControls,
     'is_control_bar_hidden': playerState.controlsHidden,
     'unplayed': !playerState.hasPlayed && !page.autoplay,
     'has_played': playerState.hasPlayed
