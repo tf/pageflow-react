@@ -1,3 +1,4 @@
+
 pageflow.ConfigurationEditorView.register('background_image', {
   configure: function() {
     this.tab('general', function() {
@@ -31,12 +32,12 @@ pageflow.ConfigurationEditorView.register('video', {
     this.tab('files', function() {
       this.input('video_file_id', pageflow.FileInputView, {
         collection: pageflow.videoFiles,
-        positioning: true,
+        positioning: false,
         defaultTextTrackFilePropertyName: 'default_text_track_file_id'
       });
       this.input('poster_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
-        positioning: true
+        positioning: false,
       });
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
