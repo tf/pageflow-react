@@ -4,3 +4,4 @@
 var PAGEFLOW_EDITOR = false;
 
 var Backbone = {};
+var ReactDOM = {};

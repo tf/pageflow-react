@@ -9,7 +9,10 @@ export default function(reducer, saga = function*() {}, middleware) {
     middlewares.push(middleware);
   }
 
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = typeof __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined' ?
+                           window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ :
+                           compose;
+
   const store = createStore(reducer, {}, composeEnhancers(applyMiddleware(...middlewares)));
 
   sagaMiddleware.run(saga);
