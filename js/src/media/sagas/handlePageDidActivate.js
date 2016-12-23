@@ -8,17 +8,19 @@ import {pageAttribute} from 'pages/selectors';
 export default function*() {
   yield takeEvery(PAGE_DID_ACTIVATE, function*(action) {
     yield race({
-      task: call(prebufferAndPlay),
+      prebuffer: call(prebufferAndPlay),
       cancel: take('PAGE_WILL_DEACTIVATE')
     });
   });
 }
 
 function* prebufferAndPlay() {
-  const autoplay = yield select(pageAttribute('autoplay'));
+  yield [
+    take(PREBUFFERED),
+    put(prebuffer())
+  ];
 
-  yield put(prebuffer());
-  yield take(PREBUFFERED);
+  const autoplay = yield select(pageAttribute('autoplay'));
 
   if (autoplay !== false) {
     yield call(delay, 1000);
