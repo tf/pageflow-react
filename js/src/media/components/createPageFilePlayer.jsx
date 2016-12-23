@@ -5,7 +5,9 @@ import {combine} from 'utils';
 
 export default function(FilePlayer) {
   function PageFilePlayer(props) {
-    if (props.file && props.pageIsPrepared) {
+    if (props.file &&
+        props.file.isReady &&
+        props.pageIsPrepared) {
       return (
         <FilePlayer file={props.file}
                     posterImageFile={props.posterImageFile}
