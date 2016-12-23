@@ -8,17 +8,24 @@ import goToNextPageOnEnd from './goToNextPageOnEnd';
 import controlsHidden from './controlsHidden';
 
 export default function*(options = {}) {
-  yield [
+  const sagas = [
     togglePlaying(),
     handlePageDidActivate(options),
 
     disableScrollIndicatorDuringPlayback(),
 
     hasNotBeenPlayingForAMoment(),
-    idling(),
-    controlsHidden(),
 
     goToNextPageOnEnd(),
     fadeOutWhenPageWillDeactivate()
   ];
+
+  if (options.hideControls) {
+    sagas.push([
+      idling(),
+      controlsHidden()
+    ]);
+  }
+
+  yield sagas;
 }

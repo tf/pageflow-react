@@ -55,7 +55,9 @@ export function register() {
 
     saga: function*() {
       yield [
-        mediaPageSaga()
+        mediaPageSaga({
+          hideControls: true
+        })
       ];
     }
 
