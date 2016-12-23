@@ -10,7 +10,9 @@ export default class MenuBarButton extends React.Component {
       subMenuVisible: false
     };
 
-    this.onLinkClick = () => {
+    this.onLinkClick = (event) => {
+      event.preventDefault();
+
       if (this.props.subMenuItems.length > 0) {
         this.setState({subMenuVisible: !this.state.subMenuVisible});
       }
@@ -153,7 +155,8 @@ function renderSubMenuItemAnnotation(props, item) {
 }
 
 function subMenuItemClickHandler(props, value, closeMenu) {
-  return () => {
+  return (event) => {
+    event.preventDefault();
     closeMenu();
 
     if (props.onSubMenuItemClick) {

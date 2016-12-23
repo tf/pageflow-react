@@ -9,8 +9,8 @@ function PlayButton(props) {
        tabIndex="4"
        id={props.id}
        title={props.title}
-       onClick={props.onClick}>
-      {icon(props)}
+       onClick={clickHandler(props)}>
+       {icon(props)}
     </a>
   );
 }
@@ -21,6 +21,16 @@ function className(props) {
   return classNames('vjs-play-control',
                     {'vjs-playing': props.isPlaying},
                     {'player_controls-play_button-custom_icon': !!props.iconName});
+}
+
+function clickHandler(props) {
+  return event => {
+    if (props.onClick) {
+      props.onClick(event);
+    }
+
+    event.preventDefault();
+  };
 }
 
 function icon(props) {
