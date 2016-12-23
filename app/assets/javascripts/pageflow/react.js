@@ -19061,7 +19061,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 /* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -19088,7 +19088,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    middlewares.push(middleware);
 	  }
 
-	  var composeEnhancers = typeof __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : _redux.compose;
+	  var composeEnhancers = _redux.compose;
+
+	  if ((typeof process === 'undefined' || ("production") !== 'production') && typeof __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
+
+	    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+	  }
 
 	  var store = (0, _redux.createStore)(reducer, {}, composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares)));
 
@@ -19104,6 +19109,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(294)))
 
 /***/ },
 /* 436 */
