@@ -18,6 +18,7 @@ export default function(props) {
                        playerState={props.playerState}
                        playerActions={props.playerActions}
                        atmoDuringPlayback={props.atmoDuringPlayback}
+                       defaultTextTrackFileId={props.defaultTextTrackFileId}
                        textTracksEnabled={props.textTracksEnabled}
                        loop={props.loop} />
     </Positioner>

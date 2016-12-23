@@ -17,6 +17,7 @@ export default function(FilePlayer) {
                     fit={props.fit}
                     position={props.position}
                     loop={props.loop}
+                    defaultTextTrackFileId={props.defaultTextTrackFileId}
                     textTracksEnabled={props.textTracksEnabled} />
       );
     }
@@ -27,6 +28,7 @@ export default function(FilePlayer) {
 
   return connectInPage(combine({
     pageIsPrepared: pageIsPrepared(),
-    atmoDuringPlayback: pageAttribute('atmoDuringPlayback')
+    atmoDuringPlayback: pageAttribute('atmoDuringPlayback'),
+    defaultTextTrackFileId: pageAttribute('defaultTextTrackFileId')
   }))(PageFilePlayer);
 }

@@ -2,8 +2,7 @@ import playerStateClassNames from './playerStateClassNames';
 import PlayerControls from 'components/PlayerControls';
 import {combine} from 'utils';
 
-import {textTracks, videoQualitySetting} from 'media/selectors';
-import {prop} from 'selectors';
+import {videoQualitySetting} from 'media/selectors';
 import {t} from 'i18n/selectors';
 import {updateTextTrackSettings, updateVideoQualitySetting} from 'media/actions';
 
@@ -15,11 +14,17 @@ export function MediaPlayerControls(props) {
   const actions = props.playerActions;
   const playerState = props.playerState;
 
-  const onTextTracksMenuItemClick = function(textTrackFileId) {
-    props.updateTextTrackSettings(props.textTracks.files.find(textTrackFile => {
-      return textTrackFile.id == textTrackFileId;
+  const onTextTracksMenuItemClick = function(value) {
+    if (value == 'off') {
+      props.updateTextTrackSettings({
+        kind: 'off'
+      });
     }
-    ));
+    else {
+      props.updateTextTrackSettings(props.textTracks.files.find(textTrackFile => {
+        return textTrackFile.id == value;
+      }));
+    }
   };
 
   return (
@@ -70,9 +75,6 @@ MediaPlayerControls.defaultProps = {
 
 export default connect(
   combine({
-    textTracks: textTracks({
-      file: prop('file')
-    }),
     activeQuality: videoQualitySetting(),
     t
   }),
@@ -88,17 +90,26 @@ function className(playerState) {
 }
 
 function textTracksMenuItems(textTracks, t) {
-  const noTextTrackItem = {
-    value: -1,
-    label: t('pageflow.public.none'),
-    active: !textTracks.activeFileId
+  const offItem = {
+    value: 'off',
+    label: t('pageflow.public.text_track_modes.none'),
+    active: textTracks.mode == 'off'
   };
 
-  return [noTextTrackItem].concat(textTracks.files.map(textTrackFile => {
+  const autoItem = {
+    value: 'auto',
+    label: t('pageflow.public.text_track_modes.auto'),
+    active: textTracks.mode == 'auto'
+  };
+
+  return [autoItem, offItem].concat(textTracks.files.map(textTrackFile => {
     return {
       value: textTrackFile.id,
       label: textTrackFile.displayLabel,
-      active: textTrackFile.id == textTracks.activeFileId,
+      annotation: textTrackFile.isDefault ?
+                  t('pageflow.public.text_track_modes.auto_annotation') : '',
+      active: textTracks.mode == 'user' &&
+              textTrackFile.id == textTracks.activeFileId,
     };
   }));
 }

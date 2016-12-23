@@ -1,7 +1,10 @@
 de:
   pageflow:
     public:
-      none: "(Kein)"
+      text_track_modes:
+        none: "Aus"
+        auto: "Automatisch"
+        auto_annotation: "AUTO"
       open_audio: "Audio öffnen"
       open_video: "Video öffnen"
       text_tracks: "Untertitel"

@@ -27,7 +27,10 @@ describe('textTracks selector', () => {
   });
 
   const files = {
-    'video_files': [{id: 2004, variants: []}],
+    'video_files': [
+      {id: 2004, variants: []},
+      {id: 2005, variants: []}
+    ],
     'text_track_files': [
       {
         id: 3001,
@@ -45,7 +48,16 @@ describe('textTracks selector', () => {
         configuration: {
           kind: 'captions',
           srclang: 'de',
-          label: 'English'
+          label: 'German'
+        }
+      },
+      {
+        id: 4001,
+        parent_file_id: 2005,
+        parent_file_model_type: 'Pageflow::VideoFile',
+        configuration: {
+          kind: 'captions',
+          srclang: 'de'
         }
       }
     ]
@@ -61,7 +73,7 @@ describe('textTracks selector', () => {
     expect(result).to.have.deep.property('files[0].id', 3001);
   });
 
-  it('sets active flag on text track matching settings', () => {
+  it('sets activeFileId to id of text track matching settings', () => {
     const state = sample({
       files,
       textTrack: file('textTrackFiles', {id: 3002})
@@ -74,6 +86,48 @@ describe('textTracks selector', () => {
     expect(result).to.have.deep.property('activeFileId', 3002);
   });
 
+  it('sets activeFileId to id of given by defaultTextTrackFileId selector if non matches setting', () => {
+    const state = sample({
+      files,
+      textTrack: file('textTrackFiles', {id: 3001}),
+    });
+
+    const result = textTracks({
+      file: file('videoFiles', {id: 2005}),
+      defaultTextTrackFileId: () => 4001
+    })(state);
+
+    expect(result).to.have.deep.property('activeFileId', 4001);
+  });
+
+  it('sets activeFileId to falsy if defaultTextTrackFileId selector gives unknown id', () => {
+    const state = sample({
+      files,
+      textTrack: file('textTrackFiles', {id: 3001}),
+    });
+
+    const result = textTracks({
+      file: file('videoFiles', {id: 2005}),
+      defaultTextTrackFileId: () => 8000
+    })(state);
+
+    expect(result.activeFileId).to.be.falsy;
+  });
+
+  it('sets activeFileId to null if kind is "off"', () => {
+    const state = sample({
+      files,
+      textTrack: () => ({kind: 'off'}),
+    });
+
+    const result = textTracks({
+      file: file('videoFiles', {id: 2005}),
+      defaultTextTrackFileId: () => 4001
+    })(state);
+
+    expect(result.activeFileId).to.be.falsy;
+  });
+
   it('adds displayLabel', () => {
     const state = sample({files});
 
@@ -81,7 +135,7 @@ describe('textTracks selector', () => {
       file: file('videoFiles', {id: 2004})
     })(state);
 
-    expect(result).to.have.deep.property('files[1].displayLabel', 'English');
+    expect(result).to.have.deep.property('files[1].displayLabel', 'German');
   });
 });
 

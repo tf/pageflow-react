@@ -109,7 +109,8 @@ export default function({
   const result = connect(
     combine({
       textTracks: textTracks({
-        file: prop('file')
+        file: prop('file'),
+        defaultTextTrackFileId: prop('defaultTextTrackFileId')
       }),
       quality: setting({property: 'videoQuality'}),
       textTrackPosition

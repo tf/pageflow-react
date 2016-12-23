@@ -40,6 +40,7 @@ export function MediaPage(props) {
 
 
         <MediaPlayerControls file={props.file}
+                             textTracks={props.textTracks}
                              playerState={playerState}
                              playerActions={props.playerActions}
                              qualities={props.qualities}
@@ -59,7 +60,8 @@ export function MediaPage(props) {
 
 export default connect(combine({
   textTracks: textTracks({
-    file: prop('file')
+    file: prop('file'),
+    defaultTextTrackFileId: prop('page.defaultTextTrackFileId')
   }),
 }))(MediaPage);
 
