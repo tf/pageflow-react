@@ -5,15 +5,11 @@ pageflow.ConfigurationEditorView.register('background_image', {
     });
 
     this.tab('files', function() {
-      this.input('video_file_id', pageflow.FileInputView, {collection: pageflow.videoFiles});
-      this.input('poster_image_id', pageflow.FileInputView, {collection: pageflow.imageFiles});
+      this.group('background');
+
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
         positioning: false
-      });
-      this.input('mobile_poster_image_id', pageflow.FileInputView, {
-        collection: pageflow.imageFiles,
-        imagePositioning: false
       });
     });
 
@@ -46,10 +42,6 @@ pageflow.ConfigurationEditorView.register('video', {
         collection: pageflow.imageFiles,
         positioning: false
       });
-      this.input('mobile_poster_image_id', pageflow.FileInputView, {
-        collection: pageflow.imageFiles,
-        imagePositioning: false
-      });
     });
 
     this.tab('options', function() {
@@ -75,7 +67,9 @@ pageflow.ConfigurationEditorView.register('audio', {
 
     this.tab('files', function() {
       this.input('audio_file_id', pageflow.FileInputView, {collection: pageflow.audioFiles});
-      this.input('background_image_id', pageflow.FileInputView, {collection: pageflow.imageFiles});
+
+      this.group('background');
+
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
         positioning: false

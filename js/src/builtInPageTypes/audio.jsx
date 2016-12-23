@@ -1,6 +1,5 @@
-import {PageBackgroundImage} from 'components';
-
 import {Page as MediaPage,
+        PageBackgroundAsset,
         pageReducers as mediaPageReducers,
         pageSaga as mediaPageSaga} from 'media';
 
@@ -27,7 +26,7 @@ function AudioPage(props) {
                playerActions={props.playerActions}
                controlBarText={props.t('pageflow.public.start_audio')}>
 
-      <PageBackgroundImage page={props.page} />
+      <PageBackgroundAsset />
       <PageAudioFilePlayer file={props.audioFile}
                            playerState={props.playerState}
                            playerActions={props.playerActions} />

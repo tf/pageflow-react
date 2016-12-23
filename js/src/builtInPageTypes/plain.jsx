@@ -1,28 +1,30 @@
 import {
   PageWrapper,
-  PageBackground,
-  PageBackgroundImage,
-  PageShadow,
   PageForeground,
   PageScroller,
   PageHeader,
   PageText
 } from 'components';
 
+import {
+  PageBackground,
+  pageReducers as mediaPageReducers,
+  pageSaga as mediaPageSaga
+} from 'media';
+
 import registerPageType from 'registerPageType';
 import {connectInPage} from 'pages';
 import {pageAttributes} from 'pages/selectors';
 import {combine} from 'utils';
+
+import {combineReducers} from 'redux';
 
 function PlainPage(props) {
   const page = props.page;
 
   return (
     <PageWrapper>
-      <PageBackground>
-        <PageBackgroundImage page={page} />
-        <PageShadow page={page} />
-      </PageBackground>
+      <PageBackground page={page} />
 
       <PageForeground>
         <PageScroller>
@@ -40,6 +42,16 @@ export function register() {
       combine({
         page: pageAttributes()
       })
-    )(PlainPage)
+    )(PlainPage),
+
+    reducer: combineReducers({
+      ...mediaPageReducers
+    }),
+
+    saga: function*() {
+      yield [
+        mediaPageSaga({autoplay: true})
+      ];
+    }
   });
 }
