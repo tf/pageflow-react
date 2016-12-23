@@ -20010,6 +20010,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        },
 	        classNames: (0, _playerStateClassNames2.default)(playerState) },
 	      React.createElement(_PlayerControls2.default, { file: props.file,
+	        textTracks: props.textTracks,
 	        playerState: playerState,
 	        playerActions: props.playerActions,
 	        qualities: props.qualities,
@@ -20031,7 +20032,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.default = (0, _reactRedux.connect)((0, _utils.combine)({
 	  textTracks: (0, _selectors2.textTracks)({
-	    file: (0, _selectors.prop)('file')
+	    file: (0, _selectors.prop)('file'),
+	    defaultTextTrackFileId: (0, _selectors.prop)('page.defaultTextTrackFileId')
 	  })
 	}))(MediaPage);
 
@@ -20074,9 +20076,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(465);
 
-	var _selectors2 = __webpack_require__(425);
-
-	var _selectors3 = __webpack_require__(429);
+	var _selectors2 = __webpack_require__(429);
 
 	var _actions = __webpack_require__(466);
 
@@ -20096,10 +20096,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  var actions = props.playerActions;
 	  var playerState = props.playerState;
 
-	  var onTextTracksMenuItemClick = function onTextTracksMenuItemClick(textTrackFileId) {
-	    props.updateTextTrackSettings(props.textTracks.files.find(function (textTrackFile) {
-	      return textTrackFile.id == textTrackFileId;
-	    }));
+	  var onTextTracksMenuItemClick = function onTextTracksMenuItemClick(value) {
+	    if (value == 'off') {
+	      props.updateTextTrackSettings({
+	        kind: 'off'
+	      });
+	    } else {
+	      props.updateTextTrackSettings(props.textTracks.files.find(function (textTrackFile) {
+	        return textTrackFile.id == value;
+	      }));
+	    }
 	  };
 
 	  return _react2.default.createElement(_PlayerControls2.default, _extends({ hasProgress: true,
@@ -20144,11 +20150,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 	exports.default = (0, _reactRedux.connect)((0, _utils.combine)({
-	  textTracks: (0, _selectors.textTracks)({
-	    file: (0, _selectors2.prop)('file')
-	  }),
 	  activeQuality: (0, _selectors.videoQualitySetting)(),
-	  t: _selectors3.t
+	  t: _selectors2.t
 	}), {
 	  updateTextTrackSettings: _actions.updateTextTrackSettings,
 	  updateVideoQualitySetting: _actions.updateVideoQualitySetting
@@ -20160,17 +20163,24 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 	function textTracksMenuItems(textTracks, t) {
-	  var noTextTrackItem = {
-	    value: -1,
-	    label: t('pageflow.public.none'),
-	    active: !textTracks.activeFileId
+	  var offItem = {
+	    value: 'off',
+	    label: t('pageflow.public.text_track_modes.none'),
+	    active: textTracks.mode == 'off'
 	  };
 
-	  return [noTextTrackItem].concat(textTracks.files.map(function (textTrackFile) {
+	  var autoItem = {
+	    value: 'auto',
+	    label: t('pageflow.public.text_track_modes.auto'),
+	    active: textTracks.mode == 'auto'
+	  };
+
+	  return [autoItem, offItem].concat(textTracks.files.map(function (textTrackFile) {
 	    return {
 	      value: textTrackFile.id,
 	      label: textTrackFile.displayLabel,
-	      active: textTrackFile.id == textTracks.activeFileId
+	      annotation: textTrackFile.isDefault ? t('pageflow.public.text_track_modes.auto_annotation') : '',
+	      active: textTracks.mode == 'user' && textTrackFile.id == textTracks.activeFileId
 	    };
 	  }));
 	}
@@ -20262,7 +20272,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 	function textTracks(_ref) {
-	  var file = _ref.file;
+	  var file = _ref.file,
+	      _ref$defaultTextTrack = _ref.defaultTextTrackFileId,
+	      defaultTextTrackFileId = _ref$defaultTextTrack === undefined ? function () {} : _ref$defaultTextTrack;
 
 	  var settingsSelector = (0, _selectors3.setting)({ property: 'textTrack' });
 	  var filesSelector = (0, _selectors.nestedFiles)('textTrackFiles', {
@@ -20270,19 +20282,22 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  });
 
 	  return function (state, props) {
-	    var settings = settingsSelector(state, props);
+	    var settings = settingsSelector(state, props) || {};
 	    var files = filesSelector(state, props);
 	    var translate = (0, _selectors4.t)(state, props);
+	    var defaultId = defaultTextTrackFileId(state, props);
 
 	    return {
 	      files: files.map(function (textTrackFile) {
 	        return _extends({
-	          displayLabel: displayLabel(textTrackFile, translate)
+	          displayLabel: displayLabel(textTrackFile, translate),
+	          isDefault: defaultId && textTrackFile.id == defaultId
 	        }, textTrackFile);
 	      }).sort(function (file1, file2) {
 	        return file1.displayLabel.localeCompare(file2.displayLabel);
 	      }),
-	      activeFileId: getActiveTextTrackFileId(files, settings)
+	      activeFileId: getActiveTextTrackFileId(files, defaultId, settings),
+	      mode: settings.kind == 'off' ? 'off' : settings.kind ? 'user' : 'auto'
 	    };
 	  };
 	}
@@ -20291,14 +20306,26 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return textTrackFile.label || t('pageflow.public.languages.' + textTrackFile.srclang || 'unknown', { defaultValue: t('pageflow.public.languages.unknown') });
 	}
 
-	function getActiveTextTrackFileId(textTrackFiles, options) {
-	  options = options || {};
+	function getActiveTextTrackFileId(textTrackFiles, defaultTextTrackFileId, options) {
+	  if (options.kind == 'off') {
+	    return null;
+	  }
 
 	  var file = textTrackFiles.find(function (textTrackFile) {
 	    return textTrackFile.srclang == options.srclang && textTrackFile.kind == options.kind;
 	  });
 
-	  return file && file.id;
+	  if (file) {
+	    return file.id;
+	  }
+
+	  if (defaultTextTrackFileId) {
+	    var defaultTextTrackFile = textTrackFiles.find(function (textTrackFile) {
+	      return textTrackFile.id == defaultTextTrackFileId;
+	    });
+
+	    return defaultTextTrackFile && defaultTextTrackFile.id;
+	  }
 	}
 
 	function videoQualitySetting() {
@@ -20658,14 +20685,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    posterImageFileId: page.posterImageId,
 	    playerState: props.playerState,
 	    playerActions: props.playerActions,
-	    fit: 'smart_contain',
+	    fit: props.fit,
 	    position: [page[property + 'X'], page[property + 'Y']],
 	    textTracksEnabled: props.textTracksEnabled,
 	    loop: props.loop });
 	}
 
 	PageVideoPlayer.defaultProps = {
-	  videoPropertyBaseName: 'videoFile'
+	  videoPropertyBaseName: 'videoFile',
+	  fit: 'smart_contain'
 	};
 
 /***/ },
@@ -20687,6 +20715,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      playerState: props.playerState,
 	      playerActions: props.playerActions,
 	      atmoDuringPlayback: props.atmoDuringPlayback,
+	      defaultTextTrackFileId: props.defaultTextTrackFileId,
 	      textTracksEnabled: props.textTracksEnabled,
 	      loop: props.loop })
 	  );
@@ -20830,7 +20859,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	  var result = (0, _reactRedux.connect)((0, _utils.combine)({
 	    textTracks: (0, _selectors.textTracks)({
-	      file: (0, _selectors4.prop)('file')
+	      file: (0, _selectors4.prop)('file'),
+	      defaultTextTrackFileId: (0, _selectors4.prop)('defaultTextTrackFileId')
 	    }),
 	    quality: (0, _selectors2.setting)({ property: 'videoQuality' }),
 	    textTrackPosition: textTrackPosition
@@ -21501,6 +21531,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        fit: props.fit,
 	        position: props.position,
 	        loop: props.loop,
+	        defaultTextTrackFileId: props.defaultTextTrackFileId,
 	        textTracksEnabled: props.textTracksEnabled });
 	    } else {
 	      return null;
@@ -21509,7 +21540,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	  return (0, _pages.connectInPage)((0, _utils.combine)({
 	    pageIsPrepared: (0, _selectors.pageIsPrepared)(),
-	    atmoDuringPlayback: (0, _selectors.pageAttribute)('atmoDuringPlayback')
+	    atmoDuringPlayback: (0, _selectors.pageAttribute)('atmoDuringPlayback'),
+	    defaultTextTrackFileId: (0, _selectors.pageAttribute)('defaultTextTrackFileId')
 	  }))(PageFilePlayer);
 	};
 
@@ -21830,14 +21862,22 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _callee() {
 	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var sagas;
 	  return regeneratorRuntime.wrap(function _callee$(_context) {
 	    while (1) {
 	      switch (_context.prev = _context.next) {
 	        case 0:
-	          _context.next = 2;
-	          return [(0, _togglePlaying2.default)(), (0, _handlePageDidActivate2.default)(options), (0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)(), (0, _idling2.default)(), (0, _controlsHidden2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
+	          sagas = [(0, _togglePlaying2.default)(), (0, _handlePageDidActivate2.default)(options), (0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
 
-	        case 2:
+
+	          if (options.hideControls) {
+	            sagas.push([(0, _idling2.default)(), (0, _controlsHidden2.default)()]);
+	          }
+
+	          _context.next = 4;
+	          return sagas;
+
+	        case 4:
 	        case 'end':
 	          return _context.stop();
 	      }
@@ -22689,7 +22729,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          switch (_context.prev = _context.next) {
 	            case 0:
 	              _context.next = 2;
-	              return [(0, _media.pageSaga)()];
+	              return [(0, _media.pageSaga)({
+	                hideControls: true
+	              })];
 
 	            case 2:
 	            case 'end':
