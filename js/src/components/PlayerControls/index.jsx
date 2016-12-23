@@ -32,6 +32,7 @@ function PlayerControls(props) {
       </div>
 
       <MenuBar standAlone={false}
+               hiddenOnPhone={true}
                qualityMenuButtonTitle={props.qualityMenuButtonTitle}
                qualityMenuItems={props.qualityMenuItems}
                onQualityMenuItemClick={props.onQualityMenuItemClick}
