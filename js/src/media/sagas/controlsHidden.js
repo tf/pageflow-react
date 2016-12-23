@@ -28,7 +28,7 @@ export default function*() {
           yield call(delay, 2500);
         }
         else {
-          yield call(delay, 2000);
+          yield call(delay, 1200);
         }
 
         yield put(controlsHidden());
