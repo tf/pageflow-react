@@ -7,10 +7,10 @@ import fadeOutWhenPageWillDeactivate from './fadeOutWhenPageWillDeactivate';
 import goToNextPageOnEnd from './goToNextPageOnEnd';
 import controlsHidden from './controlsHidden';
 
-export default function*() {
+export default function*(options = {}) {
   yield [
     togglePlaying(),
-    handlePageDidActivate(),
+    handlePageDidActivate(options),
 
     disableScrollIndicatorDuringPlayback(),
 
