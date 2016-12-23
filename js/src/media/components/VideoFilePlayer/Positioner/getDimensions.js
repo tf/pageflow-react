@@ -1,5 +1,6 @@
 export default function(videoFile, fit, position, wrapperDimensions) {
-  if (!wrapperDimensions || !fit || fit == 'contain') {
+  if (!wrapperDimensions || !wrapperDimensions.height ||
+      !fit || fit == 'contain') {
     return;
   }
 
