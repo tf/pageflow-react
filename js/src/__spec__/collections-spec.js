@@ -62,7 +62,7 @@ describe('collections', () => {
       expect(this.getPost({id: 5})(this.store.getState()).title).to.eql('Old news');
     });
 
-    it('handles removing models', function() {
+    it('handles removing models after delay', function(done) {
       const collection = new Backbone.Collection([{id: 5, title: 'Big news'}]);
 
       watch({
@@ -74,7 +74,10 @@ describe('collections', () => {
 
       collection.remove(5);
 
-      expect(this.getPost({id: 5})(this.store.getState())).to.eq(undefined);
+      setTimeout(function() {
+        expect(this.getPost({id: 5})(this.store.getState())).to.eq(undefined);
+        done();
+      }.bind(this), 0);
     });
   });
 
