@@ -47,10 +47,34 @@ module Pageflow
 
       def default_thumbnail_candidates
         [
-          {file_collection: 'image_files', attribute: 'thumbnail_image_id'},
-          {file_collection: 'image_files', attribute: 'background_image_id'},
-          {file_collection: 'image_files', attribute: 'poster_image_id'},
-          {file_collection: 'video_files', attribute: 'video_file_id'}
+          {
+            file_collection: 'image_files',
+            attribute: 'thumbnail_image_id'
+          },
+          {
+            file_collection: 'image_files',
+            attribute: 'background_image_id',
+            unless: {
+              attribute: 'background_type',
+              value: 'video'
+            }
+          },
+          {
+            file_collection: 'image_files',
+            attribute: 'poster_image_id',
+            if: {
+              attribute: 'background_type',
+              value: 'video'
+            }
+          },
+          {
+            file_collection: 'video_files',
+            attribute: 'video_file_id',
+            if: {
+              attribute: 'background_type',
+              value: 'video'
+            }
+          }
         ]
       end
     end

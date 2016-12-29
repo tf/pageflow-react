@@ -30,18 +30,33 @@ function typeClassName(pageType) {
 }
 
 function thumbnailClassName(props) {
-  var candidate = firstPresentCandidate(props);
+  var candidate = findThumbnailCandidate(props);
 
   if (candidate) {
     return thumbnailCandidateClassName(props, candidate);
   }
 }
 
-function firstPresentCandidate(props) {
+function findThumbnailCandidate(props) {
   return thumbnailCandidates(props).find(candidate => {
+    if (candidate.condition && !conditionMet(candidate.condition, props.page)) {
+      return false;
+    }
+
     var id = thumbnailCandidateId(props, candidate);
     return props.fileExists(camelize(candidate.collectionName), id);
   });
+}
+
+function conditionMet(condition, page) {
+  const value = page[camelize(condition.attribute)];
+
+  if (condition.negated) {
+    return value != condition.value;
+  }
+  else {
+    return value == condition.value;
+  }
 }
 
 function thumbnailCandidates(props) {

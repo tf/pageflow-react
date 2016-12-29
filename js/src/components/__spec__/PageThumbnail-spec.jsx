@@ -133,6 +133,128 @@ describe('PageThumbnail', () => {
     expect(result).not.to.have.className('pageflow_image_file');
   });
 
+  it('skips candidates whose condition is not met', () => {
+    const props = {
+      page: {
+        imageId: 5,
+        backgroundType: 'video'
+      },
+      pageType: {
+        thumbnailCandidates: [
+          {
+            attribute: 'imageId',
+            collectionName: 'image_files',
+            cssClassPrefix: 'pageflow_image_file',
+            condition: {
+              attribute: 'background_type',
+              value: 'image'
+            }
+          },
+        ]
+      },
+      fileExists: fileExistsFn({
+        imageFiles: [5, 6]
+      }),
+      imageStyle: 'thumbnail'
+    };
+
+    const result = shallow(<PageThumbnail {...props} />);
+
+    expect(result).not.to.have.className('pageflow_image_file_thumbnail_5');
+  });
+
+  it('uses candidate whose condition is met', () => {
+    const props = {
+      page: {
+        imageId: 5,
+        backgroundType: 'image'
+      },
+      pageType: {
+        thumbnailCandidates: [
+          {
+            attribute: 'image_id',
+            collectionName: 'image_files',
+            cssClassPrefix: 'pageflow_image_file',
+            condition: {
+              attribute: 'background_type',
+              value: 'image'
+            }
+          },
+        ]
+      },
+      fileExists: fileExistsFn({
+        imageFiles: [5, 6]
+      }),
+      imageStyle: 'thumbnail'
+    };
+
+    const result = shallow(<PageThumbnail {...props} />);
+
+    expect(result).to.have.className('pageflow_image_file_thumbnail_5');
+  });
+
+  it('skips candidates with negated met condition', () => {
+    const props = {
+      page: {
+        imageId: 5,
+        backgroundType: 'image'
+      },
+      pageType: {
+        thumbnailCandidates: [
+          {
+            attribute: 'imageId',
+            collectionName: 'image_files',
+            cssClassPrefix: 'pageflow_image_file',
+            condition: {
+              attribute: 'background_type',
+              value: 'image',
+              negated: true
+            }
+          },
+        ]
+      },
+      fileExists: fileExistsFn({
+        imageFiles: [5, 6]
+      }),
+      imageStyle: 'thumbnail'
+    };
+
+    const result = shallow(<PageThumbnail {...props} />);
+
+    expect(result).not.to.have.className('pageflow_image_file_thumbnail_5');
+  });
+
+  it('uses candidate with negated unmet condition', () => {
+    const props = {
+      page: {
+        imageId: 5,
+        backgroundType: 'video'
+      },
+      pageType: {
+        thumbnailCandidates: [
+          {
+            attribute: 'image_id',
+            collectionName: 'image_files',
+            cssClassPrefix: 'pageflow_image_file',
+            condition: {
+              attribute: 'background_type',
+              value: 'image',
+              negated: true
+            }
+          },
+        ]
+      },
+      fileExists: fileExistsFn({
+        imageFiles: [5, 6]
+      }),
+      imageStyle: 'thumbnail'
+    };
+
+    const result = shallow(<PageThumbnail {...props} />);
+
+    expect(result).to.have.className('pageflow_image_file_thumbnail_5');
+  });
+
   it('prefers custom thumbnail id', () => {
     const props = {
       page: {
