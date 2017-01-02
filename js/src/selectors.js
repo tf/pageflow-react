@@ -1,4 +1,5 @@
 import {
+  pageAttribute,
   pageAttributes,
   pageIsActive,
   pageIsPrepared
@@ -26,6 +27,7 @@ import {
 } from 'utils/selectors';
 
 export {
+  pageAttribute,
   pageAttributes,
   pageIsActive,
   pageIsPrepared,
