@@ -38,6 +38,6 @@ export function textTracksFromFiles(textTrackFiles, textTracksEnabled) {
     kind: textTrackFile.kind,
     label: textTrackFile.label,
     srclang: textTrackFile.srclang,
-    src: textTrackFile.urls.original
+    src: textTrackFile.urls.vtt
   }));
 }

@@ -88,7 +88,7 @@ describe('createFilePlayer', () => {
     it('renders media tag with text tracks from props', () => {
       const {FilePlayer} = setup();
       const textTracks = {
-        files: [{srclang: 'en', urls: {original: 'some.vtt'}}]
+        files: [{srclang: 'en', urls: {vtt: 'some.vtt'}}]
       };
 
       const wrapper = mount(<FilePlayer file={{}}
@@ -102,7 +102,7 @@ describe('createFilePlayer', () => {
     it('does not render text tracks when text tracks are disabled', () => {
       const {FilePlayer} = setup();
       const textTracks = {
-        files: [{srclang: 'en', urls: {original: 'some.vtt'}}]
+        files: [{srclang: 'en', urls: {vtt: 'some.vtt'}}]
       };
 
       const wrapper = mount(<FilePlayer file={{}}
@@ -276,8 +276,8 @@ describe('createFilePlayer', () => {
       const {FilePlayer, mockPlayer} = setup();
       const textTracks = {
         files: [
-          {id: 5, urls: {original: 'some.vtt'}},
-          {id: 6, urls: {original: 'other.vtt'}}
+          {id: 5, urls: {vtt: 'some.vtt'}},
+          {id: 6, urls: {vtt: 'other.vtt'}}
         ],
         activeFileId: 5
       };
@@ -295,8 +295,8 @@ describe('createFilePlayer', () => {
       const {FilePlayer, mockPlayer} = setup();
       const textTracks = {
         files: [
-          {id: 5, urls: {original: 'some.vtt'}},
-          {id: 6, urls: {original: 'other.vtt'}}
+          {id: 5, urls: {vtt: 'some.vtt'}},
+          {id: 6, urls: {vtt: 'other.vtt'}}
         ]
       };
 
