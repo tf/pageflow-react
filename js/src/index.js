@@ -4,6 +4,11 @@ import * as actions from 'actions';
 import * as components from 'components';
 import * as selectors from 'selectors';
 
+import {
+  PageBackground as MediaPageBackground,
+  reduxModule as mediaReduxModule
+} from 'media';
+
 import {connectInPage} from 'pages';
 
 import registerPageType from 'registerPageType';
@@ -35,12 +40,20 @@ if (pageflow.events) {
 // 'assign'` at the moment. See
 // https://github.com/webpack/webpack/issues/706
 module.exports = {
+  components: {
+    MediaPageBackground,
+    ...components
+  },
+
   actions,
-  components,
   selectors,
 
   registerPageType,
   registerWidgetType,
+
+  MediaPageBackground,
+  mediaPageBackgroundReduxModule: mediaReduxModule({autoplay: true}),
+  mediaReduxModule,
 
   iconMapping,
   SvgIcon,
