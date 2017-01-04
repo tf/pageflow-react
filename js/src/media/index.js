@@ -7,14 +7,22 @@ import PageBackground from './components/PageBackground';
 import reducer from './reducer';
 import pageSaga from './sagas';
 
-export const pageReducers = {media: reducer};
+export function reduxModule(options) {
+  return {
+    reducers: {
+      media: reducer
+    },
+
+    saga: function*() {
+      yield pageSaga(options);
+    }
+  };
+}
 
 export {
   Page,
   PageVideoPlayer,
   PageBackgroundVideo,
   PageBackgroundAsset,
-  PageBackground,
-
-  pageSaga
+  PageBackground
 };
