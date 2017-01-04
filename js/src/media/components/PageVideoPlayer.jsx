@@ -17,7 +17,7 @@ export default function PageVideoPlayer(props) {
 
   return (
     <VideoPlayer videoFileId={page[`${property}Id`]}
-                 posterImageFileId={page.posterImageId}
+                 posterImageFileId={page[`${props.posterImagePropertyBaseName}Id`]}
                  playerState={props.playerState}
                  playerActions={props.playerActions}
                  fit={props.fit}
@@ -29,5 +29,6 @@ export default function PageVideoPlayer(props) {
 
 PageVideoPlayer.defaultProps = {
   videoPropertyBaseName: 'videoFile',
+  posterImagePropertyBaseName: 'posterImageId',
   fit: 'smart_contain'
 };

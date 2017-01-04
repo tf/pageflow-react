@@ -4,7 +4,7 @@ import PageBackgroundAsset from './PageBackgroundAsset';
 export default function MediaPageBackground(props) {
   return (
     <PageBackground>
-      <PageBackgroundAsset />
+      <PageBackgroundAsset propertyNamePrefix={props.propertyNamePrefix} />
       <PageShadow page={props.page} />
     </PageBackground>
   );
