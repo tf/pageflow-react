@@ -10,7 +10,7 @@ const PageProvider = createItemScopeProvider('pages');
 export default class extends React.Component {
   componentWillMount() {
     this.store = boot({seed: this.props.resolverSeed});
-    this.pageComponent = findPageComponent(this.props.pageType);
+    this.pageComponent = pageTypeRegistry.findByName(this.props.pageType).component;
   }
 
   render(props) {
@@ -24,10 +24,4 @@ export default class extends React.Component {
       </Provider>
     );
   }
-}
-
-function findPageComponent(pageTypeName) {
-  return pageTypeRegistry.find(({name, component}) =>
-    name == pageTypeName
-  ).component;
 }
