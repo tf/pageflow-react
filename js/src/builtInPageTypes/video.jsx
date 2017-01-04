@@ -1,7 +1,6 @@
 import {Page as MediaPage,
         PageVideoPlayer,
-        pageReducers as mediaPageReducers,
-        pageSaga as mediaPageSaga} from 'media';
+        reduxModule as mediaReduxModule} from 'media';
 
 import registerPageType from 'registerPageType';
 
@@ -12,7 +11,6 @@ import {pageAttributes, pageAttribute} from 'pages/selectors';
 import {t} from 'i18n/selectors';
 import {file} from 'files/selectors';
 
-import {combineReducers} from 'redux';
 import {combine} from 'utils';
 
 const qualities = ['auto', '4k', 'fullhd', 'medium'];
@@ -49,17 +47,8 @@ export function register() {
       })
     )(VideoPage),
 
-    reducer: combineReducers({
-      ...mediaPageReducers
-    }),
-
-    saga: function*() {
-      yield [
-        mediaPageSaga({
-          hideControls: true
-        })
-      ];
-    }
-
+    reduxModules: [
+      mediaReduxModule({hideControls: true})
+    ]
   });
 }

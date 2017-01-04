@@ -1,7 +1,6 @@
 import {Page as MediaPage,
         PageBackgroundAsset,
-        pageReducers as mediaPageReducers,
-        pageSaga as mediaPageSaga} from 'media';
+        reduxModule as mediaReduxModule} from 'media';
 
 import PageAudioFilePlayer from 'media/components/PageAudioFilePlayer';
 
@@ -14,7 +13,6 @@ import {pageAttributes, pageAttribute} from 'pages/selectors';
 import {t} from 'i18n/selectors';
 import {file} from 'files/selectors';
 
-import {combineReducers} from 'redux';
 import {combine} from 'utils';
 
 function AudioPage(props) {
@@ -49,15 +47,8 @@ export function register() {
       })
     )(AudioPage),
 
-    reducer: combineReducers({
-      ...mediaPageReducers
-    }),
-
-    saga: function*() {
-      yield [
-        mediaPageSaga()
-      ];
-    }
-
+    reduxModules: [
+      mediaReduxModule()
+    ]
   });
 }
