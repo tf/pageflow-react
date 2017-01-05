@@ -36,6 +36,9 @@ import {reducers as entryReducers,
 
 import {watchEvents as watchHotkeyEvents} from 'hotkeys';
 
+import {reducers as hideTextReducers,
+        watch as watchHideText} from 'hideText';
+
 import {reducers as widgetsReducers,
         watch as watchWidgets,
         createWidgetType} from 'widgets';
@@ -67,6 +70,7 @@ export default function(pageflow) {
       modelTypes: seed['file_model_types']
     }),
     ...settingsReducers,
+    ...hideTextReducers,
     ...widgetsReducers
   });
 
@@ -104,6 +108,7 @@ export default function(pageflow) {
     watchSettings(pageflow.settings, store.dispatch);
     watchWidgets(pageflow.events, pageflow.widgets, store.dispatch);
     watchHotkeyEvents(window, store);
+    watchHideText(pageflow.hideText, store.dispatch);
 
     pageTypeRegistry.forEach(({name, component}) =>
       pageflow.pageType.register(name, createPageType(component, store))
