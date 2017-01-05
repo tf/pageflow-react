@@ -8181,6 +8181,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	'use strict';
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*global module*/
+
 	var _actions = __webpack_require__(299);
 
 	var actions = _interopRequireWildcard(_actions);
@@ -8189,25 +8191,29 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var components = _interopRequireWildcard(_components);
 
-	var _selectors = __webpack_require__(425);
+	var _selectors = __webpack_require__(424);
 
 	var selectors = _interopRequireWildcard(_selectors);
 
+	var _media = __webpack_require__(430);
+
+	var _interactivePageBackground = __webpack_require__(468);
+
 	var _pages = __webpack_require__(310);
 
-	var _registerPageType = __webpack_require__(431);
+	var _registerPageType = __webpack_require__(473);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
-	var _registerWidgetType = __webpack_require__(432);
+	var _registerWidgetType = __webpack_require__(475);
 
 	var _registerWidgetType2 = _interopRequireDefault(_registerWidgetType);
 
-	var _mapping = __webpack_require__(404);
+	var _mapping = __webpack_require__(403);
 
 	var _mapping2 = _interopRequireDefault(_mapping);
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(406);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -8221,25 +8227,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _ServerSidePage = __webpack_require__(433);
+	var _ServerSidePage = __webpack_require__(476);
 
 	var _ServerSidePage2 = _interopRequireDefault(_ServerSidePage);
 
-	var _builtInPageTypes = __webpack_require__(459);
+	var _builtInPageTypes = __webpack_require__(504);
 
-	var _pageflow = __webpack_require__(500);
+	var _pageflow = __webpack_require__(510);
 
 	var _pageflow2 = _interopRequireDefault(_pageflow);
 
-	var _boot = __webpack_require__(434);
+	var _boot = __webpack_require__(477);
 
 	var _boot2 = _interopRequireDefault(_boot);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	/*global module*/
 
 	(0, _builtInPageTypes.register)();
 
@@ -8253,12 +8257,21 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	// 'assign'` at the moment. See
 	// https://github.com/webpack/webpack/issues/706
 	module.exports = {
+	  components: _extends({
+	    MediaPageBackground: _media.PageBackground,
+	    PageWithInteractiveBackground: _interactivePageBackground.Page
+	  }, components),
+
 	  actions: actions,
-	  components: components,
 	  selectors: selectors,
 
 	  registerPageType: _registerPageType2.default,
 	  registerWidgetType: _registerWidgetType2.default,
+
+	  mediaReduxModule: _media.reduxModule,
+	  mediaPageBackgroundReduxModule: _media.pageBackgroundReduxModule,
+
+	  pageWithInteractiveBackgroundReduxModule: _interactivePageBackground.reduxModule,
 
 	  iconMapping: _mapping2.default,
 	  SvgIcon: _Container2.default,
@@ -8489,7 +8502,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Draggable = exports.editorOnly = exports.Icon = exports.PageWithInteractiveBackground = exports.LazyLoadedPageThumbnail = exports.PageThumbnail = exports.PageLink = exports.PageText = exports.PageHeader = exports.PageScroller = exports.PageContent = exports.PageForeground = exports.PageShadow = exports.PageBackgroundImage = exports.PageBackground = exports.PageWrapper = undefined;
+	exports.Draggable = exports.editorOnly = exports.Icon = exports.MenuBar = exports.CloseButton = exports.PlayerControls = exports.LazyLoadedPageThumbnail = exports.PageThumbnail = exports.PageLink = exports.PageText = exports.PageHeader = exports.PageScroller = exports.PageContent = exports.PageForeground = exports.PageShadow = exports.PageBackgroundImage = exports.PageBackground = exports.PageWrapper = undefined;
 
 	var _PageWrapper = __webpack_require__(303);
 
@@ -8539,19 +8552,27 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _LazyLoadedPageThumbnail2 = _interopRequireDefault(_LazyLoadedPageThumbnail);
 
-	var _PageWithInteractiveBackground = __webpack_require__(397);
+	var _PlayerControls = __webpack_require__(397);
 
-	var _PageWithInteractiveBackground2 = _interopRequireDefault(_PageWithInteractiveBackground);
+	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _Icon = __webpack_require__(403);
+	var _CloseButton = __webpack_require__(422);
+
+	var _CloseButton2 = _interopRequireDefault(_CloseButton);
+
+	var _MenuBar = __webpack_require__(418);
+
+	var _MenuBar2 = _interopRequireDefault(_MenuBar);
+
+	var _Icon = __webpack_require__(402);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
-	var _editorOnly = __webpack_require__(424);
+	var _editorOnly = __webpack_require__(423);
 
 	var _editorOnly2 = _interopRequireDefault(_editorOnly);
 
-	var _reactDraggable = __webpack_require__(417);
+	var _reactDraggable = __webpack_require__(416);
 
 	var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 
@@ -8569,7 +8590,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.PageLink = _PageLink2.default;
 	exports.PageThumbnail = _PageThumbnail2.default;
 	exports.LazyLoadedPageThumbnail = _LazyLoadedPageThumbnail2.default;
-	exports.PageWithInteractiveBackground = _PageWithInteractiveBackground2.default;
+	exports.PlayerControls = _PlayerControls2.default;
+	exports.CloseButton = _CloseButton2.default;
+	exports.MenuBar = _MenuBar2.default;
 	exports.Icon = _Icon2.default;
 	exports.editorOnly = _editorOnly2.default;
 	exports.Draggable = _reactDraggable2.default;
@@ -15317,18 +15340,32 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 	function thumbnailClassName(props) {
-	  var candidate = firstPresentCandidate(props);
+	  var candidate = findThumbnailCandidate(props);
 
 	  if (candidate) {
 	    return thumbnailCandidateClassName(props, candidate);
 	  }
 	}
 
-	function firstPresentCandidate(props) {
+	function findThumbnailCandidate(props) {
 	  return thumbnailCandidates(props).find(function (candidate) {
+	    if (candidate.condition && !conditionMet(candidate.condition, props.page)) {
+	      return false;
+	    }
+
 	    var id = thumbnailCandidateId(props, candidate);
 	    return props.fileExists((0, _utils.camelize)(candidate.collectionName), id);
 	  });
+	}
+
+	function conditionMet(condition, page) {
+	  var value = page[(0, _utils.camelize)(condition.attribute)];
+
+	  if (condition.negated) {
+	    return value != condition.value;
+	  } else {
+	    return value == condition.value;
+	  }
 	}
 
 	function thumbnailCandidates(props) {
@@ -15581,253 +15618,43 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(304);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classnames = __webpack_require__(305);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _PageWrapper = __webpack_require__(303);
-
-	var _PageWrapper2 = _interopRequireDefault(_PageWrapper);
-
-	var _PageBackground = __webpack_require__(306);
-
-	var _PageBackground2 = _interopRequireDefault(_PageBackground);
-
-	var _PageShadow = __webpack_require__(382);
-
-	var _PageShadow2 = _interopRequireDefault(_PageShadow);
-
-	var _PageForeground = __webpack_require__(384);
-
-	var _PageForeground2 = _interopRequireDefault(_PageForeground);
-
-	var _PageScroller = __webpack_require__(385);
-
-	var _PageScroller2 = _interopRequireDefault(_PageScroller);
-
-	var _PageHeader = __webpack_require__(387);
-
-	var _PageHeader2 = _interopRequireDefault(_PageHeader);
-
-	var _PageText = __webpack_require__(388);
-
-	var _PageText2 = _interopRequireDefault(_PageText);
-
-	var _PlayerControls = __webpack_require__(398);
-
-	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
-
-	var _CloseButton = __webpack_require__(423);
-
-	var _CloseButton2 = _interopRequireDefault(_CloseButton);
-
-	var _MenuBar = __webpack_require__(419);
-
-	var _MenuBar2 = _interopRequireDefault(_MenuBar);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	/**
-	 * @desc
-	 * Use to build pages that have a play button to hide the page's text
-	 * and allow interacting with elements placed in the {@link
-	 * pageflow.react.components.PageBackground|PageBackground}.
-	 *
-	 * @alias pageflow.react.components.PageWithInteractiveBackground
-	 * @class
-	 * @since edge
-	 */
-	var PageWithInteractiveBackground = function (_React$Component) {
-	  _inherits(PageWithInteractiveBackground, _React$Component);
-
-	  function PageWithInteractiveBackground(props, context) {
-	    _classCallCheck(this, PageWithInteractiveBackground);
-
-	    var _this = _possibleConstructorReturn(this, (PageWithInteractiveBackground.__proto__ || Object.getPrototypeOf(PageWithInteractiveBackground)).call(this, props, context));
-
-	    _this.state = {
-	      didPlay: false,
-	      menuBarHiddenOnPhone: false
-	    };
-
-	    _this.onHideTextActivate = function () {
-	      _this.setState({
-	        didPlay: true,
-	        menuBarHiddenOnPhone: false
-	      });
-	    };
-
-	    _this.onHideTextDeactivate = function () {
-	      _this.context.scrollIndicator.enable();
-	      _this.setState({ menuBarHiddenOnPhone: true });
-	    };
-
-	    _this.onPlayButtonClick = function () {
-	      pageflow.hideText.activate();
-
-	      if (_this.props.onEnterBackground) {
-	        _this.props.onEnterBackground();
-	      }
-	    };
-
-	    _this.onCloseButtonClick = function () {
-	      pageflow.hideText.deactivate();
-
-	      if (_this.props.onLeaveBackground) {
-	        _this.props.onLeaveBackground();
-	      }
-	    };
-	    return _this;
-	  }
-
-	  _createClass(PageWithInteractiveBackground, [{
-	    key: 'render',
-	    value: function render() {
-	      var page = this.props.page;
-
-	      return _react2.default.createElement(
-	        _PageWrapper2.default,
-	        { className: (0, _classnames2.default)({ unplayed: !this.state.didPlay }, 'hide_content_with_text') },
-	        _react2.default.createElement(_CloseButton2.default, { onClick: this.onCloseButtonClick }),
-	        _react2.default.createElement(_MenuBar2.default, { additionalButtons: this.props.additionalMenuBarButtons,
-	          onAdditionalButtonClick: this.props.onAdditionalButtonClick,
-	          qualityMenuButtonTitle: this.props.qualityMenuButtonTitle,
-	          qualityMenuItems: this.props.qualityMenuItems,
-	          onQualityMenuItemClick: this.props.onQualityMenuItemClick,
-	          hiddenOnPhone: this.state.menuBarHiddenOnPhone }),
-	        _react2.default.createElement(
-	          _PageBackground2.default,
-	          null,
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'videoWrapper' },
-	            this.props.children
-	          ),
-	          _react2.default.createElement(_PageShadow2.default, { page: page })
-	        ),
-	        _react2.default.createElement(
-	          _PageForeground2.default,
-	          null,
-	          _react2.default.createElement(_PlayerControls2.default, { playButtonTitle: 'Starten',
-	            playButtonIconName: this.props.playButtonIconName,
-	            controlBarText: page.controlBarText || this.props.defaultControlBarText,
-	            onPlayButtonClick: this.onPlayButtonClick,
-	            infoBox: { title: page.additionalTitle, description: page.additionalDescription } }),
-	          _react2.default.createElement(
-	            _PageScroller2.default,
-	            null,
-	            _react2.default.createElement(_PageHeader2.default, { page: page }),
-	            _react2.default.createElement(_PageText2.default, { page: page })
-	          )
-	        )
-	      );
-	    }
-
-	    // TODO
-
-	  }, {
-	    key: 'pageWillActivate',
-	    value: function pageWillActivate() {
-	      this.setState({ didPlay: false, menuBarHiddenOnPhone: false });
-	    }
-	  }, {
-	    key: 'pageDidActivate',
-	    value: function pageDidActivate() {
-	      pageflow.hideText.on('activate', this.onHideTextActivate);
-	      pageflow.hideText.on('deactivate', this.onHideTextDeactivate);
-	    }
-	  }, {
-	    key: 'pageWillDeactivate',
-	    value: function pageWillDeactivate() {
-	      pageflow.hideText.off('activate', this.onHideTextActivate);
-	      pageflow.hideText.off('deactivate', this.onHideTextDeactivate);
-	    }
-	  }]);
-
-	  return PageWithInteractiveBackground;
-	}(_react2.default.Component);
-
-	PageWithInteractiveBackground.propTypes = {
-	  page: _react2.default.PropTypes.object,
-
-	  defaultControlBarText: _react2.default.PropTypes.string,
-	  playButtonIconName: _react2.default.PropTypes.string,
-
-	  onEnterBackground: _react2.default.PropTypes.func,
-	  onLeaveBackground: _react2.default.PropTypes.func,
-
-	  additionalMenuBarButtons: _react2.default.PropTypes.array,
-	  onAdditionalButtonClick: _react2.default.PropTypes.func,
-
-	  qualityMenuItems: _react2.default.PropTypes.array,
-	  onQualityMenuItemClick: _react2.default.PropTypes.func
-	};
-
-	PageWithInteractiveBackground.contextTypes = {
-	  scrollIndicator: _react2.default.PropTypes.object
-	};
-
-	exports.default = PageWithInteractiveBackground;
-
-/***/ },
-/* 398 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(304);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _InfoBox = __webpack_require__(399);
+	var _InfoBox = __webpack_require__(398);
 
 	var _InfoBox2 = _interopRequireDefault(_InfoBox);
 
-	var _Container = __webpack_require__(400);
+	var _Container = __webpack_require__(399);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
-	var _LoadingSpinner = __webpack_require__(401);
+	var _LoadingSpinner = __webpack_require__(400);
 
 	var _LoadingSpinner2 = _interopRequireDefault(_LoadingSpinner);
 
-	var _PlayButton = __webpack_require__(402);
+	var _PlayButton = __webpack_require__(401);
 
 	var _PlayButton2 = _interopRequireDefault(_PlayButton);
 
-	var _CurrentTime = __webpack_require__(412);
+	var _CurrentTime = __webpack_require__(411);
 
 	var _CurrentTime2 = _interopRequireDefault(_CurrentTime);
 
-	var _TimeDivider = __webpack_require__(414);
+	var _TimeDivider = __webpack_require__(413);
 
 	var _TimeDivider2 = _interopRequireDefault(_TimeDivider);
 
-	var _Duration = __webpack_require__(415);
+	var _Duration = __webpack_require__(414);
 
 	var _Duration2 = _interopRequireDefault(_Duration);
 
-	var _ProgressSlider = __webpack_require__(416);
+	var _ProgressSlider = __webpack_require__(415);
 
 	var _ProgressSlider2 = _interopRequireDefault(_ProgressSlider);
 
-	var _MenuBar = __webpack_require__(419);
+	var _MenuBar = __webpack_require__(418);
 
 	var _MenuBar2 = _interopRequireDefault(_MenuBar);
 
@@ -15911,7 +15738,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = PlayerControls;
 
 /***/ },
-/* 399 */
+/* 398 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15958,7 +15785,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 400 */
+/* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15988,7 +15815,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 401 */
+/* 400 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16002,7 +15829,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 402 */
+/* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16015,11 +15842,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Icon = __webpack_require__(403);
+	var _Icon = __webpack_require__(402);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
-	var _pageSkipLinkTarget = __webpack_require__(411);
+	var _pageSkipLinkTarget = __webpack_require__(410);
 
 	var _pageSkipLinkTarget2 = _interopRequireDefault(_pageSkipLinkTarget);
 
@@ -16064,7 +15891,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 403 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16078,7 +15905,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _mapping = __webpack_require__(404);
+	var _mapping = __webpack_require__(403);
 
 	var _mapping2 = _interopRequireDefault(_mapping);
 
@@ -16109,7 +15936,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 404 */
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16118,7 +15945,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _icons = __webpack_require__(405);
+	var _icons = __webpack_require__(404);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -16149,7 +15976,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 405 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16158,19 +15985,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _Checkmark = __webpack_require__(406);
+	var _Checkmark = __webpack_require__(405);
 
 	var _Checkmark2 = _interopRequireDefault(_Checkmark);
 
-	var _Disk = __webpack_require__(408);
+	var _Disk = __webpack_require__(407);
 
 	var _Disk2 = _interopRequireDefault(_Disk);
 
-	var _Gear = __webpack_require__(409);
+	var _Gear = __webpack_require__(408);
 
 	var _Gear2 = _interopRequireDefault(_Gear);
 
-	var _Subtitles = __webpack_require__(410);
+	var _Subtitles = __webpack_require__(409);
 
 	var _Subtitles2 = _interopRequireDefault(_Subtitles);
 
@@ -16184,7 +16011,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 406 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16203,14 +16030,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(406);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 407 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16287,7 +16114,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = Container;
 
 /***/ },
-/* 408 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16306,14 +16133,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(406);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 409 */
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16338,14 +16165,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  ;
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(406);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 410 */
+/* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16365,14 +16192,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(406);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 411 */
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16398,7 +16225,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _selectors2 = __webpack_require__(390);
 
 /***/ },
-/* 412 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16411,14 +16238,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(_TimeDisplay2.default, { className: "vjs-current-time", value: props.currentTime });
 	};
 
-	var _TimeDisplay = __webpack_require__(413);
+	var _TimeDisplay = __webpack_require__(412);
 
 	var _TimeDisplay2 = _interopRequireDefault(_TimeDisplay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 413 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16463,7 +16290,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 414 */
+/* 413 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16481,7 +16308,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 415 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16494,14 +16321,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(_TimeDisplay2.default, { className: "vjs-duration", value: props.duration });
 	};
 
-	var _TimeDisplay = __webpack_require__(413);
+	var _TimeDisplay = __webpack_require__(412);
 
 	var _TimeDisplay2 = _interopRequireDefault(_TimeDisplay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 416 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16516,9 +16343,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDraggable = __webpack_require__(417);
+	var _reactDraggable = __webpack_require__(416);
 
-	var _keyCodes = __webpack_require__(418);
+	var _keyCodes = __webpack_require__(417);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16636,7 +16463,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 417 */
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -18188,7 +18015,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	//# sourceMappingURL=react-draggable.js.map
 
 /***/ },
-/* 418 */
+/* 417 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18203,7 +18030,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var TAB = exports.TAB = 9;
 
 /***/ },
-/* 419 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18217,15 +18044,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _QualityMenu = __webpack_require__(420);
+	var _QualityMenu = __webpack_require__(419);
 
 	var _QualityMenu2 = _interopRequireDefault(_QualityMenu);
 
-	var _TextTracksMenu = __webpack_require__(422);
+	var _TextTracksMenu = __webpack_require__(421);
 
 	var _TextTracksMenu2 = _interopRequireDefault(_TextTracksMenu);
 
-	var _MenuBarButton = __webpack_require__(421);
+	var _MenuBarButton = __webpack_require__(420);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18293,7 +18120,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 420 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18303,7 +18130,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = QualityMenu;
 
-	var _MenuBarButton = __webpack_require__(421);
+	var _MenuBarButton = __webpack_require__(420);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18332,7 +18159,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 421 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18347,7 +18174,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Icon = __webpack_require__(403);
+	var _Icon = __webpack_require__(402);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -18540,7 +18367,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 422 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18550,7 +18377,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = TextTracksMenu;
 
-	var _MenuBarButton = __webpack_require__(421);
+	var _MenuBarButton = __webpack_require__(420);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18579,7 +18406,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 423 */
+/* 422 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18604,7 +18431,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 424 */
+/* 423 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18624,7 +18451,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 425 */
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18632,20 +18459,21 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.prop = exports.file = exports.setting = exports.t = exports.currentParentChapterAttributes = exports.currentParentPageAttributes = exports.pageIsPrepared = exports.pageIsActive = exports.pageAttributes = undefined;
+	exports.prop = exports.file = exports.setting = exports.t = exports.currentParentChapterAttributes = exports.currentParentPageAttributes = exports.pageIsPrepared = exports.pageIsActive = exports.pageAttributes = exports.pageAttribute = undefined;
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(426);
+	var _selectors2 = __webpack_require__(425);
 
-	var _selectors3 = __webpack_require__(429);
+	var _selectors3 = __webpack_require__(428);
 
-	var _selectors4 = __webpack_require__(430);
+	var _selectors4 = __webpack_require__(429);
 
 	var _selectors5 = __webpack_require__(393);
 
 	var _selectors6 = __webpack_require__(390);
 
+	exports.pageAttribute = _selectors.pageAttribute;
 	exports.pageAttributes = _selectors.pageAttributes;
 	exports.pageIsActive = _selectors.pageIsActive;
 	exports.pageIsPrepared = _selectors.pageIsPrepared;
@@ -18657,7 +18485,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.prop = _selectors6.prop;
 
 /***/ },
-/* 426 */
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18670,9 +18498,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(427);
+	var _selectors2 = __webpack_require__(426);
 
-	var _selectors3 = __webpack_require__(428);
+	var _selectors3 = __webpack_require__(427);
 
 	function currentParentChapterAttributes() {
 	  return function (state, props) {
@@ -18707,7 +18535,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 427 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18734,7 +18562,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var chapterAttributes = exports.chapterAttributes = selector;
 
 /***/ },
-/* 428 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18759,7 +18587,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 429 */
+/* 428 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18778,7 +18606,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 430 */
+/* 429 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18796,53 +18624,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 431 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function (name, _ref) {
-	  var component = _ref.component,
-	      reducer = _ref.reducer,
-	      saga = _ref.saga;
-
-	  registry.push({
-	    name: name,
-	    component: component,
-	    reducer: reducer,
-	    saga: saga
-	  });
-	};
-
-	var registry = exports.registry = [];
-
-/***/ },
-/* 432 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function (name, _ref) {
-	  var component = _ref.component;
-
-	  registry.push({
-	    name: name,
-	    component: component
-	  });
-	};
-
-	var registry = exports.registry = [];
-
-/***/ },
-/* 433 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18850,1032 +18632,58 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.PageBackground = exports.PageBackgroundAsset = exports.PageBackgroundVideo = exports.PagePrintImage = exports.PageVideoPlayer = exports.Page = exports.pageBackgroundReduxModule = undefined;
+	exports.reduxModule = reduxModule;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _Page = __webpack_require__(431);
 
-	var _collections = __webpack_require__(338);
+	var _Page2 = _interopRequireDefault(_Page);
 
-	var _registerPageType = __webpack_require__(431);
+	var _PageVideoPlayer = __webpack_require__(438);
 
-	var _boot = __webpack_require__(434);
+	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
 
-	var _boot2 = _interopRequireDefault(_boot);
+	var _PageBackgroundVideo = __webpack_require__(452);
 
-	var _react = __webpack_require__(304);
+	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
 
-	var _react2 = _interopRequireDefault(_react);
+	var _PageBackgroundAsset = __webpack_require__(453);
 
-	var _reactRedux = __webpack_require__(359);
+	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _PageBackground = __webpack_require__(454);
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var _PageBackground2 = _interopRequireDefault(_PageBackground);
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var _PagePrintImage = __webpack_require__(455);
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	var _PagePrintImage2 = _interopRequireDefault(_PagePrintImage);
 
-	var PageProvider = (0, _collections.createItemScopeProvider)('pages');
-
-	var _class = function (_React$Component) {
-	  _inherits(_class, _React$Component);
-
-	  function _class() {
-	    _classCallCheck(this, _class);
-
-	    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-	  }
-
-	  _createClass(_class, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.store = (0, _boot2.default)({ seed: this.props.resolverSeed });
-	      this.pageComponent = findPageComponent(this.props.pageType);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render(props) {
-	      var PageComponent = this.pageComponent;
-
-	      return _react2.default.createElement(
-	        _reactRedux.Provider,
-	        { store: this.store },
-	        _react2.default.createElement(
-	          PageProvider,
-	          { itemId: this.props.pageId },
-	          _react2.default.createElement(PageComponent, null)
-	        )
-	      );
-	    }
-	  }]);
-
-	  return _class;
-	}(_react2.default.Component);
-
-	exports.default = _class;
-
-
-	function findPageComponent(pageTypeName) {
-	  return _registerPageType.registry.find(function (_ref) {
-	    var name = _ref.name,
-	        component = _ref.component;
-	    return name == pageTypeName;
-	  }).component;
-	}
-
-/***/ },
-/* 434 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.default = function (pageflow) {
-	  var isEditor = !!pageflow.storylines;
-	  var isServerSide = !pageflow.settings;
-
-	  var seed = pageflow.seed;
-	  var collections = isEditor ? pageflow : seed;
-
-	  var pageStateReducers = _registerPageType.registry.reduce(function (result, _ref) {
-	    var name = _ref.name,
-	        reducer = _ref.reducer;
-
-	    result[name] = reducer;
-	    return result;
-	  }, {});
-
-	  var reducer = (0, _redux.combineReducers)(_extends({}, _i18n.reducers, _entry.reducers, _current.reducers, _storylines.reducers, _chapters.reducers, (0, _pages.createReducers)(pageStateReducers), _pageTypes.reducers, (0, _files.createReducers)(collections.files || {}, {
-	    fileUrlTemplates: seed['file_url_templates'],
-	    modelTypes: seed['file_model_types']
-	  }), _settings.reducers, _widgets.reducers));
-
-	  var saga = void 0,
-	      m = void 0;
-
-	  if (!isServerSide) {
-	    (function () {
-	      var pageTypeSagas = _registerPageType.registry.reduce(function (result, _ref2) {
-	        var name = _ref2.name,
-	            saga = _ref2.saga;
-
-	        result[name] = saga;
-	        return result;
-	      }, {});
-
-	      m = (0, _createSaga.createMiddleware)();
-
-	      saga = regeneratorRuntime.mark(function saga() {
-	        return regeneratorRuntime.wrap(function saga$(_context) {
-	          while (1) {
-	            switch (_context.prev = _context.next) {
-	              case 0:
-	                _context.next = 2;
-	                return [(0, _pages.createSaga)(collections.pages, pageTypeSagas, m)(), (0, _settings.createSaga)(pageflow.settings)()];
-
-	              case 2:
-	              case 'end':
-	                return _context.stop();
-	            }
-	          }
-	        }, saga, this);
-	      });
-	    })();
-	  }
-
-	  var store = (0, _createStore2.default)(reducer, saga, m);
-
-	  (0, _entry.initFromSeed)(seed, store.dispatch);
-	  (0, _i18n.initFromSeed)(seed, store.dispatch);
-	  (0, _pageTypes.initFromSeed)(seed, store.dispatch);
-
-	  (0, _storylines.watchCollection)(collections.storylines, store.dispatch);
-	  (0, _chapters.watchCollection)(collections.chapters, store.dispatch);
-	  (0, _pages.watchCollection)(collections.pages, store.dispatch);
-	  (0, _files.watchCollections)(collections.files || {}, store.dispatch);
-
-	  if (!isServerSide) {
-	    (0, _current.watch)(pageflow.events, store.dispatch);
-	    (0, _settings.watch)(pageflow.settings, store.dispatch);
-	    (0, _widgets.watch)(pageflow.events, pageflow.widgets, store.dispatch);
-	    (0, _hotkeys.watchEvents)(window, store);
-
-	    _registerPageType.registry.forEach(function (_ref3) {
-	      var name = _ref3.name,
-	          component = _ref3.component;
-	      return pageflow.pageType.register(name, (0, _pages.createPageType)(component, store));
-	    });
-
-	    _registerWidgetType.registry.forEach(function (_ref4) {
-	      var name = _ref4.name,
-	          component = _ref4.component;
-	      return pageflow.widgetTypes.register(name, (0, _widgets.createWidgetType)(component, store));
-	    });
-	  }
-
-	  return store;
-	};
-
-	var _registerPageType = __webpack_require__(431);
-
-	var _registerWidgetType = __webpack_require__(432);
-
-	var _createStore = __webpack_require__(435);
-
-	var _createStore2 = _interopRequireDefault(_createStore);
-
-	var _createSaga = __webpack_require__(343);
-
-	var _storylines = __webpack_require__(436);
-
-	var _chapters = __webpack_require__(437);
-
-	var _pages = __webpack_require__(310);
-
-	var _pageTypes = __webpack_require__(438);
-
-	var _current = __webpack_require__(441);
-
-	var _files = __webpack_require__(445);
-
-	var _settings = __webpack_require__(446);
-
-	var _i18n = __webpack_require__(448);
-
-	var _entry = __webpack_require__(451);
-
-	var _hotkeys = __webpack_require__(454);
-
-	var _widgets = __webpack_require__(456);
-
-	var _redux = __webpack_require__(313);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ },
-/* 435 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function (reducer) {
-	  var saga = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : regeneratorRuntime.mark(function _callee() {
-	    return regeneratorRuntime.wrap(function _callee$(_context) {
-	      while (1) {
-	        switch (_context.prev = _context.next) {
-	          case 0:
-	          case 'end':
-	            return _context.stop();
-	        }
-	      }
-	    }, _callee, this);
-	  });
-	  var middleware = arguments[2];
-
-	  var sagaMiddleware = (0, _reduxSaga2.default)();
-	  var middlewares = [sagaMiddleware];
-
-	  if (middleware) {
-	    middlewares.push(middleware);
-	  }
-
-	  var composeEnhancers = _redux.compose;
-
-	  if ((typeof process === 'undefined' || ("production") !== 'production') && typeof __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
-
-	    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-	  }
-
-	  var store = (0, _redux.createStore)(reducer, {}, composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares)));
-
-	  sagaMiddleware.run(saga);
-
-	  return store;
-	};
-
-	var _redux = __webpack_require__(313);
-
-	var _reduxSaga = __webpack_require__(349);
-
-	var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(294)))
-
-/***/ },
-/* 436 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.watchCollection = watchCollection;
-
-	var _collections = __webpack_require__(338);
-
-	var reducers = exports.reducers = { storylines: (0, _collections.createReducer)('storylines') };
-
-	function watchCollection(storylines, dispatch) {
-	  (0, _collections.watch)({
-	    collection: storylines,
-	    collectionName: 'storylines',
-	    dispatch: dispatch,
-
-	    attributes: ['id'],
-	    includeConfiguration: true
-	  });
-	}
-
-/***/ },
-/* 437 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.watchCollection = watchCollection;
-
-	var _collections = __webpack_require__(338);
-
-	var reducers = exports.reducers = { chapters: (0, _collections.createReducer)('chapters') };
-
-	function watchCollection(chapters, dispatch) {
-	  (0, _collections.watch)({
-	    collection: chapters,
-	    collectionName: 'chapters',
-	    dispatch: dispatch,
-
-	    attributes: ['id', 'title', 'position', 'storyline_id']
-	  });
-	}
-
-/***/ },
-/* 438 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.initFromSeed = initFromSeed;
-
-	var _actions = __webpack_require__(439);
-
-	var _reducer = __webpack_require__(440);
+	var _reducer = __webpack_require__(456);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _utils = __webpack_require__(372);
+	var _sagas = __webpack_require__(458);
+
+	var _sagas2 = _interopRequireDefault(_sagas);
+
+	var _fadeInWhenPageWillActivate = __webpack_require__(467);
+
+	var _fadeInWhenPageWillActivate2 = _interopRequireDefault(_fadeInWhenPageWillActivate);
+
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(464);
+
+	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var reducers = exports.reducers = { pageTypes: _reducer2.default };
+	var reducers = {
+	  media: _reducer2.default
+	};
 
-	function initFromSeed(seed, dispatch) {
-	  dispatch((0, _actions.init)({ pageTypes: _utils.camelize.deep(seed.page_types) }));
-	}
-
-/***/ },
-/* 439 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.init = init;
-	var INIT = exports.INIT = 'PAGE_TYPES_INIT';
-
-	function init(_ref) {
-	  var pageTypes = _ref.pageTypes;
-
+	function reduxModule(options) {
 	  return {
-	    type: INIT,
-	    payload: {
-	      pageTypes: pageTypes
-	    }
-	  };
-	}
-
-/***/ },
-/* 440 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.INIT:
-	      return action.payload.pageTypes;
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(439);
-
-/***/ },
-/* 441 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.watch = exports.reducers = undefined;
-
-	var _reducer = __webpack_require__(442);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
-
-	var _watch = __webpack_require__(444);
-
-	var _watch2 = _interopRequireDefault(_watch);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var reducers = exports.reducers = { currentPageId: _reducer2.default };
-
-	exports.watch = _watch2.default;
-
-/***/ },
-/* 442 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.PAGE_CHANGE:
-	      return action.payload.id;
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(443);
-
-/***/ },
-/* 443 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.pageChange = pageChange;
-	var PAGE_CHANGE = exports.PAGE_CHANGE = 'CURRENT_PAGE_CHANGE';
-
-	function pageChange(_ref) {
-	  var id = _ref.id;
-
-	  return {
-	    type: PAGE_CHANGE,
-	    payload: {
-	      id: id
-	    }
-	  };
-	}
-
-/***/ },
-/* 444 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function (events, dispatch) {
-	  events.on('page:change', function (page) {
-	    return dispatch((0, _actions.pageChange)({ id: page.getPermaId() }));
-	  });
-	};
-
-	var _actions = __webpack_require__(443);
-
-/***/ },
-/* 445 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.createReducers = createReducers;
-	exports.watchCollections = watchCollections;
-
-	var _collections = __webpack_require__(338);
-
-	var _utils = __webpack_require__(372);
-
-	function createReducers(fileCollections, _ref) {
-	  var _ref$fileUrlTemplates = _ref.fileUrlTemplates,
-	      fileUrlTemplates = _ref$fileUrlTemplates === undefined ? {} : _ref$fileUrlTemplates,
-	      _ref$modelTypes = _ref.modelTypes,
-	      modelTypes = _ref$modelTypes === undefined ? {} : _ref$modelTypes;
-
-	  var reducers = Object.keys(fileCollections).reduce(function (result, collectionName) {
-	    collectionName = (0, _utils.camelize)(collectionName);
-	    result[collectionName] = (0, _collections.createReducer)(collectionName);
-	    return result;
-	  }, {});
-
-	  fileUrlTemplates = _utils.camelize.keys(fileUrlTemplates);
-	  reducers.fileUrlTemplates = function (state) {
-	    return fileUrlTemplates;
-	  };
-
-	  modelTypes = _utils.camelize.keys(modelTypes);
-	  reducers.modelTypes = function (state) {
-	    return modelTypes;
-	  };
-
-	  return reducers;
-	}
-
-	function watchCollections(fileCollections, dispatch) {
-	  Object.keys(fileCollections).forEach(function (collectionName) {
-	    (0, _collections.watch)({
-	      collection: fileCollections[collectionName],
-	      collectionName: (0, _utils.camelize)(collectionName),
-	      dispatch: dispatch,
-
-	      attributes: ['id', 'basename', 'variants', 'is_ready', 'parent_file_id', 'parent_file_model_type', 'width', 'height'],
-	      includeConfiguration: true
-	    });
-	  });
-	}
-
-/***/ },
-/* 446 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.createSaga = createSaga;
-	exports.watch = watch;
-
-	var _reducer = __webpack_require__(447);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
-
-	var _actions = __webpack_require__(301);
-
-	var _reduxSaga = __webpack_require__(349);
-
-	var _effects = __webpack_require__(345);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var reducers = exports.reducers = { settings: _reducer2.default };
-
-	function createSaga(model) {
-	  return regeneratorRuntime.mark(function saga() {
-	    return regeneratorRuntime.wrap(function saga$(_context2) {
-	      while (1) {
-	        switch (_context2.prev = _context2.next) {
-	          case 0:
-	            _context2.next = 2;
-	            return (0, _reduxSaga.takeEvery)(_actions.UPDATE, regeneratorRuntime.mark(function _callee(action) {
-	              return regeneratorRuntime.wrap(function _callee$(_context) {
-	                while (1) {
-	                  switch (_context.prev = _context.next) {
-	                    case 0:
-	                      _context.next = 2;
-	                      return (0, _effects.call)([model, model.set], action.payload.property, action.payload.value);
-
-	                    case 2:
-	                    case 'end':
-	                      return _context.stop();
-	                  }
-	                }
-	              }, _callee, this);
-	            }));
-
-	          case 2:
-	          case 'end':
-	            return _context2.stop();
-	        }
-	      }
-	    }, saga, this);
-	  });
-	}
-
-	function watch(model, dispatch) {
-	  dispatch((0, _actions.load)({ settings: model.toJSON() }));
-	  model.on('change', function () {
-	    return dispatch((0, _actions.load)({ settings: model.toJSON() }));
-	  });
-	}
-
-/***/ },
-/* 447 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.LOAD:
-	      return action.payload.settings;
-
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(301);
-
-/***/ },
-/* 448 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.initFromSeed = initFromSeed;
-
-	var _actions = __webpack_require__(449);
-
-	var _reducer = __webpack_require__(450);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var reducers = exports.reducers = { i18n: _reducer2.default };
-
-	function initFromSeed(_ref, dispatch) {
-	  var locale = _ref.locale;
-
-	  dispatch((0, _actions.init)({ locale: locale }));
-	}
-
-/***/ },
-/* 449 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.init = init;
-	var INIT = exports.INIT = 'I18N_INIT';
-
-	function init(_ref) {
-	  var locale = _ref.locale;
-
-	  return {
-	    type: INIT,
-	    payload: {
-	      locale: locale
-	    }
-	  };
-	}
-
-/***/ },
-/* 450 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.INIT:
-	      return { locale: action.payload.locale };
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(449);
-
-/***/ },
-/* 451 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.initFromSeed = initFromSeed;
-
-	var _actions = __webpack_require__(452);
-
-	var _reducer = __webpack_require__(453);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var reducers = exports.reducers = { entry: _reducer2.default };
-
-	function initFromSeed(_ref, dispatch) {
-	  var slug = _ref.slug;
-
-	  dispatch((0, _actions.init)({ slug: slug }));
-	}
-
-/***/ },
-/* 452 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.init = init;
-	var INIT = exports.INIT = 'ENTRY_INIT';
-
-	function init(_ref) {
-	  var slug = _ref.slug;
-
-	  return {
-	    type: INIT,
-	    payload: {
-	      slug: slug
-	    }
-	  };
-	}
-
-/***/ },
-/* 453 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.INIT:
-	      return { slug: action.payload.slug };
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(452);
-
-/***/ },
-/* 454 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.watchEvents = watchEvents;
-
-	var _keyCodes = __webpack_require__(418);
-
-	var _actions = __webpack_require__(455);
-
-	function watchEvents(window, store) {
-	  window.addEventListener('keydown', function (event) {
-	    var currentPageId = store.getState().currentPageId;
-
-	    if (event.keyCode == _keyCodes.SPACE) {
-	      store.dispatch((0, _actions.space)({ currentPageId: currentPageId }));
-	    } else if (event.keyCode == _keyCodes.TAB) {
-	      store.dispatch((0, _actions.tab)({ currentPageId: currentPageId }));
-	    }
-	  });
-	}
-
-/***/ },
-/* 455 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.HOTKEY_TAB = exports.HOTKEY_SPACE = undefined;
-	exports.space = space;
-	exports.tab = tab;
-
-	var _actions = __webpack_require__(300);
-
-	var HOTKEY_SPACE = exports.HOTKEY_SPACE = 'HOTKEY_SPACE';
-	var HOTKEY_TAB = exports.HOTKEY_TAB = 'HOTKEY_TAB';
-
-	function space(_ref) {
-	  var currentPageId = _ref.currentPageId;
-
-	  return (0, _actions.pageAction)(HOTKEY_SPACE, currentPageId);
-	}
-
-	function tab(_ref2) {
-	  var currentPageId = _ref2.currentPageId;
-
-	  return (0, _actions.pageAction)(HOTKEY_TAB, currentPageId);
-	}
-
-/***/ },
-/* 456 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.reducers = undefined;
-	exports.createWidgetType = createWidgetType;
-	exports.watch = watch;
-
-	var _reducer = __webpack_require__(457);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
-
-	var _reactDom = __webpack_require__(381);
-
-	var _reactDom2 = _interopRequireDefault(_reactDom);
-
-	var _reactRedux = __webpack_require__(359);
-
-	var _actions = __webpack_require__(458);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var reducers = exports.reducers = { widgets: _reducer2.default };
-
-	function createWidgetType(Component, store) {
-	  return {
-	    enhance: function enhance(element) {
-	      _reactDom2.default.render(React.createElement(
-	        _reactRedux.Provider,
-	        { store: store },
-	        React.createElement(Component, null)
-	      ), element[0]);
-	    }
-	  };
-	}
-
-	function watch(events, widgets, dispatch) {
-	  function update() {
-	    dispatch((0, _actions.load)({
-	      widgets: {
-	        classicPlayerControls: widgets.isPresent('classic_player_controls'),
-	        slimPlayerControls: widgets.isPresent('slim_player_controls')
-	      }
-	    }));
-	  }
-
-	  events.on('widgets:update', update);
-	  update();
-	}
-
-/***/ },
-/* 457 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case _actions.LOAD:
-	      return action.payload.widgets;
-
-	    default:
-	      return state;
-	  }
-	};
-
-	var _actions = __webpack_require__(458);
-
-/***/ },
-/* 458 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.load = load;
-	var LOAD = exports.LOAD = 'WIDGETS_LOAD';
-
-	function load(_ref) {
-	  var widgets = _ref.widgets;
-
-	  return {
-	    type: LOAD,
-	    payload: {
-	      widgets: widgets
-	    }
-	  };
-	}
-
-/***/ },
-/* 459 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.register = register;
-
-	var _audio = __webpack_require__(460);
-
-	var _plain = __webpack_require__(498);
-
-	var _video = __webpack_require__(499);
-
-	function register() {
-	  (0, _plain.register)();
-	  (0, _video.register)();
-	  (0, _audio.register)();
-	}
-
-/***/ },
-/* 460 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	exports.register = register;
-
-	var _media = __webpack_require__(461);
-
-	var _PageAudioFilePlayer = __webpack_require__(496);
-
-	var _PageAudioFilePlayer2 = _interopRequireDefault(_PageAudioFilePlayer);
-
-	var _registerPageType = __webpack_require__(431);
-
-	var _registerPageType2 = _interopRequireDefault(_registerPageType);
-
-	var _pages = __webpack_require__(310);
-
-	var _selectors = __webpack_require__(465);
-
-	var _selectors2 = __webpack_require__(337);
-
-	var _selectors3 = __webpack_require__(429);
-
-	var _selectors4 = __webpack_require__(393);
-
-	var _redux = __webpack_require__(313);
-
-	var _utils = __webpack_require__(372);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function AudioPage(props) {
-	  return React.createElement(
-	    _media.Page,
-	    { className: 'audioPage',
-	      page: props.page,
-	      file: props.audioFile,
-	      playerState: props.playerState,
-	      playerActions: props.playerActions,
-	      controlBarText: props.t('pageflow.public.start_audio') },
-	    React.createElement(_media.PageBackgroundAsset, null),
-	    React.createElement(_PageAudioFilePlayer2.default, { file: props.audioFile,
-	      playerState: props.playerState,
-	      playerActions: props.playerActions })
-	  );
-	}
-
-	function register() {
-	  (0, _registerPageType2.default)('audio', {
-
-	    component: (0, _pages.connectInPage)((0, _utils.combine)({
-	      page: (0, _selectors2.pageAttributes)(),
-	      audioFile: (0, _selectors4.file)('audioFiles', { id: (0, _selectors2.pageAttribute)('audioFileId') }),
-	      playerState: _selectors.playerState,
-	      t: _selectors3.t
-	    }), (0, _utils.combine)({
-	      playerActions: _selectors.playerActions
-	    }))(AudioPage),
-
-	    reducer: (0, _redux.combineReducers)(_extends({}, _media.pageReducers)),
+	    reducers: reducers,
 
 	    saga: regeneratorRuntime.mark(function saga() {
 	      return regeneratorRuntime.wrap(function saga$(_context) {
@@ -19883,7 +18691,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          switch (_context.prev = _context.next) {
 	            case 0:
 	              _context.next = 2;
-	              return [(0, _media.pageSaga)()];
+	              return (0, _sagas2.default)(options);
 
 	            case 2:
 	            case 'end':
@@ -19892,62 +18700,38 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        }
 	      }, saga, this);
 	    })
-
-	  });
+	  };
 	}
 
-/***/ },
-/* 461 */
-/***/ function(module, exports, __webpack_require__) {
+	var pageBackgroundReduxModule = exports.pageBackgroundReduxModule = {
+	  reducers: reducers,
 
-	'use strict';
+	  saga: regeneratorRuntime.mark(function saga() {
+	    return regeneratorRuntime.wrap(function saga$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
+	          case 0:
+	            _context2.next = 2;
+	            return [(0, _fadeInWhenPageWillActivate2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.pageSaga = exports.PageBackground = exports.PageBackgroundAsset = exports.PageBackgroundVideo = exports.PageVideoPlayer = exports.Page = exports.pageReducers = undefined;
-
-	var _Page = __webpack_require__(462);
-
-	var _Page2 = _interopRequireDefault(_Page);
-
-	var _PageVideoPlayer = __webpack_require__(469);
-
-	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
-
-	var _PageBackgroundVideo = __webpack_require__(483);
-
-	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
-
-	var _PageBackgroundAsset = __webpack_require__(484);
-
-	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
-
-	var _PageBackground = __webpack_require__(485);
-
-	var _PageBackground2 = _interopRequireDefault(_PageBackground);
-
-	var _reducer = __webpack_require__(486);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
-
-	var _sagas = __webpack_require__(487);
-
-	var _sagas2 = _interopRequireDefault(_sagas);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var pageReducers = exports.pageReducers = { media: _reducer2.default };
+	          case 2:
+	          case 'end':
+	            return _context2.stop();
+	        }
+	      }
+	    }, saga, this);
+	  })
+	};
 
 	exports.Page = _Page2.default;
 	exports.PageVideoPlayer = _PageVideoPlayer2.default;
+	exports.PagePrintImage = _PagePrintImage2.default;
 	exports.PageBackgroundVideo = _PageBackgroundVideo2.default;
 	exports.PageBackgroundAsset = _PageBackgroundAsset2.default;
 	exports.PageBackground = _PageBackground2.default;
-	exports.pageSaga = _sagas2.default;
 
 /***/ },
-/* 462 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19959,15 +18743,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PlayerControls = __webpack_require__(463);
+	var _media = __webpack_require__(430);
+
+	var _PlayerControls = __webpack_require__(432);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _NonJsLinks = __webpack_require__(467);
+	var _NonJsLinks = __webpack_require__(436);
 
 	var _NonJsLinks2 = _interopRequireDefault(_NonJsLinks);
 
-	var _playerStateClassNames = __webpack_require__(464);
+	var _playerStateClassNames = __webpack_require__(433);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
@@ -19975,7 +18761,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(390);
 
-	var _selectors2 = __webpack_require__(465);
+	var _selectors2 = __webpack_require__(434);
 
 	var _classnames = __webpack_require__(305);
 
@@ -20020,6 +18806,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        _components.PageScroller,
 	        { className: (0, _playerStateClassNames2.default)(playerState) },
 	        React.createElement(_components.PageHeader, { page: page }),
+	        React.createElement(_media.PagePrintImage, { page: page }),
 	        React.createElement(
 	          _components.PageText,
 	          { page: page },
@@ -20051,7 +18838,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 463 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20064,21 +18851,21 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.MediaPlayerControls = MediaPlayerControls;
 
-	var _playerStateClassNames = __webpack_require__(464);
+	var _playerStateClassNames = __webpack_require__(433);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
-	var _PlayerControls = __webpack_require__(398);
+	var _PlayerControls = __webpack_require__(397);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(465);
+	var _selectors = __webpack_require__(434);
 
-	var _selectors2 = __webpack_require__(429);
+	var _selectors2 = __webpack_require__(428);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
 	var _react = __webpack_require__(304);
 
@@ -20209,7 +18996,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 464 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20233,7 +19020,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 465 */
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20249,7 +19036,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.textTracks = textTracks;
 	exports.videoQualitySetting = videoQualitySetting;
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -20257,9 +19044,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(430);
+	var _selectors3 = __webpack_require__(429);
 
-	var _selectors4 = __webpack_require__(429);
+	var _selectors4 = __webpack_require__(428);
 
 	var _redux = __webpack_require__(313);
 
@@ -20333,7 +19120,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 466 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20572,7 +19359,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 467 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20584,9 +19371,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(429);
+	var _selectors = __webpack_require__(428);
 
-	var _selectors2 = __webpack_require__(468);
+	var _selectors2 = __webpack_require__(437);
 
 	var _reactRedux = __webpack_require__(359);
 
@@ -20628,7 +19415,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(NonJsLinks);
 
 /***/ },
-/* 468 */
+/* 437 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20644,7 +19431,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 469 */
+/* 438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20654,17 +19441,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = PageVideoPlayer;
 
-	var _VideoFilePlayer = __webpack_require__(470);
+	var _VideoFilePlayer = __webpack_require__(439);
 
 	var _VideoFilePlayer2 = _interopRequireDefault(_VideoFilePlayer);
 
-	var _createPageFilePlayer = __webpack_require__(482);
+	var _createPageFilePlayer = __webpack_require__(451);
 
 	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
 
 	var _selectors = __webpack_require__(393);
 
-	var _selectors2 = __webpack_require__(425);
+	var _selectors2 = __webpack_require__(424);
 
 	var _utils = __webpack_require__(372);
 
@@ -20682,7 +19469,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  var property = props.videoPropertyBaseName;
 
 	  return React.createElement(VideoPlayer, { videoFileId: page[property + 'Id'],
-	    posterImageFileId: page.posterImageId,
+	    posterImageFileId: page[props.posterImagePropertyBaseName + 'Id'],
 	    playerState: props.playerState,
 	    playerActions: props.playerActions,
 	    fit: props.fit,
@@ -20693,11 +19480,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	PageVideoPlayer.defaultProps = {
 	  videoPropertyBaseName: 'videoFile',
+	  posterImagePropertyBaseName: 'posterImageId',
 	  fit: 'smart_contain'
 	};
 
 /***/ },
-/* 470 */
+/* 439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20721,15 +19509,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _createFilePlayer = __webpack_require__(471);
+	var _createFilePlayer = __webpack_require__(440);
 
 	var _createFilePlayer2 = _interopRequireDefault(_createFilePlayer);
 
-	var _Positioner = __webpack_require__(478);
+	var _Positioner = __webpack_require__(447);
 
 	var _Positioner2 = _interopRequireDefault(_Positioner);
 
-	var _sources = __webpack_require__(481);
+	var _sources = __webpack_require__(450);
 
 	var _sources2 = _interopRequireDefault(_sources);
 
@@ -20744,7 +19532,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 /***/ },
-/* 471 */
+/* 440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20833,6 +19621,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          tracks: (0, _textTracks.textTracksFromFiles)(this.props.textTracks.files, this.props.textTracksEnabled),
 	          poster: poster(this.props.file, this.props.posterImageFile),
 	          loop: this.props.loop,
+	          alt: this.props.file.alt,
 
 	          onSetup: this.setupMediaTag,
 	          onDispose: this.disposeMediaTag });
@@ -20871,31 +19660,31 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return result;
 	};
 
-	var _MediaTag = __webpack_require__(472);
+	var _MediaTag = __webpack_require__(441);
 
 	var _MediaTag2 = _interopRequireDefault(_MediaTag);
 
-	var _createPageflowPlayer = __webpack_require__(473);
+	var _createPageflowPlayer = __webpack_require__(442);
 
 	var _createPageflowPlayer2 = _interopRequireDefault(_createPageflowPlayer);
 
-	var _watchPlayer = __webpack_require__(474);
+	var _watchPlayer = __webpack_require__(443);
 
 	var _watchPlayer2 = _interopRequireDefault(_watchPlayer);
 
-	var _handlePlayStatePropChanges = __webpack_require__(475);
+	var _handlePlayStatePropChanges = __webpack_require__(444);
 
 	var _handlePlayStatePropChanges2 = _interopRequireDefault(_handlePlayStatePropChanges);
 
-	var _textTracks = __webpack_require__(476);
+	var _textTracks = __webpack_require__(445);
 
-	var _selectors = __webpack_require__(465);
+	var _selectors = __webpack_require__(434);
 
-	var _selectors2 = __webpack_require__(430);
+	var _selectors2 = __webpack_require__(429);
 
-	var _selectors3 = __webpack_require__(477);
+	var _selectors3 = __webpack_require__(446);
 
-	var _selectors4 = __webpack_require__(425);
+	var _selectors4 = __webpack_require__(424);
 
 	var _react = __webpack_require__(304);
 
@@ -20926,7 +19715,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 472 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21033,6 +19822,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      mediaElement.setAttribute('preload', 'auto');
 	      mediaElement.setAttribute('crossorigin', 'anonymous');
+	      mediaElement.setAttribute('alt', this.props.alt);
 
 	      if (this.props.poster) {
 	        mediaElement.setAttribute('poster', this.props.poster);
@@ -21107,7 +19897,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 473 */
+/* 442 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21154,7 +19944,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 474 */
+/* 443 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21187,7 +19977,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 475 */
+/* 444 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21221,7 +20011,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 476 */
+/* 445 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21271,13 +20061,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      kind: textTrackFile.kind,
 	      label: textTrackFile.label,
 	      srclang: textTrackFile.srclang,
-	      src: textTrackFile.urls.original
+	      src: textTrackFile.urls.vtt
 	    };
 	  });
 	}
 
 /***/ },
-/* 477 */
+/* 446 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21293,7 +20083,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 478 */
+/* 447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21306,11 +20096,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _getDimensions = __webpack_require__(479);
+	var _getDimensions = __webpack_require__(448);
 
 	var _getDimensions2 = _interopRequireDefault(_getDimensions);
 
-	var _getCueOffsetClassName = __webpack_require__(480);
+	var _getCueOffsetClassName = __webpack_require__(449);
 
 	var _getCueOffsetClassName2 = _interopRequireDefault(_getCueOffsetClassName);
 
@@ -21395,7 +20185,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 479 */
+/* 448 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21449,7 +20239,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 480 */
+/* 449 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21469,7 +20259,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 481 */
+/* 450 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21511,7 +20301,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 482 */
+/* 451 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21552,7 +20342,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _utils = __webpack_require__(372);
 
 /***/ },
-/* 483 */
+/* 452 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -21565,7 +20355,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.default = PageBackgroundVideo;
 
-	var _PageVideoPlayer = __webpack_require__(469);
+	var _PageVideoPlayer = __webpack_require__(438);
 
 	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
 
@@ -21576,7 +20366,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 484 */
+/* 453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21588,11 +20378,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PageBackgroundVideo = __webpack_require__(483);
+	var _PageBackgroundVideo = __webpack_require__(452);
 
 	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
 
-	var _selectors = __webpack_require__(465);
+	var _selectors = __webpack_require__(434);
 
 	var _pages = __webpack_require__(310);
 
@@ -21605,14 +20395,26 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function PageBackgroundAsset(_ref) {
 	  var page = _ref.page,
 	      playerState = _ref.playerState,
-	      playerActions = _ref.playerActions;
+	      playerActions = _ref.playerActions,
+	      propertyNamePrefix = _ref.propertyNamePrefix;
 
-	  if (page.backgroundType == 'video') {
+
+	  var typePropertyName = propertyNamePrefix ? propertyNamePrefix + 'BackgroundType' : 'backgroundType';
+
+	  if (page[typePropertyName] == 'video') {
+	    var videoPropertyBaseName = propertyNamePrefix && propertyNamePrefix + 'VideoFile';
+	    var posterImagePropertyBaseName = propertyNamePrefix && propertyNamePrefix + 'PosterImage';
+
 	    return React.createElement(_PageBackgroundVideo2.default, { page: page,
 	      playerState: playerState,
-	      playerActions: playerActions });
+	      playerActions: playerActions,
+	      videoPropertyBaseName: videoPropertyBaseName,
+	      posterImagePropertyBaseName: posterImagePropertyBaseName });
 	  } else {
-	    return React.createElement(_components.PageBackgroundImage, { page: page });
+	    var imagePropertyBaseName = propertyNamePrefix && propertyNamePrefix + 'BackgroundImage';
+
+	    return React.createElement(_components.PageBackgroundImage, { page: page,
+	      imagePropertyBaseName: imagePropertyBaseName });
 	  }
 	}
 
@@ -21624,7 +20426,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageBackgroundAsset);
 
 /***/ },
-/* 485 */
+/* 454 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21636,7 +20438,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PageBackgroundAsset = __webpack_require__(484);
+	var _PageBackgroundAsset = __webpack_require__(453);
 
 	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
 
@@ -21646,13 +20448,81 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(
 	    _components.PageBackground,
 	    null,
-	    React.createElement(_PageBackgroundAsset2.default, null),
+	    React.createElement(_PageBackgroundAsset2.default, { propertyNamePrefix: props.propertyNamePrefix }),
 	    React.createElement(_components.PageShadow, { page: props.page })
 	  );
 	}
 
 /***/ },
-/* 486 */
+/* 455 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = PagePrintImage;
+
+	var _reactRedux = __webpack_require__(359);
+
+	var _pages = __webpack_require__(310);
+
+	var _selectors = __webpack_require__(337);
+
+	var _selectors2 = __webpack_require__(424);
+
+	var _utils = __webpack_require__(372);
+
+	function PagePrintImage(_ref) {
+	  var page = _ref.page;
+
+	  if (page.backgroundType == 'video' || page.type == 'video') {
+	    return React.createElement(PrintVideoPoster, { videoId: page.videoFileId, posterImageId: page.posterImageId });
+	  } else {
+	    return React.createElement(PrintImage, { imageId: page.backgroundImageId });
+	  }
+	}
+
+	var PrintVideoPoster = (0, _reactRedux.connect)((0, _utils.combine)({
+	  videoFile: (0, _selectors2.file)('videoFiles', {
+	    id: (0, _selectors2.prop)('videoId')
+	  }),
+	  posterImageFile: (0, _selectors2.file)('imageFiles', {
+	    id: (0, _selectors2.prop)('posterImageId')
+	  })
+	}))(function (_ref2) {
+	  var videoFile = _ref2.videoFile,
+	      posterImageFile = _ref2.posterImageFile;
+
+	  if (posterImageFile) {
+	    return React.createElement(PrintImageTag, { file: posterImageFile });
+	  } else {
+	    return React.createElement(PrintImageTag, { file: videoFile });
+	  }
+	});
+
+	var PrintImage = (0, _pages.connectInPage)((0, _utils.combine)({
+	  file: (0, _selectors2.file)('imageFiles', {
+	    id: (0, _selectors2.prop)('imageId')
+	  }),
+	  pageIsPrepared: (0, _selectors.pageIsPrepared)()
+	}))(PrintImageTag);
+
+	function PrintImageTag(_ref3) {
+	  var file = _ref3.file;
+
+	  if (file && _selectors.pageIsPrepared) {
+	    return React.createElement('img', { src: file.urls.print,
+	      alt: file.alt,
+	      className: 'print_image' });
+	  } else {
+	    return React.createElement('noscript', null);
+	  }
+	}
+
+/***/ },
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21665,9 +20535,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.default = reducer;
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
-	var _actions2 = __webpack_require__(455);
+	var _actions2 = __webpack_require__(457);
 
 	var _actions3 = __webpack_require__(300);
 
@@ -21814,7 +20684,37 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 487 */
+/* 457 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.HOTKEY_TAB = exports.HOTKEY_SPACE = undefined;
+	exports.space = space;
+	exports.tab = tab;
+
+	var _actions = __webpack_require__(300);
+
+	var HOTKEY_SPACE = exports.HOTKEY_SPACE = 'HOTKEY_SPACE';
+	var HOTKEY_TAB = exports.HOTKEY_TAB = 'HOTKEY_TAB';
+
+	function space(_ref) {
+	  var currentPageId = _ref.currentPageId;
+
+	  return (0, _actions.pageAction)(HOTKEY_SPACE, currentPageId);
+	}
+
+	function tab(_ref2) {
+	  var currentPageId = _ref2.currentPageId;
+
+	  return (0, _actions.pageAction)(HOTKEY_TAB, currentPageId);
+	}
+
+/***/ },
+/* 458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21824,35 +20724,35 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = _callee;
 
-	var _togglePlaying = __webpack_require__(488);
+	var _togglePlaying = __webpack_require__(459);
 
 	var _togglePlaying2 = _interopRequireDefault(_togglePlaying);
 
-	var _handlePageDidActivate = __webpack_require__(489);
+	var _handlePageDidActivate = __webpack_require__(460);
 
 	var _handlePageDidActivate2 = _interopRequireDefault(_handlePageDidActivate);
 
-	var _disableScrollIndicatorDuringPlayback = __webpack_require__(490);
+	var _disableScrollIndicatorDuringPlayback = __webpack_require__(461);
 
 	var _disableScrollIndicatorDuringPlayback2 = _interopRequireDefault(_disableScrollIndicatorDuringPlayback);
 
-	var _hasNotBeenPlayingForAMoment = __webpack_require__(491);
+	var _hasNotBeenPlayingForAMoment = __webpack_require__(462);
 
 	var _hasNotBeenPlayingForAMoment2 = _interopRequireDefault(_hasNotBeenPlayingForAMoment);
 
-	var _idling = __webpack_require__(492);
+	var _idling = __webpack_require__(463);
 
 	var _idling2 = _interopRequireDefault(_idling);
 
-	var _fadeOutWhenPageWillDeactivate = __webpack_require__(493);
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(464);
 
 	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
 
-	var _goToNextPageOnEnd = __webpack_require__(494);
+	var _goToNextPageOnEnd = __webpack_require__(465);
 
 	var _goToNextPageOnEnd2 = _interopRequireDefault(_goToNextPageOnEnd);
 
-	var _controlsHidden = __webpack_require__(495);
+	var _controlsHidden = __webpack_require__(466);
 
 	var _controlsHidden2 = _interopRequireDefault(_controlsHidden);
 
@@ -21867,7 +20767,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    while (1) {
 	      switch (_context.prev = _context.next) {
 	        case 0:
-	          sagas = [(0, _togglePlaying2.default)(), (0, _handlePageDidActivate2.default)(options), (0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
+	          sagas = [(0, _togglePlaying2.default)(), (0, _handlePageDidActivate2.default)(), (0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
 
 
 	          if (options.hideControls) {
@@ -21886,7 +20786,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 488 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21896,11 +20796,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = _callee;
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
-	var _actions2 = __webpack_require__(455);
+	var _actions2 = __webpack_require__(457);
 
-	var _selectors = __webpack_require__(465);
+	var _selectors = __webpack_require__(434);
 
 	var _reduxSaga = __webpack_require__(349);
 
@@ -21961,7 +20861,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 489 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21977,16 +20877,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _actions = __webpack_require__(300);
 
-	var _actions2 = __webpack_require__(466);
+	var _actions2 = __webpack_require__(435);
 
 	var _selectors = __webpack_require__(337);
 
 	var _marked = [_callee2, prebufferAndPlay].map(regeneratorRuntime.mark);
 
 	function _callee2() {
-	  var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-	      autoplay = _ref.autoplay;
-
 	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	    while (1) {
 	      switch (_context2.prev = _context2.next) {
@@ -21999,8 +20896,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	                  case 0:
 	                    _context.next = 2;
 	                    return (0, _effects.race)({
-	                      task: (0, _effects.call)(prebufferAndPlay, { forceAutoplay: autoplay }),
-	                      cancel: (0, _effects.take)('PAGE_WILL_DEACTIVATE')
+	                      task: (0, _effects.call)(prebufferAndPlay),
+	                      cancel: (0, _effects.take)(_actions.PAGE_WILL_DEACTIVATE)
 	                    });
 
 	                  case 2:
@@ -22019,8 +20916,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }, _marked[0], this);
 	}
 
-	function prebufferAndPlay(_ref2) {
-	  var forceAutoplay = _ref2.forceAutoplay;
+	function prebufferAndPlay() {
 	  var autoplay;
 	  return regeneratorRuntime.wrap(function prebufferAndPlay$(_context3) {
 	    while (1) {
@@ -22036,7 +20932,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        case 4:
 	          autoplay = _context3.sent;
 
-	          if (!(autoplay !== false || forceAutoplay)) {
+	          if (!(autoplay !== false)) {
 	            _context3.next = 10;
 	            break;
 	          }
@@ -22057,7 +20953,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 490 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22071,7 +20967,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
 	var _selectors = __webpack_require__(337);
 
@@ -22156,7 +21052,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 491 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22170,7 +21066,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
 	var _marked = [_callee3].map(regeneratorRuntime.mark);
 
@@ -22226,7 +21122,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 492 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22240,9 +21136,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
-	var _actions2 = __webpack_require__(455);
+	var _actions2 = __webpack_require__(457);
 
 	var _marked = [_callee, putUserIdleAfterDelay].map(regeneratorRuntime.mark);
 
@@ -22283,7 +21179,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 493 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22297,7 +21193,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
 	var _actions2 = __webpack_require__(300);
 
@@ -22334,7 +21230,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 494 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22348,7 +21244,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
 	var _selectors = __webpack_require__(337);
 
@@ -22406,7 +21302,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 495 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22420,13 +21316,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(466);
+	var _actions = __webpack_require__(435);
 
-	var _selectors = __webpack_require__(465);
+	var _selectors = __webpack_require__(434);
 
-	var _selectors2 = __webpack_require__(477);
+	var _selectors2 = __webpack_require__(446);
 
-	var _actions2 = __webpack_require__(455);
+	var _actions2 = __webpack_require__(457);
 
 	var _marked = [_callee4].map(regeneratorRuntime.mark);
 
@@ -22530,6 +21426,1252 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
+/* 467 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = _callee2;
+
+	var _reduxSaga = __webpack_require__(349);
+
+	var _effects = __webpack_require__(345);
+
+	var _actions = __webpack_require__(435);
+
+	var _actions2 = __webpack_require__(300);
+
+	var _marked = [_callee2, prebufferAndPlay].map(regeneratorRuntime.mark);
+
+	function _callee2() {
+	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+	    while (1) {
+	      switch (_context2.prev = _context2.next) {
+	        case 0:
+	          _context2.next = 2;
+	          return (0, _reduxSaga.takeEvery)(_actions2.PAGE_WILL_ACTIVATE, regeneratorRuntime.mark(function _callee(action) {
+	            return regeneratorRuntime.wrap(function _callee$(_context) {
+	              while (1) {
+	                switch (_context.prev = _context.next) {
+	                  case 0:
+	                    _context.next = 2;
+	                    return (0, _effects.race)({
+	                      task: (0, _effects.call)(prebufferAndPlay),
+	                      cancel: (0, _effects.take)(_actions2.PAGE_WILL_DEACTIVATE)
+	                    });
+
+	                  case 2:
+	                  case 'end':
+	                    return _context.stop();
+	                }
+	              }
+	            }, _callee, this);
+	          }));
+
+	        case 2:
+	        case 'end':
+	          return _context2.stop();
+	      }
+	    }
+	  }, _marked[0], this);
+	}
+
+	function prebufferAndPlay() {
+	  return regeneratorRuntime.wrap(function prebufferAndPlay$(_context3) {
+	    while (1) {
+	      switch (_context3.prev = _context3.next) {
+	        case 0:
+	          _context3.next = 2;
+	          return [(0, _effects.take)(_actions.PREBUFFERED), (0, _effects.put)((0, _actions.prebuffer)())];
+
+	        case 2:
+	          _context3.next = 4;
+	          return (0, _effects.put)((0, _actions.playAndFadeIn)({ fadeDuration: 1000 }));
+
+	        case 4:
+	        case 'end':
+	          return _context3.stop();
+	      }
+	    }
+	  }, _marked[1], this);
+	}
+
+/***/ },
+/* 468 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.Page = exports.reduxModule = undefined;
+
+	var _Page = __webpack_require__(469);
+
+	var _Page2 = _interopRequireDefault(_Page);
+
+	var _reenableScrollIndicator = __webpack_require__(471);
+
+	var _reenableScrollIndicator2 = _interopRequireDefault(_reenableScrollIndicator);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reduxModule = exports.reduxModule = {
+	  name: 'interactivePageBackground',
+
+	  saga: _reenableScrollIndicator2.default
+	};
+
+	exports.Page = _Page2.default;
+
+/***/ },
+/* 469 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(304);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _classnames = __webpack_require__(305);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _components = __webpack_require__(302);
+
+	var _selectors = __webpack_require__(470);
+
+	var _pages = __webpack_require__(310);
+
+	var _utils = __webpack_require__(372);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/**
+	 * @desc
+	 * Use to build pages that have a play button to hide the page's text
+	 * and allow interacting with elements placed in the {@link
+	 * pageflow.react.components.PageBackground|PageBackground}.
+	 *
+	 * @alias pageflow.react.components.PageWithInteractiveBackground
+	 * @class
+	 * @since edge
+	 */
+	var PageWithInteractiveBackground = function (_React$Component) {
+	  _inherits(PageWithInteractiveBackground, _React$Component);
+
+	  function PageWithInteractiveBackground(props, context) {
+	    _classCallCheck(this, PageWithInteractiveBackground);
+
+	    var _this = _possibleConstructorReturn(this, (PageWithInteractiveBackground.__proto__ || Object.getPrototypeOf(PageWithInteractiveBackground)).call(this, props, context));
+
+	    _this.onPlayButtonClick = function () {
+	      pageflow.hideText.activate();
+
+	      if (_this.props.onEnterBackground) {
+	        _this.props.onEnterBackground();
+	      }
+	    };
+
+	    _this.onCloseButtonClick = function () {
+	      pageflow.hideText.deactivate();
+
+	      if (_this.props.onLeaveBackground) {
+	        _this.props.onLeaveBackground();
+	      }
+	    };
+	    return _this;
+	  }
+
+	  _createClass(PageWithInteractiveBackground, [{
+	    key: 'render',
+	    value: function render() {
+	      var page = this.props.page;
+
+	      return _react2.default.createElement(
+	        _components.PageWrapper,
+	        { className: (0, _classnames2.default)({ unplayed: !this.props.textHasBeenHidden }, 'hide_content_with_text') },
+	        _react2.default.createElement(_components.CloseButton, { onClick: this.onCloseButtonClick }),
+	        _react2.default.createElement(_components.MenuBar, { additionalButtons: this.props.additionalMenuBarButtons,
+	          onAdditionalButtonClick: this.props.onAdditionalButtonClick,
+	          qualityMenuButtonTitle: this.props.qualityMenuButtonTitle,
+	          qualityMenuItems: this.props.qualityMenuItems,
+	          onQualityMenuItemClick: this.props.onQualityMenuItemClick,
+	          hiddenOnPhone: this.props.textHasBeenHidden && !this.props.textIsHidden }),
+	        _react2.default.createElement(
+	          _components.PageBackground,
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'videoWrapper' },
+	            this.props.children
+	          ),
+	          _react2.default.createElement(_components.PageShadow, { page: page })
+	        ),
+	        _react2.default.createElement(
+	          _components.PageForeground,
+	          null,
+	          _react2.default.createElement(_components.PlayerControls, { playButtonTitle: 'Starten',
+	            playButtonIconName: this.props.playButtonIconName,
+	            controlBarText: page.controlBarText || this.props.defaultControlBarText,
+	            onPlayButtonClick: this.onPlayButtonClick,
+	            infoBox: { title: page.additionalTitle, description: page.additionalDescription } }),
+	          _react2.default.createElement(
+	            _components.PageScroller,
+	            null,
+	            _react2.default.createElement(_components.PageHeader, { page: page }),
+	            _react2.default.createElement(_components.PageText, { page: page })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return PageWithInteractiveBackground;
+	}(_react2.default.Component);
+
+	PageWithInteractiveBackground.propTypes = {
+	  page: _react2.default.PropTypes.object,
+
+	  defaultControlBarText: _react2.default.PropTypes.string,
+	  playButtonIconName: _react2.default.PropTypes.string,
+
+	  onEnterBackground: _react2.default.PropTypes.func,
+	  onLeaveBackground: _react2.default.PropTypes.func,
+
+	  additionalMenuBarButtons: _react2.default.PropTypes.array,
+	  onAdditionalButtonClick: _react2.default.PropTypes.func,
+
+	  qualityMenuItems: _react2.default.PropTypes.array,
+	  onQualityMenuItemClick: _react2.default.PropTypes.func
+	};
+
+	exports.default = (0, _pages.connectInPage)((0, _utils.combine)({
+	  textIsHidden: _selectors.textIsHidden,
+	  textHasBeenHidden: _selectors.textHasBeenHidden
+	}))(PageWithInteractiveBackground);
+
+/***/ },
+/* 470 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.textIsHidden = textIsHidden;
+	exports.textHasBeenHidden = textHasBeenHidden;
+	function textIsHidden(state) {
+	  return state.hideText.isActive;
+	}
+
+	function textHasBeenHidden(state) {
+	  return state.hideText.hasBeenActive;
+	}
+
+/***/ },
+/* 471 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = _callee2;
+
+	var _reduxSaga = __webpack_require__(349);
+
+	var _effects = __webpack_require__(345);
+
+	var _actions = __webpack_require__(472);
+
+	var _selectors = __webpack_require__(337);
+
+	var _marked = [_callee2].map(regeneratorRuntime.mark);
+
+	function _callee2() {
+	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
+	    while (1) {
+	      switch (_context2.prev = _context2.next) {
+	        case 0:
+	          _context2.next = 2;
+	          return (0, _reduxSaga.takeEvery)(_actions.DEACTIVATE, regeneratorRuntime.mark(function _callee() {
+	            return regeneratorRuntime.wrap(function _callee$(_context) {
+	              while (1) {
+	                switch (_context.prev = _context.next) {
+	                  case 0:
+	                    console.log('hide text deactovate');
+	                    _context.next = 3;
+	                    return (0, _effects.select)((0, _selectors.pageIsActive)());
+
+	                  case 3:
+	                    if (!_context.sent) {
+	                      _context.next = 6;
+	                      break;
+	                    }
+
+	                    _context.next = 6;
+	                    return (0, _effects.call)(enable);
+
+	                  case 6:
+	                  case 'end':
+	                    return _context.stop();
+	                }
+	              }
+	            }, _callee, this);
+	          }));
+
+	        case 2:
+	        case 'end':
+	          return _context2.stop();
+	      }
+	    }
+	  }, _marked[0], this);
+	}
+
+	function enable() {
+	  pageflow.events.trigger('scroll_indicator:enable');
+	}
+
+/***/ },
+/* 472 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.activate = activate;
+	exports.deactivate = deactivate;
+	var ACTIVATE = exports.ACTIVATE = 'HIDE_TEXT_ACTIVATE';
+	var DEACTIVATE = exports.DEACTIVATE = 'HIDE_TEXT_DEACTIVATE';
+
+	function activate() {
+	  return {
+	    type: ACTIVATE
+	  };
+	}
+
+	function deactivate() {
+	  return {
+	    type: DEACTIVATE
+	  };
+	}
+
+/***/ },
+/* 473 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.registry = undefined;
+
+	var _PageTypeRegistry = __webpack_require__(474);
+
+	var _PageTypeRegistry2 = _interopRequireDefault(_PageTypeRegistry);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var registry = exports.registry = new _PageTypeRegistry2.default();
+
+	exports.default = registry.register;
+
+/***/ },
+/* 474 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	exports.default = PageTypeRegistry;
+
+	var _redux = __webpack_require__(313);
+
+	function PageTypeRegistry() {
+	  var pageTypes = [];
+
+	  this.register = function (name, _ref) {
+	    var component = _ref.component,
+	        _ref$reduxModules = _ref.reduxModules,
+	        reduxModules = _ref$reduxModules === undefined ? [] : _ref$reduxModules;
+
+	    if (!component) {
+	      fail('Requires component option to be present');
+	    }
+
+	    if (!Array.isArray(reduxModules)) {
+	      fail('Expected reduxModules option to be an array.');
+	    }
+
+	    var sagas = [];
+	    var reducers = reduxModules.reduce(function (result, module) {
+	      if ((typeof module === 'undefined' ? 'undefined' : _typeof(module)) !== 'object' || new Set(Object.keys(module).concat(['name', 'reducers', 'saga'])).size != 3) {
+	        fail('Expected redux module to be object with name, reducers and saga properties at most.');
+	      }
+
+	      if (module.reducers && _typeof(module.reducers) !== 'object') {
+	        fail('Expected reducers property of ' + module.name + ' reduxModule to be object.');
+	      }
+
+	      if (module.saga) {
+	        sagas.push(module.saga);
+	      }
+
+	      return _extends({}, result, module.reducers);
+	    }, null);
+
+	    pageTypes.push({
+	      name: name,
+	      component: component,
+
+	      reducer: reducers ? (0, _redux.combineReducers)(reducers) : undefined,
+
+	      saga: regeneratorRuntime.mark(function saga() {
+	        return regeneratorRuntime.wrap(function saga$(_context) {
+	          while (1) {
+	            switch (_context.prev = _context.next) {
+	              case 0:
+	                _context.next = 2;
+	                return sagas.map(function (saga) {
+	                  return saga();
+	                });
+
+	              case 2:
+	              case 'end':
+	                return _context.stop();
+	            }
+	          }
+	        }, saga, this);
+	      })
+	    });
+
+	    function fail(message) {
+	      throw new Error(message + ' Check registerPageType call of ' + name + ' page type.');
+	    }
+	  };
+
+	  this.forEach = function () {
+	    return pageTypes.forEach.apply(pageTypes, arguments);
+	  };
+
+	  this.reduce = function () {
+	    return pageTypes.reduce.apply(pageTypes, arguments);
+	  };
+
+	  this.findByName = function (pageTypeName) {
+	    return pageTypes.find(function (_ref2) {
+	      var name = _ref2.name,
+	          component = _ref2.component;
+	      return name == pageTypeName;
+	    });
+	  };
+	}
+
+/***/ },
+/* 475 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (name, _ref) {
+	  var component = _ref.component;
+
+	  registry.push({
+	    name: name,
+	    component: component
+	  });
+	};
+
+	var registry = exports.registry = [];
+
+/***/ },
+/* 476 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _collections = __webpack_require__(338);
+
+	var _registerPageType = __webpack_require__(473);
+
+	var _boot = __webpack_require__(477);
+
+	var _boot2 = _interopRequireDefault(_boot);
+
+	var _react = __webpack_require__(304);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(359);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PageProvider = (0, _collections.createItemScopeProvider)('pages');
+
+	var _class = function (_React$Component) {
+	  _inherits(_class, _React$Component);
+
+	  function _class() {
+	    _classCallCheck(this, _class);
+
+	    return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
+	  }
+
+	  _createClass(_class, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.store = (0, _boot2.default)({ seed: this.props.resolverSeed });
+	      this.pageComponent = _registerPageType.registry.findByName(this.props.pageType).component;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render(props) {
+	      var PageComponent = this.pageComponent;
+
+	      return _react2.default.createElement(
+	        _reactRedux.Provider,
+	        { store: this.store },
+	        _react2.default.createElement(
+	          PageProvider,
+	          { itemId: this.props.pageId },
+	          _react2.default.createElement(PageComponent, null)
+	        )
+	      );
+	    }
+	  }]);
+
+	  return _class;
+	}(_react2.default.Component);
+
+	exports.default = _class;
+
+/***/ },
+/* 477 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function (pageflow) {
+	  var isEditor = !!pageflow.storylines;
+	  var isServerSide = !pageflow.settings;
+
+	  var seed = pageflow.seed;
+	  var collections = isEditor ? pageflow : seed;
+
+	  var pageStateReducers = _registerPageType.registry.reduce(function (result, _ref) {
+	    var name = _ref.name,
+	        reducer = _ref.reducer;
+
+	    result[name] = reducer;
+	    return result;
+	  }, {});
+
+	  var reducer = (0, _redux.combineReducers)(_extends({}, _i18n.reducers, _entry.reducers, _current.reducers, _storylines.reducers, _chapters.reducers, (0, _pages.createReducers)(pageStateReducers), _pageTypes.reducers, (0, _files.createReducers)(collections.files || {}, {
+	    fileUrlTemplates: seed['file_url_templates'],
+	    modelTypes: seed['file_model_types']
+	  }), _settings.reducers, _hideText.reducers, _widgets.reducers));
+
+	  var saga = void 0,
+	      m = void 0;
+
+	  if (!isServerSide) {
+	    (function () {
+	      var pageTypeSagas = _registerPageType.registry.reduce(function (result, _ref2) {
+	        var name = _ref2.name,
+	            saga = _ref2.saga;
+
+	        result[name] = saga;
+	        return result;
+	      }, {});
+
+	      m = (0, _createSaga.createMiddleware)();
+
+	      saga = regeneratorRuntime.mark(function saga() {
+	        return regeneratorRuntime.wrap(function saga$(_context) {
+	          while (1) {
+	            switch (_context.prev = _context.next) {
+	              case 0:
+	                _context.next = 2;
+	                return [(0, _pages.createSaga)(collections.pages, pageTypeSagas, m)(), (0, _settings.createSaga)(pageflow.settings)()];
+
+	              case 2:
+	              case 'end':
+	                return _context.stop();
+	            }
+	          }
+	        }, saga, this);
+	      });
+	    })();
+	  }
+
+	  var store = (0, _createStore2.default)(reducer, saga, m);
+
+	  (0, _entry.initFromSeed)(seed, store.dispatch);
+	  (0, _i18n.initFromSeed)(seed, store.dispatch);
+	  (0, _pageTypes.initFromSeed)(seed, store.dispatch);
+
+	  (0, _storylines.watchCollection)(collections.storylines, store.dispatch);
+	  (0, _chapters.watchCollection)(collections.chapters, store.dispatch);
+	  (0, _pages.watchCollection)(collections.pages, store.dispatch);
+	  (0, _files.watchCollections)(collections.files || {}, store.dispatch);
+
+	  if (!isServerSide) {
+	    (0, _current.watch)(pageflow.events, store.dispatch);
+	    (0, _settings.watch)(pageflow.settings, store.dispatch);
+	    (0, _widgets.watch)(pageflow.events, pageflow.widgets, store.dispatch);
+	    (0, _hotkeys.watchEvents)(window, store);
+	    (0, _hideText.watch)(pageflow.hideText, store.dispatch);
+
+	    _registerPageType.registry.forEach(function (_ref3) {
+	      var name = _ref3.name,
+	          component = _ref3.component;
+	      return pageflow.pageType.register(name, (0, _pages.createPageType)(component, store));
+	    });
+
+	    _registerWidgetType.registry.forEach(function (_ref4) {
+	      var name = _ref4.name,
+	          component = _ref4.component;
+	      return pageflow.widgetTypes.register(name, (0, _widgets.createWidgetType)(component, store));
+	    });
+	  }
+
+	  return store;
+	};
+
+	var _registerPageType = __webpack_require__(473);
+
+	var _registerWidgetType = __webpack_require__(475);
+
+	var _createStore = __webpack_require__(478);
+
+	var _createStore2 = _interopRequireDefault(_createStore);
+
+	var _createSaga = __webpack_require__(343);
+
+	var _storylines = __webpack_require__(479);
+
+	var _chapters = __webpack_require__(480);
+
+	var _pages = __webpack_require__(310);
+
+	var _pageTypes = __webpack_require__(481);
+
+	var _current = __webpack_require__(484);
+
+	var _files = __webpack_require__(488);
+
+	var _settings = __webpack_require__(489);
+
+	var _i18n = __webpack_require__(491);
+
+	var _entry = __webpack_require__(494);
+
+	var _hotkeys = __webpack_require__(497);
+
+	var _hideText = __webpack_require__(498);
+
+	var _widgets = __webpack_require__(501);
+
+	var _redux = __webpack_require__(313);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
+/* 478 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (reducer) {
+	  var saga = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : regeneratorRuntime.mark(function _callee() {
+	    return regeneratorRuntime.wrap(function _callee$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee, this);
+	  });
+	  var middleware = arguments[2];
+
+	  var sagaMiddleware = (0, _reduxSaga2.default)();
+	  var middlewares = [sagaMiddleware];
+
+	  if (middleware) {
+	    middlewares.push(middleware);
+	  }
+
+	  var composeEnhancers = _redux.compose;
+
+	  if ((typeof process === 'undefined' || ("production") !== 'production') && typeof __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
+
+	    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+	  }
+
+	  var store = (0, _redux.createStore)(reducer, {}, composeEnhancers(_redux.applyMiddleware.apply(undefined, middlewares)));
+
+	  sagaMiddleware.run(saga);
+
+	  return store;
+	};
+
+	var _redux = __webpack_require__(313);
+
+	var _reduxSaga = __webpack_require__(349);
+
+	var _reduxSaga2 = _interopRequireDefault(_reduxSaga);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(294)))
+
+/***/ },
+/* 479 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.watchCollection = watchCollection;
+
+	var _collections = __webpack_require__(338);
+
+	var reducers = exports.reducers = { storylines: (0, _collections.createReducer)('storylines') };
+
+	function watchCollection(storylines, dispatch) {
+	  (0, _collections.watch)({
+	    collection: storylines,
+	    collectionName: 'storylines',
+	    dispatch: dispatch,
+
+	    attributes: ['id'],
+	    includeConfiguration: true
+	  });
+	}
+
+/***/ },
+/* 480 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.watchCollection = watchCollection;
+
+	var _collections = __webpack_require__(338);
+
+	var reducers = exports.reducers = { chapters: (0, _collections.createReducer)('chapters') };
+
+	function watchCollection(chapters, dispatch) {
+	  (0, _collections.watch)({
+	    collection: chapters,
+	    collectionName: 'chapters',
+	    dispatch: dispatch,
+
+	    attributes: ['id', 'title', 'position', 'storyline_id']
+	  });
+	}
+
+/***/ },
+/* 481 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.initFromSeed = initFromSeed;
+
+	var _actions = __webpack_require__(482);
+
+	var _reducer = __webpack_require__(483);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	var _utils = __webpack_require__(372);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { pageTypes: _reducer2.default };
+
+	function initFromSeed(seed, dispatch) {
+	  dispatch((0, _actions.init)({ pageTypes: _utils.camelize.deep(seed.page_types) }));
+	}
+
+/***/ },
+/* 482 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.init = init;
+	var INIT = exports.INIT = 'PAGE_TYPES_INIT';
+
+	function init(_ref) {
+	  var pageTypes = _ref.pageTypes;
+
+	  return {
+	    type: INIT,
+	    payload: {
+	      pageTypes: pageTypes
+	    }
+	  };
+	}
+
+/***/ },
+/* 483 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.INIT:
+	      return action.payload.pageTypes;
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(482);
+
+/***/ },
+/* 484 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.watch = exports.reducers = undefined;
+
+	var _reducer = __webpack_require__(485);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	var _watch = __webpack_require__(487);
+
+	var _watch2 = _interopRequireDefault(_watch);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { currentPageId: _reducer2.default };
+
+	exports.watch = _watch2.default;
+
+/***/ },
+/* 485 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.PAGE_CHANGE:
+	      return action.payload.id;
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(486);
+
+/***/ },
+/* 486 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.pageChange = pageChange;
+	var PAGE_CHANGE = exports.PAGE_CHANGE = 'CURRENT_PAGE_CHANGE';
+
+	function pageChange(_ref) {
+	  var id = _ref.id;
+
+	  return {
+	    type: PAGE_CHANGE,
+	    payload: {
+	      id: id
+	    }
+	  };
+	}
+
+/***/ },
+/* 487 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function (events, dispatch) {
+	  events.on('page:change', function (page) {
+	    return dispatch((0, _actions.pageChange)({ id: page.getPermaId() }));
+	  });
+	};
+
+	var _actions = __webpack_require__(486);
+
+/***/ },
+/* 488 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.createReducers = createReducers;
+	exports.watchCollections = watchCollections;
+
+	var _collections = __webpack_require__(338);
+
+	var _utils = __webpack_require__(372);
+
+	function createReducers(fileCollections, _ref) {
+	  var _ref$fileUrlTemplates = _ref.fileUrlTemplates,
+	      fileUrlTemplates = _ref$fileUrlTemplates === undefined ? {} : _ref$fileUrlTemplates,
+	      _ref$modelTypes = _ref.modelTypes,
+	      modelTypes = _ref$modelTypes === undefined ? {} : _ref$modelTypes;
+
+	  var reducers = Object.keys(fileCollections).reduce(function (result, collectionName) {
+	    collectionName = (0, _utils.camelize)(collectionName);
+	    result[collectionName] = (0, _collections.createReducer)(collectionName);
+	    return result;
+	  }, {});
+
+	  fileUrlTemplates = _utils.camelize.keys(fileUrlTemplates);
+	  reducers.fileUrlTemplates = function (state) {
+	    return fileUrlTemplates;
+	  };
+
+	  modelTypes = _utils.camelize.keys(modelTypes);
+	  reducers.modelTypes = function (state) {
+	    return modelTypes;
+	  };
+
+	  return reducers;
+	}
+
+	function watchCollections(fileCollections, dispatch) {
+	  Object.keys(fileCollections).forEach(function (collectionName) {
+	    (0, _collections.watch)({
+	      collection: fileCollections[collectionName],
+	      collectionName: (0, _utils.camelize)(collectionName),
+	      dispatch: dispatch,
+
+	      attributes: ['id', 'basename', 'variants', 'is_ready', 'parent_file_id', 'parent_file_model_type', 'width', 'height'],
+	      includeConfiguration: true
+	    });
+	  });
+	}
+
+/***/ },
+/* 489 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.createSaga = createSaga;
+	exports.watch = watch;
+
+	var _reducer = __webpack_require__(490);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	var _actions = __webpack_require__(301);
+
+	var _reduxSaga = __webpack_require__(349);
+
+	var _effects = __webpack_require__(345);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { settings: _reducer2.default };
+
+	function createSaga(model) {
+	  return regeneratorRuntime.mark(function saga() {
+	    return regeneratorRuntime.wrap(function saga$(_context2) {
+	      while (1) {
+	        switch (_context2.prev = _context2.next) {
+	          case 0:
+	            _context2.next = 2;
+	            return (0, _reduxSaga.takeEvery)(_actions.UPDATE, regeneratorRuntime.mark(function _callee(action) {
+	              return regeneratorRuntime.wrap(function _callee$(_context) {
+	                while (1) {
+	                  switch (_context.prev = _context.next) {
+	                    case 0:
+	                      _context.next = 2;
+	                      return (0, _effects.call)([model, model.set], action.payload.property, action.payload.value);
+
+	                    case 2:
+	                    case 'end':
+	                      return _context.stop();
+	                  }
+	                }
+	              }, _callee, this);
+	            }));
+
+	          case 2:
+	          case 'end':
+	            return _context2.stop();
+	        }
+	      }
+	    }, saga, this);
+	  });
+	}
+
+	function watch(model, dispatch) {
+	  dispatch((0, _actions.load)({ settings: model.toJSON() }));
+	  model.on('change', function () {
+	    return dispatch((0, _actions.load)({ settings: model.toJSON() }));
+	  });
+	}
+
+/***/ },
+/* 490 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.LOAD:
+	      return action.payload.settings;
+
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(301);
+
+/***/ },
+/* 491 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.initFromSeed = initFromSeed;
+
+	var _actions = __webpack_require__(492);
+
+	var _reducer = __webpack_require__(493);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { i18n: _reducer2.default };
+
+	function initFromSeed(_ref, dispatch) {
+	  var locale = _ref.locale;
+
+	  dispatch((0, _actions.init)({ locale: locale }));
+	}
+
+/***/ },
+/* 492 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.init = init;
+	var INIT = exports.INIT = 'I18N_INIT';
+
+	function init(_ref) {
+	  var locale = _ref.locale;
+
+	  return {
+	    type: INIT,
+	    payload: {
+	      locale: locale
+	    }
+	  };
+	}
+
+/***/ },
+/* 493 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.INIT:
+	      return { locale: action.payload.locale };
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(492);
+
+/***/ },
+/* 494 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.initFromSeed = initFromSeed;
+
+	var _actions = __webpack_require__(495);
+
+	var _reducer = __webpack_require__(496);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { entry: _reducer2.default };
+
+	function initFromSeed(_ref, dispatch) {
+	  var slug = _ref.slug;
+
+	  dispatch((0, _actions.init)({ slug: slug }));
+	}
+
+/***/ },
+/* 495 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.init = init;
+	var INIT = exports.INIT = 'ENTRY_INIT';
+
+	function init(_ref) {
+	  var slug = _ref.slug;
+
+	  return {
+	    type: INIT,
+	    payload: {
+	      slug: slug
+	    }
+	  };
+	}
+
+/***/ },
 /* 496 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -22539,17 +22681,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _createPageFilePlayer = __webpack_require__(482);
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
 
-	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
+	  switch (action.type) {
+	    case _actions.INIT:
+	      return { slug: action.payload.slug };
+	    default:
+	      return state;
+	  }
+	};
 
-	var _AudioFilePlayer = __webpack_require__(497);
-
-	var _AudioFilePlayer2 = _interopRequireDefault(_AudioFilePlayer);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = (0, _createPageFilePlayer2.default)(_AudioFilePlayer2.default);
+	var _actions = __webpack_require__(495);
 
 /***/ },
 /* 497 */
@@ -22560,8 +22704,343 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.watchEvents = watchEvents;
 
-	var _createFilePlayer = __webpack_require__(471);
+	var _keyCodes = __webpack_require__(417);
+
+	var _actions = __webpack_require__(457);
+
+	function watchEvents(window, store) {
+	  window.addEventListener('keydown', function (event) {
+	    var currentPageId = store.getState().currentPageId;
+
+	    if (event.keyCode == _keyCodes.SPACE) {
+	      store.dispatch((0, _actions.space)({ currentPageId: currentPageId }));
+	    } else if (event.keyCode == _keyCodes.TAB) {
+	      store.dispatch((0, _actions.tab)({ currentPageId: currentPageId }));
+	    }
+	  });
+	}
+
+/***/ },
+/* 498 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.watch = exports.reducers = undefined;
+
+	var _watch = __webpack_require__(499);
+
+	var _watch2 = _interopRequireDefault(_watch);
+
+	var _reducer = __webpack_require__(500);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = {
+	  hideText: _reducer2.default
+	};
+
+	exports.watch = _watch2.default;
+
+/***/ },
+/* 499 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	            value: true
+	});
+
+	exports.default = function (hideText, dispatch) {
+	            hideText.on('activate', function (page) {
+	                        return dispatch((0, _actions.activate)());
+	            });
+
+	            hideText.on('deactivate', function (page) {
+	                        return dispatch((0, _actions.deactivate)());
+	            });
+	};
+
+	var _actions = __webpack_require__(472);
+
+/***/ },
+/* 500 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.ACTIVATE:
+	      return {
+	        isActive: true,
+	        hasBeenActive: true
+	      };
+	    case _actions.DEACTIVATE:
+	      return _extends({}, state, {
+	        isActive: false
+	      });
+	    case _actions2.PAGE_CHANGE:
+	      return _extends({}, state, {
+	        hasBeenActive: false
+	      });
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(472);
+
+	var _actions2 = __webpack_require__(486);
+
+	var initialState = {
+	  isActive: false,
+	  hasBeenActive: false
+	};
+
+/***/ },
+/* 501 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.reducers = undefined;
+	exports.createWidgetType = createWidgetType;
+	exports.watch = watch;
+
+	var _reducer = __webpack_require__(502);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
+	var _reactDom = __webpack_require__(381);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _reactRedux = __webpack_require__(359);
+
+	var _actions = __webpack_require__(503);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var reducers = exports.reducers = { widgets: _reducer2.default };
+
+	function createWidgetType(Component, store) {
+	  return {
+	    enhance: function enhance(element) {
+	      _reactDom2.default.render(React.createElement(
+	        _reactRedux.Provider,
+	        { store: store },
+	        React.createElement(Component, null)
+	      ), element[0]);
+	    }
+	  };
+	}
+
+	function watch(events, widgets, dispatch) {
+	  function update() {
+	    dispatch((0, _actions.load)({
+	      widgets: {
+	        classicPlayerControls: widgets.isPresent('classic_player_controls'),
+	        slimPlayerControls: widgets.isPresent('slim_player_controls')
+	      }
+	    }));
+	  }
+
+	  events.on('widgets:update', update);
+	  update();
+	}
+
+/***/ },
+/* 502 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions.LOAD:
+	      return action.payload.widgets;
+
+	    default:
+	      return state;
+	  }
+	};
+
+	var _actions = __webpack_require__(503);
+
+/***/ },
+/* 503 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.load = load;
+	var LOAD = exports.LOAD = 'WIDGETS_LOAD';
+
+	function load(_ref) {
+	  var widgets = _ref.widgets;
+
+	  return {
+	    type: LOAD,
+	    payload: {
+	      widgets: widgets
+	    }
+	  };
+	}
+
+/***/ },
+/* 504 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.register = register;
+
+	var _audio = __webpack_require__(505);
+
+	var _plain = __webpack_require__(508);
+
+	var _video = __webpack_require__(509);
+
+	function register() {
+	  (0, _plain.register)();
+	  (0, _video.register)();
+	  (0, _audio.register)();
+	}
+
+/***/ },
+/* 505 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.register = register;
+
+	var _media = __webpack_require__(430);
+
+	var _PageAudioFilePlayer = __webpack_require__(506);
+
+	var _PageAudioFilePlayer2 = _interopRequireDefault(_PageAudioFilePlayer);
+
+	var _registerPageType = __webpack_require__(473);
+
+	var _registerPageType2 = _interopRequireDefault(_registerPageType);
+
+	var _pages = __webpack_require__(310);
+
+	var _selectors = __webpack_require__(434);
+
+	var _selectors2 = __webpack_require__(337);
+
+	var _selectors3 = __webpack_require__(428);
+
+	var _selectors4 = __webpack_require__(393);
+
+	var _utils = __webpack_require__(372);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function AudioPage(props) {
+	  return React.createElement(
+	    _media.Page,
+	    { className: 'audioPage',
+	      page: props.page,
+	      file: props.audioFile,
+	      playerState: props.playerState,
+	      playerActions: props.playerActions,
+	      controlBarText: props.t('pageflow.public.start_audio') },
+	    React.createElement(_media.PageBackgroundAsset, null),
+	    React.createElement(_PageAudioFilePlayer2.default, { file: props.audioFile,
+	      playerState: props.playerState,
+	      playerActions: props.playerActions })
+	  );
+	}
+
+	function register() {
+	  (0, _registerPageType2.default)('audio', {
+
+	    component: (0, _pages.connectInPage)((0, _utils.combine)({
+	      page: (0, _selectors2.pageAttributes)(),
+	      audioFile: (0, _selectors4.file)('audioFiles', { id: (0, _selectors2.pageAttribute)('audioFileId') }),
+	      playerState: _selectors.playerState,
+	      t: _selectors3.t
+	    }), (0, _utils.combine)({
+	      playerActions: _selectors.playerActions
+	    }))(AudioPage),
+
+	    reduxModules: [(0, _media.reduxModule)()]
+	  });
+	}
+
+/***/ },
+/* 506 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createPageFilePlayer = __webpack_require__(451);
+
+	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
+
+	var _AudioFilePlayer = __webpack_require__(507);
+
+	var _AudioFilePlayer2 = _interopRequireDefault(_AudioFilePlayer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = (0, _createPageFilePlayer2.default)(_AudioFilePlayer2.default);
+
+/***/ },
+/* 507 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createFilePlayer = __webpack_require__(440);
 
 	var _createFilePlayer2 = _interopRequireDefault(_createFilePlayer);
 
@@ -22578,7 +23057,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 /***/ },
-/* 498 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22586,16 +23065,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	exports.register = register;
 
 	var _components = __webpack_require__(302);
 
-	var _media = __webpack_require__(461);
+	var _media = __webpack_require__(430);
 
-	var _registerPageType = __webpack_require__(431);
+	var _registerPageType = __webpack_require__(473);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
@@ -22604,8 +23080,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _selectors = __webpack_require__(337);
 
 	var _utils = __webpack_require__(372);
-
-	var _redux = __webpack_require__(313);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22623,6 +23097,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        _components.PageScroller,
 	        null,
 	        React.createElement(_components.PageHeader, { page: page }),
+	        React.createElement(_media.PagePrintImage, { page: page }),
 	        React.createElement(_components.PageText, { page: page })
 	      )
 	    )
@@ -22635,28 +23110,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      page: (0, _selectors.pageAttributes)()
 	    }))(PlainPage),
 
-	    reducer: (0, _redux.combineReducers)(_extends({}, _media.pageReducers)),
-
-	    saga: regeneratorRuntime.mark(function saga() {
-	      return regeneratorRuntime.wrap(function saga$(_context) {
-	        while (1) {
-	          switch (_context.prev = _context.next) {
-	            case 0:
-	              _context.next = 2;
-	              return [(0, _media.pageSaga)({ autoplay: true })];
-
-	            case 2:
-	            case 'end':
-	              return _context.stop();
-	          }
-	        }
-	      }, saga, this);
-	    })
+	    reduxModules: [_media.pageBackgroundReduxModule]
 	  });
 	}
 
 /***/ },
-/* 499 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22664,28 +23123,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	exports.register = register;
 
-	var _media = __webpack_require__(461);
+	var _media = __webpack_require__(430);
 
-	var _registerPageType = __webpack_require__(431);
+	var _registerPageType = __webpack_require__(473);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
 	var _pages = __webpack_require__(310);
 
-	var _selectors = __webpack_require__(465);
+	var _selectors = __webpack_require__(434);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(429);
+	var _selectors3 = __webpack_require__(428);
 
 	var _selectors4 = __webpack_require__(393);
-
-	var _redux = __webpack_require__(313);
 
 	var _utils = __webpack_require__(372);
 
@@ -22721,31 +23175,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      playerActions: _selectors.playerActions
 	    }))(VideoPage),
 
-	    reducer: (0, _redux.combineReducers)(_extends({}, _media.pageReducers)),
-
-	    saga: regeneratorRuntime.mark(function saga() {
-	      return regeneratorRuntime.wrap(function saga$(_context) {
-	        while (1) {
-	          switch (_context.prev = _context.next) {
-	            case 0:
-	              _context.next = 2;
-	              return [(0, _media.pageSaga)({
-	                hideControls: true
-	              })];
-
-	            case 2:
-	            case 'end':
-	              return _context.stop();
-	          }
-	        }
-	      }, saga, this);
-	    })
-
+	    reduxModules: [(0, _media.reduxModule)({ hideControls: true })]
 	  });
 	}
 
 /***/ },
-/* 500 */
+/* 510 */
 /***/ function(module, exports) {
 
 	module.exports = pageflow;
