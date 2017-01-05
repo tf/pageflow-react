@@ -1,16 +1,22 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import PageWrapper from './PageWrapper';
-import PageBackground from './PageBackground';
-import PageShadow from './PageShadow';
-import PageForeground from './PageForeground';
-import PageScroller from './PageScroller';
-import PageHeader from './PageHeader';
-import PageText from './PageText';
-import PlayerControls from './PlayerControls';
-import CloseButton from './CloseButton';
-import MenuBar from './PlayerControls/MenuBar';
+import {
+  PageWrapper,
+  PageBackground,
+  PageShadow,
+  PageForeground,
+  PageScroller,
+  PageHeader,
+  PageText,
+  PlayerControls,
+  CloseButton,
+  MenuBar
+} from 'components';
+
+import {textIsHidden, textHasBeenHidden} from 'hideText/selectors';
+import {connectInPage} from 'pages';
+import {combine} from 'utils';
 
 /**
  * @desc
@@ -25,23 +31,6 @@ import MenuBar from './PlayerControls/MenuBar';
 class PageWithInteractiveBackground extends React.Component {
   constructor(props, context) {
     super(props, context);
-
-    this.state = {
-      didPlay: false,
-      menuBarHiddenOnPhone: false
-    };
-
-    this.onHideTextActivate = () => {
-      this.setState({
-        didPlay: true,
-        menuBarHiddenOnPhone: false
-      });
-    };
-
-    this.onHideTextDeactivate = () => {
-      this.context.scrollIndicator.enable();
-      this.setState({menuBarHiddenOnPhone: true});
-    };
 
     this.onPlayButtonClick = () => {
       pageflow.hideText.activate();
@@ -64,14 +53,14 @@ class PageWithInteractiveBackground extends React.Component {
     const page = this.props.page;
 
     return (
-      <PageWrapper className={classNames({unplayed: !this.state.didPlay}, 'hide_content_with_text')}>
+      <PageWrapper className={classNames({unplayed: !this.props.textHasBeenHidden}, 'hide_content_with_text')}>
         <CloseButton onClick={this.onCloseButtonClick} />
         <MenuBar additionalButtons={this.props.additionalMenuBarButtons}
                  onAdditionalButtonClick={this.props.onAdditionalButtonClick}
                  qualityMenuButtonTitle={this.props.qualityMenuButtonTitle}
                  qualityMenuItems={this.props.qualityMenuItems}
                  onQualityMenuItemClick={this.props.onQualityMenuItemClick}
-                 hiddenOnPhone={this.state.menuBarHiddenOnPhone} />
+                 hiddenOnPhone={this.props.textHasBeenHidden && !this.props.textIsHidden} />
 
         <PageBackground>
           <div className="videoWrapper">
@@ -95,21 +84,6 @@ class PageWithInteractiveBackground extends React.Component {
       </PageWrapper>
     );
   }
-
-  // TODO
-  pageWillActivate() {
-    this.setState({didPlay: false, menuBarHiddenOnPhone: false});
-  }
-
-  pageDidActivate() {
-    pageflow.hideText.on('activate', this.onHideTextActivate);
-    pageflow.hideText.on('deactivate', this.onHideTextDeactivate);
-  }
-
-  pageWillDeactivate() {
-    pageflow.hideText.off('activate', this.onHideTextActivate);
-    pageflow.hideText.off('deactivate', this.onHideTextDeactivate);
-  }
 }
 
 PageWithInteractiveBackground.propTypes = {
@@ -128,8 +102,7 @@ PageWithInteractiveBackground.propTypes = {
   onQualityMenuItemClick: React.PropTypes.func
 };
 
-PageWithInteractiveBackground.contextTypes = {
-  scrollIndicator: React.PropTypes.object
-};
-
-export default PageWithInteractiveBackground;
+export default connectInPage(combine({
+  textIsHidden,
+  textHasBeenHidden
+}))(PageWithInteractiveBackground);

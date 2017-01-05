@@ -11,7 +11,9 @@ import PageLink from './PageLink';
 import PageThumbnail from './PageThumbnail';
 import LazyLoadedPageThumbnail from './LazyLoadedPageThumbnail';
 
-import PageWithInteractiveBackground from './PageWithInteractiveBackground';
+import PlayerControls from './PlayerControls';
+import CloseButton from './CloseButton';
+import MenuBar from './PlayerControls/MenuBar';
 
 import Icon from './Icon';
 import editorOnly from './editorOnly';
@@ -32,7 +34,9 @@ export {
   PageThumbnail,
   LazyLoadedPageThumbnail,
 
-  PageWithInteractiveBackground,
+  PlayerControls,
+  CloseButton,
+  MenuBar,
 
   Icon,
   editorOnly,

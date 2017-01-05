@@ -9,6 +9,11 @@ import {
   reduxModule as mediaReduxModule
 } from 'media';
 
+import {
+  Page as PageWithInteractiveBackground,
+  reduxModule as pageWithInteractiveBackgroundReduxModule
+} from 'interactivePageBackground';
+
 import {connectInPage} from 'pages';
 
 import registerPageType from 'registerPageType';
@@ -42,6 +47,7 @@ if (pageflow.events) {
 module.exports = {
   components: {
     MediaPageBackground,
+    PageWithInteractiveBackground,
     ...components
   },
 
@@ -51,9 +57,10 @@ module.exports = {
   registerPageType,
   registerWidgetType,
 
-  MediaPageBackground,
   mediaPageBackgroundReduxModule: mediaReduxModule({autoplay: true}),
   mediaReduxModule,
+
+  pageWithInteractiveBackgroundReduxModule,
 
   iconMapping,
   SvgIcon,
