@@ -68,6 +68,7 @@ export default class MediaTag extends React.Component {
 
     mediaElement.setAttribute('preload', 'auto');
     mediaElement.setAttribute('crossorigin', 'anonymous');
+    mediaElement.setAttribute('alt', this.props.alt);
 
     if (this.props.poster) {
       mediaElement.setAttribute('poster', this.props.poster);

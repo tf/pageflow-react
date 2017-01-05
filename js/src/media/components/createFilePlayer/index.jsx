@@ -84,6 +84,7 @@ export default function({
                                               this.props.textTracksEnabled)}
                   poster={poster(this.props.file, this.props.posterImageFile)}
                   loop={this.props.loop}
+                  alt={this.props.file.alt}
 
                   onSetup={this.setupMediaTag}
                   onDispose={this.disposeMediaTag} />
