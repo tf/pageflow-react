@@ -8,17 +8,33 @@ import PagePrintImage from './components/PagePrintImage';
 import reducer from './reducer';
 import pageSaga from './sagas';
 
+import fadeInWhenPageWillActivate from './sagas/fadeInWhenPageWillActivate';
+import fadeOutWhenPageWillDeactivate from './sagas/fadeOutWhenPageWillDeactivate';
+
+const reducers = {
+  media: reducer
+};
+
 export function reduxModule(options) {
   return {
-    reducers: {
-      media: reducer
-    },
+    reducers,
 
     saga: function*() {
       yield pageSaga(options);
     }
   };
 }
+
+export const pageBackgroundReduxModule = {
+  reducers,
+
+  saga: function*() {
+    yield [
+      fadeInWhenPageWillActivate(),
+      fadeOutWhenPageWillDeactivate()
+    ];
+  }
+};
 
 export {
   Page,

@@ -6,7 +6,8 @@ import * as selectors from 'selectors';
 
 import {
   PageBackground as MediaPageBackground,
-  reduxModule as mediaReduxModule
+  reduxModule as mediaReduxModule,
+  pageBackgroundReduxModule as mediaPageBackgroundReduxModule
 } from 'media';
 
 import {
@@ -57,8 +58,8 @@ module.exports = {
   registerPageType,
   registerWidgetType,
 
-  mediaPageBackgroundReduxModule: mediaReduxModule({autoplay: true}),
   mediaReduxModule,
+  mediaPageBackgroundReduxModule,
 
   pageWithInteractiveBackgroundReduxModule,
 

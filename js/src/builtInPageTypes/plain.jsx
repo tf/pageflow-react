@@ -9,7 +9,7 @@ import {
 import {
   PageBackground,
   PagePrintImage,
-  reduxModule as mediaReduxModule
+  pageBackgroundReduxModule as mediaPageBackgroundReduxModule
 } from 'media';
 
 import registerPageType from 'registerPageType';
@@ -45,7 +45,7 @@ export function register() {
     )(PlainPage),
 
     reduxModules: [
-      mediaReduxModule({autoplay: true})
+      mediaPageBackgroundReduxModule
     ]
   });
 }

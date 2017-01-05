@@ -10,7 +10,7 @@ import controlsHidden from './controlsHidden';
 export default function*(options = {}) {
   const sagas = [
     togglePlaying(),
-    handlePageDidActivate(options),
+    handlePageDidActivate(),
 
     disableScrollIndicatorDuringPlayback(),
 
