@@ -8,6 +8,10 @@ import {
   PageText
 } from 'components';
 
+import {
+  PagePrintImage
+} from 'media';
+
 import MediaPlayerControls from './PlayerControls';
 import NonJsLinks from './NonJsLinks';
 import playerStateClassNames from './playerStateClassNames';
@@ -49,6 +53,7 @@ export function MediaPage(props) {
 
         <PageScroller className={playerStateClassNames(playerState)}>
           <PageHeader page={page} />
+          <PagePrintImage page={page} />
           <PageText page={page}>
             <NonJsLinks file={props.file} />
           </PageText>

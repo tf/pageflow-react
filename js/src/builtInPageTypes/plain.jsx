@@ -8,6 +8,7 @@ import {
 
 import {
   PageBackground,
+  PagePrintImage,
   reduxModule as mediaReduxModule
 } from 'media';
 
@@ -26,6 +27,8 @@ function PlainPage(props) {
       <PageForeground>
         <PageScroller>
           <PageHeader page={page} />
+          <PagePrintImage page={page} />
+
           <PageText page={page} />
         </PageScroller>
       </PageForeground>
