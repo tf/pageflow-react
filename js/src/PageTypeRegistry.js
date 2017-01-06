@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 export default function PageTypeRegistry() {
   const pageTypes = [];
 
-  this.register = function(name, {component, reduxModules = []}) {
+  this.register = function(name, {component, reduxModules = [], ...options}) {
     if (!component) {
       fail('Requires component option to be present');
     }
@@ -38,7 +38,9 @@ export default function PageTypeRegistry() {
 
       saga: function*() {
         yield sagas.map(saga => saga());
-      }
+      },
+
+      ...options
     });
 
     function fail(message) {

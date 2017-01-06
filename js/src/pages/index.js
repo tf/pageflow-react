@@ -1,6 +1,7 @@
 import createPageStateReducer from './createPageStateReducer';
 import createPageSaga from './createPageSaga';
-import createPageType from './createPageType';
+import createReactPageType from './createPageType';
+import mergePageTypes from './mergePageTypes';
 
 import {
   createReducer as createCollectionReducer,
@@ -39,6 +40,6 @@ export function watchCollection(pages, dispatch) {
 
 export const connectInPage = createCollectionItemScopeConnector('pages');
 
-export {
-  createPageType
-};
+export function createPageType(options) {
+  return mergePageTypes(createReactPageType(options), options.mixin || {});
+}

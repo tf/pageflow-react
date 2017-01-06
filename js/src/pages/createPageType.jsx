@@ -10,7 +10,9 @@ import {Provider} from 'react-redux';
 
 const PageProvider = createItemScopeProvider('pages');
 
-export default function(Component, store) {
+export default function({Component,
+                         store,
+                         selectTargetElement = pageElement => pageElement[0]}) {
   return {
     scroller: false,
 
@@ -23,7 +25,7 @@ export default function(Component, store) {
             </MediaContextProvider>
           </PageProvider>
         </Provider>,
-        pageElement[0]
+        selectTargetElement(pageElement)
       );
       store.dispatch(enhance({id: pageId(pageElement)}));
     },

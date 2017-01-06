@@ -90,6 +90,19 @@ describe('PageTypeRegistry', () => {
       expect(result.name).to.eq('background_image');
     });
 
+    it('passes other properties on', () => {
+      const registry = new PageTypeRegistry();
+      const component = function() {};
+
+      registry.register('background_image', {
+        component,
+        some: 'value'
+      });
+      const result = registry.findByName('background_image');
+
+      expect(result.some).to.eq('value');
+    });
+
     it('combines reducer from reduxModules', () => {
       const registry = new PageTypeRegistry();
       const component = function() {};

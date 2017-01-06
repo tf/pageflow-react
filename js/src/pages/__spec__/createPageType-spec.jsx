@@ -15,7 +15,7 @@ describe('createPageType', () => {
         return (<div>Rendered component</div>);
       };
       const store = createStore(state => state);
-      const pageType = createPageType(Component, store);
+      const pageType = createPageType({Component, store});
       const element = pageElement();
 
       pageType.enhance(element);
@@ -28,12 +28,33 @@ describe('createPageType', () => {
         return (<div>{props.text}</div>);
       });
       const store = createStore(state => state, {text: 'Text from store'});
-      const pageType = createPageType(Component, store);
+      const pageType = createPageType({Component, store});
       const element = pageElement();
 
       pageType.enhance(element);
 
       expect(element.html()).to.include('Text from store');
+    });
+
+    it('allows rendering into custom element', () => {
+      const Component = function() {
+        return (<div>Rendered component</div>);
+      };
+      const store = createStore(state => state);
+      const pageType = createPageType({
+        Component,
+        store,
+
+        selectTargetElement(pageElement) {
+          return pageElement.find('span')[0];
+        }
+      });
+      const element = pageElement();
+      element.append('<span></span>');
+
+      pageType.enhance(element);
+
+      expect(element.find('span').html()).to.include('Rendered component');
     });
 
     [
@@ -53,7 +74,7 @@ describe('createPageType', () => {
         const Component = function(props) { return <div />; };
         const reducer = sinon.spy();
         const store = createStore(reducer);
-        const pageType = createPageType(Component, store);
+        const pageType = createPageType({Component, store});
         const element = pageElement();
         const configuration = {};
         const options = {};
@@ -76,7 +97,7 @@ describe('createPageType', () => {
       const Component = function(props) { return <div />; };
       const reducer = sinon.spy();
       const store = createStore(reducer);
-      const pageType = createPageType(Component, store);
+      const pageType = createPageType({Component, store});
       const element = pageElement();
       const configuration = {};
       const options = {position: 'bottom'};
@@ -97,7 +118,7 @@ describe('createPageType', () => {
         return (<div>Rendered component</div>);
       };
       const store = createStore(state => state);
-      const pageType = createPageType(Component, store);
+      const pageType = createPageType({Component, store});
       const element = pageElement();
 
       pageType.enhance(element);

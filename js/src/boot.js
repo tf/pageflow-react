@@ -110,8 +110,12 @@ export default function(pageflow) {
     watchHotkeyEvents(window, store);
     watchHideText(pageflow.hideText, store.dispatch);
 
-    pageTypeRegistry.forEach(({name, component}) =>
-      pageflow.pageType.register(name, createPageType(component, store))
+    pageTypeRegistry.forEach(options =>
+      pageflow.pageType.register(options.name, createPageType({
+        ...options,
+        Component: options.component,
+        store
+      }))
     );
 
     widgetTypeRegistry.forEach(({name, component}) =>

@@ -99,7 +99,7 @@ describe('pages', () => {
       const pageModel = new Backbone.Model({perma_id: 5});
       pageModel.configuration = new Backbone.Model();
       const pages = new Backbone.Collection([pageModel]);
-      const pageType = createPageType(() => '', store);
+      const pageType = createPageType({Component: () => '', store});
       const element = pageElement({id: 5});
 
       watchCollection(pages, store.dispatch);
@@ -135,7 +135,7 @@ describe('pages', () => {
           pageIsPrepared: pageIsPrepared()
         }))(Component);
 
-        const pageType = createPageType(ComponentConntectedToPage, this.store);
+        const pageType = createPageType({Component: ComponentConntectedToPage, store: this.store});
         const element = pageElement({id: 5});
 
         pageType.enhance(element);
@@ -181,7 +181,7 @@ describe('pages', () => {
           })
         )(Component);
 
-        const pageType = createPageType(ComponentConntectedToPage, this.store);
+        const pageType = createPageType({Component: ComponentConntectedToPage, store: this.store});
         const element = pageElement({id: 5});
 
         pageType.enhance(element);
