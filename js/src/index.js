@@ -18,6 +18,7 @@ import {
 import {connectInPage} from 'pages';
 
 import registerPageType from 'registerPageType';
+import registerPageTypeWithDefaultBackground from 'registerPageTypeWithDefaultBackground';
 import registerWidgetType from 'registerWidgetType';
 
 import iconMapping from 'components/icons/mapping';
@@ -56,6 +57,7 @@ module.exports = {
   selectors,
 
   registerPageType,
+  registerPageTypeWithDefaultBackground,
   registerWidgetType,
 
   mediaReduxModule,

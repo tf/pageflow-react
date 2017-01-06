@@ -28,5 +28,10 @@ module Pageflow
 
       Pageflow::React::WidgetType.new(name, role)
     end
+
+    def self.page_background_asset(template, configuration)
+      template.render('pageflow/react/page_background_asset',
+                      configuration: configuration)
+    end
   end
 end
