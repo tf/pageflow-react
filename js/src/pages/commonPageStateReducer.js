@@ -9,7 +9,8 @@ export default combineReducers({
   isPreloaded,
   isPrepared,
   isActive,
-  isActivated
+  isActivated,
+  initialScrollerPosition
 });
 
 function isPreloaded(state = false, action) {
@@ -62,3 +63,13 @@ function isActivated(state = false, action) {
   }
 }
 
+function initialScrollerPosition(state = null, action) {
+  switch (action.type) {
+  case PAGE_WILL_ACTIVATE:
+    return action.payload.position || 'top';
+  case PAGE_WILL_DEACTIVATE:
+    return null;
+  default:
+    return state;
+  }
+}

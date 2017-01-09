@@ -3,7 +3,7 @@ import React from 'react';
 import Scroller from './Scroller';
 
 import {connectInPage} from 'pages';
-import {pageIsActivated} from 'pages/selectors';
+import {pageIsActivated, initialScrollerPosition} from 'pages/selectors';
 
 import {combine} from 'utils';
 
@@ -22,6 +22,12 @@ class PageScroller extends React.Component {
     }
     else if (this.props.enabled && !nextProps.enabled) {
       this.refs.scroller.disable();
+    }
+
+    if (this.props.initialScrollerPosition !== nextProps.initialScrollerPosition &&
+        nextProps.initialScrollerPosition) {
+
+      this.refs.scroller.resetPosition({position: nextProps.initialScrollerPosition});
     }
   }
 
@@ -49,10 +55,6 @@ class PageScroller extends React.Component {
       </Scroller>
     );
   }
-
-  pageWillActivate(options) {
-    this.refs.scroller.resetPosition({position: options.position});
-  }
 }
 
 PageScroller.propTypes = {
@@ -64,5 +66,6 @@ PageScroller.childContextTypes = {
 };
 
 export default connectInPage(combine({
-  enabled: pageIsActivated()
+  enabled: pageIsActivated(),
+  initialScrollerPosition: initialScrollerPosition()
 }))(PageScroller);

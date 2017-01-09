@@ -9,7 +9,9 @@ describe('commonPageStateReducer', () => {
 
     const result = commonPageStateReducer(state, {type: 'INIT'});
 
-    expect(result).to.have.keys(['isActive', 'isActivated', 'isPrepared', 'isPreloaded']);
+    expect(result).to.have.keys([
+      'isActive', 'isActivated', 'isPrepared', 'isPreloaded', 'initialScrollerPosition'
+    ]);
   });
 
   it('on "will activate" action sets isActive to true', () => {
@@ -59,5 +61,29 @@ describe('commonPageStateReducer', () => {
     const reducedTwice = commonPageStateReducer(reducedOnce, {type: 'ANY'});
 
     expect(reducedOnce).to.eq(reducedTwice);
+  });
+
+  it('on "will activate" action with position sets initialScrollerPosition', () => {
+    const state = {};
+
+    const result = commonPageStateReducer(state, pageWillActivate({id: 5, position: 'bottom'}));
+
+    expect(result.initialScrollerPosition).to.eq('bottom');
+  });
+
+  it('on "will activate" action without position sets startsAtBottom to top', () => {
+    const state = {};
+
+    const result = commonPageStateReducer(state, pageWillActivate({id: 5}));
+
+    expect(result.initialScrollerPosition).to.eq('top');
+  });
+
+  it('on "will deactivate" action resets initialScrollerPosition', () => {
+    const state = {initialScrollerPosition: 'top'};
+
+    const result = commonPageStateReducer(state, pageWillDeactivate({id: 5}));
+
+    expect(result.initialScrollerPosition).to.eq(null);
   });
 });

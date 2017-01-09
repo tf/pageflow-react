@@ -30,6 +30,10 @@ export function pageIsPrepared(options) {
   return commonPageState('isPrepared', options);
 }
 
+export function initialScrollerPosition(options) {
+  return commonPageState('initialScrollerPosition', options);
+}
+
 function commonPageState(property, options) {
   return selector({map: page => page.state.common[property], ...options});
 }
