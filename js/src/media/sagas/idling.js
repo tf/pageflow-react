@@ -8,7 +8,7 @@ export default function*() {
   yield takeLatest([PLAY, USER_INTERACTION, HOTKEY_TAB], putAfterDelay, userIdle);
 }
 
-function* putAfterDelay(_, action) {
+function* putAfterDelay(actionCreator) {
   yield call(delay, 1000);
-  yield put(action());
+  yield put(actionCreator());
 }
