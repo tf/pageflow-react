@@ -5,18 +5,20 @@ import {
   USER_IDLE, USER_INTERACTION,
   CONTROLS_LEFT, CONTROLS_ENTERED,
   PLAY, PAUSED, ENDED,
-  controlsHidden
+  actionCreators
 } from '../actions';
 
 import {playerState} from '../selectors';
 import {widgetPresent} from 'widgets/selectors';
 import {HOTKEY_TAB} from 'hotkeys/actions';
 
+const {controlsHidden} = actionCreators();
+
 const classicPlayerControlsPresent = widgetPresent('classicPlayerControls');
 
 export default function*() {
   yield takeEvery([PLAY, USER_IDLE, CONTROLS_LEFT], function*() {
-    const state = yield select(playerState);
+    const state = yield select(playerState());
 
     if (!state.userIsIdle || state.userHoveringControls || !state.isPlaying) {
       return;

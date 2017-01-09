@@ -5,19 +5,17 @@ import PageBackgroundAsset from './components/PageBackgroundAsset';
 import PageBackground from './components/PageBackground';
 import PagePrintImage from './components/PagePrintImage';
 
-import reducer from './reducer';
+import createReducer from './createReducer';
 import pageSaga from './sagas';
 
 import fadeInWhenPageWillActivate from './sagas/fadeInWhenPageWillActivate';
 import fadeOutWhenPageWillDeactivate from './sagas/fadeOutWhenPageWillDeactivate';
 
-const reducers = {
-  media: reducer
-};
-
 export function reduxModule(options) {
   return {
-    reducers,
+    reducers: {
+      'media.default': createReducer({scope: 'default'}),
+    },
 
     saga: function*() {
       yield pageSaga(options);
@@ -26,12 +24,14 @@ export function reduxModule(options) {
 }
 
 export const pageBackgroundReduxModule = {
-  reducers,
+  reducers: {
+    'media.background': createReducer({scope: 'background'}),
+  },
 
   saga: function*() {
     yield [
-      fadeInWhenPageWillActivate(),
-      fadeOutWhenPageWillDeactivate()
+      fadeInWhenPageWillActivate({scope: 'background'}),
+      fadeOutWhenPageWillDeactivate({scope: 'background'})
     ];
   }
 };

@@ -2,8 +2,10 @@ import {takeEvery, delay} from 'redux-saga';
 import {call, put, select, take, race} from 'redux-saga/effects';
 
 import {PAGE_DID_ACTIVATE, PAGE_WILL_DEACTIVATE} from 'pages/actions';
-import {PREBUFFERED, play, prebuffer} from 'media/actions';
+import {PREBUFFERED, actionCreators} from 'media/actions';
 import {pageAttribute} from 'pages/selectors';
+
+const {play, prebuffer} = actionCreators();
 
 export default function*() {
   yield takeEvery(PAGE_DID_ACTIVATE, function*(action) {

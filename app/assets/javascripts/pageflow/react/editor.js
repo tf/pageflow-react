@@ -67,15 +67,8 @@ pageflow.ConfigurationEditorView.register('audio', {
     });
 
     this.tab('files', function() {
-      this.input('audio_file_id', pageflow.FileInputView, {
-        collection: pageflow.audioFiles,
-        defaultTextTrackFilePropertyName: 'default_text_track_file_id'
-      });
-
-      this.input('background_image_id', pageflow.FileInputView, {
-        collection: pageflow.imageFiles
-      });
-
+      this.input('audio_file_id', pageflow.FileInputView, {collection: pageflow.audioFiles});
+      this.group('background');
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
         positioning: false

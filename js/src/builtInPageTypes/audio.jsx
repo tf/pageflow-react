@@ -1,6 +1,7 @@
 import {Page as MediaPage,
         PageBackgroundAsset,
-        reduxModule as mediaReduxModule} from 'media';
+        reduxModule as mediaReduxModule,
+        pageBackgroundReduxModule as mediaPageBackgroundReduxModule} from 'media';
 
 import PageAudioFilePlayer from 'media/components/PageAudioFilePlayer';
 
@@ -39,16 +40,17 @@ export function register() {
       combine({
         page: pageAttributes(),
         audioFile: file('audioFiles', {id: pageAttribute('audioFileId')}),
-        playerState,
+        playerState: playerState(),
         t
       }),
       combine({
-        playerActions
+        playerActions: playerActions()
       })
     )(AudioPage),
 
     reduxModules: [
-      mediaReduxModule()
+      mediaReduxModule(),
+      mediaPageBackgroundReduxModule
     ]
   });
 }

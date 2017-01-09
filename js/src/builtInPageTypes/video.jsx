@@ -39,11 +39,11 @@ export function register() {
       combine({
         page: pageAttributes(),
         videoFile: file('videoFiles', {id: pageAttribute('videoFileId')}),
-        playerState,
+        playerState: playerState(),
         t
       }),
       combine({
-        playerActions
+        playerActions: playerActions()
       })
     )(VideoPage),
 

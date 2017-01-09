@@ -38,9 +38,9 @@ export function PageBackgroundAsset({page,
 export default connectInPage(
   combine({
     page: pageAttributes(),
-    playerState
+    playerState: playerState({scope: 'background'})
   }),
   combine({
-    playerActions
+    playerActions: playerActions({scope: 'background'})
   })
 )(PageBackgroundAsset);

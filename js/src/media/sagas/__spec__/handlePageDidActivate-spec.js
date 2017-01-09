@@ -1,5 +1,5 @@
 import handlePageDidActivate from '../handlePageDidActivate';
-import {PREBUFFER, PLAY, prebuffered} from '../../actions';
+import {PREBUFFER, PLAY, actionCreators} from '../../actions';
 import {pageDidActivate, pageWillDeactivate} from 'pages/actions';
 
 import {delay} from 'redux-saga';
@@ -7,6 +7,8 @@ import {delay} from 'redux-saga';
 import {expect} from 'support/chai';
 import {runSagaInPageScope} from 'support/sagas';
 import sinon from 'sinon';
+
+const {prebuffered} = actionCreators();
 
 describe('handlePageDidActivate', () => {
   it('prebuffers when page did activate', () => {

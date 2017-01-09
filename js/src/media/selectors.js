@@ -1,4 +1,4 @@
-import * as actions from './actions';
+import {actionCreators} from './actions';
 import {nestedFiles} from 'files/selectors';
 import {pageState} from 'pages/selectors';
 import {setting} from 'settings/selectors';
@@ -6,10 +6,14 @@ import {t} from 'i18n/selectors';
 
 import {bindActionCreators} from 'redux';
 
-export const playerState = pageState('media');
+export function playerState({scope = 'default'} = {}) {
+  return pageState(`media.${scope}`);
+}
 
-export function playerActions(dispatch) {
-  return bindActionCreators(actions, dispatch);
+export function playerActions({scope = 'default'} = {}) {
+  return function (dispatch) {
+    return bindActionCreators(actionCreators({scope}), dispatch);
+  };
 }
 
 export function textTracks({file,

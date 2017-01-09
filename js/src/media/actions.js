@@ -37,135 +37,149 @@ export const FOCUS_ENTERED_CONTROLS = 'MEDIA_FOCUS_ENTERED_CONTROLS';
 export const FOCUS_LEFT_CONTROLS = 'MEDIA_FOCUS_LEFT_CONTROLS';
 export const CONTROLS_HIDDEN = 'MEDIA_CONTROLS_HIDDEN';
 
-export function togglePlaying() {
-  return pageAction(TOGGLE_PLAYING);
+export function actionCreators({scope = 'default'} = {}) {
+  return {
+    togglePlaying() {
+      return pageAction(TOGGLE_PLAYING);
+    },
+
+    play() {
+      return pageAction(PLAY);
+    },
+
+    playAndFadeIn({fadeDuration}) {
+      return pageAction(PLAY_AND_FADE_IN, {
+        fadeDuration
+      });
+    },
+
+    pause() {
+      return pageAction(PAUSE);
+    },
+
+    fadeOutAndPause({fadeDuration}) {
+      return pageAction(FADE_OUT_AND_PAUSE, {
+        fadeDuration
+      });
+    },
+
+    seekTo(time) {
+      return pageAction(SEEK_TO, {
+        time
+      });
+    },
+
+
+    prebuffer() {
+      return pageAction(PREBUFFER);
+    },
+
+    prebuffered() {
+      return pageAction(PREBUFFERED);
+    },
+
+    abortPrebuffering() {
+      return pageAction(ABORT_PREBUFFERING);
+    },
+
+
+    bufferUnderrun() {
+      return pageAction(BUFFER_UNDERRUN);
+    },
+
+
+    scrubbingStarted() {
+      return pageAction(SCRUBBING_STARTED);
+    },
+
+    scrubbingEnded() {
+      return pageAction(SCRUBBING_STARTED);
+    },
+
+
+    playing() {
+      return pageAction(PLAYING);
+    },
+
+    paused() {
+      return pageAction(PAUSED);
+    },
+
+    timeUpdate({currentTime}) {
+      return pageAction(TIME_UPDATE, {
+        currentTime
+      });
+    },
+
+    metaDataLoaded({duration}) {
+      return pageAction(META_DATA_LOADED, {
+        duration
+      });
+    },
+
+    ended() {
+      return pageAction(ENDED);
+    },
+
+
+    seeking() {
+      return pageAction(SEEKING);
+    },
+
+    seeked() {
+      return pageAction(SEEKED);
+    },
+
+    waiting() {
+      return pageAction(WAITING);
+    },
+
+
+    hasNotBeenPlayingForAMoment(value) {
+      return pageAction(HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT);
+    },
+
+
+    userInteraction() {
+      return pageAction(USER_INTERACTION);
+    },
+
+    userIdle() {
+      return pageAction(USER_IDLE);
+    },
+
+    controlsEntered() {
+      return pageAction(CONTROLS_ENTERED);
+    },
+
+    controlsLeft() {
+      return pageAction(CONTROLS_LEFT);
+    },
+
+    focusEnteredControls() {
+      return pageAction(FOCUS_ENTERED_CONTROLS);
+    },
+
+    focusLeftControls() {
+      return pageAction(FOCUS_LEFT_CONTROLS);
+    },
+
+    controlsHidden() {
+      return pageAction(CONTROLS_HIDDEN);
+    },
+  };
+
+  function pageAction(type, payload = {}) {
+    return {
+      type,
+      meta: {
+        collectionName: 'pages',
+        mediaScope: scope
+      },
+      payload
+    };
+  }
 }
-
-export function play() {
-  return pageAction(PLAY);
-}
-
-export function playAndFadeIn({fadeDuration}) {
-  return pageAction(PLAY_AND_FADE_IN, {
-    fadeDuration
-  });
-}
-
-export function pause() {
-  return pageAction(PAUSE);
-}
-
-export function fadeOutAndPause({fadeDuration}) {
-  return pageAction(FADE_OUT_AND_PAUSE, {
-    fadeDuration
-  });
-}
-
-export function seekTo(time) {
-  return pageAction(SEEK_TO, {
-    time
-  });
-}
-
-
-export function prebuffer() {
-  return pageAction(PREBUFFER);
-}
-
-export function prebuffered() {
-  return pageAction(PREBUFFERED);
-}
-
-export function abortPrebuffering() {
-  return pageAction(ABORT_PREBUFFERING);
-}
-
-
-export function bufferUnderrun() {
-  return pageAction(BUFFER_UNDERRUN);
-}
-
-
-export function scrubbingStarted() {
-  return pageAction(SCRUBBING_STARTED);
-}
-
-export function scrubbingEnded() {
-  return pageAction(SCRUBBING_STARTED);
-}
-
-
-export function playing() {
-  return pageAction(PLAYING);
-}
-
-export function paused() {
-  return pageAction(PAUSED);
-}
-
-export function timeUpdate({currentTime}) {
-  return pageAction(TIME_UPDATE, {
-    currentTime
-  });
-}
-
-export function metaDataLoaded({duration}) {
-  return pageAction(META_DATA_LOADED, {
-    duration
-  });
-}
-
-export function ended() {
-  return pageAction(ENDED);
-}
-
-
-export function seeking() {
-  return pageAction(SEEKING);
-}
-
-export function seeked() {
-  return pageAction(SEEKED);
-}
-
-export function waiting() {
-  return pageAction(WAITING);
-}
-
-
-export function hasNotBeenPlayingForAMoment(value) {
-  return pageAction(HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT);
-}
-
-
-export function userInteraction() {
-  return pageAction(USER_INTERACTION);
-}
-
-export function userIdle() {
-  return pageAction(USER_IDLE);
-}
-
-export function controlsEntered() {
-  return pageAction(CONTROLS_ENTERED);
-}
-
-export function controlsLeft() {
-  return pageAction(CONTROLS_LEFT);
-}
-
-export function focusEnteredControls() {
-  return pageAction(FOCUS_ENTERED_CONTROLS);
-}
-
-export function focusLeftControls() {
-  return pageAction(FOCUS_LEFT_CONTROLS);
-}
-
-export function controlsHidden() {
-  return pageAction(CONTROLS_HIDDEN);
-}
-
 
 export function updateTextTrackSettings(textTrack) {
   return updateSetting({
@@ -182,15 +196,4 @@ export function updateVideoQualitySetting(value) {
     property: 'videoQuality',
     value
   });
-}
-
-
-function pageAction(type, payload = {}) {
-  return {
-    type,
-    meta: {
-      collectionName: 'pages'
-    },
-    payload
-  };
 }
