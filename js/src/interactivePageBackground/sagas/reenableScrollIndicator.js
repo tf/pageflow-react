@@ -6,7 +6,6 @@ import {pageIsActive} from 'pages/selectors';
 
 export default function*() {
   yield takeEvery(HIDE_TEXT_DEACTIVATE, function*() {
-    console.log('hide text deactovate');
     if (yield select(pageIsActive())) {
       yield call(enable);
     }
