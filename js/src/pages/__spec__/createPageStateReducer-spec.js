@@ -1,5 +1,7 @@
 import createPageStateReducer from '../createPageStateReducer';
 
+import {change} from 'collections/actions';
+
 import {expect} from 'support/chai';
 
 describe('createPageStateReducer', () => {
@@ -50,6 +52,22 @@ describe('createPageStateReducer', () => {
       const reducedPage = reducer(initializedPage, 'UNKNOWN');
 
       expect(reducedPage).to.eq(initializedPage);
+    });
+
+    it('resets custom page state when type changes', () => {
+      const page = {
+        attributes: {type: 'audio'},
+        state: {custom: {old: 'value'}}
+      };
+      const reducer = createPageStateReducer(pageTypeStateReducers);
+
+      const reducedPage = reducer(page, change({
+        collectionName: 'pages',
+        attributes: {type: 'video'}
+      }));
+
+      expect(reducedPage.attributes.type).to.eq('video');
+      expect(reducedPage.state.custom).to.eql({});
     });
   });
 });
