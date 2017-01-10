@@ -7,18 +7,27 @@ import fadeOutWhenPageWillDeactivate from './fadeOutWhenPageWillDeactivate';
 import goToNextPageOnEnd from './goToNextPageOnEnd';
 import controlsHidden from './controlsHidden';
 
+import {has} from 'utils';
+
 export default function*(options = {}) {
   const sagas = [
     togglePlaying(),
-    handlePageDidActivate(),
-
-    disableScrollIndicatorDuringPlayback(),
-
-    hasNotBeenPlayingForAMoment(),
-
-    goToNextPageOnEnd(),
-    fadeOutWhenPageWillDeactivate()
   ];
+
+  if (!has('phone platform')) {
+    sagas.push([
+      disableScrollIndicatorDuringPlayback(),
+      goToNextPageOnEnd(),
+      fadeOutWhenPageWillDeactivate(),
+      hasNotBeenPlayingForAMoment()
+    ]);
+  }
+
+  if (!has('mobile platform')) {
+    sagas.push([
+      handlePageDidActivate()
+    ]);
+  }
 
   if (options.hideControls) {
     sagas.push([
