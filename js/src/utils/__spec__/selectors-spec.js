@@ -1,6 +1,7 @@
-import {prop, map} from '../selectors';
+import {prop, map, has} from '../selectors';
 
 import {expect} from 'support/chai';
+import sinon from 'sinon';
 
 describe('prop selector', () => {
   it('returns prop with given name', () => {
@@ -50,5 +51,21 @@ describe('map selector', () => {
     const result = map(selector, fn)(state, props);
 
     expect(result).to.eq(50);
+  });
+});
+
+describe('has selector', () => {
+  it('returns selector that returns state of given featue flag', () => {
+    const browser = {
+      has(featureName) {
+        return featureName == 'some present feature';
+      }
+    };
+
+    const resultForPresentFeature = has('some present feature')({}, {}, browser);
+    const resultForAbsentFeature = has('some absent feature')({}, {}, browser);
+
+    expect(resultForPresentFeature).to.eq(true);
+    expect(resultForAbsentFeature).to.eq(false);
   });
 });

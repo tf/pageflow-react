@@ -1,3 +1,3 @@
-export default function has(featureName) {
-  return pageflow.browser.has(featureName);
+export default function has(featureName, browser = pageflow.browser) {
+  return browser.has(featureName);
 }

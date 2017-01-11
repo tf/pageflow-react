@@ -1,6 +1,7 @@
 import {PageThumbnail} from '../PageThumbnail';
 
 import {expect} from 'support/chai';
+import fileExistsFn from 'support/fileExistsFn';
 import {shallow} from 'enzyme';
 
 describe('PageThumbnail', () => {
@@ -343,10 +344,4 @@ describe('PageThumbnail', () => {
       expect(result).to.have.className('is_dangling');
     });
   });
-
-  function fileExistsFn(fileIds) {
-    return function(collectionName, id) {
-      return fileIds[collectionName] && fileIds[collectionName].includes(id);
-    };
-  }
 });

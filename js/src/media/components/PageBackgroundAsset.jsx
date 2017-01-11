@@ -5,32 +5,26 @@ import {playerState, playerActions} from 'media/selectors';
 import {connectInPage} from 'pages';
 import {pageAttributes} from 'pages/selectors';
 
-import {combine} from 'utils';
+import {combine, camelize} from 'utils';
 
 export function PageBackgroundAsset({page,
                                      playerState, playerActions,
                                      propertyNamePrefix}) {
 
-  const typePropertyName = propertyNamePrefix ? `${propertyNamePrefix}BackgroundType` : 'backgroundType';
+  const typePropertyName = camelize.concat(propertyNamePrefix, 'backgroundType');
 
   if (page[typePropertyName] == 'video') {
-    const videoPropertyBaseName = propertyNamePrefix && `${propertyNamePrefix}VideoFile`;
-    const posterImagePropertyBaseName = propertyNamePrefix && `${propertyNamePrefix}PosterImage`;
-
     return (
       <PageBackgroundVideo page={page}
                            playerState={playerState}
                            playerActions={playerActions}
-                           videoPropertyBaseName={videoPropertyBaseName}
-                           posterImagePropertyBaseName={posterImagePropertyBaseName} />
+                           propertyNamePrefix={propertyNamePrefix} />
     );
   }
   else {
-    const imagePropertyBaseName = propertyNamePrefix && `${propertyNamePrefix}BackgroundImage`;
-
     return (
       <PageBackgroundImage page={page}
-                           imagePropertyBaseName={imagePropertyBaseName} />
+                           propertyNamePrefix={propertyNamePrefix} />
     );
   }
 }

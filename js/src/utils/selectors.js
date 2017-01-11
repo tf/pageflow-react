@@ -1,3 +1,5 @@
+import hasFeature from './has';
+
 export function prop(path) {
   return function(state, props) {
     const names = path.split('.');
@@ -14,5 +16,11 @@ export function map(selector, fn) {
   return function(state, props) {
     const result = selector(state, props);
     return fn(result);
+  };
+}
+
+export function has(featureName) {
+  return function(_props, _state, browser) {
+    return hasFeature(featureName, browser);
   };
 }

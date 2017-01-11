@@ -2,26 +2,28 @@ import VideoFilePlayer from './VideoFilePlayer';
 import createPageFilePlayer from './createPageFilePlayer';
 import {file} from 'files/selectors';
 import {prop} from 'selectors';
-import {combine} from 'utils';
+import {camelize, combine} from 'utils';
 
 import {connect} from 'react-redux';
 
-const VideoPlayer = connect(combine({
+export const VideoPlayer = connect(combine({
   file: file('videoFiles', {id: prop('videoFileId')}),
   posterImageFile: file('imageFiles', {id: prop('posterImageFileId')})
 }))(createPageFilePlayer(VideoFilePlayer));
 
 export default function PageVideoPlayer(props) {
   const page = props.page;
-  const property = props.videoPropertyBaseName;
+
+  const videoProperty = camelize.concat(props.propertyNamePrefix, props.videoPropertyBaseName);
+  const posterProperty = camelize.concat(props.propertyNamePrefix, props.posterImagePropertyBaseName);
 
   return (
-    <VideoPlayer videoFileId={page[`${property}Id`]}
-                 posterImageFileId={page[`${props.posterImagePropertyBaseName}Id`]}
+    <VideoPlayer videoFileId={page[`${videoProperty}Id`]}
+                 posterImageFileId={page[`${posterProperty}Id`]}
                  playerState={props.playerState}
                  playerActions={props.playerActions}
                  fit={props.fit}
-                 position={[page[`${property}X`], page[`${property}Y`]]}
+                 position={[page[`${videoProperty}X`], page[`${videoProperty}Y`]]}
                  textTracksEnabled={props.textTracksEnabled}
                  loop={props.loop}
                  muted={props.muted}
@@ -31,6 +33,6 @@ export default function PageVideoPlayer(props) {
 
 PageVideoPlayer.defaultProps = {
   videoPropertyBaseName: 'videoFile',
-  posterImagePropertyBaseName: 'posterImageId',
+  posterImagePropertyBaseName: 'posterImage',
   fit: 'smart_contain'
 };
