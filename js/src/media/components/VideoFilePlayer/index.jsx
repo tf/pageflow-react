@@ -20,7 +20,9 @@ export default function(props) {
                        atmoDuringPlayback={props.atmoDuringPlayback}
                        defaultTextTrackFileId={props.defaultTextTrackFileId}
                        textTracksEnabled={props.textTracksEnabled}
-                       loop={props.loop} />
+                       loop={props.loop}
+                       muted={props.muted}
+                       playsInline={props.playsInline} />
     </Positioner>
   );
 }

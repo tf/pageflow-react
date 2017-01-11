@@ -30,6 +30,8 @@ export default class MediaTag extends React.Component {
     return nextProps.tagName !== this.props.tagName ||
            nextProps.poster !== this.props.poster ||
            nextProps.loop !== this.props.loop ||
+           nextProps.muted !== this.props.muted ||
+           nextProps.playsInline !== this.props.playsInline ||
            !deepEqual(nextProps.sources, this.props.sources) ||
            !deepEqual(nextProps.tracks, this.props.tracks);
   }
@@ -76,6 +78,14 @@ export default class MediaTag extends React.Component {
 
     if (this.props.loop) {
       mediaElement.setAttribute('loop', 'true');
+    }
+
+    if (this.props.muted) {
+      mediaElement.setAttribute('muted', 'true');
+    }
+
+    if (this.props.playsInline) {
+      mediaElement.setAttribute('playsinline', 'true');
     }
 
     this.props.sources.forEach(source => {

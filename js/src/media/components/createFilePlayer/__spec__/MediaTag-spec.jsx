@@ -40,6 +40,24 @@ describe('MediaTag', () => {
     expect(wrapper).to.have.descendants('video[poster*="poster.png"]');
   });
 
+  it('renders loop attribute', () => {
+    const wrapper = render(<MediaTag loop={true} />);
+
+    expect(wrapper).to.have.descendants('video[loop]');
+  });
+
+  it('renders muted attribute', () => {
+    const wrapper = render(<MediaTag muted={true} />);
+
+    expect(wrapper).to.have.descendants('video[muted]');
+  });
+
+  it('renders playsinline attribute', () => {
+    const wrapper = render(<MediaTag playsInline={true} />);
+
+    expect(wrapper).to.have.descendants('video[playsinline]');
+  });
+
   it('re-renders when source changes', () => {
     const sources = [{type: 'video/mp4', src: 'some.mp4'}];
     const changedSources = [{type: 'video/mp4', src: 'new.mp4'}];

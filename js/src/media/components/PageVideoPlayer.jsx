@@ -23,7 +23,9 @@ export default function PageVideoPlayer(props) {
                  fit={props.fit}
                  position={[page[`${property}X`], page[`${property}Y`]]}
                  textTracksEnabled={props.textTracksEnabled}
-                 loop={props.loop} />
+                 loop={props.loop}
+                 muted={props.muted}
+                 playsInline={props.playsInline} />
   );
 }
 
