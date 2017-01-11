@@ -1,5 +1,6 @@
 import Page from './components/Page';
 import PageVideoPlayer from './components/PageVideoPlayer';
+import MobilePageVideoPoster from './components/MobilePageVideoPoster';
 import PageBackgroundVideo from './components/PageBackgroundVideo';
 import PageBackgroundAsset from './components/PageBackgroundAsset';
 import PageBackground from './components/PageBackground';
@@ -39,6 +40,7 @@ export const pageBackgroundReduxModule = {
 export {
   Page,
   PageVideoPlayer,
+  MobilePageVideoPoster,
   PagePrintImage,
   PageBackgroundVideo,
   PageBackgroundAsset,

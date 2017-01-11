@@ -39,6 +39,10 @@ pageflow.ConfigurationEditorView.register('video', {
         collection: pageflow.imageFiles,
         positioning: false,
       });
+      this.input('mobile_poster_image_id', pageflow.FileInputView, {
+        collection: pageflow.imageFiles,
+        positioning: false
+      });
       this.input('thumbnail_image_id', pageflow.FileInputView, {
         collection: pageflow.imageFiles,
         positioning: false

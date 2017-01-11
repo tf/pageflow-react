@@ -1,4 +1,5 @@
 import {Page as MediaPage,
+        MobilePageVideoPoster,
         PageVideoPlayer,
         reduxModule as mediaReduxModule} from 'media';
 
@@ -28,6 +29,7 @@ function VideoPage(props) {
       <PageVideoPlayer page={props.page}
                        playerState={props.playerState}
                        playerActions={props.playerActions}/>
+      <MobilePageVideoPoster page={props.page} />
     </MediaPage>
   );
 }
