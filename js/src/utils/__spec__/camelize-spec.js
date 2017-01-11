@@ -31,3 +31,29 @@ describe('camelize.deep', () => {
     });
   });
 });
+
+describe('camelize.concat', () => {
+  it('concats camelized strings into a new one', () => {
+    const result = camelize.concat('somePrefix', 'forA', 'camelizedString');
+
+    expect(result).to.eq('somePrefixForACamelizedString');
+  });
+
+  it('skips null parts', () => {
+    const result = camelize.concat(null, 'somePrefix', null, 'forA', 'camelizedString');
+
+    expect(result).to.eq('somePrefixForACamelizedString');
+  });
+
+  it('skips undefined parts', () => {
+    const result = camelize.concat(undefined, 'somePrefix', undefined, 'forA', 'camelizedString');
+
+    expect(result).to.eq('somePrefixForACamelizedString');
+  });
+
+  it('skips empty strings', () => {
+    const result = camelize.concat('', 'somePrefix', 'forA', 'camelizedString');
+
+    expect(result).to.eq('somePrefixForACamelizedString');
+  });
+});

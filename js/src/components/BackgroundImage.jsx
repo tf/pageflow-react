@@ -8,7 +8,7 @@ import classNames from 'classnames';
  * @alias pageflow.react.components.BackgroundImage
  * @since 0.1
  *
- * @prop imageFileId
+ * @prop fileId
  *   The id of the image file to display.
  *
  * @prop position
@@ -37,7 +37,10 @@ export default class BackgroundImage extends React.Component {
   }
 
   imageCssClass() {
-    return ['image', this.props.imageFileId || 'none'].join('_');
+    return [
+      this.props.fileCollection == 'imageFiles' ? 'image' : 'video_poster',
+      this.props.fileId || 'none'
+    ].join('_');
   }
 
   style() {
@@ -58,12 +61,14 @@ export default class BackgroundImage extends React.Component {
 }
 
 BackgroundImage.propTypes = {
-  imageFileId: React.PropTypes.number,
+  fileId: React.PropTypes.number,
+  fileCollection: React.PropTypes.oneOf(['imageFiles', 'videoFiles']),
   position: React.PropTypes.arrayOf(React.PropTypes.number),
   className: React.PropTypes.string,
   loaded: React.PropTypes.bool
 };
 
 BackgroundImage.defaultProps = {
-  position: [50, 50]
+  position: [50, 50],
+  fileCollection: 'imageFiles'
 };

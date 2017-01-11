@@ -26,4 +26,12 @@ camelize.deep = function(object) {
   }
 };
 
+camelize.concat = function(...args) {
+  return args
+    .filter(part => part)
+    .reduce((result, part) =>
+      result + part[0].toUpperCase() + part.slice(1)
+    );
+};
+
 export default camelize;

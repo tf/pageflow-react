@@ -2,6 +2,8 @@ import React from 'react';
 
 import LazyBackgroundImage from './LazyBackgroundImage';
 
+import {camelize} from 'utils';
+
 /**
  * @desc Can be used inside {@link
  * pageflow.react.components.PageBackground|PageBackground} to display
@@ -14,17 +16,22 @@ import LazyBackgroundImage from './LazyBackgroundImage';
  * @prop page
  *   Required. The page object to read configuration properties from.
  *
- * @prop imagePropertyBaseName
+ * @prop propertyBaseName
  *   By default the configuration property `backgroundImage` is
  *   used. Use this prop to specify a different property name.
+ *
+ * @prop fileCollection
+ *   Set to `"videoFiles"` if the `propertyBaseName` refers to a video
+ *   you want to display the poster of.
  */
 export default class PageBackgroundImage extends React.Component {
   render() {
     const page = this.props.page;
-    const property = this.props.imagePropertyBaseName;
+    const property = camelize.concat(this.props.propertyNamePrefix, this.props.propertyBaseName);
 
     return (
-      <LazyBackgroundImage imageFileId={page[`${property}Id`]}
+      <LazyBackgroundImage fileId={page[`${property}Id`]}
+                           fileCollection={this.props.fileCollection}
                            position={[page[`${property}X`], page[`${property}Y`]]}
                            className="background background_image" />
     );
@@ -33,9 +40,10 @@ export default class PageBackgroundImage extends React.Component {
 
 PageBackgroundImage.propTypes = {
   page: React.PropTypes.object.isRequired,
-  imagePropertyBaseName: React.PropTypes.string
+  propertyBaseName: React.PropTypes.string,
+  fileCollection: React.PropTypes.string
 };
 
 PageBackgroundImage.defaultProps = {
-  imagePropertyBaseName: 'backgroundImage'
+  propertyBaseName: 'backgroundImage'
 };

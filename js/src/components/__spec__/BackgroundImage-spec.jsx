@@ -5,21 +5,21 @@ import {shallow, mount} from 'enzyme';
 
 describe('BackgroundImage', () => {
   it('has image file css class', () => {
-    const props = {imageFileId: 5};
+    const props = {fileId: 5};
 
     const result = shallow(<BackgroundImage {...props} />);
 
     expect(result).to.have.className('image_5');
   });
 
-  it('has image_none css class if not imageFileId is given', () => {
+  it('has image_none css class if not fileId is given', () => {
     var result = shallow(<BackgroundImage />);
 
     expect(result).to.have.className('image_none');
   });
 
   it('has load_image css class if loaded prop is present', () => {
-    const props = {imageFileId: 5, loaded: true};
+    const props = {fileId: 5, loaded: true};
 
     const result = shallow(<BackgroundImage {...props} />);
 
@@ -27,15 +27,25 @@ describe('BackgroundImage', () => {
   });
 
   it('has image file css class', () => {
-    const props = {imageFileId: 5};
+    const props = {fileId: 5};
 
     const result = shallow(<BackgroundImage {...props} />);
 
     expect(result).to.have.className('image_5');
   });
 
+  describe('with fileCollection prop set to videoFiles', () => {
+    it('has video poster css class', () => {
+      const props = {fileId: 5, fileCollection: 'videoFiles'};
+
+      const result = shallow(<BackgroundImage {...props} />);
+
+      expect(result).to.have.className('video_poster_5');
+    });
+  });
+
   it('defaults background position to center', () => {
-    const props = {imageFileId: 5};
+    const props = {fileId: 5};
 
     const result = mount(<BackgroundImage {...props} />);
 
@@ -43,7 +53,7 @@ describe('BackgroundImage', () => {
   });
 
   it('defaults background position to center', () => {
-    const props = {imageFileId: 5, position: [undefined, undefined]};
+    const props = {fileId: 5, position: [undefined, undefined]};
 
     const result = mount(<BackgroundImage {...props} />);
 
@@ -51,7 +61,7 @@ describe('BackgroundImage', () => {
   });
 
   it('sets background position inline styles', () => {
-    const props = {imageFileId: 5, position: [10, 20]};
+    const props = {fileId: 5, position: [10, 20]};
 
     const result = mount(<BackgroundImage {...props} />);
 
