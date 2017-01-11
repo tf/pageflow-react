@@ -1,12 +1,14 @@
 import createFilePlayer from '../createFilePlayer';
 import Positioner from './Positioner';
 import sources from './sources';
+import {has} from 'utils';
 
 const VideoFilePlayer = createFilePlayer({
   tagName: 'video',
   sources,
   poster: (videoFile, posterImageFile) => {
-    return posterImageFile ? posterImageFile.urls.large : videoFile.urls['poster_large'];
+    const style = has('mobile platform') ? 'medium' : 'large';
+    return posterImageFile ? posterImageFile.urls[style] : videoFile.urls[`poster_${style}`];
   }
 });
 
