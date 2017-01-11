@@ -1,5 +1,5 @@
 import {
-  PLAY, PAUSE, SEEK_TO,
+  PLAY, PAUSE, PAUSED, SEEK_TO,
   FADE_OUT_AND_PAUSE, PLAY_AND_FADE_IN,
   PREBUFFER, PREBUFFERED,
   BUFFER_UNDERRUN, WAITING, SEEKING, SEEKED,
@@ -54,6 +54,7 @@ export default function({scope = 'default'} = {}) {
         fadeDuration: action.payload.fadeDuration,
         isLoading: true
       };
+    case PAUSED:
     case PAUSE:
       return {
         ...state,

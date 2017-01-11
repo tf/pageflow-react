@@ -60,7 +60,8 @@ export default function({
       handlePlayStatePropChanges(this.player,
                                  prevProps.playerState,
                                  this.props.playerState,
-                                 this.props.playerActions);
+                                 this.props.playerActions,
+                                 this.props.playsInline);
 
       if (prevProps.textTrackPosition !== this.props.textTrackPosition) {
         updateTextTrackPosition(this.player, this.props.textTrackPosition);

@@ -1,9 +1,13 @@
-export default function handlePlayStatePropChanges(player, playerState, nextPlayerState, playerActions) {
+export default function handlePlayStatePropChanges(player, playerState, nextPlayerState, playerActions, playsInline) {
   if (!playerState.shouldPrebuffer && nextPlayerState.shouldPrebuffer) {
     player.prebuffer().then(playerActions.prebuffered);
   }
 
   if (!playerState.shouldPlay && nextPlayerState.shouldPlay) {
+    if (!playsInline) {
+      player.requestNativePlayerOnPhone();
+    }
+
     if (nextPlayerState.fadeDuration) {
       player.playAndFadeIn(nextPlayerState.fadeDuration);
     }

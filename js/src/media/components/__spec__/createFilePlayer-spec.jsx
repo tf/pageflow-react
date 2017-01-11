@@ -163,6 +163,32 @@ describe('createFilePlayer', () => {
       expect(mockPlayer.playAndFadeIn).to.have.been.calledWith(500);
     });
 
+    it('calls requestNativePlayerOnPhone on play when playsInline is false', () => {
+      const {FilePlayer, mockPlayer} = setup();
+
+      const wrapper = mount(<FilePlayer file={{}}
+                                        playsInline={false}
+                                        playerState={{shouldPlay: false}}
+                                        playerActions={{}}/>);
+
+      wrapper.setProps({playerState: {shouldPlay: true}});
+
+      expect(mockPlayer.requestNativePlayerOnPhone).to.have.been.called;
+    });
+
+    it('does not call requestNativePlayerOnPhone on play when playsInline is true', () => {
+      const {FilePlayer, mockPlayer} = setup();
+
+      const wrapper = mount(<FilePlayer file={{}}
+                                        playsInline={true}
+                                        playerState={{shouldPlay: false}}
+                                        playerActions={{}}/>);
+
+      wrapper.setProps({playerState: {shouldPlay: true}});
+
+      expect(mockPlayer.requestNativePlayerOnPhone).not.to.have.been.called;
+    });
+
     it('calls pause on player when shouldPlay changes to false in playerState', () => {
       const {FilePlayer, mockPlayer} = setup();
 
@@ -330,6 +356,8 @@ describe('createFilePlayer', () => {
       pause: sinon.spy(),
       fadeOutAndPause: sinon.spy(),
       dispose: sinon.spy(),
+
+      requestNativePlayerOnPhone: sinon.spy(),
 
       ...Backbone.Events
     };
