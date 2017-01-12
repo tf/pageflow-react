@@ -153,6 +153,28 @@ describe('watchBackboneCollection', () => {
     }));
   });
 
+  it('does not dispatch multiple change actions when multple attribute change at once', () => {
+    const model = new Backbone.Model();
+    const collection = new Backbone.Collection([model]);
+    const dispatch = sinon.spy();
+
+    watchBackboneCollection({
+      collectionName: 'posts',
+      collection,
+      dispatch,
+      attributes: ['title', 'body']
+    });
+
+    dispatch.reset();
+
+    model.set({
+      title: 'changed',
+      body: 'changed'
+    });
+
+    expect(dispatch).to.have.been.calledOnce;
+  });
+
   it('dispatches change action on change:confguration event when configuration is included ', () => {
     const model = new Backbone.Model();
     model.configuration = new Backbone.Model({some: 'setting'});

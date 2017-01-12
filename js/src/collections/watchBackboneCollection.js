@@ -28,12 +28,23 @@ export default function({
     }));
   });
 
-  collection.on(changeEvents(), (model) => {
-    dispatch(change({
-      collectionName,
-      attributes: modelToAttributes(model)
-    }));
+  collection.on('change', (model) => {
+    if (watchedAttributeHasChanged(model)) {
+      dispatch(change({
+        collectionName,
+        attributes: modelToAttributes(model)
+      }));
+    }
   });
+
+  if (includeConfiguration) {
+    collection.on('change:configuration', (model) => {
+      dispatch(change({
+        collectionName,
+        attributes: modelToAttributes(model)
+      }));
+    });
+  }
 
   collection.on('remove', (model) => {
     setTimeout(() => {
@@ -44,26 +55,18 @@ export default function({
     }, 0);
   });
 
+  const watchedAttributes = attributes.map(attribute =>
+    typeof attribute == 'object' ? mappedAttributeSource(attribute) : attribute
+  );
+
+  function watchedAttributeHasChanged(model) {
+    return watchedAttributes.some(attribute => model.hasChanged(attribute));
+  }
+
   function modelToAttributes(model) {
     return pickAttributes(attributes,
                           model.attributes,
                           includeConfiguration && model.configuration.attributes);
-  }
-
-  function changeEvents() {
-    const watchedAttributes = attributes.map(attribute =>
-      typeof attribute == 'object' ? mappedAttributeSource(attribute) : attribute
-    );
-
-    const attributeChangeEvents = watchedAttributes.map(attribute =>
-      `change:${attribute}`
-    );
-
-    if (includeConfiguration) {
-      attributeChangeEvents.push('change:configuration');
-    }
-
-    return attributeChangeEvents.join(' ');
   }
 
   function mappedAttributeSource(attribute) {
