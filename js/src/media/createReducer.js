@@ -4,7 +4,7 @@ import {
   PREBUFFER, PREBUFFERED,
   BUFFER_UNDERRUN, WAITING, SEEKING, SEEKED,
   SCRUBBING_STARTED, SCRUBBING_ENDED,
-  META_DATA_LOADED, TIME_UPDATE, ENDED,
+  META_DATA_LOADED, PROGRESS, TIME_UPDATE, ENDED,
   HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
   USER_INTERACTION, USER_IDLE,
   CONTROLS_ENTERED, CONTROLS_LEFT,
@@ -123,6 +123,11 @@ export default function({scope = 'default'} = {}) {
       return {
         ...state,
         duration: action.payload.duration
+      };
+    case PROGRESS:
+      return {
+        ...state,
+        bufferedEnd: action.payload.bufferedEnd
       };
     case TIME_UPDATE:
       return {

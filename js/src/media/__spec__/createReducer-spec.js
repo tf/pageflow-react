@@ -34,6 +34,17 @@ describe('createReducer creates function that', () => {
     });
   });
 
+  describe('for PROGRESS action', () => {
+    it('updates bufferedEnd', () => {
+      const {progress} = actionCreators();
+      const reducer = createReducer();
+
+      const nextState = reducer({}, progress({bufferedEnd: 40}));
+
+      expect(nextState.bufferedEnd).to.eq(40);
+    });
+  });
+
   describe('for META_DATA_LOADED action', () => {
     it('updates duration', () => {
       const {metaDataLoaded} = actionCreators();

@@ -61,7 +61,7 @@ export default class ProgressSlider extends React.Component {
                        onDrag={this.handleDrag}
                        onStop={this.handleStop}>
           <div className="vjs-progress-holder" ref={this.bindProgressHolder}>
-            <div className="vjs-load-progress" style={{width: toPercent(props.loadProgress)}} />
+            <div className="vjs-load-progress" style={{width: toPercent(this.loadProgress())}} />
             <div className="vjs-play-progress" style={{width: toPercent(this.playProgress())}} />
             <div className="vjs-seek-handle" ref={this.bindHandle} style={{left: this.handlePosition()}} />
           </div>
@@ -79,6 +79,10 @@ export default class ProgressSlider extends React.Component {
     }
   }
 
+  loadProgress() {
+    return this.props.duration > 0 ? (this.props.bufferedEnd / this.props.duration) : 0;
+  }
+
   playProgress() {
     const currentTime = (this.props.isSeeking || this.state.isScrubbing) ? this.state.scrubbingAt : this.props.currentTime;
     return this.props.duration > 0 ? (currentTime / this.props.duration) : 0;
@@ -86,7 +90,8 @@ export default class ProgressSlider extends React.Component {
 }
 
 ProgressSlider.defaultProps = {
-  currentTime: 0
+  currentTime: 0,
+  bufferedEnd: 0
 };
 
 function toPercent(value) {

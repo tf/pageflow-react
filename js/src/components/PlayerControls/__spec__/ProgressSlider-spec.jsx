@@ -5,7 +5,7 @@ import {expect} from 'support/chai';
 
 describe('ProgressSlider', () => {
   it('sets width of load progress', () => {
-    const result = mount(<ProgressSlider loadProgress={0.45} />);
+    const result = mount(<ProgressSlider bufferedEnd={45} duration={100} />);
 
     expect(result.find('.vjs-load-progress')).to.have.style('width', '45%');
   });

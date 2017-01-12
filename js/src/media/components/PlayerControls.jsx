@@ -34,6 +34,7 @@ export function MediaPlayerControls(props) {
                     isLoading={playerState.isLoading}
                     isPlaying={playerState.shouldPlay}
                     currentTime={playerState.currentTime}
+                    bufferedEnd={playerState.bufferedEnd}
                     duration={playerState.duration}
                     isScrubbing={playerState.isScrubbing}
                     isSeeking={playerState.isSeeking}

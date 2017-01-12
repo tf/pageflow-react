@@ -3,6 +3,10 @@ export default function(player, actions) {
     duration: player.duration()
   }));
 
+  player.on('progress', () => actions.progress({
+    bufferedEnd: player.bufferedEnd()
+  }));
+
   player.on('play', actions.playing);
   player.on('pause', actions.paused);
   player.on('waiting', actions.waiting);

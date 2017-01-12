@@ -17,6 +17,7 @@ export const ABORT_PREBUFFERING = 'MEDIA_ABORT_PREBUFFERING';
 export const BUFFER_UNDERRUN = 'MEDIA_BUFFER_UNDERRUN';
 
 export const META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
+export const PROGRESS = 'MEDIA_PROGRESS';
 export const PLAYING = 'MEDIA_PLAYING';
 export const PAUSED = 'MEDIA_PAUSED';
 export const TIME_UPDATE = 'MEDIA_TIME_UPDATE';
@@ -114,6 +115,12 @@ export function actionCreators({scope = 'default'} = {}) {
     metaDataLoaded({duration}) {
       return pageAction(META_DATA_LOADED, {
         duration
+      });
+    },
+
+    progress({bufferedEnd}) {
+      return pageAction(PROGRESS, {
+        bufferedEnd
       });
     },
 
