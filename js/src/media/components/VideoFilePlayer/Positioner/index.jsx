@@ -1,9 +1,13 @@
 import getDimensions from './getDimensions';
 import getCueOffsetClassName from './getCueOffsetClassName';
 
+import {connectInPage} from 'pages';
+import {pageIsActive} from 'pages/selectors';
+import {combine} from 'utils';
+
 import React from 'react';
 
-export default class Positioner extends React.Component {
+export class Positioner extends React.Component {
   constructor(props, state) {
     super(props, state);
     this.state = {};
@@ -30,6 +34,12 @@ export default class Positioner extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!this.props.pageIsActive && nextProps.pageIsActive) {
+      this.measure();
+    }
+  }
+
   render() {
     const dimensions = getDimensions(this.props.videoFile,
                                      this.props.fit,
@@ -46,6 +56,10 @@ export default class Positioner extends React.Component {
     );
   }
 }
+
+export default connectInPage(combine({
+  pageIsActive: pageIsActive()
+}))(Positioner);
 
 Positioner.propTypes = {
   videoFile: React.PropTypes.object,
