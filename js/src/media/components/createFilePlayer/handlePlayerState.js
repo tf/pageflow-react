@@ -1,4 +1,6 @@
-export function initPlayer(player, playerState, prevFileId, fileId) {
+export function initPlayer(player, getPlayerState, prevFileId, fileId) {
+  const playerState = getPlayerState();
+
   if (fileId === prevFileId) {
     if (playerState.currentTime > 0) {
       player.currentTime(playerState.currentTime);
@@ -8,6 +10,12 @@ export function initPlayer(player, playerState, prevFileId, fileId) {
   if (playerState.isPlaying) {
     player.play();
   }
+
+  player.on('canplay', function () {
+    if (getPlayerState().shouldPlay && player.paused()) {
+      player.play();
+    }
+  });
 }
 
 export function updatePlayer(player, playerState, nextPlayerState, playerActions, playsInline) {

@@ -43,7 +43,7 @@ export default function({
         });
 
         initPlayerFromPlayerState(this.player,
-                                  this.props.playerState,
+                                  () => this.props.playerState,
                                   this.prevFileId,
                                   this.props.file.id);
 
