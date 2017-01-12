@@ -112,8 +112,9 @@ export function actionCreators({scope = 'default'} = {}) {
       });
     },
 
-    metaDataLoaded({duration}) {
+    metaDataLoaded({currentTime, duration}) {
       return pageAction(META_DATA_LOADED, {
+        currentTime,
         duration
       });
     },

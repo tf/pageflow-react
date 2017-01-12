@@ -122,6 +122,7 @@ export default function({scope = 'default'} = {}) {
     case META_DATA_LOADED:
       return {
         ...state,
+        currentTime: action.payload.currentTime,
         duration: action.payload.duration
       };
     case PROGRESS:

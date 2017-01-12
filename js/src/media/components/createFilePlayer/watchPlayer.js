@@ -1,5 +1,6 @@
 export default function(player, actions) {
   player.on('loadedmetadata', () => actions.metaDataLoaded({
+    currentTime: player.currentTime(),
     duration: player.duration()
   }));
 

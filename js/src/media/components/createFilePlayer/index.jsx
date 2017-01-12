@@ -1,8 +1,17 @@
 import MediaTag from './MediaTag';
 import createPageflowPlayer from './createPageflowPlayer';
 import watchPlayer from './watchPlayer';
-import handlePlayStatePropChanges from './handlePlayStatePropChanges';
-import {textTracksFromFiles, updateTextTrackModes, updateTextTrackPosition} from './textTracks';
+
+import {
+  initPlayer as initPlayerFromPlayerState,
+  updatePlayer as updatePlayerFromPlayerState
+} from './handlePlayState';
+
+import {
+  textTracksFromFiles,
+  updateTextTrackModes,
+  updateTextTrackPosition
+} from './textTracks';
 
 import {textTracks} from 'media/selectors';
 import {setting} from 'settings/selectors';
@@ -33,17 +42,17 @@ export default function({
           mediaContext: this.context.mediaContext
         });
 
-        if (this.props.playerState.currentTime > 0) {
-          this.player.currentTime(this.props.playerState.currentTime);
-        }
-
-        if (this.props.playerState.isPlaying) {
-          this.player.play();
-        }
+        initPlayerFromPlayerState(this.player,
+                                  this.props.playerState,
+                                  this.prevFileId,
+                                  this.props.file.id);
 
         watchPlayer(this.player, this.props.playerActions);
+
         updateTextTrackModes(this.player, this.props.textTracks.activeFileId);
         updateTextTrackPosition(this.player, this.props.textTrackPosition);
+
+        this.prevFileId = this.props.file.id;
       };
 
       this.disposeMediaTag = () => {
@@ -57,11 +66,11 @@ export default function({
         return;
       }
 
-      handlePlayStatePropChanges(this.player,
-                                 prevProps.playerState,
-                                 this.props.playerState,
-                                 this.props.playerActions,
-                                 this.props.playsInline);
+      updatePlayerFromPlayerState(this.player,
+                                  prevProps.playerState,
+                                  this.props.playerState,
+                                  this.props.playerActions,
+                                  this.props.playsInline);
 
       if (prevProps.textTrackPosition !== this.props.textTrackPosition) {
         updateTextTrackPosition(this.player, this.props.textTrackPosition);

@@ -1,4 +1,16 @@
-export default function handlePlayStatePropChanges(player, playerState, nextPlayerState, playerActions, playsInline) {
+export function initPlayer(player, playerState, prevFileId, fileId) {
+  if (fileId === prevFileId) {
+    if (playerState.currentTime > 0) {
+      player.currentTime(playerState.currentTime);
+    }
+  }
+
+  if (playerState.isPlaying) {
+    player.play();
+  }
+}
+
+export function updatePlayer(player, playerState, nextPlayerState, playerActions, playsInline) {
   if (!playerState.shouldPrebuffer && nextPlayerState.shouldPrebuffer) {
     player.prebuffer().then(playerActions.prebuffered);
   }
