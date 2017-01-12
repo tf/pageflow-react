@@ -117,7 +117,7 @@ describe('createFilePlayer', () => {
     [
       {event: 'play', action: 'playing'},
       {event: 'pause', action: 'paused'},
-      {event: 'loadedmetadata', action: 'metaDataLoaded', payload: {duration: 10}},
+      {event: 'loadedmetadata', action: 'metaDataLoaded', payload: {currentTime: 5, duration: 10}},
       {event: 'timeupdate', action: 'timeUpdate', payload: {currentTime: 5}},
       {event: 'ended', action: 'ended'},
     ].forEach(({action, event, payload}) => {
