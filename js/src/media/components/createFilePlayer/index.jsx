@@ -5,7 +5,7 @@ import watchPlayer from './watchPlayer';
 import {
   initPlayer as initPlayerFromPlayerState,
   updatePlayer as updatePlayerFromPlayerState
-} from './handlePlayState';
+} from './handlePlayerState';
 
 import {
   textTracksFromFiles,
