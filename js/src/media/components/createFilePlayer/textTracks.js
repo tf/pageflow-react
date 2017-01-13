@@ -33,11 +33,13 @@ export function textTracksFromFiles(textTrackFiles, textTracksEnabled) {
     return [];
   }
 
-  return textTrackFiles.map(textTrackFile => ({
-    id: `text_track_file_${textTrackFile.id}`,
-    kind: textTrackFile.kind,
-    label: textTrackFile.label,
-    srclang: textTrackFile.srclang,
-    src: textTrackFile.urls.vtt
-  }));
+  return textTrackFiles
+    .filter(textTrackFile => textTrackFile.isReady)
+    .map(textTrackFile => ({
+      id: `text_track_file_${textTrackFile.id}`,
+      kind: textTrackFile.kind,
+      label: textTrackFile.label,
+      srclang: textTrackFile.srclang,
+      src: textTrackFile.urls.vtt
+    }));
 }

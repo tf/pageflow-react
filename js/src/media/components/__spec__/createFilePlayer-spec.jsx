@@ -85,10 +85,10 @@ describe('createFilePlayer', () => {
       expect(wrapper.render()).to.have.descendants('video[poster="some-poster.png"]');
     });
 
-    it('renders media tag with text tracks from props', () => {
+    it('renders media tag with ready text tracks from props', () => {
       const {FilePlayer} = setup();
       const textTracks = {
-        files: [{srclang: 'en', urls: {vtt: 'some.vtt'}}]
+        files: [{srclang: 'en', urls: {vtt: 'some.vtt'}, isReady: true}]
       };
 
       const wrapper = mount(<FilePlayer file={{}}
@@ -97,6 +97,20 @@ describe('createFilePlayer', () => {
                                         playerActions={{}}/>);
 
       expect(wrapper.render()).to.have.descendants('track[srclang="en"]');
+    });
+
+    it('does not render text tracks that are not ready', () => {
+      const {FilePlayer} = setup();
+      const textTracks = {
+        files: [{srclang: 'en', urls: {vtt: 'some.vtt'}, isReady: false}]
+      };
+
+      const wrapper = mount(<FilePlayer file={{}}
+                                        textTracks={textTracks}
+                                        playerState={{}}
+                                        playerActions={{}}/>);
+
+      expect(wrapper.render()).not.to.have.descendants('track');
     });
 
     it('does not render text tracks when text tracks are disabled', () => {
@@ -302,8 +316,8 @@ describe('createFilePlayer', () => {
       const {FilePlayer, mockPlayer} = setup();
       const textTracks = {
         files: [
-          {id: 5, urls: {vtt: 'some.vtt'}},
-          {id: 6, urls: {vtt: 'other.vtt'}}
+          {id: 5, urls: {vtt: 'some.vtt'}, isReady: true},
+          {id: 6, urls: {vtt: 'other.vtt'}, isReady: true}
         ],
         activeFileId: 5
       };
@@ -321,8 +335,8 @@ describe('createFilePlayer', () => {
       const {FilePlayer, mockPlayer} = setup();
       const textTracks = {
         files: [
-          {id: 5, urls: {vtt: 'some.vtt'}},
-          {id: 6, urls: {vtt: 'other.vtt'}}
+          {id: 5, urls: {vtt: 'some.vtt'}, isReady: true},
+          {id: 6, urls: {vtt: 'other.vtt'}, isReady: true}
         ]
       };
 
