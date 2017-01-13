@@ -30,14 +30,20 @@ describe('createFilePlayer', () => {
       return {FilePlayer, mockPlayer};
     }
 
+    const requiredProps = {
+      file: {},
+      playerState: {},
+      playerActions: {},
+
+      updateTextTrackSettings() {}
+    };
+
     it('renders media tag with given tag name', () => {
       const {FilePlayer} = setup({
         tagName: 'audio'
       });
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} />);
 
       expect(wrapper.render()).to.have.descendants('audio');
     });
@@ -64,10 +70,7 @@ describe('createFilePlayer', () => {
         ]
       });
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        quality="high"
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} quality="high" />);
 
       expect(wrapper.render()).to.have.descendants('source[src="high.mp4"]');
     });
@@ -80,7 +83,7 @@ describe('createFilePlayer', () => {
         posterUrl: 'some-poster.png'
       };
 
-      const wrapper = mount(<FilePlayer file={file} playerState={{}} playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} file={file} />);
 
       expect(wrapper.render()).to.have.descendants('video[poster="some-poster.png"]');
     });
@@ -91,10 +94,7 @@ describe('createFilePlayer', () => {
         files: [{srclang: 'en', urls: {vtt: 'some.vtt'}, isReady: true}]
       };
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        textTracks={textTracks}
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} textTracks={textTracks} />);
 
       expect(wrapper.render()).to.have.descendants('track[srclang="en"]');
     });
@@ -105,10 +105,7 @@ describe('createFilePlayer', () => {
         files: [{srclang: 'en', urls: {vtt: 'some.vtt'}, isReady: false}]
       };
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        textTracks={textTracks}
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} textTracks={textTracks} />);
 
       expect(wrapper.render()).not.to.have.descendants('track');
     });
@@ -119,11 +116,9 @@ describe('createFilePlayer', () => {
         files: [{srclang: 'en', urls: {vtt: 'some.vtt'}}]
       };
 
-      const wrapper = mount(<FilePlayer file={{}}
+      const wrapper = mount(<FilePlayer {...requiredProps}
                                         textTracksEnabled={false}
-                                        textTracks={textTracks}
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+                                        textTracks={textTracks} />);
 
       expect(wrapper.render()).not.to.have.descendants('track');
     });
@@ -141,9 +136,7 @@ describe('createFilePlayer', () => {
           [action]: sinon.spy()
         };
 
-        mount(<FilePlayer file={{}}
-                          playerState={{}}
-                          playerActions={playerActions}/>);
+        mount(<FilePlayer {...requiredProps} playerActions={playerActions}/>);
 
         mockPlayer.currentTime.returns(5);
         mockPlayer.duration.returns(10);
@@ -156,9 +149,7 @@ describe('createFilePlayer', () => {
     it('calls play on player when shouldPlay changes to true in playerState', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        playerState={{shouldPlay: false}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} playerState={{shouldPlay: false}} />);
 
       wrapper.setProps({playerState: {shouldPlay: true}});
 
@@ -168,9 +159,7 @@ describe('createFilePlayer', () => {
     it('calls playAndFadeIn on player when shouldPlay changes to true and fadeDuration is present', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        playerState={{shouldPlay: false}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} playerState={{shouldPlay: false}} />);
 
       wrapper.setProps({playerState: {shouldPlay: true, fadeDuration: 500}});
 
@@ -180,10 +169,9 @@ describe('createFilePlayer', () => {
     it('calls requestNativePlayerOnPhone on play when playsInline is false', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
+      const wrapper = mount(<FilePlayer {...requiredProps}
                                         playsInline={false}
-                                        playerState={{shouldPlay: false}}
-                                        playerActions={{}}/>);
+                                        playerState={{shouldPlay: false}} />);
 
       wrapper.setProps({playerState: {shouldPlay: true}});
 
@@ -193,10 +181,9 @@ describe('createFilePlayer', () => {
     it('does not call requestNativePlayerOnPhone on play when playsInline is true', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
+      const wrapper = mount(<FilePlayer {...requiredProps}
                                         playsInline={true}
-                                        playerState={{shouldPlay: false}}
-                                        playerActions={{}}/>);
+                                        playerState={{shouldPlay: false}} />);
 
       wrapper.setProps({playerState: {shouldPlay: true}});
 
@@ -206,9 +193,8 @@ describe('createFilePlayer', () => {
     it('calls pause on player when shouldPlay changes to false in playerState', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        playerState={{shouldPlay: true}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps}
+                                        playerState={{shouldPlay: true}} />);
 
       wrapper.setProps({playerState: {shouldPlay: false}});
 
@@ -218,9 +204,8 @@ describe('createFilePlayer', () => {
     it('calls fadeOutAndPause on player when shouldPlay changes to false and fadeDuration is present', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        playerState={{shouldPlay: true}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps}
+                                        playerState={{shouldPlay: true}} />);
 
       wrapper.setProps({playerState: {shouldPlay: false, fadeDuration: 500}});
 
@@ -230,9 +215,7 @@ describe('createFilePlayer', () => {
     it('disposes the player when the component unmounts', () => {
       const {FilePlayer, mockPlayer} = setup();
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps} />);
 
       wrapper.unmount();
 
@@ -248,10 +231,8 @@ describe('createFilePlayer', () => {
         }
       });
 
-      mount(<FilePlayer file={{}}
-                        atmoDuringPlayback="pause"
-                        playerState={{}}
-                        playerActions={{}}/>);
+      mount(<FilePlayer {...requiredProps}
+                        atmoDuringPlayback="pause" />);
 
       expect(passedAtmoSettings).to.eql({'atmo_during_playback': 'pause'});
     });
@@ -265,10 +246,8 @@ describe('createFilePlayer', () => {
         }
       });
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        atmoDuringPlayback="pause"
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps}
+                                        atmoDuringPlayback="pause" />);
 
       wrapper.setProps({atmoDuringPlayback: 'play'});
 
@@ -285,10 +264,8 @@ describe('createFilePlayer', () => {
         }
       });
 
-      mount(<FilePlayer file={{}}
-                                        atmoDuringPlayback="pause"
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      mount(<FilePlayer {...requiredProps}
+                        atmoDuringPlayback="pause" />);
 
       expect(passedValue).to.eq(true);
     });
@@ -304,9 +281,7 @@ describe('createFilePlayer', () => {
       });
       const mediaContext = {};
 
-      mount(<FilePlayer file={{}}
-                        playerState={{}}
-                        playerActions={{}}/>,
+      mount(<FilePlayer {...requiredProps} />,
             {context: {mediaContext}});
 
       expect(passedMediaContext).to.eq(mediaContext);
@@ -322,10 +297,8 @@ describe('createFilePlayer', () => {
         activeFileId: 5
       };
 
-      mount(<FilePlayer file={{}}
-                        textTracks={textTracks}
-                        playerState={{}}
-                        playerActions={{}}/>);
+      mount(<FilePlayer {...requiredProps}
+                        textTracks={textTracks} />);
 
       expect(mockPlayer.textTracks()[0].mode).to.eq('showing');
       expect(mockPlayer.textTracks()[1].mode).to.eq('disabled');
@@ -340,10 +313,8 @@ describe('createFilePlayer', () => {
         ]
       };
 
-      const wrapper = mount(<FilePlayer file={{}}
-                                        textTracks={textTracks}
-                                        playerState={{}}
-                                        playerActions={{}}/>);
+      const wrapper = mount(<FilePlayer {...requiredProps}
+                                        textTracks={textTracks} />);
       wrapper.setProps({
         textTracks: {
           ...textTracks,
@@ -354,6 +325,55 @@ describe('createFilePlayer', () => {
       expect(mockPlayer.textTracks()[0].mode).to.eq('showing');
       expect(mockPlayer.textTracks()[1].mode).to.eq('disabled');
     });
+
+    it('does not reset text track modes if they are unchanged to allow changes in native player', () => {
+      const {FilePlayer, mockPlayer} = setup();
+      const textTracks = {
+        files: [
+          {id: 5, urls: {vtt: 'some.vtt'}, isReady: true},
+          {id: 6, urls: {vtt: 'other.vtt'}, isReady: true}
+        ],
+        activeFileId: 5
+      };
+
+      const wrapper = mount(<FilePlayer {...requiredProps}
+                                        textTracks={textTracks} />);
+
+      mockPlayer.textTracks()[1].mode = 'showing';
+      wrapper.setProps({
+        some: 'other'
+      });
+
+      expect(mockPlayer.textTracks()[1].mode).to.eq('showing');
+    });
+
+    it('dispatches action on pause to sync with text track changes made in native player', () => {
+      const {FilePlayer, mockPlayer} = setup();
+      const textTracks = {
+        files: [
+          {
+            id: 5,
+            srclang: 'en',
+            kind: 'captions',
+            urls: {vtt: 'some.vtt'},
+            isReady: true
+          }
+        ]
+      };
+      const updateTextTrackSettings = sinon.spy();
+
+      mount(<FilePlayer {...requiredProps}
+                        textTracks={textTracks}
+                        updateTextTrackSettings={updateTextTrackSettings} />);
+
+      mockPlayer.textTracks()[0].mode = 'showing';
+      mockPlayer.trigger('pause');
+
+      expect(updateTextTrackSettings).to.have.been.calledWith({
+        srclang: 'en',
+        kind: 'captions'
+      });
+    });
   });
 
   function createMockPlayer(element) {
@@ -361,8 +381,35 @@ describe('createFilePlayer', () => {
       currentTime: sinon.stub(),
       duration: sinon.stub(),
 
+      // Emulate VideoJS textTracks interface
       textTracks: function() {
-        return this.el ? this.el.querySelectorAll('track') : [];
+        return this.el ? [].slice.call(this.el.querySelectorAll('track')).map(track => {
+          const fakeTrack = {};
+
+          ['id', 'label', 'mode', 'kind', 'src'].forEach(property =>
+            Object.defineProperty(fakeTrack, property, {
+              get() {
+                return track.getAttribute(property);
+              },
+
+              set(value) {
+                track.setAttribute(property, value);
+              }
+            })
+          );
+
+          Object.defineProperty(fakeTrack, 'language', {
+            get() {
+              return track.getAttribute('srclang');
+            },
+
+            set(value) {
+              track.setAttribute('srclang', value);
+            }
+          });
+
+          return fakeTrack;
+        }) : [];
       },
 
       play: sinon.spy(),

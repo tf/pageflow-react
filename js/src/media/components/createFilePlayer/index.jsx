@@ -1,6 +1,7 @@
 import MediaTag from './MediaTag';
 import createPageflowPlayer from './createPageflowPlayer';
 import watchPlayer from './watchPlayer';
+import {updateTextTrackSettings} from 'media/actions';
 
 import {
   initPlayer as initPlayerFromPlayerState,
@@ -10,7 +11,8 @@ import {
 import {
   textTracksFromFiles,
   updateTextTrackModes,
-  updateTextTrackPosition
+  updateTextTrackPosition,
+  watchForTextTrackModeChanges
 } from './textTracks';
 
 import {textTracks} from 'media/selectors';
@@ -49,8 +51,10 @@ export default function({
 
         watchPlayer(this.player, this.props.playerActions);
 
-        updateTextTrackModes(this.player, this.props.textTracks.activeFileId);
+        updateTextTrackModes(this.player, null, this.props.textTracks.activeFileId);
         updateTextTrackPosition(this.player, this.props.textTrackPosition);
+
+        watchForTextTrackModeChanges(this.player, this.props.updateTextTrackSettings);
 
         this.prevFileId = this.props.file.id;
       };
@@ -76,7 +80,7 @@ export default function({
         updateTextTrackPosition(this.player, this.props.textTrackPosition);
       }
 
-      updateTextTrackModes(this.player, this.props.textTracks.activeFileId);
+      updateTextTrackModes(this.player, prevProps.textTracks.activeFileId, this.props.textTracks.activeFileId);
       this.updateAtmoSettings();
     }
 
@@ -127,7 +131,10 @@ export default function({
       }),
       quality: setting({property: 'videoQuality'}),
       textTrackPosition
-    })
+    }),
+    {
+      updateTextTrackSettings
+    }
   )(FilePlayer);
 
   result.WrappedComponent = FilePlayer;

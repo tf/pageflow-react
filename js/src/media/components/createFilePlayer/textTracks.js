@@ -1,4 +1,8 @@
-export function updateTextTrackModes(player, activeTextTrackFileId) {
+export function updateTextTrackModes(player, prevActiveTextTrackFileId, activeTextTrackFileId) {
+  if (prevActiveTextTrackFileId === activeTextTrackFileId) {
+    return;
+  }
+
   [].slice.call(player.textTracks()).forEach(textTrack => {
     if (textTrack.id == `text_track_file_${activeTextTrackFileId}`) {
       textTrack.mode = 'showing';
@@ -6,6 +10,19 @@ export function updateTextTrackModes(player, activeTextTrackFileId) {
     else {
       textTrack.mode = 'disabled';
     }
+  });
+}
+
+export function watchForTextTrackModeChanges(player, updateTextTrackSettings) {
+  player.on('pause', () => {
+    const showingTextTrack = [].slice.call(player.textTracks()).find(textTrack =>
+      textTrack.mode == 'showing'
+    );
+
+    updateTextTrackSettings(showingTextTrack ? {
+      srclang: showingTextTrack.language,
+      kind: showingTextTrack.kind
+    } : null);
   });
 }
 
@@ -38,7 +55,7 @@ export function textTracksFromFiles(textTrackFiles, textTracksEnabled) {
     .map(textTrackFile => ({
       id: `text_track_file_${textTrackFile.id}`,
       kind: textTrackFile.kind,
-      label: textTrackFile.label,
+      label: textTrackFile.displayLabel,
       srclang: textTrackFile.srclang,
       src: textTrackFile.urls.vtt
     }));
