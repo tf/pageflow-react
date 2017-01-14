@@ -91,6 +91,10 @@ function className(playerState) {
 }
 
 function textTracksMenuItems(textTracks, t) {
+  if (!textTracks.files.length) {
+    return [];
+  }
+
   const offItem = {
     value: 'off',
     label: t('pageflow.public.text_track_modes.none'),
