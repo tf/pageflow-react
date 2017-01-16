@@ -24,7 +24,7 @@ export function updatePlayer(player, playerState, nextPlayerState, playerActions
   }
 
   if (!playerState.shouldPlay && nextPlayerState.shouldPlay) {
-    if (!playsInline) {
+    if (!playsInline && !player.isAudio()) {
       player.requestNativePlayerOnPhone();
     }
 

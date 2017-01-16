@@ -380,6 +380,7 @@ describe('createFilePlayer', () => {
     return {
       currentTime: sinon.stub(),
       duration: sinon.stub(),
+      isAudio: sinon.stub(),
 
       // Emulate VideoJS textTracks interface
       textTracks: function() {
