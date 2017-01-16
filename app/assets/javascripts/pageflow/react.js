@@ -20868,6 +20868,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          hasPlayed: false,
 	          userHasBeenIdle: false
 	        });
+	      case _actions3.PAGE_WILL_DEACTIVATE:
+	        return _extends({}, state, {
+	          shouldPrebuffer: false
+	        });
 
 	      case _actions.PLAY:
 	        return _extends({}, state, {
