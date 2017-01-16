@@ -8191,33 +8191,33 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var components = _interopRequireWildcard(_components);
 
-	var _selectors = __webpack_require__(425);
+	var _selectors = __webpack_require__(426);
 
 	var selectors = _interopRequireWildcard(_selectors);
 
-	var _media = __webpack_require__(431);
+	var _media = __webpack_require__(432);
 
-	var _interactivePageBackground = __webpack_require__(469);
+	var _interactivePageBackground = __webpack_require__(471);
 
 	var _pages = __webpack_require__(310);
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
-	var _registerPageTypeWithDefaultBackground = __webpack_require__(476);
+	var _registerPageTypeWithDefaultBackground = __webpack_require__(478);
 
 	var _registerPageTypeWithDefaultBackground2 = _interopRequireDefault(_registerPageTypeWithDefaultBackground);
 
-	var _registerWidgetType = __webpack_require__(477);
+	var _registerWidgetType = __webpack_require__(479);
 
 	var _registerWidgetType2 = _interopRequireDefault(_registerWidgetType);
 
-	var _mapping = __webpack_require__(404);
+	var _mapping = __webpack_require__(405);
 
 	var _mapping2 = _interopRequireDefault(_mapping);
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(408);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -8231,17 +8231,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _ServerSidePage = __webpack_require__(478);
+	var _ServerSidePage = __webpack_require__(480);
 
 	var _ServerSidePage2 = _interopRequireDefault(_ServerSidePage);
 
-	var _builtInPageTypes = __webpack_require__(506);
+	var _builtInPageTypes = __webpack_require__(508);
 
-	var _pageflow = __webpack_require__(512);
+	var _pageflow = __webpack_require__(514);
 
 	var _pageflow2 = _interopRequireDefault(_pageflow);
 
-	var _boot = __webpack_require__(479);
+	var _boot = __webpack_require__(481);
 
 	var _boot2 = _interopRequireDefault(_boot);
 
@@ -8521,63 +8521,63 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _PageBackgroundImage2 = _interopRequireDefault(_PageBackgroundImage);
 
-	var _PageShadow = __webpack_require__(383);
+	var _PageShadow = __webpack_require__(384);
 
 	var _PageShadow2 = _interopRequireDefault(_PageShadow);
 
-	var _PageContent = __webpack_require__(384);
+	var _PageContent = __webpack_require__(385);
 
 	var _PageContent2 = _interopRequireDefault(_PageContent);
 
-	var _PageForeground = __webpack_require__(385);
+	var _PageForeground = __webpack_require__(386);
 
 	var _PageForeground2 = _interopRequireDefault(_PageForeground);
 
-	var _PageScroller = __webpack_require__(386);
+	var _PageScroller = __webpack_require__(387);
 
 	var _PageScroller2 = _interopRequireDefault(_PageScroller);
 
-	var _PageHeader = __webpack_require__(388);
+	var _PageHeader = __webpack_require__(389);
 
 	var _PageHeader2 = _interopRequireDefault(_PageHeader);
 
-	var _PageText = __webpack_require__(389);
+	var _PageText = __webpack_require__(390);
 
 	var _PageText2 = _interopRequireDefault(_PageText);
 
-	var _PageLink = __webpack_require__(390);
+	var _PageLink = __webpack_require__(391);
 
 	var _PageLink2 = _interopRequireDefault(_PageLink);
 
-	var _PageThumbnail = __webpack_require__(392);
+	var _PageThumbnail = __webpack_require__(393);
 
 	var _PageThumbnail2 = _interopRequireDefault(_PageThumbnail);
 
-	var _LazyLoadedPageThumbnail = __webpack_require__(397);
+	var _LazyLoadedPageThumbnail = __webpack_require__(398);
 
 	var _LazyLoadedPageThumbnail2 = _interopRequireDefault(_LazyLoadedPageThumbnail);
 
-	var _PlayerControls = __webpack_require__(398);
+	var _PlayerControls = __webpack_require__(399);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _CloseButton = __webpack_require__(423);
+	var _CloseButton = __webpack_require__(424);
 
 	var _CloseButton2 = _interopRequireDefault(_CloseButton);
 
-	var _MenuBar = __webpack_require__(419);
+	var _MenuBar = __webpack_require__(420);
 
 	var _MenuBar2 = _interopRequireDefault(_MenuBar);
 
-	var _Icon = __webpack_require__(403);
+	var _Icon = __webpack_require__(404);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
-	var _editorOnly = __webpack_require__(424);
+	var _editorOnly = __webpack_require__(425);
 
 	var _editorOnly2 = _interopRequireDefault(_editorOnly);
 
-	var _reactDraggable = __webpack_require__(417);
+	var _reactDraggable = __webpack_require__(418);
 
 	var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 
@@ -8830,6 +8830,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _LazyBackgroundImage2 = _interopRequireDefault(_LazyBackgroundImage);
 
+	var _utils = __webpack_require__(372);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -8850,9 +8852,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	 * @prop page
 	 *   Required. The page object to read configuration properties from.
 	 *
-	 * @prop imagePropertyBaseName
+	 * @prop propertyBaseName
 	 *   By default the configuration property `backgroundImage` is
 	 *   used. Use this prop to specify a different property name.
+	 *
+	 * @prop fileCollection
+	 *   Set to `"videoFiles"` if the `propertyBaseName` refers to a video
+	 *   you want to display the poster of.
 	 */
 	var PageBackgroundImage = function (_React$Component) {
 	  _inherits(PageBackgroundImage, _React$Component);
@@ -8867,9 +8873,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    key: 'render',
 	    value: function render() {
 	      var page = this.props.page;
-	      var property = this.props.imagePropertyBaseName;
+	      var property = _utils.camelize.concat(this.props.propertyNamePrefix, this.props.propertyBaseName);
 
-	      return _react2.default.createElement(_LazyBackgroundImage2.default, { imageFileId: page[property + 'Id'],
+	      return _react2.default.createElement(_LazyBackgroundImage2.default, { fileId: page[property + 'Id'],
+	        fileCollection: this.props.fileCollection,
 	        position: [page[property + 'X'], page[property + 'Y']],
 	        className: 'background background_image' });
 	    }
@@ -8883,11 +8890,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	PageBackgroundImage.propTypes = {
 	  page: _react2.default.PropTypes.object.isRequired,
-	  imagePropertyBaseName: _react2.default.PropTypes.string
+	  propertyBaseName: _react2.default.PropTypes.string,
+	  fileCollection: _react2.default.PropTypes.string
 	};
 
 	PageBackgroundImage.defaultProps = {
-	  imagePropertyBaseName: 'backgroundImage'
+	  propertyBaseName: 'backgroundImage'
 	};
 
 /***/ },
@@ -8951,7 +8959,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	 * @alias pageflow.react.components.BackgroundImage
 	 * @since 0.1
 	 *
-	 * @prop imageFileId
+	 * @prop fileId
 	 *   The id of the image file to display.
 	 *
 	 * @prop position
@@ -8985,7 +8993,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }, {
 	    key: 'imageCssClass',
 	    value: function imageCssClass() {
-	      return ['image', this.props.imageFileId || 'none'].join('_');
+	      return [this.props.fileCollection == 'imageFiles' ? 'image' : 'video_poster', this.props.fileId || 'none'].join('_');
 	    }
 	  }, {
 	    key: 'style',
@@ -9014,14 +9022,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 	BackgroundImage.propTypes = {
-	  imageFileId: _react2.default.PropTypes.number,
+	  fileId: _react2.default.PropTypes.number,
+	  fileCollection: _react2.default.PropTypes.oneOf(['imageFiles', 'videoFiles']),
 	  position: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.number),
 	  className: _react2.default.PropTypes.string,
 	  loaded: _react2.default.PropTypes.bool
 	};
 
 	BackgroundImage.defaultProps = {
-	  position: [50, 50]
+	  position: [50, 50],
+	  fileCollection: 'imageFiles'
 	};
 
 /***/ },
@@ -9047,11 +9057,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _createPageSaga2 = _interopRequireDefault(_createPageSaga);
 
-	var _createPageType = __webpack_require__(379);
+	var _createPageType = __webpack_require__(380);
 
 	var _createPageType2 = _interopRequireDefault(_createPageType);
 
-	var _mergePageTypes = __webpack_require__(382);
+	var _mergePageTypes = __webpack_require__(383);
 
 	var _mergePageTypes2 = _interopRequireDefault(_mergePageTypes);
 
@@ -10489,11 +10499,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _scheduleUnprepare = __webpack_require__(377);
+	var _scheduleUnprepare = __webpack_require__(378);
 
 	var _scheduleUnprepare2 = _interopRequireDefault(_scheduleUnprepare);
 
-	var _updating = __webpack_require__(378);
+	var _updating = __webpack_require__(379);
 
 	var _updating2 = _interopRequireDefault(_updating);
 
@@ -14124,11 +14134,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _watchBackboneCollection2 = _interopRequireDefault(_watchBackboneCollection);
 
-	var _loadFromSeed = __webpack_require__(375);
+	var _loadFromSeed = __webpack_require__(376);
 
 	var _loadFromSeed2 = _interopRequireDefault(_loadFromSeed);
 
-	var _backbone = __webpack_require__(376);
+	var _backbone = __webpack_require__(377);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
@@ -14176,12 +14186,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    }));
 	  });
 
-	  collection.on(changeEvents(), function (model) {
-	    dispatch((0, _actions.change)({
-	      collectionName: collectionName,
-	      attributes: modelToAttributes(model)
-	    }));
+	  collection.on('change', function (model) {
+	    if (watchedAttributeHasChanged(model)) {
+	      dispatch((0, _actions.change)({
+	        collectionName: collectionName,
+	        attributes: modelToAttributes(model)
+	      }));
+	    }
 	  });
+
+	  if (includeConfiguration) {
+	    collection.on('change:configuration', function (model) {
+	      dispatch((0, _actions.change)({
+	        collectionName: collectionName,
+	        attributes: modelToAttributes(model)
+	      }));
+	    });
+	  }
 
 	  collection.on('remove', function (model) {
 	    setTimeout(function () {
@@ -14192,24 +14213,18 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    }, 0);
 	  });
 
-	  function modelToAttributes(model) {
-	    return (0, _pickAttributes2.default)(attributes, model.attributes, includeConfiguration && model.configuration.attributes);
+	  var watchedAttributes = attributes.map(function (attribute) {
+	    return (typeof attribute === 'undefined' ? 'undefined' : _typeof(attribute)) == 'object' ? mappedAttributeSource(attribute) : attribute;
+	  });
+
+	  function watchedAttributeHasChanged(model) {
+	    return watchedAttributes.some(function (attribute) {
+	      return model.hasChanged(attribute);
+	    });
 	  }
 
-	  function changeEvents() {
-	    var watchedAttributes = attributes.map(function (attribute) {
-	      return (typeof attribute === 'undefined' ? 'undefined' : _typeof(attribute)) == 'object' ? mappedAttributeSource(attribute) : attribute;
-	    });
-
-	    var attributeChangeEvents = watchedAttributes.map(function (attribute) {
-	      return 'change:' + attribute;
-	    });
-
-	    if (includeConfiguration) {
-	      attributeChangeEvents.push('change:configuration');
-	    }
-
-	    return attributeChangeEvents.join(' ');
+	  function modelToAttributes(model) {
+	    return (0, _pickAttributes2.default)(attributes, model.attributes, includeConfiguration && model.configuration.attributes);
 	  }
 
 	  function mappedAttributeSource(attribute) {
@@ -14270,7 +14285,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.combine = exports.camelize = undefined;
+	exports.has = exports.combine = exports.camelize = undefined;
 
 	var _camelize = __webpack_require__(373);
 
@@ -14280,10 +14295,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _combine2 = _interopRequireDefault(_combine);
 
+	var _has = __webpack_require__(375);
+
+	var _has2 = _interopRequireDefault(_has);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.camelize = _camelize2.default;
 	exports.combine = _combine2.default;
+	exports.has = _has2.default;
 
 /***/ },
 /* 373 */
@@ -14323,6 +14343,18 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
+	camelize.concat = function () {
+	  for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	    args[_key] = arguments[_key];
+	  }
+
+	  return args.filter(function (part) {
+	    return part;
+	  }).reduce(function (result, part) {
+	    return result + part[0].toUpperCase() + part.slice(1);
+	  });
+	};
+
 	exports.default = camelize;
 
 /***/ },
@@ -14355,6 +14387,22 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 /***/ },
 /* 375 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = has;
+	function has(featureName) {
+	  var browser = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : pageflow.browser;
+
+	  return browser && browser.has(featureName);
+	}
+
+/***/ },
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14390,13 +14438,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 376 */
+/* 377 */
 /***/ function(module, exports) {
 
 	module.exports = Backbone;
 
 /***/ },
-/* 377 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14456,7 +14504,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 378 */
+/* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14474,7 +14522,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _backbone = __webpack_require__(376);
+	var _backbone = __webpack_require__(377);
 
 	var _backbone2 = _interopRequireDefault(_backbone);
 
@@ -14585,7 +14633,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 379 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14662,7 +14710,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _actions = __webpack_require__(300);
 
-	var _MediaContextProvider = __webpack_require__(380);
+	var _MediaContextProvider = __webpack_require__(381);
 
 	var _MediaContextProvider2 = _interopRequireDefault(_MediaContextProvider);
 
@@ -14670,7 +14718,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDom = __webpack_require__(381);
+	var _reactDom = __webpack_require__(382);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -14685,7 +14733,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 380 */
+/* 381 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14742,13 +14790,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 381 */
+/* 382 */
 /***/ function(module, exports) {
 
 	module.exports = ReactDOM;
 
 /***/ },
-/* 382 */
+/* 383 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -14780,7 +14828,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 383 */
+/* 384 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14857,7 +14905,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	;
 
 /***/ },
-/* 384 */
+/* 385 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14878,18 +14926,18 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _PageForeground = __webpack_require__(385);
+	var _PageForeground = __webpack_require__(386);
 
 	var _PageForeground2 = _interopRequireDefault(_PageForeground);
 
-	var _PageScroller = __webpack_require__(386);
+	var _PageScroller = __webpack_require__(387);
 
 	var _PageScroller2 = _interopRequireDefault(_PageScroller);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 385 */
+/* 386 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -14913,7 +14961,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 386 */
+/* 387 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -14928,7 +14976,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Scroller = __webpack_require__(387);
+	var _Scroller = __webpack_require__(388);
 
 	var _Scroller2 = _interopRequireDefault(_Scroller);
 
@@ -15027,7 +15075,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageScroller);
 
 /***/ },
-/* 387 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15040,7 +15088,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react = __webpack_require__(304);
 
-	var _reactDom = __webpack_require__(381);
+	var _reactDom = __webpack_require__(382);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -15124,7 +15172,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = Scroller;
 
 /***/ },
-/* 388 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15204,7 +15252,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	;
 
 /***/ },
-/* 389 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -15267,7 +15315,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = PageText;
 
 /***/ },
-/* 390 */
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15286,7 +15334,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(391);
+	var _selectors = __webpack_require__(392);
 
 	var _selectors2 = __webpack_require__(337);
 
@@ -15352,8 +15400,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageLink);
 
 /***/ },
-/* 391 */
-/***/ function(module, exports) {
+/* 392 */
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -15362,6 +15410,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.prop = prop;
 	exports.map = map;
+	exports.has = has;
+
+	var _has = __webpack_require__(375);
+
+	var _has2 = _interopRequireDefault(_has);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function prop(path) {
 	  return function (state, props) {
 	    var names = path.split('.');
@@ -15383,8 +15439,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  };
 	}
 
+	function has(featureName) {
+	  return function (_props, _state, browser) {
+	    return (0, _has2.default)(featureName, browser);
+	  };
+	}
+
 /***/ },
-/* 392 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15400,9 +15462,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _pages = __webpack_require__(310);
 
-	var _selectors = __webpack_require__(393);
+	var _selectors = __webpack_require__(394);
 
-	var _selectors2 = __webpack_require__(394);
+	var _selectors2 = __webpack_require__(395);
 
 	var _utils = __webpack_require__(372);
 
@@ -15487,7 +15549,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageThumbnail);
 
 /***/ },
-/* 393 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15510,7 +15572,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 394 */
+/* 395 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15524,11 +15586,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _collections = __webpack_require__(338);
 
-	var _expandUrls = __webpack_require__(395);
+	var _expandUrls = __webpack_require__(396);
 
 	var _expandUrls2 = _interopRequireDefault(_expandUrls);
 
-	var _addTypeInfo = __webpack_require__(396);
+	var _addTypeInfo = __webpack_require__(397);
 
 	var _addTypeInfo2 = _interopRequireDefault(_addTypeInfo);
 
@@ -15580,7 +15642,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 395 */
+/* 396 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -15642,7 +15704,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 396 */
+/* 397 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15669,7 +15731,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 397 */
+/* 398 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15678,7 +15740,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _PageThumbnail = __webpack_require__(392);
+	var _PageThumbnail = __webpack_require__(393);
 
 	var _PageThumbnail2 = _interopRequireDefault(_PageThumbnail);
 
@@ -15696,7 +15758,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(_PageThumbnail2.default);
 
 /***/ },
-/* 398 */
+/* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15709,39 +15771,39 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _InfoBox = __webpack_require__(399);
+	var _InfoBox = __webpack_require__(400);
 
 	var _InfoBox2 = _interopRequireDefault(_InfoBox);
 
-	var _Container = __webpack_require__(400);
+	var _Container = __webpack_require__(401);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
-	var _LoadingSpinner = __webpack_require__(401);
+	var _LoadingSpinner = __webpack_require__(402);
 
 	var _LoadingSpinner2 = _interopRequireDefault(_LoadingSpinner);
 
-	var _PlayButton = __webpack_require__(402);
+	var _PlayButton = __webpack_require__(403);
 
 	var _PlayButton2 = _interopRequireDefault(_PlayButton);
 
-	var _CurrentTime = __webpack_require__(412);
+	var _CurrentTime = __webpack_require__(413);
 
 	var _CurrentTime2 = _interopRequireDefault(_CurrentTime);
 
-	var _TimeDivider = __webpack_require__(414);
+	var _TimeDivider = __webpack_require__(415);
 
 	var _TimeDivider2 = _interopRequireDefault(_TimeDivider);
 
-	var _Duration = __webpack_require__(415);
+	var _Duration = __webpack_require__(416);
 
 	var _Duration2 = _interopRequireDefault(_Duration);
 
-	var _ProgressSlider = __webpack_require__(416);
+	var _ProgressSlider = __webpack_require__(417);
 
 	var _ProgressSlider2 = _interopRequireDefault(_ProgressSlider);
 
-	var _MenuBar = __webpack_require__(419);
+	var _MenuBar = __webpack_require__(420);
 
 	var _MenuBar2 = _interopRequireDefault(_MenuBar);
 
@@ -15825,7 +15887,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = PlayerControls;
 
 /***/ },
-/* 399 */
+/* 400 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15872,7 +15934,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 400 */
+/* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15902,7 +15964,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 401 */
+/* 402 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -15916,7 +15978,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 402 */
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15929,11 +15991,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Icon = __webpack_require__(403);
+	var _Icon = __webpack_require__(404);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
-	var _pageSkipLinkTarget = __webpack_require__(411);
+	var _pageSkipLinkTarget = __webpack_require__(412);
 
 	var _pageSkipLinkTarget2 = _interopRequireDefault(_pageSkipLinkTarget);
 
@@ -15978,7 +16040,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 403 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -15992,7 +16054,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _mapping = __webpack_require__(404);
+	var _mapping = __webpack_require__(405);
 
 	var _mapping2 = _interopRequireDefault(_mapping);
 
@@ -16023,7 +16085,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 404 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16032,7 +16094,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _icons = __webpack_require__(405);
+	var _icons = __webpack_require__(406);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -16063,7 +16125,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 405 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16072,19 +16134,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _Checkmark = __webpack_require__(406);
+	var _Checkmark = __webpack_require__(407);
 
 	var _Checkmark2 = _interopRequireDefault(_Checkmark);
 
-	var _Disk = __webpack_require__(408);
+	var _Disk = __webpack_require__(409);
 
 	var _Disk2 = _interopRequireDefault(_Disk);
 
-	var _Gear = __webpack_require__(409);
+	var _Gear = __webpack_require__(410);
 
 	var _Gear2 = _interopRequireDefault(_Gear);
 
-	var _Subtitles = __webpack_require__(410);
+	var _Subtitles = __webpack_require__(411);
 
 	var _Subtitles2 = _interopRequireDefault(_Subtitles);
 
@@ -16098,7 +16160,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 406 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16117,14 +16179,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(408);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 407 */
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16201,7 +16263,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = Container;
 
 /***/ },
-/* 408 */
+/* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16220,14 +16282,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(408);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 409 */
+/* 410 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16252,14 +16314,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  ;
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(408);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 410 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16279,14 +16341,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(407);
+	var _Container = __webpack_require__(408);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 411 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16309,10 +16371,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors2 = __webpack_require__(391);
+	var _selectors2 = __webpack_require__(392);
 
 /***/ },
-/* 412 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16325,14 +16387,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(_TimeDisplay2.default, { className: "vjs-current-time", value: props.currentTime });
 	};
 
-	var _TimeDisplay = __webpack_require__(413);
+	var _TimeDisplay = __webpack_require__(414);
 
 	var _TimeDisplay2 = _interopRequireDefault(_TimeDisplay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 413 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16377,7 +16439,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 414 */
+/* 415 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16395,7 +16457,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 415 */
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16408,14 +16470,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(_TimeDisplay2.default, { className: "vjs-duration", value: props.duration });
 	};
 
-	var _TimeDisplay = __webpack_require__(413);
+	var _TimeDisplay = __webpack_require__(414);
 
 	var _TimeDisplay2 = _interopRequireDefault(_TimeDisplay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 416 */
+/* 417 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16430,9 +16492,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDraggable = __webpack_require__(417);
+	var _reactDraggable = __webpack_require__(418);
 
-	var _keyCodes = __webpack_require__(418);
+	var _keyCodes = __webpack_require__(419);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16511,7 +16573,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'vjs-progress-holder', ref: this.bindProgressHolder },
-	            _react2.default.createElement('div', { className: 'vjs-load-progress', style: { width: toPercent(props.loadProgress) } }),
+	            _react2.default.createElement('div', { className: 'vjs-load-progress', style: { width: toPercent(this.loadProgress()) } }),
 	            _react2.default.createElement('div', { className: 'vjs-play-progress', style: { width: toPercent(this.playProgress()) } }),
 	            _react2.default.createElement('div', { className: 'vjs-seek-handle', ref: this.bindHandle, style: { left: this.handlePosition() } })
 	          )
@@ -16528,6 +16590,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      }
 	    }
 	  }, {
+	    key: 'loadProgress',
+	    value: function loadProgress() {
+	      return this.props.duration > 0 ? this.props.bufferedEnd / this.props.duration : 0;
+	    }
+	  }, {
 	    key: 'playProgress',
 	    value: function playProgress() {
 	      var currentTime = this.props.isSeeking || this.state.isScrubbing ? this.state.scrubbingAt : this.props.currentTime;
@@ -16542,7 +16609,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 
 	ProgressSlider.defaultProps = {
-	  currentTime: 0
+	  currentTime: 0,
+	  bufferedEnd: 0
 	};
 
 	function toPercent(value) {
@@ -16550,12 +16618,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 417 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
 		if(true)
-			module.exports = factory(__webpack_require__(304), __webpack_require__(381));
+			module.exports = factory(__webpack_require__(304), __webpack_require__(382));
 		else if(typeof define === 'function' && define.amd)
 			define(["react", "react-dom"], factory);
 		else if(typeof exports === 'object')
@@ -18102,7 +18170,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	//# sourceMappingURL=react-draggable.js.map
 
 /***/ },
-/* 418 */
+/* 419 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18117,7 +18185,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var TAB = exports.TAB = 9;
 
 /***/ },
-/* 419 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18131,15 +18199,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _QualityMenu = __webpack_require__(420);
+	var _QualityMenu = __webpack_require__(421);
 
 	var _QualityMenu2 = _interopRequireDefault(_QualityMenu);
 
-	var _TextTracksMenu = __webpack_require__(422);
+	var _TextTracksMenu = __webpack_require__(423);
 
 	var _TextTracksMenu2 = _interopRequireDefault(_TextTracksMenu);
 
-	var _MenuBarButton = __webpack_require__(421);
+	var _MenuBarButton = __webpack_require__(422);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18207,7 +18275,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 420 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18217,7 +18285,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = QualityMenu;
 
-	var _MenuBarButton = __webpack_require__(421);
+	var _MenuBarButton = __webpack_require__(422);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18246,7 +18314,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 421 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18261,7 +18329,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Icon = __webpack_require__(403);
+	var _Icon = __webpack_require__(404);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -18454,7 +18522,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 422 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18464,7 +18532,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = TextTracksMenu;
 
-	var _MenuBarButton = __webpack_require__(421);
+	var _MenuBarButton = __webpack_require__(422);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18493,7 +18561,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 423 */
+/* 424 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18518,7 +18586,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 424 */
+/* 425 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18538,7 +18606,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 425 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18550,15 +18618,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(426);
+	var _selectors2 = __webpack_require__(427);
 
-	var _selectors3 = __webpack_require__(429);
+	var _selectors3 = __webpack_require__(430);
 
-	var _selectors4 = __webpack_require__(430);
+	var _selectors4 = __webpack_require__(431);
 
-	var _selectors5 = __webpack_require__(394);
+	var _selectors5 = __webpack_require__(395);
 
-	var _selectors6 = __webpack_require__(391);
+	var _selectors6 = __webpack_require__(392);
 
 	exports.pageAttribute = _selectors.pageAttribute;
 	exports.pageAttributes = _selectors.pageAttributes;
@@ -18572,7 +18640,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.prop = _selectors6.prop;
 
 /***/ },
-/* 426 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18585,9 +18653,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(427);
+	var _selectors2 = __webpack_require__(428);
 
-	var _selectors3 = __webpack_require__(428);
+	var _selectors3 = __webpack_require__(429);
 
 	function currentParentChapterAttributes() {
 	  return function (state, props) {
@@ -18622,7 +18690,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 427 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18649,7 +18717,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var chapterAttributes = exports.chapterAttributes = selector;
 
 /***/ },
-/* 428 */
+/* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18674,7 +18742,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 429 */
+/* 430 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18693,7 +18761,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 430 */
+/* 431 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18711,7 +18779,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 431 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18719,46 +18787,50 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.PageBackground = exports.PageBackgroundAsset = exports.PageBackgroundVideo = exports.PagePrintImage = exports.PageVideoPlayer = exports.Page = exports.pageBackgroundReduxModule = undefined;
+	exports.PageBackground = exports.PageBackgroundAsset = exports.PageBackgroundVideo = exports.PagePrintImage = exports.MobilePageVideoPoster = exports.PageVideoPlayer = exports.Page = exports.pageBackgroundReduxModule = undefined;
 	exports.reduxModule = reduxModule;
 
-	var _Page = __webpack_require__(432);
+	var _Page = __webpack_require__(433);
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _PageVideoPlayer = __webpack_require__(439);
+	var _PageVideoPlayer = __webpack_require__(440);
 
 	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
 
-	var _PageBackgroundVideo = __webpack_require__(453);
+	var _MobilePageVideoPoster = __webpack_require__(454);
+
+	var _MobilePageVideoPoster2 = _interopRequireDefault(_MobilePageVideoPoster);
+
+	var _PageBackgroundVideo = __webpack_require__(455);
 
 	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
 
-	var _PageBackgroundAsset = __webpack_require__(454);
+	var _PageBackgroundAsset = __webpack_require__(456);
 
 	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
 
-	var _PageBackground = __webpack_require__(455);
+	var _PageBackground = __webpack_require__(457);
 
 	var _PageBackground2 = _interopRequireDefault(_PageBackground);
 
-	var _PagePrintImage = __webpack_require__(456);
+	var _PagePrintImage = __webpack_require__(458);
 
 	var _PagePrintImage2 = _interopRequireDefault(_PagePrintImage);
 
-	var _createReducer = __webpack_require__(457);
+	var _createReducer = __webpack_require__(459);
 
 	var _createReducer2 = _interopRequireDefault(_createReducer);
 
-	var _sagas = __webpack_require__(459);
+	var _sagas = __webpack_require__(461);
 
 	var _sagas2 = _interopRequireDefault(_sagas);
 
-	var _fadeInWhenPageWillActivate = __webpack_require__(468);
+	var _fadeInWhenPageWillActivate = __webpack_require__(470);
 
 	var _fadeInWhenPageWillActivate2 = _interopRequireDefault(_fadeInWhenPageWillActivate);
 
-	var _fadeOutWhenPageWillDeactivate = __webpack_require__(465);
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(467);
 
 	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
 
@@ -18812,13 +18884,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.Page = _Page2.default;
 	exports.PageVideoPlayer = _PageVideoPlayer2.default;
+	exports.MobilePageVideoPoster = _MobilePageVideoPoster2.default;
 	exports.PagePrintImage = _PagePrintImage2.default;
 	exports.PageBackgroundVideo = _PageBackgroundVideo2.default;
 	exports.PageBackgroundAsset = _PageBackgroundAsset2.default;
 	exports.PageBackground = _PageBackground2.default;
 
 /***/ },
-/* 432 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18830,25 +18903,25 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _media = __webpack_require__(431);
+	var _media = __webpack_require__(432);
 
-	var _PlayerControls = __webpack_require__(433);
+	var _PlayerControls = __webpack_require__(434);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _NonJsLinks = __webpack_require__(437);
+	var _NonJsLinks = __webpack_require__(438);
 
 	var _NonJsLinks2 = _interopRequireDefault(_NonJsLinks);
 
-	var _playerStateClassNames = __webpack_require__(434);
+	var _playerStateClassNames = __webpack_require__(435);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(391);
+	var _selectors = __webpack_require__(392);
 
-	var _selectors2 = __webpack_require__(435);
+	var _selectors2 = __webpack_require__(436);
 
 	var _classnames = __webpack_require__(305);
 
@@ -18925,7 +18998,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 433 */
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18938,21 +19011,21 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.MediaPlayerControls = MediaPlayerControls;
 
-	var _playerStateClassNames = __webpack_require__(434);
+	var _playerStateClassNames = __webpack_require__(435);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
-	var _PlayerControls = __webpack_require__(398);
+	var _PlayerControls = __webpack_require__(399);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
-	var _selectors2 = __webpack_require__(429);
+	var _selectors2 = __webpack_require__(430);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
 	var _react = __webpack_require__(304);
 
@@ -18988,6 +19061,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    isLoading: playerState.isLoading,
 	    isPlaying: playerState.shouldPlay,
 	    currentTime: playerState.currentTime,
+	    bufferedEnd: playerState.bufferedEnd,
 	    duration: playerState.duration,
 	    isScrubbing: playerState.isScrubbing,
 	    isSeeking: playerState.isSeeking,
@@ -19037,6 +19111,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 	function textTracksMenuItems(textTracks, t) {
+	  if (!textTracks.files.length) {
+	    return [];
+	  }
+
 	  var offItem = {
 	    value: 'off',
 	    label: t('pageflow.public.text_track_modes.none'),
@@ -19083,7 +19161,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 434 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19107,7 +19185,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 435 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19123,15 +19201,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.textTracks = textTracks;
 	exports.videoQualitySetting = videoQualitySetting;
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
-	var _selectors = __webpack_require__(394);
+	var _selectors = __webpack_require__(395);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(430);
+	var _selectors3 = __webpack_require__(431);
 
-	var _selectors4 = __webpack_require__(429);
+	var _selectors4 = __webpack_require__(430);
 
 	var _redux = __webpack_require__(313);
 
@@ -19215,7 +19293,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 436 */
+/* 437 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19223,7 +19301,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.CONTROLS_HIDDEN = exports.FOCUS_LEFT_CONTROLS = exports.FOCUS_ENTERED_CONTROLS = exports.CONTROLS_LEFT = exports.CONTROLS_ENTERED = exports.USER_IDLE = exports.USER_INTERACTION = exports.HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT = exports.WAITING = exports.SEEKED = exports.SEEKING = exports.ENDED = exports.TIME_UPDATE = exports.PAUSED = exports.PLAYING = exports.META_DATA_LOADED = exports.BUFFER_UNDERRUN = exports.ABORT_PREBUFFERING = exports.PREBUFFERED = exports.PREBUFFER = exports.SCRUBBING_ENDED = exports.SCRUBBING_STARTED = exports.SEEK_TO = exports.FADE_OUT_AND_PAUSE = exports.PAUSE = exports.PLAY_AND_FADE_IN = exports.PLAY = exports.TOGGLE_PLAYING = undefined;
+	exports.CONTROLS_HIDDEN = exports.FOCUS_LEFT_CONTROLS = exports.FOCUS_ENTERED_CONTROLS = exports.CONTROLS_LEFT = exports.CONTROLS_ENTERED = exports.USER_IDLE = exports.USER_INTERACTION = exports.HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT = exports.WAITING = exports.SEEKED = exports.SEEKING = exports.ENDED = exports.TIME_UPDATE = exports.PAUSED = exports.PLAYING = exports.PROGRESS = exports.META_DATA_LOADED = exports.BUFFER_UNDERRUN = exports.ABORT_PREBUFFERING = exports.PREBUFFERED = exports.PREBUFFER = exports.SCRUBBING_ENDED = exports.SCRUBBING_STARTED = exports.SEEK_TO = exports.FADE_OUT_AND_PAUSE = exports.PAUSE = exports.PLAY_AND_FADE_IN = exports.PLAY = exports.TOGGLE_PLAYING = undefined;
 	exports.actionCreators = actionCreators;
 	exports.updateTextTrackSettings = updateTextTrackSettings;
 	exports.updateVideoQualitySetting = updateVideoQualitySetting;
@@ -19247,6 +19325,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var BUFFER_UNDERRUN = exports.BUFFER_UNDERRUN = 'MEDIA_BUFFER_UNDERRUN';
 
 	var META_DATA_LOADED = exports.META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
+	var PROGRESS = exports.PROGRESS = 'MEDIA_PROGRESS';
 	var PLAYING = exports.PLAYING = 'MEDIA_PLAYING';
 	var PAUSED = exports.PAUSED = 'MEDIA_PAUSED';
 	var TIME_UPDATE = exports.TIME_UPDATE = 'MEDIA_TIME_UPDATE';
@@ -19333,10 +19412,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      });
 	    },
 	    metaDataLoaded: function metaDataLoaded(_ref5) {
-	      var duration = _ref5.duration;
+	      var currentTime = _ref5.currentTime,
+	          duration = _ref5.duration;
 
 	      return pageAction(META_DATA_LOADED, {
+	        currentTime: currentTime,
 	        duration: duration
+	      });
+	    },
+	    progress: function progress(_ref6) {
+	      var bufferedEnd = _ref6.bufferedEnd;
+
+	      return pageAction(PROGRESS, {
+	        bufferedEnd: bufferedEnd
 	      });
 	    },
 	    ended: function ended() {
@@ -19409,7 +19497,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 437 */
+/* 438 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19421,9 +19509,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(429);
+	var _selectors = __webpack_require__(430);
 
-	var _selectors2 = __webpack_require__(438);
+	var _selectors2 = __webpack_require__(439);
 
 	var _reactRedux = __webpack_require__(359);
 
@@ -19465,7 +19553,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(NonJsLinks);
 
 /***/ },
-/* 438 */
+/* 439 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19481,7 +19569,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 439 */
+/* 440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19489,19 +19577,20 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.VideoPlayer = undefined;
 	exports.default = PageVideoPlayer;
 
-	var _VideoFilePlayer = __webpack_require__(440);
+	var _VideoFilePlayer = __webpack_require__(441);
 
 	var _VideoFilePlayer2 = _interopRequireDefault(_VideoFilePlayer);
 
-	var _createPageFilePlayer = __webpack_require__(452);
+	var _createPageFilePlayer = __webpack_require__(453);
 
 	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
 
-	var _selectors = __webpack_require__(394);
+	var _selectors = __webpack_require__(395);
 
-	var _selectors2 = __webpack_require__(425);
+	var _selectors2 = __webpack_require__(426);
 
 	var _utils = __webpack_require__(372);
 
@@ -19509,33 +19598,37 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var VideoPlayer = (0, _reactRedux.connect)((0, _utils.combine)({
+	var VideoPlayer = exports.VideoPlayer = (0, _reactRedux.connect)((0, _utils.combine)({
 	  file: (0, _selectors.file)('videoFiles', { id: (0, _selectors2.prop)('videoFileId') }),
 	  posterImageFile: (0, _selectors.file)('imageFiles', { id: (0, _selectors2.prop)('posterImageFileId') })
 	}))((0, _createPageFilePlayer2.default)(_VideoFilePlayer2.default));
 
 	function PageVideoPlayer(props) {
 	  var page = props.page;
-	  var property = props.videoPropertyBaseName;
 
-	  return React.createElement(VideoPlayer, { videoFileId: page[property + 'Id'],
-	    posterImageFileId: page[props.posterImagePropertyBaseName + 'Id'],
+	  var videoProperty = _utils.camelize.concat(props.propertyNamePrefix, props.videoPropertyBaseName);
+	  var posterProperty = _utils.camelize.concat(props.propertyNamePrefix, props.posterImagePropertyBaseName);
+
+	  return React.createElement(VideoPlayer, { videoFileId: page[videoProperty + 'Id'],
+	    posterImageFileId: page[posterProperty + 'Id'],
 	    playerState: props.playerState,
 	    playerActions: props.playerActions,
 	    fit: props.fit,
-	    position: [page[property + 'X'], page[property + 'Y']],
+	    position: [page[videoProperty + 'X'], page[videoProperty + 'Y']],
 	    textTracksEnabled: props.textTracksEnabled,
-	    loop: props.loop });
+	    loop: props.loop,
+	    muted: props.muted,
+	    playsInline: props.playsInline });
 	}
 
 	PageVideoPlayer.defaultProps = {
 	  videoPropertyBaseName: 'videoFile',
-	  posterImagePropertyBaseName: 'posterImageId',
+	  posterImagePropertyBaseName: 'posterImage',
 	  fit: 'smart_contain'
 	};
 
 /***/ },
-/* 440 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19555,21 +19648,25 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      atmoDuringPlayback: props.atmoDuringPlayback,
 	      defaultTextTrackFileId: props.defaultTextTrackFileId,
 	      textTracksEnabled: props.textTracksEnabled,
-	      loop: props.loop })
+	      loop: props.loop,
+	      muted: props.muted,
+	      playsInline: props.playsInline })
 	  );
 	};
 
-	var _createFilePlayer = __webpack_require__(441);
+	var _createFilePlayer = __webpack_require__(442);
 
 	var _createFilePlayer2 = _interopRequireDefault(_createFilePlayer);
 
-	var _Positioner = __webpack_require__(448);
+	var _Positioner = __webpack_require__(449);
 
 	var _Positioner2 = _interopRequireDefault(_Positioner);
 
-	var _sources = __webpack_require__(451);
+	var _sources = __webpack_require__(452);
 
 	var _sources2 = _interopRequireDefault(_sources);
+
+	var _utils = __webpack_require__(372);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19577,12 +19674,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  tagName: 'video',
 	  sources: _sources2.default,
 	  poster: function poster(videoFile, posterImageFile) {
-	    return posterImageFile ? posterImageFile.urls.large : videoFile.urls['poster_large'];
+	    var style = (0, _utils.has)('mobile platform') ? 'medium' : 'large';
+	    return posterImageFile ? posterImageFile.urls[style] : videoFile.urls['poster_' + style];
 	  }
 	});
 
 /***/ },
-/* 441 */
+/* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19620,17 +19718,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          mediaContext: _this.context.mediaContext
 	        });
 
-	        if (_this.props.playerState.currentTime > 0) {
-	          _this.player.currentTime(_this.props.playerState.currentTime);
-	        }
+	        (0, _handlePlayerState.initPlayer)(_this.player, function () {
+	          return _this.props.playerState;
+	        }, _this.prevFileId, _this.props.file.id);
 
-	        if (_this.props.playerState.isPlaying) {
-	          _this.player.play();
-	        }
+	        (0, _textTracks.initTextTracks)(_this.player, _this.props.updateTextTrackSettings, function () {
+	          return _this.props.textTracks.activeFileId;
+	        }, function () {
+	          return _this.props.textTrackPosition;
+	        });
 
 	        (0, _watchPlayer2.default)(_this.player, _this.props.playerActions);
-	        (0, _textTracks.updateTextTrackModes)(_this.player, _this.props.textTracks.activeFileId);
-	        (0, _textTracks.updateTextTrackPosition)(_this.player, _this.props.textTrackPosition);
+
+	        _this.prevFileId = _this.props.file.id;
 	      };
 
 	      _this.disposeMediaTag = function () {
@@ -19647,13 +19747,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          return;
 	        }
 
-	        (0, _handlePlayStatePropChanges2.default)(this.player, prevProps.playerState, this.props.playerState, this.props.playerActions);
+	        (0, _handlePlayerState.updatePlayer)(this.player, prevProps.playerState, this.props.playerState, this.props.playerActions, this.props.playsInline);
 
-	        if (prevProps.textTrackPosition !== this.props.textTrackPosition) {
-	          (0, _textTracks.updateTextTrackPosition)(this.player, this.props.textTrackPosition);
-	        }
+	        (0, _textTracks.updateTextTracks)(this.player, prevProps.textTracks.activeFileId, this.props.textTracks.activeFileId, this.props.textTrackPosition);
 
-	        (0, _textTracks.updateTextTrackModes)(this.player, this.props.textTracks.activeFileId);
 	        this.updateAtmoSettings();
 	      }
 	    }, {
@@ -19671,6 +19768,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          tracks: (0, _textTracks.textTracksFromFiles)(this.props.textTracks.files, this.props.textTracksEnabled),
 	          poster: poster(this.props.file, this.props.posterImageFile),
 	          loop: this.props.loop,
+	          muted: this.props.muted,
+	          playsInline: this.props.playsInline,
 	          alt: this.props.file.alt,
 
 	          onSetup: this.setupMediaTag,
@@ -19703,38 +19802,40 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    }),
 	    quality: (0, _selectors2.setting)({ property: 'videoQuality' }),
 	    textTrackPosition: textTrackPosition
-	  }))(FilePlayer);
+	  }), {
+	    updateTextTrackSettings: _actions.updateTextTrackSettings
+	  })(FilePlayer);
 
 	  result.WrappedComponent = FilePlayer;
 
 	  return result;
 	};
 
-	var _MediaTag = __webpack_require__(442);
+	var _MediaTag = __webpack_require__(443);
 
 	var _MediaTag2 = _interopRequireDefault(_MediaTag);
 
-	var _createPageflowPlayer = __webpack_require__(443);
+	var _createPageflowPlayer = __webpack_require__(444);
 
 	var _createPageflowPlayer2 = _interopRequireDefault(_createPageflowPlayer);
 
-	var _watchPlayer = __webpack_require__(444);
+	var _watchPlayer = __webpack_require__(445);
 
 	var _watchPlayer2 = _interopRequireDefault(_watchPlayer);
 
-	var _handlePlayStatePropChanges = __webpack_require__(445);
+	var _actions = __webpack_require__(437);
 
-	var _handlePlayStatePropChanges2 = _interopRequireDefault(_handlePlayStatePropChanges);
+	var _handlePlayerState = __webpack_require__(446);
 
-	var _textTracks = __webpack_require__(446);
+	var _textTracks = __webpack_require__(447);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
-	var _selectors2 = __webpack_require__(430);
+	var _selectors2 = __webpack_require__(431);
 
-	var _selectors3 = __webpack_require__(447);
+	var _selectors3 = __webpack_require__(448);
 
-	var _selectors4 = __webpack_require__(425);
+	var _selectors4 = __webpack_require__(426);
 
 	var _react = __webpack_require__(304);
 
@@ -19757,15 +19858,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function textTrackPosition(state, _ref2) {
 	  var playerState = _ref2.playerState;
 
-	  if (classicPlayerControlsPresent(state) && !playerState.controlsHidden) {
-	    return 'top';
+	  if (!playerState.controlsHidden) {
+	    return classicPlayerControlsPresent(state) ? 'top' : 'auto.translated';
 	  }
 
 	  return 'auto';
 	}
 
 /***/ },
-/* 442 */
+/* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19828,7 +19929,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }, {
 	    key: 'shouldComponentUpdate',
 	    value: function shouldComponentUpdate(nextProps) {
-	      return nextProps.tagName !== this.props.tagName || nextProps.poster !== this.props.poster || nextProps.loop !== this.props.loop || !deepEqual(nextProps.sources, this.props.sources) || !deepEqual(nextProps.tracks, this.props.tracks);
+	      return nextProps.tagName !== this.props.tagName || nextProps.poster !== this.props.poster || nextProps.loop !== this.props.loop || nextProps.muted !== this.props.muted || nextProps.playsInline !== this.props.playsInline || !deepEqual(nextProps.sources, this.props.sources) || !deepEqual(nextProps.tracks, this.props.tracks);
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -19880,6 +19981,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      if (this.props.loop) {
 	        mediaElement.setAttribute('loop', 'true');
+	      }
+
+	      if (this.props.muted) {
+	        mediaElement.setAttribute('muted', 'true');
+	      }
+
+	      if (this.props.playsInline) {
+	        mediaElement.setAttribute('playsinline', 'true');
 	      }
 
 	      this.props.sources.forEach(function (source) {
@@ -19947,7 +20056,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 443 */
+/* 444 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -19969,7 +20078,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    textTrackSettings: false,
 
 	    html5: {
-	      nativeCaptions: !emulateTextTracksDisplay
+	      nativeCaptions: element.tagName.toLowerCase() != 'audio' && pageflow.browser.has('ios platform')
 	    },
 
 	    bufferUnderrunWaiting: true,
@@ -19994,7 +20103,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 444 */
+/* 445 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20006,7 +20115,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = function (player, actions) {
 	  player.on('loadedmetadata', function () {
 	    return actions.metaDataLoaded({
+	      currentTime: player.currentTime(),
 	      duration: player.duration()
+	    });
+	  });
+
+	  player.on('progress', function () {
+	    return actions.progress({
+	      bufferedEnd: player.bufferedEnd()
 	    });
 	  });
 
@@ -20027,21 +20143,46 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 445 */
+/* 446 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = handlePlayStatePropChanges;
-	function handlePlayStatePropChanges(player, playerState, nextPlayerState, playerActions) {
+	exports.initPlayer = initPlayer;
+	exports.updatePlayer = updatePlayer;
+	function initPlayer(player, getPlayerState, prevFileId, fileId) {
+	  var playerState = getPlayerState();
+
+	  if (fileId === prevFileId) {
+	    if (playerState.currentTime > 0) {
+	      player.currentTime(playerState.currentTime);
+	    }
+	  }
+
+	  if (playerState.isPlaying) {
+	    player.play();
+	  }
+
+	  player.on('canplay', function () {
+	    if (getPlayerState().shouldPlay && player.paused()) {
+	      player.play();
+	    }
+	  });
+	}
+
+	function updatePlayer(player, playerState, nextPlayerState, playerActions, playsInline) {
 	  if (!playerState.shouldPrebuffer && nextPlayerState.shouldPrebuffer) {
 	    player.prebuffer().then(playerActions.prebuffered);
 	  }
 
 	  if (!playerState.shouldPlay && nextPlayerState.shouldPlay) {
+	    if (!playsInline && !player.isAudio()) {
+	      player.requestNativePlayerOnPhone();
+	    }
+
 	    if (nextPlayerState.fadeDuration) {
 	      player.playAndFadeIn(nextPlayerState.fadeDuration);
 	    } else {
@@ -20061,7 +20202,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 446 */
+/* 447 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20069,10 +20210,34 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.updateTextTrackModes = updateTextTrackModes;
-	exports.updateTextTrackPosition = updateTextTrackPosition;
+	exports.initTextTracks = initTextTracks;
+	exports.updateTextTracks = updateTextTracks;
 	exports.textTracksFromFiles = textTracksFromFiles;
-	function updateTextTrackModes(player, activeTextTrackFileId) {
+	function initTextTracks(player, updateTextTrackSettings, getActiveTexTrackFileId, getPosition) {
+	  player.on('pause', function () {
+	    saveChangesMadeInNativePlayer(player, updateTextTrackSettings);
+	    updateOnNextPlay(player, getActiveTexTrackFileId, getPosition);
+	  });
+
+	  updateTextTracks(player, null, getActiveTexTrackFileId(), getPosition());
+	  updateOnNextPlay(player, getActiveTexTrackFileId, getPosition);
+	}
+
+	function updateOnNextPlay(player, getActiveTexTrackFileId, getPosition) {
+	  player.one('timeupdate', function () {
+	    updateTextTracks(player, null, getActiveTexTrackFileId(), getPosition());
+	  });
+	}
+
+	function updateTextTracks(player, prevActiveTextTrackFileId, activeTextTrackFileId, position) {
+	  if (prevActiveTextTrackFileId != activeTextTrackFileId) {
+	    updateMode(player, activeTextTrackFileId);
+	  }
+
+	  updatePosition(player, position);
+	}
+
+	function updateMode(player, activeTextTrackFileId) {
 	  [].slice.call(player.textTracks()).forEach(function (textTrack) {
 	    if (textTrack.id == 'text_track_file_' + activeTextTrackFileId) {
 	      textTrack.mode = 'showing';
@@ -20082,22 +20247,19 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  });
 	}
 
-	function updateTextTrackPosition(player, position) {
-	  if (position == 'top') {
-	    updateCueLineSettings(player, 1);
-	  } else {
-	    updateCueLineSettings(player, 'auto');
-	  }
+	function updatePosition(player, position) {
+	  player.updateCueLineSettings(position);
 	}
 
-	function updateCueLineSettings(player, line) {
-	  [].slice.call(player.textTracks()).forEach(function (textTrack) {
-	    if (textTrack.mode == 'showing' && textTrack.cues) {
-	      for (var i = 0; i < textTrack.cues.length; i++) {
-	        textTrack.cues[i].line = line;
-	      }
-	    }
+	function saveChangesMadeInNativePlayer(player, updateTextTrackSettings) {
+	  var showingTextTrack = [].slice.call(player.textTracks()).find(function (textTrack) {
+	    return textTrack.mode == 'showing';
 	  });
+
+	  updateTextTrackSettings(showingTextTrack ? {
+	    srclang: showingTextTrack.language,
+	    kind: showingTextTrack.kind
+	  } : null);
 	}
 
 	function textTracksFromFiles(textTrackFiles, textTracksEnabled) {
@@ -20105,11 +20267,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    return [];
 	  }
 
-	  return textTrackFiles.map(function (textTrackFile) {
+	  return textTrackFiles.filter(function (textTrackFile) {
+	    return textTrackFile.isReady;
+	  }).map(function (textTrackFile) {
 	    return {
 	      id: 'text_track_file_' + textTrackFile.id,
 	      kind: textTrackFile.kind,
-	      label: textTrackFile.label,
+	      label: textTrackFile.displayLabel,
 	      srclang: textTrackFile.srclang,
 	      src: textTrackFile.urls.vtt
 	    };
@@ -20117,7 +20281,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 447 */
+/* 448 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20133,7 +20297,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 448 */
+/* 449 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20141,18 +20305,25 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.Positioner = undefined;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _getDimensions = __webpack_require__(449);
+	var _getDimensions = __webpack_require__(450);
 
 	var _getDimensions2 = _interopRequireDefault(_getDimensions);
 
-	var _getCueOffsetClassName = __webpack_require__(450);
+	var _getCueOffsetClassName = __webpack_require__(451);
 
 	var _getCueOffsetClassName2 = _interopRequireDefault(_getCueOffsetClassName);
+
+	var _pages = __webpack_require__(310);
+
+	var _selectors = __webpack_require__(337);
+
+	var _utils = __webpack_require__(372);
 
 	var _react = __webpack_require__(304);
 
@@ -20166,7 +20337,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Positioner = function (_React$Component) {
+	var Positioner = exports.Positioner = function (_React$Component) {
 	  _inherits(Positioner, _React$Component);
 
 	  function Positioner(props, state) {
@@ -20199,6 +20370,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 
 	  _createClass(Positioner, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (!this.props.pageIsActive && nextProps.pageIsActive) {
+	        this.measure();
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var dimensions = (0, _getDimensions2.default)(this.props.videoFile, this.props.fit, this.props.position, this.state.wrapperDimensions);
@@ -20219,7 +20397,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return Positioner;
 	}(_react2.default.Component);
 
-	exports.default = Positioner;
+	exports.default = (0, _pages.connectInPage)((0, _utils.combine)({
+	  pageIsActive: (0, _selectors.pageIsActive)()
+	}))(Positioner);
 
 
 	Positioner.propTypes = {
@@ -20235,7 +20415,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 449 */
+/* 450 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20289,10 +20469,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 450 */
+/* 451 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20303,13 +20483,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    return;
 	  }
 
-	  var sizeOfClippedBottomPart = Math.max(0, dimensions.height - wrapperDimensions.height + dimensions.top);
+	  var clippedSizeLeft = Math.max(0, -dimensions.left);
+	  var clippedSizeRight = Math.max(0, dimensions.width - wrapperDimensions.width + dimensions.left);
+	  var clippedSizeTop = Math.max(0, -dimensions.top);
+	  var clippedSizeBottom = Math.max(0, dimensions.height - wrapperDimensions.height + dimensions.top);
 
-	  return "cue_offset cue_offset_" + Math.ceil(sizeOfClippedBottomPart / 10);
+	  return ['cue_offset', 'cue_offset_' + Math.ceil(clippedSizeBottom / 10), 'cue_margin_left_' + Math.ceil(clippedSizeLeft / 10), 'cue_margin_right_' + Math.ceil(clippedSizeRight / 10), 'cue_margin_top_' + Math.ceil(clippedSizeTop / 10), 'cue_margin_bottom_' + Math.ceil(clippedSizeBottom / 10)].join(' ');
 	}
 
 /***/ },
-/* 451 */
+/* 452 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20351,7 +20534,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 452 */
+/* 453 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20371,6 +20554,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        fit: props.fit,
 	        position: props.position,
 	        loop: props.loop,
+	        muted: props.muted,
+	        playsInline: props.playsInline,
 	        defaultTextTrackFileId: props.defaultTextTrackFileId,
 	        textTracksEnabled: props.textTracksEnabled });
 	    } else {
@@ -20392,10 +20577,64 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _utils = __webpack_require__(372);
 
 /***/ },
-/* 453 */
+/* 454 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.MobilePageVideoPoster = MobilePageVideoPoster;
+
+	var _components = __webpack_require__(302);
+
+	var _utils = __webpack_require__(372);
+
+	var _selectors = __webpack_require__(395);
+
+	var _reactRedux = __webpack_require__(359);
+
+	function MobilePageVideoPoster(props) {
+	  var candidate = findCandidate(props);
+
+	  if (candidate) {
+	    return React.createElement(_components.PageBackgroundImage, { page: props.page,
+	      propertyBaseName: candidate.propertyBaseName,
+	      fileCollection: candidate.collection });
+	  } else {
+	    return React.createElement('noscript', null);
+	  }
+	}
+
+	function findCandidate(props) {
+	  return candidates(props.propertyNamePrefix).find(function (candidate) {
+	    return props.fileExists(candidate.collection, props.page[candidate.propertyBaseName + 'Id']);
+	  });
+	}
+
+	function candidates(prefix) {
+	  return [{
+	    propertyBaseName: _utils.camelize.concat(prefix, 'mobilePosterImage'),
+	    collection: 'imageFiles'
+	  }, {
+	    propertyBaseName: _utils.camelize.concat(prefix, 'posterImage'),
+	    collection: 'imageFiles'
+	  }, {
+	    propertyBaseName: _utils.camelize.concat(prefix, 'videoFile'),
+	    collection: 'videoFiles'
+	  }];
+	}
+
+	exports.default = (0, _reactRedux.connect)((0, _utils.combine)({
+	  fileExists: (0, _selectors.fileExists)()
+	}))(MobilePageVideoPoster);
+
+/***/ },
+/* 455 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -20403,20 +20642,53 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	exports.default = PageBackgroundVideo;
+	exports.PageBackgroundVideo = PageBackgroundVideo;
 
-	var _PageVideoPlayer = __webpack_require__(439);
+	var _PageVideoPlayer = __webpack_require__(440);
 
 	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
+
+	var _MobilePageVideoPoster = __webpack_require__(454);
+
+	var _MobilePageVideoPoster2 = _interopRequireDefault(_MobilePageVideoPoster);
+
+	var _utils = __webpack_require__(372);
+
+	var _selectors = __webpack_require__(395);
+
+	var _selectors2 = __webpack_require__(392);
+
+	var _reactRedux = __webpack_require__(359);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function PageBackgroundVideo(props) {
-	  return React.createElement(_PageVideoPlayer2.default, _extends({ loop: true, fit: "cover", textTracksEnabled: false }, props));
+	  if (props.hasMobilePlatform && (mobilePosterExists(props) || !props.hasMuteVideoAutoplaySupport)) {
+	    return React.createElement(_MobilePageVideoPoster2.default, { page: props.page,
+	      propertyNamePrefix: props.propertyNamePrefix });
+	  } else {
+	    return React.createElement(_PageVideoPlayer2.default, _extends({ loop: true,
+	      fit: 'cover',
+	      muted: props.hasMobilePlatform,
+	      playsInline: true,
+	      textTracksEnabled: false
+	    }, props));
+	  }
 	}
 
+	function mobilePosterExists(props) {
+	  var property = _utils.camelize.concat(props.propertyNamePrefix, 'mobilePosterImageId');
+	  return props.fileExists('imageFiles', props.page[property]);
+	}
+
+	exports.default = (0, _reactRedux.connect)((0, _utils.combine)({
+	  fileExists: (0, _selectors.fileExists)(),
+	  hasMobilePlatform: (0, _selectors2.has)('mobile platform'),
+	  hasMuteVideoAutoplaySupport: (0, _selectors2.has)('mute video autoplay support')
+	}))(PageBackgroundVideo);
+
 /***/ },
-/* 454 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20428,11 +20700,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PageBackgroundVideo = __webpack_require__(453);
+	var _PageBackgroundVideo = __webpack_require__(455);
 
 	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
 	var _pages = __webpack_require__(310);
 
@@ -20449,22 +20721,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      propertyNamePrefix = _ref.propertyNamePrefix;
 
 
-	  var typePropertyName = propertyNamePrefix ? propertyNamePrefix + 'BackgroundType' : 'backgroundType';
+	  var typePropertyName = _utils.camelize.concat(propertyNamePrefix, 'backgroundType');
 
 	  if (page[typePropertyName] == 'video') {
-	    var videoPropertyBaseName = propertyNamePrefix && propertyNamePrefix + 'VideoFile';
-	    var posterImagePropertyBaseName = propertyNamePrefix && propertyNamePrefix + 'PosterImage';
-
 	    return React.createElement(_PageBackgroundVideo2.default, { page: page,
 	      playerState: playerState,
 	      playerActions: playerActions,
-	      videoPropertyBaseName: videoPropertyBaseName,
-	      posterImagePropertyBaseName: posterImagePropertyBaseName });
+	      propertyNamePrefix: propertyNamePrefix });
 	  } else {
-	    var imagePropertyBaseName = propertyNamePrefix && propertyNamePrefix + 'BackgroundImage';
-
 	    return React.createElement(_components.PageBackgroundImage, { page: page,
-	      imagePropertyBaseName: imagePropertyBaseName });
+	      propertyNamePrefix: propertyNamePrefix });
 	  }
 	}
 
@@ -20476,7 +20742,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageBackgroundAsset);
 
 /***/ },
-/* 455 */
+/* 457 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20488,7 +20754,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PageBackgroundAsset = __webpack_require__(454);
+	var _PageBackgroundAsset = __webpack_require__(456);
 
 	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
 
@@ -20504,7 +20770,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 456 */
+/* 458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20520,7 +20786,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(425);
+	var _selectors2 = __webpack_require__(426);
 
 	var _utils = __webpack_require__(372);
 
@@ -20572,7 +20838,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 457 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20677,7 +20943,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      case _actions.META_DATA_LOADED:
 	        return _extends({}, state, {
+	          currentTime: action.payload.currentTime,
 	          duration: action.payload.duration
+	        });
+	      case _actions.PROGRESS:
+	        return _extends({}, state, {
+	          bufferedEnd: action.payload.bufferedEnd
 	        });
 	      case _actions.TIME_UPDATE:
 	        return _extends({}, state, {
@@ -20735,14 +21006,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  };
 	};
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
-	var _actions2 = __webpack_require__(458);
+	var _actions2 = __webpack_require__(460);
 
 	var _actions3 = __webpack_require__(300);
 
 /***/ },
-/* 458 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20772,7 +21043,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 459 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20782,37 +21053,39 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = _callee;
 
-	var _togglePlaying = __webpack_require__(460);
+	var _togglePlaying = __webpack_require__(462);
 
 	var _togglePlaying2 = _interopRequireDefault(_togglePlaying);
 
-	var _handlePageDidActivate = __webpack_require__(461);
+	var _handlePageDidActivate = __webpack_require__(463);
 
 	var _handlePageDidActivate2 = _interopRequireDefault(_handlePageDidActivate);
 
-	var _disableScrollIndicatorDuringPlayback = __webpack_require__(462);
+	var _disableScrollIndicatorDuringPlayback = __webpack_require__(464);
 
 	var _disableScrollIndicatorDuringPlayback2 = _interopRequireDefault(_disableScrollIndicatorDuringPlayback);
 
-	var _hasNotBeenPlayingForAMoment = __webpack_require__(463);
+	var _hasNotBeenPlayingForAMoment = __webpack_require__(465);
 
 	var _hasNotBeenPlayingForAMoment2 = _interopRequireDefault(_hasNotBeenPlayingForAMoment);
 
-	var _idling = __webpack_require__(464);
+	var _idling = __webpack_require__(466);
 
 	var _idling2 = _interopRequireDefault(_idling);
 
-	var _fadeOutWhenPageWillDeactivate = __webpack_require__(465);
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(467);
 
 	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
 
-	var _goToNextPageOnEnd = __webpack_require__(466);
+	var _goToNextPageOnEnd = __webpack_require__(468);
 
 	var _goToNextPageOnEnd2 = _interopRequireDefault(_goToNextPageOnEnd);
 
-	var _controlsHidden = __webpack_require__(467);
+	var _controlsHidden = __webpack_require__(469);
 
 	var _controlsHidden2 = _interopRequireDefault(_controlsHidden);
+
+	var _utils = __webpack_require__(372);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20825,17 +21098,25 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    while (1) {
 	      switch (_context.prev = _context.next) {
 	        case 0:
-	          sagas = [(0, _togglePlaying2.default)(), (0, _handlePageDidActivate2.default)(), (0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)()];
+	          sagas = [(0, _togglePlaying2.default)()];
 
+
+	          if (!(0, _utils.has)('phone platform')) {
+	            sagas.push([(0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)()]);
+	          }
+
+	          if (!(0, _utils.has)('mobile platform')) {
+	            sagas.push([(0, _handlePageDidActivate2.default)()]);
+	          }
 
 	          if (options.hideControls) {
 	            sagas.push([(0, _idling2.default)(), (0, _controlsHidden2.default)()]);
 	          }
 
-	          _context.next = 4;
+	          _context.next = 6;
 	          return sagas;
 
-	        case 4:
+	        case 6:
 	        case 'end':
 	          return _context.stop();
 	      }
@@ -20844,7 +21125,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 460 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20854,11 +21135,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = _callee;
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
-	var _actions2 = __webpack_require__(458);
+	var _actions2 = __webpack_require__(460);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
 	var _reduxSaga = __webpack_require__(349);
 
@@ -20921,7 +21202,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 461 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20937,7 +21218,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _actions = __webpack_require__(300);
 
-	var _actions2 = __webpack_require__(436);
+	var _actions2 = __webpack_require__(437);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21017,7 +21298,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 462 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21031,7 +21312,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21116,7 +21397,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 463 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21130,7 +21411,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
 	var _marked = [_callee3].map(regeneratorRuntime.mark);
 
@@ -21189,7 +21470,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 464 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21203,9 +21484,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
-	var _actions2 = __webpack_require__(458);
+	var _actions2 = __webpack_require__(460);
 
 	var _marked = [_callee, putAfterDelay].map(regeneratorRuntime.mark);
 
@@ -21249,7 +21530,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 465 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21263,7 +21544,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
 	var _actions2 = __webpack_require__(300);
 
@@ -21306,7 +21587,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 466 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21320,7 +21601,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21378,7 +21659,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 467 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21392,13 +21673,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
-	var _selectors2 = __webpack_require__(447);
+	var _selectors2 = __webpack_require__(448);
 
-	var _actions2 = __webpack_require__(458);
+	var _actions2 = __webpack_require__(460);
 
 	var _marked = [_callee4].map(regeneratorRuntime.mark);
 
@@ -21505,7 +21786,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 468 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21519,7 +21800,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(436);
+	var _actions = __webpack_require__(437);
 
 	var _actions2 = __webpack_require__(300);
 
@@ -21586,7 +21867,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 469 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21596,11 +21877,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.Page = exports.reduxModule = undefined;
 
-	var _Page = __webpack_require__(470);
+	var _Page = __webpack_require__(472);
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _reenableScrollIndicator = __webpack_require__(472);
+	var _reenableScrollIndicator = __webpack_require__(474);
 
 	var _reenableScrollIndicator2 = _interopRequireDefault(_reenableScrollIndicator);
 
@@ -21615,7 +21896,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.Page = _Page2.default;
 
 /***/ },
-/* 470 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21636,7 +21917,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _selectors = __webpack_require__(471);
+	var _selectors = __webpack_require__(473);
 
 	var _pages = __webpack_require__(310);
 
@@ -21755,7 +22036,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageWithInteractiveBackground);
 
 /***/ },
-/* 471 */
+/* 473 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -21774,7 +22055,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 472 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21788,7 +22069,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(473);
+	var _actions = __webpack_require__(475);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21838,7 +22119,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 473 */
+/* 475 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21864,7 +22145,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 474 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21874,7 +22155,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.registry = undefined;
 
-	var _PageTypeRegistry = __webpack_require__(475);
+	var _PageTypeRegistry = __webpack_require__(477);
 
 	var _PageTypeRegistry2 = _interopRequireDefault(_PageTypeRegistry);
 
@@ -21885,7 +22166,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = registry.register;
 
 /***/ },
-/* 475 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21987,7 +22268,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 476 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22015,16 +22296,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  });
 	};
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
-	var _media = __webpack_require__(431);
+	var _media = __webpack_require__(432);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 477 */
+/* 479 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22045,7 +22326,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var registry = exports.registry = [];
 
 /***/ },
-/* 478 */
+/* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22058,9 +22339,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _collections = __webpack_require__(338);
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
-	var _boot = __webpack_require__(479);
+	var _boot = __webpack_require__(481);
 
 	var _boot2 = _interopRequireDefault(_boot);
 
@@ -22118,7 +22399,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = _class;
 
 /***/ },
-/* 479 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22217,46 +22498,46 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return store;
 	};
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
-	var _registerWidgetType = __webpack_require__(477);
+	var _registerWidgetType = __webpack_require__(479);
 
-	var _createStore = __webpack_require__(480);
+	var _createStore = __webpack_require__(482);
 
 	var _createStore2 = _interopRequireDefault(_createStore);
 
 	var _createSaga = __webpack_require__(343);
 
-	var _storylines = __webpack_require__(481);
+	var _storylines = __webpack_require__(483);
 
-	var _chapters = __webpack_require__(482);
+	var _chapters = __webpack_require__(484);
 
 	var _pages = __webpack_require__(310);
 
-	var _pageTypes = __webpack_require__(483);
+	var _pageTypes = __webpack_require__(485);
 
-	var _current = __webpack_require__(486);
+	var _current = __webpack_require__(488);
 
-	var _files = __webpack_require__(490);
+	var _files = __webpack_require__(492);
 
-	var _settings = __webpack_require__(491);
+	var _settings = __webpack_require__(493);
 
-	var _i18n = __webpack_require__(493);
+	var _i18n = __webpack_require__(495);
 
-	var _entry = __webpack_require__(496);
+	var _entry = __webpack_require__(498);
 
-	var _hotkeys = __webpack_require__(499);
+	var _hotkeys = __webpack_require__(501);
 
-	var _hideText = __webpack_require__(500);
+	var _hideText = __webpack_require__(502);
 
-	var _widgets = __webpack_require__(503);
+	var _widgets = __webpack_require__(505);
 
 	var _redux = __webpack_require__(313);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 480 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22310,7 +22591,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(294)))
 
 /***/ },
-/* 481 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22337,7 +22618,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 482 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22363,7 +22644,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 483 */
+/* 485 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22374,9 +22655,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.reducers = undefined;
 	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(484);
+	var _actions = __webpack_require__(486);
 
-	var _reducer = __webpack_require__(485);
+	var _reducer = __webpack_require__(487);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22391,7 +22672,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 484 */
+/* 486 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22414,7 +22695,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 485 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22435,10 +22716,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(484);
+	var _actions = __webpack_require__(486);
 
 /***/ },
-/* 486 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22448,11 +22729,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.watch = exports.reducers = undefined;
 
-	var _reducer = __webpack_require__(487);
+	var _reducer = __webpack_require__(489);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _watch = __webpack_require__(489);
+	var _watch = __webpack_require__(491);
 
 	var _watch2 = _interopRequireDefault(_watch);
 
@@ -22463,7 +22744,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.watch = _watch2.default;
 
 /***/ },
-/* 487 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22484,10 +22765,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(488);
+	var _actions = __webpack_require__(490);
 
 /***/ },
-/* 488 */
+/* 490 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22510,7 +22791,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 489 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22525,10 +22806,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  });
 	};
 
-	var _actions = __webpack_require__(488);
+	var _actions = __webpack_require__(490);
 
 /***/ },
-/* 490 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22582,7 +22863,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 491 */
+/* 493 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22594,7 +22875,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.createSaga = createSaga;
 	exports.watch = watch;
 
-	var _reducer = __webpack_require__(492);
+	var _reducer = __webpack_require__(494);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22648,7 +22929,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 492 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22673,7 +22954,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _actions = __webpack_require__(301);
 
 /***/ },
-/* 493 */
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22684,9 +22965,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.reducers = undefined;
 	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(494);
+	var _actions = __webpack_require__(496);
 
-	var _reducer = __webpack_require__(495);
+	var _reducer = __webpack_require__(497);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22701,7 +22982,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 494 */
+/* 496 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22724,7 +23005,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 495 */
+/* 497 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22745,10 +23026,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(494);
+	var _actions = __webpack_require__(496);
 
 /***/ },
-/* 496 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22759,9 +23040,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.reducers = undefined;
 	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(497);
+	var _actions = __webpack_require__(499);
 
-	var _reducer = __webpack_require__(498);
+	var _reducer = __webpack_require__(500);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22776,7 +23057,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 497 */
+/* 499 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22799,7 +23080,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 498 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22820,10 +23101,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(497);
+	var _actions = __webpack_require__(499);
 
 /***/ },
-/* 499 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22833,9 +23114,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.watchEvents = watchEvents;
 
-	var _keyCodes = __webpack_require__(418);
+	var _keyCodes = __webpack_require__(419);
 
-	var _actions = __webpack_require__(458);
+	var _actions = __webpack_require__(460);
 
 	function watchEvents(window, store) {
 	  window.addEventListener('keydown', function (event) {
@@ -22850,7 +23131,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 500 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22860,11 +23141,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.watch = exports.reducers = undefined;
 
-	var _watch = __webpack_require__(501);
+	var _watch = __webpack_require__(503);
 
 	var _watch2 = _interopRequireDefault(_watch);
 
-	var _reducer = __webpack_require__(502);
+	var _reducer = __webpack_require__(504);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22877,7 +23158,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.watch = _watch2.default;
 
 /***/ },
-/* 501 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22896,10 +23177,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	            });
 	};
 
-	var _actions = __webpack_require__(473);
+	var _actions = __webpack_require__(475);
 
 /***/ },
-/* 502 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22933,9 +23214,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(473);
+	var _actions = __webpack_require__(475);
 
-	var _actions2 = __webpack_require__(488);
+	var _actions2 = __webpack_require__(490);
 
 	var initialState = {
 	  isActive: false,
@@ -22943,7 +23224,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 503 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22955,17 +23236,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.createWidgetType = createWidgetType;
 	exports.watch = watch;
 
-	var _reducer = __webpack_require__(504);
+	var _reducer = __webpack_require__(506);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _reactDom = __webpack_require__(381);
+	var _reactDom = __webpack_require__(382);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
 	var _reactRedux = __webpack_require__(359);
 
-	var _actions = __webpack_require__(505);
+	var _actions = __webpack_require__(507);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22998,7 +23279,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 504 */
+/* 506 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23020,10 +23301,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(505);
+	var _actions = __webpack_require__(507);
 
 /***/ },
-/* 505 */
+/* 507 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23046,7 +23327,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 506 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23056,11 +23337,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.register = register;
 
-	var _audio = __webpack_require__(507);
+	var _audio = __webpack_require__(509);
 
-	var _plain = __webpack_require__(510);
+	var _plain = __webpack_require__(512);
 
-	var _video = __webpack_require__(511);
+	var _video = __webpack_require__(513);
 
 	function register() {
 	  (0, _plain.register)();
@@ -23069,7 +23350,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 507 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23079,25 +23360,25 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.register = register;
 
-	var _media = __webpack_require__(431);
+	var _media = __webpack_require__(432);
 
-	var _PageAudioFilePlayer = __webpack_require__(508);
+	var _PageAudioFilePlayer = __webpack_require__(510);
 
 	var _PageAudioFilePlayer2 = _interopRequireDefault(_PageAudioFilePlayer);
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
 	var _pages = __webpack_require__(310);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(429);
+	var _selectors3 = __webpack_require__(430);
 
-	var _selectors4 = __webpack_require__(394);
+	var _selectors4 = __webpack_require__(395);
 
 	var _utils = __webpack_require__(372);
 
@@ -23136,7 +23417,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 508 */
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23145,11 +23426,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _createPageFilePlayer = __webpack_require__(452);
+	var _createPageFilePlayer = __webpack_require__(453);
 
 	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
 
-	var _AudioFilePlayer = __webpack_require__(509);
+	var _AudioFilePlayer = __webpack_require__(511);
 
 	var _AudioFilePlayer2 = _interopRequireDefault(_AudioFilePlayer);
 
@@ -23158,7 +23439,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = (0, _createPageFilePlayer2.default)(_AudioFilePlayer2.default);
 
 /***/ },
-/* 509 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23167,7 +23448,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _createFilePlayer = __webpack_require__(441);
+	var _createFilePlayer = __webpack_require__(442);
 
 	var _createFilePlayer2 = _interopRequireDefault(_createFilePlayer);
 
@@ -23184,7 +23465,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 /***/ },
-/* 510 */
+/* 512 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23196,9 +23477,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _media = __webpack_require__(431);
+	var _media = __webpack_require__(432);
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
@@ -23242,7 +23523,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 511 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23252,21 +23533,21 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.register = register;
 
-	var _media = __webpack_require__(431);
+	var _media = __webpack_require__(432);
 
-	var _registerPageType = __webpack_require__(474);
+	var _registerPageType = __webpack_require__(476);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
 	var _pages = __webpack_require__(310);
 
-	var _selectors = __webpack_require__(435);
+	var _selectors = __webpack_require__(436);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(429);
+	var _selectors3 = __webpack_require__(430);
 
-	var _selectors4 = __webpack_require__(394);
+	var _selectors4 = __webpack_require__(395);
 
 	var _utils = __webpack_require__(372);
 
@@ -23286,7 +23567,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      controlBarText: props.t('pageflow.public.start_video') },
 	    React.createElement(_media.PageVideoPlayer, { page: props.page,
 	      playerState: props.playerState,
-	      playerActions: props.playerActions })
+	      playerActions: props.playerActions }),
+	    React.createElement(_media.MobilePageVideoPoster, { page: props.page })
 	  );
 	}
 
@@ -23307,7 +23589,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 512 */
+/* 514 */
 /***/ function(module, exports) {
 
 	module.exports = pageflow;
