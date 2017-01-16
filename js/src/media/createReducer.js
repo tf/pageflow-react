@@ -15,7 +15,8 @@ import {
 import {HOTKEY_TAB} from 'hotkeys/actions';
 
 import {
-  PAGE_WILL_ACTIVATE
+  PAGE_WILL_ACTIVATE,
+  PAGE_WILL_DEACTIVATE
 } from 'pages/actions';
 
 export default function({scope = 'default'} = {}) {
@@ -32,6 +33,11 @@ export default function({scope = 'default'} = {}) {
         ...state,
         hasPlayed: false,
         userHasBeenIdle: false
+      };
+    case PAGE_WILL_DEACTIVATE:
+      return {
+        ...state,
+        shouldPrebuffer: false
       };
 
     case PLAY:
