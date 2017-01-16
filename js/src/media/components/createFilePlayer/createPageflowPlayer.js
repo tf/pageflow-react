@@ -10,7 +10,8 @@ export default function createPageflowPlayer(
     textTrackSettings: false,
 
     html5: {
-      nativeCaptions: !emulateTextTracksDisplay
+      nativeCaptions: element.tagName.toLowerCase() != 'audio' &&
+                      pageflow.browser.has('ios platform')
     },
 
     bufferUnderrunWaiting: true,
