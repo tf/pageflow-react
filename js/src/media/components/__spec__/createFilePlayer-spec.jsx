@@ -420,8 +420,10 @@ describe('createFilePlayer', () => {
       dispose: sinon.spy(),
 
       requestNativePlayerOnPhone: sinon.spy(),
+      updateCueLineSettings: sinon.spy(),
 
-      ...Backbone.Events
+      ...Backbone.Events,
+      one(...args) { this.once(...args); }
     };
   }
 });

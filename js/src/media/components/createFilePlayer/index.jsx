@@ -9,10 +9,9 @@ import {
 } from './handlePlayerState';
 
 import {
-  textTracksFromFiles,
-  updateTextTrackModes,
-  updateTextTrackPosition,
-  watchForTextTrackModeChanges
+  initTextTracks,
+  updateTextTracks,
+  textTracksFromFiles
 } from './textTracks';
 
 import {textTracks} from 'media/selectors';
@@ -49,12 +48,12 @@ export default function({
                                   this.prevFileId,
                                   this.props.file.id);
 
+        initTextTracks(this.player,
+                       this.props.updateTextTrackSettings,
+                       () => this.props.textTracks.activeFileId,
+                       () => this.props.textTrackPosition);
+
         watchPlayer(this.player, this.props.playerActions);
-
-        updateTextTrackModes(this.player, null, this.props.textTracks.activeFileId);
-        updateTextTrackPosition(this.player, this.props.textTrackPosition);
-
-        watchForTextTrackModeChanges(this.player, this.props.updateTextTrackSettings);
 
         this.prevFileId = this.props.file.id;
       };
@@ -76,11 +75,11 @@ export default function({
                                   this.props.playerActions,
                                   this.props.playsInline);
 
-      if (prevProps.textTrackPosition !== this.props.textTrackPosition) {
-        updateTextTrackPosition(this.player, this.props.textTrackPosition);
-      }
+      updateTextTracks(this.player,
+                       prevProps.textTracks.activeFileId,
+                       this.props.textTracks.activeFileId,
+                       this.props.textTrackPosition);
 
-      updateTextTrackModes(this.player, prevProps.textTracks.activeFileId, this.props.textTracks.activeFileId);
       this.updateAtmoSettings();
     }
 
@@ -145,8 +144,8 @@ export default function({
 const classicPlayerControlsPresent = widgetPresent('classicPlayerControls');
 
 function textTrackPosition(state, {playerState}) {
-  if (classicPlayerControlsPresent(state) && !playerState.controlsHidden) {
-    return 'top';
+  if (!playerState.controlsHidden) {
+    return classicPlayerControlsPresent(state) ? 'top' : 'auto.translated';
   }
 
   return 'auto';
