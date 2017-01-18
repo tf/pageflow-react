@@ -19,12 +19,7 @@ export default function*() {
 }
 
 function disable() {
-  if (pageflow.widgets.isPresent('classic_player_controls')) {
-    pageflow.events.trigger('scroll_indicator:schedule_disable');
-  }
-  else {
-    pageflow.events.trigger('scroll_indicator:disable');
-  }
+  pageflow.events.trigger('scroll_indicator:disable');
 }
 
 function enable() {
