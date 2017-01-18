@@ -1,5 +1,6 @@
 import React from 'react';
 import {DraggableCore} from 'react-draggable';
+import Measure from 'react-measure';
 
 import {ARROW_LEFT, ARROW_RIGHT} from 'utils/keyCodes';
 
@@ -9,15 +10,17 @@ export default class ProgressSlider extends React.Component {
 
     this.state = {
       isScrubbing: false,
-      scrubbingAt: false
+      scrubbingAt: false,
+      handleWidth: null,
+      progressHolderWidth: null
     };
 
-    this.bindProgressHolder = progressHolder => {
-      this.progressHolder = progressHolder;
+    this.measureProgressHolder = ({width}) => {
+      this.setState({progressHolderWidth: width});
     };
 
-    this.bindHandle = handle => {
-      this.handle = handle;
+    this.measureHandle = ({width}) => {
+      this.setState({handleWidth: width});
     };
 
     this.handleStop = (mouseEvent, dragEvent) => {
@@ -26,8 +29,8 @@ export default class ProgressSlider extends React.Component {
     };
 
     this.handleDrag = (mouseEvent, dragEvent) => {
-      if (this.props.onSeek && this.props.duration && this.progressHolder) {
-        const fraction = Math.max(0, Math.min(1, dragEvent.x / this.progressHolder.clientWidth));
+      if (this.props.onSeek && this.props.duration && this.state.progressHolderWidth) {
+        const fraction = Math.max(0, Math.min(1, dragEvent.x / this.state.progressHolderWidth));
         const scrubbingAt = fraction * this.props.duration;
 
         this.setState({scrubbingAt, isScrubbing: true});
@@ -51,28 +54,31 @@ export default class ProgressSlider extends React.Component {
   }
 
   render() {
-    const props = this.props;
-
     return (
       <div className="vjs-progress-control"
            tabIndex="4"
            onKeyDown={this.handleKeyDown}>
-        <DraggableCore onStart={this.handleDrag}
-                       onDrag={this.handleDrag}
-                       onStop={this.handleStop}>
-          <div className="vjs-progress-holder" ref={this.bindProgressHolder}>
-            <div className="vjs-load-progress" style={{width: toPercent(this.loadProgress())}} />
-            <div className="vjs-play-progress" style={{width: toPercent(this.playProgress())}} />
-            <div className="vjs-seek-handle" ref={this.bindHandle} style={{left: this.handlePosition()}} />
-          </div>
-        </DraggableCore>
+        <Measure whitelist={['width']} onMeasure={this.measureProgressHolder}>
+          <DraggableCore onStart={this.handleDrag}
+                         onDrag={this.handleDrag}
+                         onStop={this.handleStop}>
+            <div className="vjs-progress-holder">
+              <div className="vjs-load-progress" style={{width: toPercent(this.loadProgress())}} />
+              <div className="vjs-play-progress" style={{width: toPercent(this.playProgress())}} />
+              <Measure whitelist={['width']} onMeasure={this.measureHandle}>
+                <div className="vjs-seek-handle"
+                     style={{left: this.handlePosition()}} />
+              </Measure>
+            </div>
+          </DraggableCore>
+        </Measure>
       </div>
     );
   }
 
   handlePosition() {
-    if (this.handle && this.progressHolder) {
-      return ((this.progressHolder.clientWidth - this.handle.clientWidth) * this.playProgress());
+    if (this.state.handleWidth && this.state.progressHolderWidth) {
+      return ((this.state.progressHolderWidth - this.state.handleWidth) * this.playProgress());
     }
     else {
       return toPercent(this.playProgress());
