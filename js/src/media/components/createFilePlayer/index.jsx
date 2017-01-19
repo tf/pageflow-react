@@ -16,7 +16,6 @@ import {
 
 import {textTracks} from 'media/selectors';
 import {setting} from 'settings/selectors';
-import {widgetPresent} from 'widgets/selectors';
 import {prop} from 'selectors';
 
 import React from 'react';
@@ -142,12 +141,6 @@ export default function({
   return result;
 }
 
-const classicPlayerControlsPresent = widgetPresent('classicPlayerControls');
-
 function textTrackPosition(state, {playerState}) {
-  if (!playerState.controlsHidden) {
-    return classicPlayerControlsPresent(state) ? 'top' : 'auto.translated';
-  }
-
-  return 'auto';
+  return playerState.controlsHidden ? 'auto' : 'top';
 }
