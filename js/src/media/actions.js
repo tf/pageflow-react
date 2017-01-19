@@ -88,6 +88,10 @@ export function actionCreators({scope = 'default'} = {}) {
       return pageAction(BUFFER_UNDERRUN);
     },
 
+    bufferUnderrunContinue() {
+      return pageAction(BUFFER_UNDERRUN_CONTINUE);
+    },
+
 
     scrubbingStarted() {
       return pageAction(SCRUBBING_STARTED);

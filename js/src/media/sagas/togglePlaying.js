@@ -12,7 +12,7 @@ export default function*() {
 function* toggle({play, pause}) {
   const state = yield select(playerState());
 
-  if (state.isPlaying) {
+  if (state.shouldPlay) {
     yield put(pause());
   }
   else {

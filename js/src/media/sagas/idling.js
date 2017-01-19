@@ -9,6 +9,6 @@ export default function*() {
 }
 
 function* putAfterDelay(actionCreator) {
-  yield call(delay, 1000);
+  yield call(delay, 3000);
   yield put(actionCreator());
 }

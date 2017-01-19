@@ -14,6 +14,7 @@ export default function(player, actions) {
   player.on('seeking', actions.seeking);
   player.on('seeked', actions.seeked);
   player.on('bufferunderrun', actions.bufferUnderrun);
+  player.on('bufferunderruncontinue', actions.bufferUnderrunContinue);
 
   player.on('timeupdate', () => actions.timeUpdate({
     currentTime: player.currentTime()

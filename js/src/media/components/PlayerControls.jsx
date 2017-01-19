@@ -31,7 +31,7 @@ export function MediaPlayerControls(props) {
     <PlayerControls hasProgress={true}
                     controlBarText={props.controlBarText}
 
-                    isLoading={playerState.isLoading}
+                    isLoading={playerState.isLoading || playerState.bufferUnderrun}
                     isPlaying={playerState.shouldPlay}
                     currentTime={playerState.currentTime}
                     bufferedEnd={playerState.bufferedEnd}

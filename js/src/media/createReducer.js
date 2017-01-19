@@ -1,8 +1,8 @@
 import {
-  PLAY, PAUSE, SEEK_TO,
+  PLAY, PLAYING, PAUSE, PAUSED, SEEK_TO,
   FADE_OUT_AND_PAUSE, PLAY_AND_FADE_IN,
   PREBUFFER, PREBUFFERED,
-  BUFFER_UNDERRUN, WAITING, SEEKING, SEEKED,
+  BUFFER_UNDERRUN, BUFFER_UNDERRUN_CONTINUE, WAITING, SEEKING, SEEKED,
   SCRUBBING_STARTED, SCRUBBING_ENDED,
   META_DATA_LOADED, PROGRESS, TIME_UPDATE, ENDED,
   HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
@@ -44,23 +44,39 @@ export default function({scope = 'default'} = {}) {
       return {
         ...state,
         shouldPlay: true,
-        isPlaying: true,
-        hasPlayed: true,
         hasBeenPlayingJustNow: true,
         fadeDuration: null,
         isLoading: true
+      };
+    case PLAYING:
+      return {
+        ...state,
+        isPlaying: true,
+        hasPlayed: true,
       };
     case PLAY_AND_FADE_IN:
       return {
         ...state,
         shouldPlay: true,
-        isPlaying: true,
-        hasPlayed: true,
         hasBeenPlayingJustNow: true,
         fadeDuration: action.payload.fadeDuration,
         isLoading: true
       };
     case PAUSE:
+      return {
+        ...state,
+        shouldPlay: false,
+        fadeDuration: null,
+        isLoading: false
+      };
+    case PAUSED:
+      if (state.bufferUnderrun) {
+        return {
+          ...state,
+          isPlaying: false
+        };
+      }
+
       return {
         ...state,
         shouldPlay: false,
@@ -95,11 +111,21 @@ export default function({scope = 'default'} = {}) {
       };
 
     case WAITING:
-    case BUFFER_UNDERRUN:
       return {
         ...state,
         isLoading: true
       };
+    case BUFFER_UNDERRUN:
+      return {
+        ...state,
+        bufferUnderrun: true
+      };
+    case BUFFER_UNDERRUN_CONTINUE:
+      return {
+        ...state,
+        bufferUnderrun: false
+      };
+
     case SEEKING:
       return {
         ...state,
