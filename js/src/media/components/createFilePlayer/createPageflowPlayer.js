@@ -1,7 +1,9 @@
 export default function createPageflowPlayer(
   element,
-  {emulateTextTracksDisplay, atmoSettings, mediaContext}
+  {emulateTextTracksDisplay, atmoSettings, mediaContext, playsInline}
 ) {
+  const isAudio = element.tagName.toLowerCase() == 'audio';
+
   const player = new pageflow.VideoPlayer(element, {
     controlBar: false,
     loadingSpinner: false,
@@ -10,11 +12,12 @@ export default function createPageflowPlayer(
     textTrackSettings: false,
 
     html5: {
-      nativeCaptions: element.tagName.toLowerCase() != 'audio' &&
-                      pageflow.browser.has('ios platform')
+      nativeCaptions: !isAudio && pageflow.browser.has('ios platform')
     },
 
     bufferUnderrunWaiting: true,
+    useSlimPlayerControlsDuringPhonePlayback: !playsInline && !isAudio,
+    fullscreenDuringPhonePlayback: !playsInline && !isAudio,
 
     volumeFading: true,
     hooks: pageflow.atmo.createMediaPlayerHooks(atmoSettings),

@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import InfoBox from '../InfoBox';
 import Container from './Container';
@@ -12,12 +13,12 @@ import MenuBar from './MenuBar';
 
 function PlayerControls(props) {
   return (
-    <Container {...props}>
+    <Container {...props} >
       <span className="hint">{props.hint}</span>
 
       <InfoBox {...props.infoBox} />
 
-      <div className="vjs-control-bar">
+      <div className={controlBarClassNames(props)}>
         {renderLoadingSpinner(props)}
         <div className="play_button">
           <PlayButton title={props.playButtonTitle}
@@ -53,7 +54,7 @@ function renderLoadingSpinner(props) {
 function renderProgress(props) {
   if (props.hasProgress) {
     return (
-      <div>
+      <div className="player_controls-progress">
         <CurrentTime {...props} />
         <TimeDivider />
         <Duration {...props} />
@@ -61,6 +62,13 @@ function renderProgress(props) {
       </div>
     );
   }
+}
+
+function controlBarClassNames(props) {
+  return classNames('vjs-control-bar', {
+    'with_quality_menu_present': props.qualityMenuItems && props.qualityMenuItems.length >= 2,
+    'with_text_tracks_menu_present': props.textTracksMenuItems && props.textTracksMenuItems.length >= 2
+  });
 }
 
 PlayerControls.propTypes = {

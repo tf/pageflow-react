@@ -24,10 +24,6 @@ export function updatePlayer(player, playerState, nextPlayerState, playerActions
   }
 
   if (!playerState.shouldPlay && nextPlayerState.shouldPlay) {
-    if (!playsInline && !player.isAudio()) {
-      player.requestNativePlayerOnPhone();
-    }
-
     if (nextPlayerState.fadeDuration) {
       player.playAndFadeIn(nextPlayerState.fadeDuration);
     }

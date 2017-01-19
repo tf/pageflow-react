@@ -40,7 +40,8 @@ export default function({
         this.player = createPlayer(element, {
           emulateTextTracksDisplay,
           atmoSettings: this.atmoSettings,
-          mediaContext: this.context.mediaContext
+          mediaContext: this.context.mediaContext,
+          playsInline: props.playsInline
         });
 
         initPlayerFromPlayerState(this.player,

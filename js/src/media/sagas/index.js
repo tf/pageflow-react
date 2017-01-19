@@ -14,7 +14,7 @@ export default function*(options = {}) {
     togglePlaying(),
   ];
 
-  if (!has('phone platform')) {
+  if (!has('iphone platform')) {
     sagas.push([
       disableScrollIndicatorDuringPlayback(),
       goToNextPageOnEnd(),
