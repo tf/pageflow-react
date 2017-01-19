@@ -14,7 +14,7 @@ export default class MenuBarButton extends React.Component {
       event.preventDefault();
 
       if (this.props.subMenuItems.length > 0) {
-        this.setState({subMenuVisible: !this.state.subMenuVisible});
+        this.setState({subMenuVisible: true});
       }
 
       if (this.props.onClick) {
