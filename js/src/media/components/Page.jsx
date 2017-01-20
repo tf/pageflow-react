@@ -16,7 +16,7 @@ import MediaPlayerControls from './PlayerControls';
 import NonJsLinks from './NonJsLinks';
 import playerStateClassNames from './playerStateClassNames';
 import {combine} from 'utils';
-import {prop} from 'utils/selectors';
+import {prop, has} from 'utils/selectors';
 import {textTracks} from 'media/selectors';
 
 import classNames from 'classnames';
@@ -32,7 +32,10 @@ export function MediaPage(props) {
   };
 
   return (
-    <PageWrapper className={pageWraperClassName(props.className, page, props.textTracks, playerState)}>
+    <PageWrapper className={pageWraperClassName(props.className,
+                                                willAutoplay(props),
+                                                props.textTracks,
+                                                playerState)}>
       <PageBackground>
         {props.children}
         <PageShadow page={page} className={playerStateClassNames(playerState)} />
@@ -68,16 +71,22 @@ export default connect(combine({
     file: prop('file'),
     defaultTextTrackFileId: prop('page.defaultTextTrackFileId')
   }),
+  hasAutoplaySupport: has('autoplay support')
 }))(MediaPage);
 
-function pageWraperClassName(className, page, textTracks, playerState) {
+function willAutoplay(props) {
+  return props.page.autoplay !== false &&
+         props.hasAutoplaySupport;
+}
+
+function pageWraperClassName(className, autoplay, textTracks, playerState) {
   return classNames(className, {
     'has_text_tracks': !!textTracks.activeFileId,
     'is_idle': playerState.isPlaying && playerState.userIsIdle,
     'is_control_bar_focused': playerState.focusInsideControls,
     'is_control_bar_hovered': playerState.userHoveringControls,
     'is_control_bar_hidden': playerState.controlsHidden,
-    'unplayed': !playerState.hasPlayed && !page.autoplay,
+    'unplayed': playerState.unplayed && !autoplay,
     'has_played': playerState.hasPlayed
   });
 }

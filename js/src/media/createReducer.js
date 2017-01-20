@@ -31,6 +31,7 @@ export default function({scope = 'default'} = {}) {
       return {
         ...state,
         hasPlayed: false,
+        unplayed: true,
         userHasBeenIdle: false
       };
     case PAGE_WILL_DEACTIVATE:
@@ -44,14 +45,14 @@ export default function({scope = 'default'} = {}) {
         ...state,
         shouldPlay: true,
         hasBeenPlayingJustNow: true,
+        unplayed: false,
         fadeDuration: null,
         isLoading: true
       };
     case PLAYING:
       return {
         ...state,
-        isPlaying: true,
-        hasPlayed: true,
+        isPlaying: true
       };
     case PLAY_AND_FADE_IN:
       return {
@@ -72,7 +73,8 @@ export default function({scope = 'default'} = {}) {
       if (state.bufferUnderrun) {
         return {
           ...state,
-          isPlaying: false
+          isPlaying: false,
+          hasPlayed: true
         };
       }
 
