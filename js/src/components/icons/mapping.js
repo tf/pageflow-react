@@ -22,4 +22,5 @@ export default {
   mediaQuality: icons.Gear,
   textTracks: icons.Subtitles,
   activeMenuItem: icons.Checkmark,
+  loadingSpinner: icons.CircleWithNotch,
 };
