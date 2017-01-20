@@ -8191,33 +8191,33 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var components = _interopRequireWildcard(_components);
 
-	var _selectors = __webpack_require__(426);
+	var _selectors = __webpack_require__(433);
 
 	var selectors = _interopRequireWildcard(_selectors);
 
-	var _media = __webpack_require__(432);
+	var _media = __webpack_require__(439);
 
-	var _interactivePageBackground = __webpack_require__(471);
+	var _interactivePageBackground = __webpack_require__(478);
 
 	var _pages = __webpack_require__(310);
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
-	var _registerPageTypeWithDefaultBackground = __webpack_require__(478);
+	var _registerPageTypeWithDefaultBackground = __webpack_require__(485);
 
 	var _registerPageTypeWithDefaultBackground2 = _interopRequireDefault(_registerPageTypeWithDefaultBackground);
 
-	var _registerWidgetType = __webpack_require__(479);
+	var _registerWidgetType = __webpack_require__(486);
 
 	var _registerWidgetType2 = _interopRequireDefault(_registerWidgetType);
 
-	var _mapping = __webpack_require__(405);
+	var _mapping = __webpack_require__(404);
 
 	var _mapping2 = _interopRequireDefault(_mapping);
 
-	var _Container = __webpack_require__(408);
+	var _Container = __webpack_require__(407);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -8231,17 +8231,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _ServerSidePage = __webpack_require__(480);
+	var _ServerSidePage = __webpack_require__(487);
 
 	var _ServerSidePage2 = _interopRequireDefault(_ServerSidePage);
 
-	var _builtInPageTypes = __webpack_require__(508);
+	var _builtInPageTypes = __webpack_require__(515);
 
-	var _pageflow = __webpack_require__(514);
+	var _pageflow = __webpack_require__(521);
 
 	var _pageflow2 = _interopRequireDefault(_pageflow);
 
-	var _boot = __webpack_require__(481);
+	var _boot = __webpack_require__(488);
 
 	var _boot2 = _interopRequireDefault(_boot);
 
@@ -8561,23 +8561,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _CloseButton = __webpack_require__(424);
+	var _CloseButton = __webpack_require__(431);
 
 	var _CloseButton2 = _interopRequireDefault(_CloseButton);
 
-	var _MenuBar = __webpack_require__(420);
+	var _MenuBar = __webpack_require__(427);
 
 	var _MenuBar2 = _interopRequireDefault(_MenuBar);
 
-	var _Icon = __webpack_require__(404);
+	var _Icon = __webpack_require__(403);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
-	var _editorOnly = __webpack_require__(425);
+	var _editorOnly = __webpack_require__(432);
 
 	var _editorOnly2 = _interopRequireDefault(_editorOnly);
 
-	var _reactDraggable = __webpack_require__(418);
+	var _reactDraggable = __webpack_require__(419);
 
 	var _reactDraggable2 = _interopRequireDefault(_reactDraggable);
 
@@ -15771,6 +15771,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(305);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	var _InfoBox = __webpack_require__(400);
 
 	var _InfoBox2 = _interopRequireDefault(_InfoBox);
@@ -15783,27 +15787,27 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _LoadingSpinner2 = _interopRequireDefault(_LoadingSpinner);
 
-	var _PlayButton = __webpack_require__(403);
+	var _PlayButton = __webpack_require__(412);
 
 	var _PlayButton2 = _interopRequireDefault(_PlayButton);
 
-	var _CurrentTime = __webpack_require__(413);
+	var _CurrentTime = __webpack_require__(414);
 
 	var _CurrentTime2 = _interopRequireDefault(_CurrentTime);
 
-	var _TimeDivider = __webpack_require__(415);
+	var _TimeDivider = __webpack_require__(416);
 
 	var _TimeDivider2 = _interopRequireDefault(_TimeDivider);
 
-	var _Duration = __webpack_require__(416);
+	var _Duration = __webpack_require__(417);
 
 	var _Duration2 = _interopRequireDefault(_Duration);
 
-	var _ProgressSlider = __webpack_require__(417);
+	var _ProgressSlider = __webpack_require__(418);
 
 	var _ProgressSlider2 = _interopRequireDefault(_ProgressSlider);
 
-	var _MenuBar = __webpack_require__(420);
+	var _MenuBar = __webpack_require__(427);
 
 	var _MenuBar2 = _interopRequireDefault(_MenuBar);
 
@@ -15821,7 +15825,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    _react2.default.createElement(_InfoBox2.default, props.infoBox),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'vjs-control-bar' },
+	      { className: controlBarClassNames(props) },
 	      renderLoadingSpinner(props),
 	      _react2.default.createElement(
 	        'div',
@@ -15839,7 +15843,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      )
 	    ),
 	    _react2.default.createElement(_MenuBar2.default, { standAlone: false,
-	      hiddenOnPhone: true,
 	      qualityMenuButtonTitle: props.qualityMenuButtonTitle,
 	      qualityMenuItems: props.qualityMenuItems,
 	      onQualityMenuItemClick: props.onQualityMenuItemClick,
@@ -15859,13 +15862,20 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  if (props.hasProgress) {
 	    return _react2.default.createElement(
 	      'div',
-	      null,
+	      { className: 'player_controls-progress' },
 	      _react2.default.createElement(_CurrentTime2.default, props),
 	      _react2.default.createElement(_TimeDivider2.default, null),
 	      _react2.default.createElement(_Duration2.default, props),
 	      _react2.default.createElement(_ProgressSlider2.default, props)
 	    );
 	  }
+	}
+
+	function controlBarClassNames(props) {
+	  return (0, _classnames2.default)('vjs-control-bar', {
+	    'with_quality_menu_present': props.qualityMenuItems && props.qualityMenuItems.length >= 2,
+	    'with_text_tracks_menu_present': props.textTracksMenuItems && props.textTracksMenuItems.length >= 2
+	  });
 	}
 
 	PlayerControls.propTypes = {
@@ -15965,7 +15975,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 /***/ },
 /* 402 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
@@ -15974,73 +15984,21 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 	exports.default = function (props) {
-	  return React.createElement("div", { className: "vjs-loading-spinner" });
+	  return React.createElement(
+	    "div",
+	    { className: "vjs-loading-spinner" },
+	    React.createElement(_Icon2.default, { name: "loadingSpinner" })
+	  );
 	};
 
-/***/ },
-/* 403 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _classnames = __webpack_require__(305);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _Icon = __webpack_require__(404);
+	var _Icon = __webpack_require__(403);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
-	var _pageSkipLinkTarget = __webpack_require__(412);
-
-	var _pageSkipLinkTarget2 = _interopRequireDefault(_pageSkipLinkTarget);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function PlayButton(props) {
-	  return React.createElement(
-	    'a',
-	    { className: className(props),
-	      href: '#',
-	      tabIndex: '4',
-	      id: props.id,
-	      title: props.title,
-	      onClick: clickHandler(props) },
-	    icon(props)
-	  );
-	}
-
-	exports.default = (0, _pageSkipLinkTarget2.default)(PlayButton);
-
-
-	function className(props) {
-	  return (0, _classnames2.default)('vjs-play-control', { 'vjs-playing': props.isPlaying }, { 'player_controls-play_button-custom_icon': !!props.iconName });
-	}
-
-	function clickHandler(props) {
-	  return function (event) {
-	    if (props.onClick) {
-	      props.onClick(event);
-	    }
-
-	    event.preventDefault();
-	  };
-	}
-
-	function icon(props) {
-	  if (props.iconName) {
-	    return React.createElement(_Icon2.default, { name: props.iconName });
-	  } else {
-	    return React.createElement('span', null);
-	  }
-	}
-
 /***/ },
-/* 404 */
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16054,7 +16012,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _mapping = __webpack_require__(405);
+	var _mapping = __webpack_require__(404);
 
 	var _mapping2 = _interopRequireDefault(_mapping);
 
@@ -16085,7 +16043,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 405 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16094,7 +16052,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _icons = __webpack_require__(406);
+	var _icons = __webpack_require__(405);
 
 	var _icons2 = _interopRequireDefault(_icons);
 
@@ -16121,11 +16079,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = {
 	  mediaQuality: _icons2.default.Gear,
 	  textTracks: _icons2.default.Subtitles,
-	  activeMenuItem: _icons2.default.Checkmark
+	  activeMenuItem: _icons2.default.Checkmark,
+	  loadingSpinner: _icons2.default.CircleWithNotch
 	};
 
 /***/ },
-/* 406 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16134,9 +16093,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _Checkmark = __webpack_require__(407);
+	var _Checkmark = __webpack_require__(406);
 
 	var _Checkmark2 = _interopRequireDefault(_Checkmark);
+
+	var _CircleWithNotch = __webpack_require__(408);
+
+	var _CircleWithNotch2 = _interopRequireDefault(_CircleWithNotch);
 
 	var _Disk = __webpack_require__(409);
 
@@ -16154,13 +16117,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.default = {
 	  Checkmark: _Checkmark2.default,
+	  CircleWithNotch: _CircleWithNotch2.default,
 	  Disk: _Disk2.default,
 	  Gear: _Gear2.default,
 	  Subtitles: _Subtitles2.default
 	};
 
 /***/ },
-/* 407 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16179,14 +16143,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(408);
+	var _Container = __webpack_require__(407);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 408 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16263,6 +16227,32 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = Container;
 
 /***/ },
+/* 408 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	exports.default = function (props) {
+	  return React.createElement(
+	    _Container2.default,
+	    _extends({}, props, { viewBoxWidth: 1000, viewBoxHeight: 1000 }),
+	    React.createElement("path", { d: "M990,497.6c0,66.4-13,129.8-38.8,190.3c-25.9,60.5-60.7,112.7-104.4,156.4C803,888,750.9,922.8,690.3,948.7c-60.5,25.9-124,38.8-190.3,38.8s-129.8-12.9-190.3-38.8S197,888,153.3,844.3c-43.7-43.7-78.5-95.9-104.4-156.4C22.9,627.4,10,563.9,10,497.6c0-80.9,18.4-156.5,55.2-226.7c36.8-70.2,87.2-128,151.2-173.4s135.2-73.8,213.6-85v142.2c-80.6,16.4-147.4,56.7-200.4,120.9c-53,64.2-79.5,138.2-79.6,222c0,47.4,9.3,92.7,27.9,135.9c18.6,43.2,43.4,80.4,74.6,111.6c31.2,31.2,68.4,56.1,111.6,74.6c43.2,18.5,88.5,27.8,135.9,27.9c47.4,0,92.7-9.2,135.9-27.9C679,801,716.2,776.1,747.4,745c31.2-31.1,56-68.3,74.6-111.6c18.6-43.3,27.9-88.6,27.9-135.9c0-83.9-26.5-157.9-79.6-222C717.2,211.3,650.4,171,569.9,154.6V12.5c78.4,11.3,149.6,39.6,213.6,85c64,45.4,114.4,103.2,151.2,173.4c36.8,70.2,55.2,145.7,55.2,226.7H990z" })
+	  );
+	};
+
+	var _Container = __webpack_require__(407);
+
+	var _Container2 = _interopRequireDefault(_Container);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ },
 /* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -16282,7 +16272,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(408);
+	var _Container = __webpack_require__(407);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -16314,7 +16304,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  ;
 	};
 
-	var _Container = __webpack_require__(408);
+	var _Container = __webpack_require__(407);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -16341,7 +16331,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _Container = __webpack_require__(408);
+	var _Container = __webpack_require__(407);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -16349,6 +16339,68 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 /***/ },
 /* 412 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classnames = __webpack_require__(305);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _Icon = __webpack_require__(403);
+
+	var _Icon2 = _interopRequireDefault(_Icon);
+
+	var _pageSkipLinkTarget = __webpack_require__(413);
+
+	var _pageSkipLinkTarget2 = _interopRequireDefault(_pageSkipLinkTarget);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function PlayButton(props) {
+	  return React.createElement(
+	    'a',
+	    { className: className(props),
+	      href: '#',
+	      tabIndex: '4',
+	      id: props.id,
+	      title: props.title,
+	      onClick: clickHandler(props) },
+	    icon(props)
+	  );
+	}
+
+	exports.default = (0, _pageSkipLinkTarget2.default)(PlayButton);
+
+
+	function className(props) {
+	  return (0, _classnames2.default)('vjs-play-control', { 'vjs-playing': props.isPlaying }, { 'player_controls-play_button-custom_icon': !!props.iconName });
+	}
+
+	function clickHandler(props) {
+	  return function (event) {
+	    if (props.onClick) {
+	      props.onClick(event);
+	    }
+
+	    event.preventDefault();
+	  };
+	}
+
+	function icon(props) {
+	  if (props.iconName) {
+	    return React.createElement(_Icon2.default, { name: props.iconName });
+	  } else {
+	    return React.createElement('span', null);
+	  }
+	}
+
+/***/ },
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16374,7 +16426,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _selectors2 = __webpack_require__(392);
 
 /***/ },
-/* 413 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16387,14 +16439,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(_TimeDisplay2.default, { className: "vjs-current-time", value: props.currentTime });
 	};
 
-	var _TimeDisplay = __webpack_require__(414);
+	var _TimeDisplay = __webpack_require__(415);
 
 	var _TimeDisplay2 = _interopRequireDefault(_TimeDisplay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 414 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16439,7 +16491,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 415 */
+/* 416 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -16457,7 +16509,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 416 */
+/* 417 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -16470,14 +16522,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return React.createElement(_TimeDisplay2.default, { className: "vjs-duration", value: props.duration });
 	};
 
-	var _TimeDisplay = __webpack_require__(414);
+	var _TimeDisplay = __webpack_require__(415);
 
 	var _TimeDisplay2 = _interopRequireDefault(_TimeDisplay);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 417 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -16492,9 +16544,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactDraggable = __webpack_require__(418);
+	var _reactDraggable = __webpack_require__(419);
 
-	var _keyCodes = __webpack_require__(419);
+	var _reactMeasure = __webpack_require__(420);
+
+	var _reactMeasure2 = _interopRequireDefault(_reactMeasure);
+
+	var _keyCodes = __webpack_require__(426);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -16513,30 +16569,31 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    var _this = _possibleConstructorReturn(this, (ProgressSlider.__proto__ || Object.getPrototypeOf(ProgressSlider)).call(this, props, context));
 
 	    _this.state = {
-	      isScrubbing: false,
-	      scrubbingAt: false
+	      handleWidth: null,
+	      progressHolderWidth: null
 	    };
 
-	    _this.bindProgressHolder = function (progressHolder) {
-	      _this.progressHolder = progressHolder;
+	    _this.measureProgressHolder = function (_ref) {
+	      var width = _ref.width;
+
+	      _this.setState({ progressHolderWidth: width });
 	    };
 
-	    _this.bindHandle = function (handle) {
-	      _this.handle = handle;
+	    _this.measureHandle = function (_ref2) {
+	      var width = _ref2.width;
+
+	      _this.setState({ handleWidth: width });
 	    };
 
 	    _this.handleStop = function (mouseEvent, dragEvent) {
-	      _this.handleDrag(mouseEvent, dragEvent);
-	      _this.setState({ isScrubbing: false });
+	      if (_this.props.onSeek) {
+	        _this.props.onSeek(_this.positionToTime(dragEvent.x));
+	      }
 	    };
 
 	    _this.handleDrag = function (mouseEvent, dragEvent) {
-	      if (_this.props.onSeek && _this.props.duration && _this.progressHolder) {
-	        var fraction = Math.max(0, Math.min(1, dragEvent.x / _this.progressHolder.clientWidth));
-	        var scrubbingAt = fraction * _this.props.duration;
-
-	        _this.setState({ scrubbingAt: scrubbingAt, isScrubbing: true });
-	        _this.props.onSeek(scrubbingAt);
+	      if (_this.props.onScrub) {
+	        _this.props.onScrub(_this.positionToTime(dragEvent.x));
 	      }
 	    };
 
@@ -16549,33 +16606,51 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        destination = Math.min(_this.props.currentTime + 1, _this.props.duration || Infinity);
 	      }
 
-	      _this.props.onSeek(destination);
-	      _this.setState({ scrubbingAt: destination });
+	      if (_this.prop.onSeek) {
+	        _this.props.onSeek(destination);
+	      }
 	    };
 	    return _this;
 	  }
 
 	  _createClass(ProgressSlider, [{
+	    key: 'positionToTime',
+	    value: function positionToTime(x) {
+	      if (this.props.duration && this.state.progressHolderWidth) {
+	        var fraction = Math.max(0, Math.min(1, x / this.state.progressHolderWidth));
+	        return fraction * this.props.duration;
+	      } else {
+	        return 0;
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var props = this.props;
-
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'vjs-progress-control',
 	          tabIndex: '4',
 	          onKeyDown: this.handleKeyDown },
 	        _react2.default.createElement(
-	          _reactDraggable.DraggableCore,
-	          { onStart: this.handleDrag,
-	            onDrag: this.handleDrag,
-	            onStop: this.handleStop },
+	          _reactMeasure2.default,
+	          { whitelist: ['width'], onMeasure: this.measureProgressHolder },
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'vjs-progress-holder', ref: this.bindProgressHolder },
-	            _react2.default.createElement('div', { className: 'vjs-load-progress', style: { width: toPercent(this.loadProgress()) } }),
-	            _react2.default.createElement('div', { className: 'vjs-play-progress', style: { width: toPercent(this.playProgress()) } }),
-	            _react2.default.createElement('div', { className: 'vjs-seek-handle', ref: this.bindHandle, style: { left: this.handlePosition() } })
+	            _reactDraggable.DraggableCore,
+	            { onStart: this.handleDrag,
+	              onDrag: this.handleDrag,
+	              onStop: this.handleStop },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'vjs-progress-holder' },
+	              _react2.default.createElement('div', { className: 'vjs-load-progress', style: { width: toPercent(this.loadProgress()) } }),
+	              _react2.default.createElement('div', { className: 'vjs-play-progress', style: { width: toPercent(this.playProgress()) } }),
+	              _react2.default.createElement(
+	                _reactMeasure2.default,
+	                { whitelist: ['width'], onMeasure: this.measureHandle },
+	                _react2.default.createElement('div', { className: 'vjs-seek-handle',
+	                  style: { left: this.handlePosition() } })
+	              )
+	            )
 	          )
 	        )
 	      );
@@ -16583,8 +16658,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }, {
 	    key: 'handlePosition',
 	    value: function handlePosition() {
-	      if (this.handle && this.progressHolder) {
-	        return (this.progressHolder.clientWidth - this.handle.clientWidth) * this.playProgress();
+	      if (this.state.handleWidth && this.state.progressHolderWidth) {
+	        return (this.state.progressHolderWidth - this.state.handleWidth) * this.playProgress();
 	      } else {
 	        return toPercent(this.playProgress());
 	      }
@@ -16597,8 +16672,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }, {
 	    key: 'playProgress',
 	    value: function playProgress() {
-	      var currentTime = this.props.isSeeking || this.state.isScrubbing ? this.state.scrubbingAt : this.props.currentTime;
-	      return this.props.duration > 0 ? currentTime / this.props.duration : 0;
+	      return this.props.duration > 0 ? this.props.currentTime / this.props.duration : 0;
 	    }
 	  }]);
 
@@ -16618,7 +16692,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 418 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function webpackUniversalModuleDefinition(root, factory) {
@@ -18170,7 +18244,1584 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	//# sourceMappingURL=react-draggable.js.map
 
 /***/ },
-/* 419 */
+/* 420 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _Measure = __webpack_require__(421);
+
+	var _Measure2 = _interopRequireDefault(_Measure);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _Measure2.default;
+	module.exports = exports['default'];
+
+/***/ },
+/* 421 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(304);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(382);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _resizeObserverPolyfill = __webpack_require__(422);
+
+	var _resizeObserverPolyfill2 = _interopRequireDefault(_resizeObserverPolyfill);
+
+	var _getNodeDimensions = __webpack_require__(423);
+
+	var _getNodeDimensions2 = _interopRequireDefault(_getNodeDimensions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Measure = function (_Component) {
+	  _inherits(Measure, _Component);
+
+	  function Measure(props) {
+	    _classCallCheck(this, Measure);
+
+	    var _this = _possibleConstructorReturn(this, (Measure.__proto__ || Object.getPrototypeOf(Measure)).call(this, props));
+
+	    _this.measure = function () {
+	      var includeMargin = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _this.props.includeMargin;
+	      var useClone = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _this.props.useClone;
+
+	      // bail out if we shouldn't measure
+	      if (!_this.props.shouldMeasure) return;
+
+	      // if no parent available we need to requery the DOM node
+	      if (!_this._node.parentNode) {
+	        _this._setDOMNode();
+	      }
+
+	      var dimensions = _this.getDimensions(_this._node, includeMargin, useClone);
+	      var isChildFunction = typeof _this.props.children === 'function';
+
+	      // determine if we need to update our callback with new dimensions or not
+	      _this._propsToMeasure.some(function (prop) {
+	        if (dimensions[prop] !== _this._lastDimensions[prop]) {
+	          // update our callback if we've found a dimension that has changed
+	          _this.props.onMeasure(dimensions);
+
+	          // update state to send dimensions to child function
+	          if (isChildFunction && typeof _this !== 'undefined') {
+	            _this.setState({ dimensions: dimensions });
+	          }
+
+	          // store last dimensions to compare changes
+	          _this._lastDimensions = dimensions;
+
+	          // we don't need to look any further, bail out
+	          return true;
+	        }
+	      });
+	    };
+
+	    _this.state = {
+	      dimensions: {
+	        width: 0,
+	        height: 0,
+	        top: 0,
+	        right: 0,
+	        bottom: 0,
+	        left: 0
+	      }
+	    };
+	    _this._node = null;
+	    _this._propsToMeasure = _this._getPropsToMeasure(props);
+	    _this._lastDimensions = {};
+	    return _this;
+	  }
+
+	  _createClass(Measure, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      this._setDOMNode();
+
+	      // measure on first render
+	      this.measure();
+
+	      // add component to resize observer to detect changes on resize
+	      this.resizeObserver = new _resizeObserverPolyfill2.default(function () {
+	        return _this2.measure();
+	      });
+	      this.resizeObserver.observe(this._node);
+	    }
+	  }, {
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(_ref) {
+	      var config = _ref.config;
+	      var whitelist = _ref.whitelist;
+	      var blacklist = _ref.blacklist;
+
+	      // we store the properties ourselves so we need to update them if the
+	      // whitelist or blacklist props have changed
+	      if (this.props.whitelist !== whitelist || this.props.blacklist !== blacklist) {
+	        this._propsToMeasure = this._getPropsToMeasure({ whitelist: whitelist, blacklist: blacklist });
+	      }
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.resizeObserver.disconnect(this._node);
+	      this._node = null;
+	    }
+	  }, {
+	    key: '_setDOMNode',
+	    value: function _setDOMNode() {
+	      this._node = _reactDom2.default.findDOMNode(this);
+	    }
+	  }, {
+	    key: 'getDimensions',
+	    value: function getDimensions() {
+	      var node = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this._node;
+	      var includeMargin = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : this.props.includeMargin;
+	      var useClone = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : this.props.useClone;
+	      var cloneOptions = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : this.props.cloneOptions;
+
+	      return (0, _getNodeDimensions2.default)(node, _extends({
+	        margin: includeMargin,
+	        clone: useClone
+	      }, cloneOptions));
+	    }
+	  }, {
+	    key: '_getPropsToMeasure',
+	    value: function _getPropsToMeasure(_ref2) {
+	      var whitelist = _ref2.whitelist;
+	      var blacklist = _ref2.blacklist;
+
+	      return whitelist.filter(function (prop) {
+	        return blacklist.indexOf(prop) < 0;
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var children = this.props.children;
+
+	      return _react.Children.only(typeof children === 'function' ? children(this.state.dimensions) : children);
+	    }
+	  }]);
+
+	  return Measure;
+	}(_react.Component);
+
+	Measure.propTypes = {
+	  whitelist: _react.PropTypes.array,
+	  blacklist: _react.PropTypes.array,
+	  includeMargin: _react.PropTypes.bool,
+	  useClone: _react.PropTypes.bool,
+	  cloneOptions: _react.PropTypes.object,
+	  shouldMeasure: _react.PropTypes.bool,
+	  onMeasure: _react.PropTypes.func
+	};
+	Measure.defaultProps = {
+	  whitelist: ['width', 'height', 'top', 'right', 'bottom', 'left'],
+	  blacklist: [],
+	  includeMargin: true,
+	  useClone: false,
+	  cloneOptions: {},
+	  shouldMeasure: true,
+	  onMeasure: function onMeasure() {
+	    return null;
+	  }
+	};
+	exports.default = Measure;
+	module.exports = exports['default'];
+
+/***/ },
+/* 422 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {(function (global, factory) {
+	     true ? module.exports = factory() :
+	    typeof define === 'function' && define.amd ? define(factory) :
+	    (global.ResizeObserver = factory());
+	}(this, (function () {
+	'use strict';
+
+	/**
+	 * Exports global object for the current environment.
+	 */
+	var global$1 = (function () {
+	    if (typeof self != 'undefined' && self.Math === Math) {
+	        return self;
+	    }
+
+	    if (typeof window != 'undefined' && window.Math === Math) {
+	        return window;
+	    }
+
+	    if (typeof global != 'undefined' && global.Math === Math) {
+	        return global;
+	    }
+
+	    // eslint-disable-next-line no-new-func
+	    return Function('return this')();
+	})();
+
+	/**
+	 * Detects whether window and document objects are available in current environment.
+	 */
+	var isBrowser = global$1.window === global$1 && typeof document != 'undefined';
+
+	var classCallCheck = function (instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	};
+
+	var createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];
+	            descriptor.enumerable = descriptor.enumerable || false;
+	            descriptor.configurable = true;
+	            if ("value" in descriptor) descriptor.writable = true;
+	            Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }
+
+	    return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	        if (staticProps) defineProperties(Constructor, staticProps);
+	        return Constructor;
+	    };
+	}();
+
+	var inherits = function (subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }
+
+	    subClass.prototype = Object.create(superClass && superClass.prototype, {
+	        constructor: {
+	            value: subClass,
+	            enumerable: false,
+	            writable: true,
+	            configurable: true
+	        }
+	    });
+	    if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	};
+
+	var possibleConstructorReturn = function (self, call) {
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }
+
+	    return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	};
+
+	/**
+	 * A collection of shims that provides minimal
+	 * support of WeakMap and Map classes.
+	 *
+	 * These implementations are not meant to be used outside of
+	 * ResizeObserver modules as they cover only a limited range
+	 * of use cases.
+	 */
+	/* eslint-disable require-jsdoc */
+	var hasNativeCollections = typeof global$1.WeakMap === 'function' && typeof global$1.Map === 'function';
+
+	var WeakMap = function () {
+	    if (hasNativeCollections) {
+	        return global$1.WeakMap;
+	    }
+
+	    function getIndex(arr, key) {
+	        var result = -1;
+
+	        arr.some(function (entry, index) {
+	            var matches = entry[0] === key;
+
+	            if (matches) {
+	                result = index;
+	            }
+
+	            return matches;
+	        });
+
+	        return result;
+	    }
+
+	    return function () {
+	        function _class() {
+	            classCallCheck(this, _class);
+
+	            this.__entries__ = [];
+	        }
+
+	        _class.prototype.get = function get(key) {
+	            var index = getIndex(this.__entries__, key);
+
+	            return this.__entries__[index][1];
+	        };
+
+	        _class.prototype.set = function set(key, value) {
+	            var index = getIndex(this.__entries__, key);
+
+	            if (~index) {
+	                this.__entries__[index][1] = value;
+	            } else {
+	                this.__entries__.push([key, value]);
+	            }
+	        };
+
+	        _class.prototype.delete = function _delete(key) {
+	            var entries = this.__entries__,
+	                index = getIndex(entries, key);
+
+	            if (~index) {
+	                entries.splice(index, 1);
+	            }
+	        };
+
+	        _class.prototype.has = function has(key) {
+	            return !!~getIndex(this.__entries__, key);
+	        };
+
+	        return _class;
+	    }();
+	}();
+
+	var Map = function () {
+	    if (hasNativeCollections) {
+	        return global$1.Map;
+	    }
+
+	    return function (_WeakMap) {
+	        inherits(_class2, _WeakMap);
+
+	        function _class2() {
+	            classCallCheck(this, _class2);
+	            return possibleConstructorReturn(this, _WeakMap.apply(this, arguments));
+	        }
+
+	        _class2.prototype.clear = function clear() {
+	            this.__entries__.splice(0, this.__entries__.length);
+	        };
+
+	        _class2.prototype.entries = function entries() {
+	            return this.__entries__.slice();
+	        };
+
+	        _class2.prototype.keys = function keys() {
+	            return this.__entries__.map(function (entry) {
+	                return entry[0];
+	            });
+	        };
+
+	        _class2.prototype.values = function values() {
+	            return this.__entries__.map(function (entry) {
+	                return entry[1];
+	            });
+	        };
+
+	        _class2.prototype.forEach = function forEach(callback) {
+	            var ctx = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+	            for (var _iterator = this.__entries__, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+	                var _ref;
+
+	                if (_isArray) {
+	                    if (_i >= _iterator.length) break;
+	                    _ref = _iterator[_i++];
+	                } else {
+	                    _i = _iterator.next();
+	                    if (_i.done) break;
+	                    _ref = _i.value;
+	                }
+
+	                var entry = _ref;
+
+	                callback.call(ctx, entry[1], entry[0]);
+	            }
+	        };
+
+	        createClass(_class2, [{
+	            key: 'size',
+	            get: function get() {
+	                return this.__entries__.length;
+	            }
+	        }]);
+	        return _class2;
+	    }(WeakMap);
+	}();
+
+	/**
+	 * A shim for requestAnimationFrame which falls back
+	 * to setTimeout if the first one is not supported.
+	 *
+	 * @returns {Number} Requests' identifier.
+	 */
+	var requestAnimFrame = (function () {
+	    if (typeof global$1.requestAnimationFrame === 'function') {
+	        return global$1.requestAnimationFrame;
+	    }
+
+	    return function (callback) {
+	        return setTimeout(function () {
+	            return callback(Date.now());
+	        }, 1000 / 60);
+	    };
+	})();
+
+	/**
+	 * Creates a wrapper function that ensures that provided callback will
+	 * be invoked only once during the specified delay period. It caches the last
+	 * call and re-invokes it after pending activation is resolved.
+	 *
+	 * @param {Function} callback - Function to be invoked after the delay period.
+	 * @param {Number} [delay = 0] - Delay after which to invoke callback.
+	 * @param {Boolean} [afterRAF = false] - Whether function needs to be invoked as
+	 *      a requestAnimationFrame callback.
+	 * @returns {Function}
+	 */
+	var throttle = function (callback) {
+	    var delay = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+	    var afterRAF = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+	    var leadCall = null,
+	        edgeCall = null;
+
+	    /**
+	     * Invokes the original callback function and schedules a new invocation if
+	     * the wrapper was called during current request.
+	     */
+	    function invokeCallback() {
+	        // Invoke original function.
+	        callback.apply.apply(callback, leadCall);
+
+	        leadCall = null;
+
+	        // Schedule new invocation if there was a call during delay period.
+	        if (edgeCall) {
+	            proxy.apply.apply(proxy, edgeCall);
+
+	            edgeCall = null;
+	        }
+	    }
+
+	    /**
+	     * Callback that will be invoked after the specified delay period. It will
+	     * delegate invocation of the original function to the requestAnimationFrame
+	     * if "afterRAF" parameter is set to "true".
+	     */
+	    function timeoutCallback() {
+	        afterRAF ? requestAnimFrame(invokeCallback) : invokeCallback();
+	    }
+
+	    /**
+	     * Schedules invocation of the initial function.
+	     */
+	    function proxy() {
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+
+	        // eslint-disable-next-line no-invalid-this
+	        var callData = [this, args];
+
+	        // Cache current call to be re-invoked later if there is already a
+	        // pending call.
+	        if (leadCall) {
+	            edgeCall = callData;
+	        } else {
+	            leadCall = callData;
+
+	            // Schedule new invocation.
+	            setTimeout(timeoutCallback, delay);
+	        }
+	    }
+
+	    return proxy;
+	};
+
+	// Define whether the MutationObserver is supported.
+	var mutationsSupported = typeof global$1.MutationObserver === 'function';
+
+	/**
+	 * Controller class which handles updates of ResizeObserver instances.
+	 * It decides when and for how long it's necessary to run updates by listening
+	 * to the windows "resize" event along with a tracking of DOM mutations
+	 * (nodes removal, changes of attributes, etc.).
+	 *
+	 * Transitions and animations are handled by running a repeatable update cycle
+	 * until the dimensions of observed elements are changing.
+	 *
+	 * Continuous update cycle will be used automatically in case MutationObserver
+	 * is not supported.
+	 */
+	var ResizeObserverController = function () {
+	    /**
+	     * Creates a new instance of ResizeObserverController.
+	     *
+	     * @param {Boolean} [continuousUpdates = false] - Whether to use a continuous
+	     *      update cycle.
+	     */
+	    function ResizeObserverController() {
+	        var continuousUpdates = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+	        classCallCheck(this, ResizeObserverController);
+
+	        // Continuous updates must be enabled if MutationObserver is not supported.
+	        this._isCycleContinuous = !mutationsSupported || continuousUpdates;
+
+	        // Indicates whether DOM listeners have been added.
+	        this._listenersEnabled = false;
+
+	        // Keeps reference to the instance of MutationObserver.
+	        this._mutationsObserver = null;
+
+	        // A list of connected observers.
+	        this._observers = [];
+
+	        // Make sure that the "refresh" method is invoked as a RAF callback and
+	        // that it happens only once during the period of 30 milliseconds.
+	        this.refresh = throttle(this.refresh.bind(this), 30, true);
+
+	        // Additionally postpone invocation of the continuous updates.
+	        this._continuousUpdateHandler = throttle(this.refresh, 70);
+	    }
+
+	    /**
+	     * Adds observer to observers list.
+	     *
+	     * @param {ResizeObserver} observer - Observer to be added.
+	     */
+	    ResizeObserverController.prototype.connect = function connect(observer) {
+	        if (!this.isConnected(observer)) {
+	            this._observers.push(observer);
+	        }
+
+	        // Add listeners if they haven't been added yet.
+	        if (!this._listenersEnabled) {
+	            this._addListeners();
+	        }
+	    };
+
+	    /**
+	     * Removes observer from observers list.
+	     *
+	     * @param {ResizeObserver} observer - Observer to be removed.
+	     */
+	    ResizeObserverController.prototype.disconnect = function disconnect(observer) {
+	        var observers = this._observers;
+	        var index = observers.indexOf(observer);
+
+	        // Remove observer if it's present in registry.
+	        if (~index) {
+	            observers.splice(index, 1);
+	        }
+
+	        // Remove listeners if controller has no connected observers.
+	        if (!observers.length && this._listenersEnabled) {
+	            this._removeListeners();
+	        }
+	    };
+
+	    /**
+	     * Tells whether the provided observer is connected to controller.
+	     *
+	     * @param {ResizeObserver} observer - Observer to be checked.
+	     * @returns {Boolean}
+	     */
+	    ResizeObserverController.prototype.isConnected = function isConnected(observer) {
+	        return !!~this._observers.indexOf(observer);
+	    };
+
+	    /**
+	     * Invokes the update of observers. It will continue running updates insofar
+	     * it detects changes or if continuous updates are enabled.
+	     */
+	    ResizeObserverController.prototype.refresh = function refresh() {
+	        var hasChanges = this._updateObservers();
+
+	        // Continue running updates if changes have been detected as there might
+	        // be future ones caused by CSS transitions.
+	        if (hasChanges) {
+	            this.refresh();
+	        } else if (this._isCycleContinuous && this._listenersEnabled) {
+	            // Automatically repeat cycle if it's necessary.
+	            this._continuousUpdateHandler();
+	        }
+	    };
+
+	    /**
+	     * Updates every observer from observers list and notifies them of queued
+	     * entries.
+	     *
+	     * @private
+	     * @returns {Boolean} Returns "true" if any observer has detected changes in
+	     *      dimensions of its' elements.
+	     */
+	    ResizeObserverController.prototype._updateObservers = function _updateObservers() {
+	        var hasChanges = false;
+
+	        for (var _iterator = this._observers, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+	            var _ref;
+
+	            if (_isArray) {
+	                if (_i >= _iterator.length) break;
+	                _ref = _iterator[_i++];
+	            } else {
+	                _i = _iterator.next();
+	                if (_i.done) break;
+	                _ref = _i.value;
+	            }
+
+	            var observer = _ref;
+
+	            // Collect active observations.
+	            observer.gatherActive();
+
+	            // Broadcast active observations and set the flag that changes have
+	            // been detected.
+	            if (observer.hasActive()) {
+	                hasChanges = true;
+
+	                observer.broadcastActive();
+	            }
+	        }
+
+	        return hasChanges;
+	    };
+
+	    /**
+	     * Initializes DOM listeners.
+	     *
+	     * @private
+	     */
+	    ResizeObserverController.prototype._addListeners = function _addListeners() {
+	        // Do nothing if listeners have been already added.
+	        if (this._listenersEnabled) {
+	            return;
+	        }
+
+	        window.addEventListener('resize', this.refresh);
+
+	        // Subscribe to DOM mutations if it's possible as they may lead to
+	        // changes in the dimensions of elements.
+	        if (mutationsSupported) {
+	            this._mutationsObserver = new MutationObserver(this.refresh);
+
+	            this._mutationsObserver.observe(document, {
+	                attributes: true,
+	                childList: true,
+	                characterData: true,
+	                subtree: true
+	            });
+	        }
+
+	        this._listenersEnabled = true;
+
+	        // Don't wait for a possible event that might trigger the update of
+	        // observers and manually initiate the update process.
+	        if (this._isCycleContinuous) {
+	            this.refresh();
+	        }
+	    };
+
+	    /**
+	     * Removes DOM listeners.
+	     *
+	     * @private
+	     */
+	    ResizeObserverController.prototype._removeListeners = function _removeListeners() {
+	        // Do nothing if listeners have been already removed.
+	        if (!this._listenersEnabled) {
+	            return;
+	        }
+
+	        window.removeEventListener('resize', this.refresh);
+
+	        if (this._mutationsObserver) {
+	            this._mutationsObserver.disconnect();
+	        }
+
+	        this._mutationsObserver = null;
+	        this._listenersEnabled = false;
+	    };
+
+	    createClass(ResizeObserverController, [{
+	        key: 'continuousUpdates',
+
+	        /**
+	         * Tells whether continuous updates are enabled.
+	         *
+	         * @returns {Boolean}
+	         */
+	        get: function get() {
+	            return this._isCycleContinuous;
+	        },
+
+	        /**
+	         * Enables or disables continuous updates.
+	         *
+	         * @param {Boolean} useContinuous - Whether to enable or disable continuous
+	         *      updates. Note that the value won't be applied if MutationObserver is
+	         *      not supported.
+	         */
+	        set: function set(useContinuous) {
+	            // The state of continuous updates should not be modified if
+	            // MutationObserver is not supported.
+	            if (!mutationsSupported) {
+	                return;
+	            }
+
+	            this._isCycleContinuous = useContinuous;
+
+	            // Immediately start the update cycle in order not to wait for a possible
+	            // event that might initiate it.
+	            if (this._listenersEnabled && useContinuous) {
+	                this.refresh();
+	            }
+	        }
+	    }]);
+	    return ResizeObserverController;
+	}();
+
+	// Placeholder of an empty content rectangle.
+	var emptyRect = createContentRect(0, 0, 0, 0);
+
+	/**
+	 * Extracts computed styles of provided element.
+	 *
+	 * @param {Element} target
+	 * @returns {CSSStyleDeclaration}
+	 */
+	function getStyles(target) {
+	    return window.getComputedStyle(target);
+	}
+
+	/**
+	 * Converts provided string defined in q form of '{{value}}px' to number.
+	 *
+	 * @param {String} value
+	 * @returns {Number}
+	 */
+	function pixelsToNumber(value) {
+	    return parseFloat(value) || 0;
+	}
+
+	/**
+	 * Extracts borders size from provided styles.
+	 *
+	 * @param {CSSStyleDeclaration} styles
+	 * @param {...String} positions - Borders positions (top, right, ...)
+	 * @returns {Number}
+	 */
+	function getBordersSize(styles) {
+	    for (var _len = arguments.length, positions = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	        positions[_key - 1] = arguments[_key];
+	    }
+
+	    return positions.reduce(function (size, pos) {
+	        var value = styles['border-' + pos + '-width'];
+
+	        return size + pixelsToNumber(value);
+	    }, 0);
+	}
+
+	/**
+	 * Extracts paddings sizes from provided styles.
+	 *
+	 * @param {CSSStyleDeclaration} styles
+	 * @returns {Object} Paddings box.
+	 */
+	function getPaddings(styles) {
+	    var boxKeys = ['top', 'right', 'bottom', 'left'];
+	    var paddings = {};
+
+	    for (var _iterator = boxKeys, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+	        var _ref;
+
+	        if (_isArray) {
+	            if (_i >= _iterator.length) break;
+	            _ref = _iterator[_i++];
+	        } else {
+	            _i = _iterator.next();
+	            if (_i.done) break;
+	            _ref = _i.value;
+	        }
+
+	        var key = _ref;
+
+	        var value = styles['padding-' + key];
+
+	        paddings[key] = pixelsToNumber(value);
+	    }
+
+	    return paddings;
+	}
+
+	/**
+	 * Creates content rectangle based on the provided dimensions
+	 * and the top/left positions.
+	 *
+	 * @param {Number} width - Width of rectangle.
+	 * @param {Number} height - Height of rectangle.
+	 * @param {Number} top - Top position.
+	 * @param {Number} left - Left position.
+	 * @returns {ClientRect}
+	 */
+	function createContentRect(width, height, top, left) {
+	    return {
+	        width: width, height: height, top: top,
+	        right: width + left,
+	        bottom: height + top,
+	        left: left
+	    };
+	}
+
+	/**
+	 * Calculates content rectangle of provided SVG element.
+	 *
+	 * @param {SVGElement} target - Element whose content
+	 *      rectangle needs to be calculated.
+	 * @returns {ClientRect}
+	 */
+	function getSVGContentRect(target) {
+	    var bbox = target.getBBox();
+
+	    return createContentRect(bbox.width, bbox.height, 0, 0);
+	}
+
+	/**
+	 * Calculates content rectangle of a root element.
+	 *
+	 * @returns {ClientRect}
+	 */
+	function getDocElementRect() {
+	    // Neither scroll[Width/Height] nor offset[Width/Height] can be used to
+	    // define content dimensions as they give inconsistent results across
+	    // different browsers. E.g. in the Internet Explorer 10 and lower value of
+	    // these properties can't be less than the client dimensions (same thing
+	    // with the "getBoundingClientRect" method). And Firefox has the same
+	    // behavior with its "scroll" properties.
+	    var styles = getStyles(document.documentElement);
+
+	    var width = pixelsToNumber(styles.width);
+	    var height = pixelsToNumber(styles.height);
+
+	    return createContentRect(width, height, 0, 0);
+	}
+
+	/**
+	 * Calculates content rectangle of provided HTMLElement.
+	 *
+	 * @param {HTMLElement} target - Element whose content
+	 *      rectangle needs to be calculated.
+	 * @returns {ClientRect}
+	 */
+	function getHTMLElementContentRect(target) {
+	    // Client width & height properties can't be
+	    // used exclusively as they provide rounded values.
+	    var clientWidth = target.clientWidth;
+	    var clientHeight = target.clientHeight;
+
+	    // By this condition we can catch all non-replaced inline, hidden and detached
+	    // elements. Though elements with width & height properties less than 0.5 will
+	    // be discarded as well.
+	    //
+	    // Without it we would need to implement separate methods for each of
+	    // those cases and it's not possible to perform a precise and performance
+	    // effective test for hidden elements. E.g. even jQuerys' ':visible' filter
+	    // gives wrong results for elements with width & height less than 0.5.
+	    if (!clientWidth && !clientHeight) {
+	        return emptyRect;
+	    }
+
+	    var styles = getStyles(target);
+	    var paddings = getPaddings(styles);
+	    var horizPad = paddings.left + paddings.right;
+	    var vertPad = paddings.top + paddings.bottom;
+
+	    // Computed styles of width & height are being used because they are the
+	    // only dimensions available to JS that contain non-rounded values. It could
+	    // be possible to utilize getBoundingClientRect if only its' data wasn't
+	    // affected by CSS transformations let alone paddings, borders and scroll bars.
+	    var width = pixelsToNumber(styles.width),
+	        height = pixelsToNumber(styles.height);
+
+	    // Width & height include paddings and borders
+	    // when 'border-box' box model is applied (except for IE).
+	    if (styles.boxSizing === 'border-box') {
+	        // Following conditions are required to handle Internet Explorer which
+	        // doesn't include paddings and borders to computed CSS dimensions.
+	        //
+	        // We can say that if CSS dimensions + paddings are equal to the "client"
+	        // properties then it's either IE, and thus we don't need to subtract
+	        // anything, or an element merely doesn't have paddings/borders styles.
+	        if (Math.round(width + horizPad) !== clientWidth) {
+	            width -= getBordersSize(styles, 'left', 'right') + horizPad;
+	        }
+
+	        if (Math.round(height + vertPad) !== clientHeight) {
+	            height -= getBordersSize(styles, 'top', 'bottom') + vertPad;
+	        }
+	    }
+
+	    // In some browsers (only in Firefox, actually) CSS width & height
+	    // include scroll bars size which can be removed at this step as scroll bars
+	    // are the only difference between rounded dimensions + paddings and "client"
+	    // properties, though that is not always true in Chrome.
+	    var vertScrollbar = Math.round(width + horizPad) - clientWidth;
+	    var horizScrollbar = Math.round(height + vertPad) - clientHeight;
+
+	    // Chrome has a rather weird rounding of "client" properties.
+	    // E.g. for an element with content width of 314.2px it sometimes gives the
+	    // client width of 315px and for the width of 314.7px it may give 314px.
+	    // And it doesn't happen all the time. Such difference needs to be ignored.
+	    if (Math.abs(vertScrollbar) !== 1) {
+	        width -= vertScrollbar;
+	    }
+
+	    if (Math.abs(horizScrollbar) !== 1) {
+	        height -= horizScrollbar;
+	    }
+
+	    return createContentRect(width, height, paddings.top, paddings.left);
+	}
+
+	/**
+	 * Checks whether provided element is an instance of SVGElement.
+	 *
+	 * @param {Element} target - Element to be checked.
+	 * @returns {Boolean}
+	 */
+	function isSVGElement(target) {
+	    return target instanceof window.SVGElement;
+	}
+
+	/**
+	 * Checks whether provided element is a document element (root element of a document).
+	 *
+	 * @param {Element} target - Element to be checked.
+	 * @returns {Boolean}
+	 */
+	function isDocumentElement(target) {
+	    return target === document.documentElement;
+	}
+
+	/**
+	 * Calculates an appropriate content rectangle for provided html or svg element.
+	 *
+	 * @param {Element} target - Element whose content rectangle
+	 *      needs to be calculated.
+	 * @returns {ClientRect}
+	 */
+	function getContentRect(target) {
+	    if (isSVGElement(target)) {
+	        return getSVGContentRect(target);
+	    }
+
+	    if (isDocumentElement(target)) {
+	        return getDocElementRect();
+	    }
+
+	    return getHTMLElementContentRect(target);
+	}
+
+	/**
+	 * Class that is responsible for computations of the content rectangle of
+	 * provided DOM element and for keeping track of its' changes.
+	 */
+	var ResizeObservation = function () {
+	    /**
+	     * Creates an instance of ResizeObservation.
+	     *
+	     * @param {Element} target - Element to be observed.
+	     */
+	    function ResizeObservation(target) {
+	        classCallCheck(this, ResizeObservation);
+
+	        this.target = target;
+
+	        // Keeps reference to the last observed content rectangle.
+	        this._contentRect = emptyRect;
+
+	        // Broadcasted width of content rectangle.
+	        this.broadcastWidth = 0;
+
+	        // Broadcasted height of content rectangle.
+	        this.broadcastHeight = 0;
+	    }
+
+	    /**
+	     * Updates 'broadcastWidth' and 'broadcastHeight' properties with a data
+	     * from the corresponding properties of the last observed content rectangle.
+	     *
+	     * @returns {ClientRect} Last observed content rectangle.
+	     */
+	    ResizeObservation.prototype.broadcastRect = function broadcastRect() {
+	        var rect = this._contentRect;
+
+	        this.broadcastWidth = rect.width;
+	        this.broadcastHeight = rect.height;
+
+	        return rect;
+	    };
+
+	    /**
+	     * Updates content rectangle and tells whether its' width or height properties
+	     * have changed since the last broadcast.
+	     *
+	     * @returns {Boolean}
+	     */
+	    ResizeObservation.prototype.isActive = function isActive() {
+	        var rect = getContentRect(this.target);
+
+	        this._contentRect = rect;
+
+	        return rect.width !== this.broadcastWidth || rect.height !== this.broadcastHeight;
+	    };
+
+	    return ResizeObservation;
+	}();
+
+	/**
+	 * Defines properties of the provided target object.
+	 *
+	 * @param {Object} target - Object for which to define properties.
+	 * @param {Object} props - Properties to be defined.
+	 * @param {Object} [descr = {}] - Properties descriptor.
+	 * @returns {Object} Target object.
+	 */
+	function defineProperties(target, props) {
+	    var descr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+	    var descriptor = {
+	        configurable: descr.configurable || false,
+	        writable: descr.writable || false,
+	        enumerable: descr.enumerable || false
+	    };
+
+	    for (var _iterator = Object.keys(props), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+	        var _ref;
+
+	        if (_isArray) {
+	            if (_i >= _iterator.length) break;
+	            _ref = _iterator[_i++];
+	        } else {
+	            _i = _iterator.next();
+	            if (_i.done) break;
+	            _ref = _i.value;
+	        }
+
+	        var key = _ref;
+
+	        descriptor.value = props[key];
+
+	        Object.defineProperty(target, key, descriptor);
+	    }
+
+	    return target;
+	}
+
+	var ResizeObserverEntry =
+	/**
+	 * Creates an instance of ResizeObserverEntry.
+	 *
+	 * @param {Element} target - Element that is being observed.
+	 * @param {ClientRect} rectData - Data of the elements' content rectangle.
+	 */
+	function ResizeObserverEntry(target, rectData) {
+	    classCallCheck(this, ResizeObserverEntry);
+
+	    // Content rectangle needs to be an instance of ClientRect if it's
+	    // available.
+	    var rectInterface = window.ClientRect || Object;
+	    var contentRect = Object.create(rectInterface.prototype);
+
+	    // According to the specification following properties are not writable
+	    // and are also not enumerable in the native implementation.
+	    //
+	    // Property accessors are not being used as they'd require to define a
+	    // private WeakMap storage which may cause memory leaks in browsers that
+	    // don't support this type of collections.
+	    defineProperties(contentRect, rectData, { configurable: true });
+
+	    defineProperties(this, {
+	        target: target, contentRect: contentRect
+	    }, { configurable: true });
+	};
+
+	var ResizeObserver$2 = function () {
+	    /**
+	     * Creates a new instance of ResizeObserver.
+	     *
+	     * @param {Function} callback - Callback function that is invoked when one
+	     *      of the observed elements changes it's content rectangle.
+	     * @param {ResizeObsreverController} controller - Controller instance which
+	     *      is responsible for the updates of observer.
+	     * @param {ResizeObserver} publicObserver - Reference to the public
+	     *      ResizeObserver instance which will be passed to callback function.
+	     */
+	    function ResizeObserver(callback, controller, publicObserver) {
+	        classCallCheck(this, ResizeObserver);
+
+	        if (typeof callback !== 'function') {
+	            throw new TypeError('The callback provided as parameter 1 is not a function.');
+	        }
+
+	        // Reference to the callback function.
+	        this._callback = callback;
+
+	        // Registry of ResizeObservation instances.
+	        this._targets = new Map();
+
+	        // Collection of resize observations that have detected changes in
+	        // dimensions of elements.
+	        this._activeTargets = [];
+
+	        // Reference to the associated ResizeObserverController.
+	        this._controller = controller;
+
+	        // Public ResizeObserver instance which will be passed to callback function.
+	        this._publicObserver = publicObserver;
+	    }
+
+	    /**
+	     * Starts observing provided element.
+	     *
+	     * @param {Element} target - Element to be observed.
+	     */
+	    ResizeObserver.prototype.observe = function observe(target) {
+	        //  Throw the same errors as in a native implementation.
+	        if (!arguments.length) {
+	            throw new TypeError('1 argument required, but only 0 present.');
+	        }
+
+	        if (!(target instanceof Element)) {
+	            throw new TypeError('parameter 1 is not of type "Element".');
+	        }
+
+	        var targets = this._targets;
+
+	        // Do nothing if element is already being observed.
+	        if (targets.has(target)) {
+	            return;
+	        }
+
+	        // Register new ResizeObservation instance.
+	        targets.set(target, new ResizeObservation(target));
+
+	        // Add observer to controller if it hasn't been connected yet.
+	        if (!this._controller.isConnected(this)) {
+	            this._controller.connect(this);
+	        }
+
+	        // Update observations.
+	        this._controller.refresh();
+	    };
+
+	    /**
+	     * Stops observing provided element.
+	     *
+	     * @param {Element} target - Element to stop observing.
+	     */
+	    ResizeObserver.prototype.unobserve = function unobserve(target) {
+	        //  Throw the same errors as in a native implementation.
+	        if (!arguments.length) {
+	            throw new TypeError('1 argument required, but only 0 present.');
+	        }
+
+	        if (!(target instanceof Element)) {
+	            throw new TypeError('parameter 1 is not of type "Element".');
+	        }
+
+	        var targets = this._targets;
+
+	        // Do nothing if element is not being observed.
+	        if (!targets.has(target)) {
+	            return;
+	        }
+
+	        // Remove element and associated with it ResizeObsrvation instance from
+	        // registry.
+	        targets.delete(target);
+
+	        // Set back the initial state if there is nothing to observe.
+	        if (!targets.size) {
+	            this.disconnect();
+	        }
+	    };
+
+	    /**
+	     * Stops observing all elements and clears the observations list.
+	     */
+	    ResizeObserver.prototype.disconnect = function disconnect() {
+	        this.clearActive();
+	        this._targets.clear();
+	        this._controller.disconnect(this);
+	    };
+
+	    /**
+	     * Clears an array of previously collected active observations and collects
+	     * observation instances which associated element has changed its' content
+	     * rectangle.
+	     */
+	    ResizeObserver.prototype.gatherActive = function gatherActive() {
+	        this.clearActive();
+
+	        var activeTargets = this._activeTargets;
+
+	        this._targets.forEach(function (observation) {
+	            if (observation.isActive()) {
+	                activeTargets.push(observation);
+	            }
+	        });
+	    };
+
+	    /**
+	     * Invokes initial callback function with a list of ResizeObserverEntry
+	     * instances collected from active resize observations.
+	     */
+	    ResizeObserver.prototype.broadcastActive = function broadcastActive() {
+	        // Do nothing if observer doesn't have active observations.
+	        if (!this.hasActive()) {
+	            return;
+	        }
+
+	        var observer = this._publicObserver;
+
+	        // Create ResizeObserverEntry instance for every active observation.
+	        var entries = this._activeTargets.map(function (observation) {
+	            return new ResizeObserverEntry(observation.target, observation.broadcastRect());
+	        });
+
+	        this.clearActive();
+	        this._callback.call(observer, entries, observer);
+	    };
+
+	    /**
+	     * Clears the collection of pending/active observations.
+	     */
+	    ResizeObserver.prototype.clearActive = function clearActive() {
+	        this._activeTargets.splice(0);
+	    };
+
+	    /**
+	     * Tells whether observer has pending observations.
+	     *
+	     * @returns {Boolean}
+	     */
+	    ResizeObserver.prototype.hasActive = function hasActive() {
+	        return !!this._activeTargets.length;
+	    };
+
+	    return ResizeObserver;
+	}();
+
+	var ResizeObserverPolyfill = (function () {
+	    if (!isBrowser) {
+	        /* eslint-disable */
+	        var _ResizeObserver2 = function () {
+	            function _ResizeObserver2() {
+	                classCallCheck(this, _ResizeObserver2);
+	            }
+
+	            _ResizeObserver2.prototype.observe = function observe() {};
+
+	            _ResizeObserver2.prototype.unobserve = function unobserve() {};
+
+	            _ResizeObserver2.prototype.disconnect = function disconnect() {};
+
+	            return _ResizeObserver2;
+	        }();
+	        /* eslint-enable */
+	        _ResizeObserver2.continuousUpdates = false;
+
+	        return _ResizeObserver2;
+	    }
+
+	    // Controller that will be assigned to all instances of ResizeObserver.
+	    var controller = new ResizeObserverController();
+
+	    // Registry of the internal observers.
+	    var observers = new WeakMap();
+
+	    /**
+	     * ResizeObservers' "Proxy" class which is meant to hide private properties and
+	     * methods from public instances.
+	     *
+	     * Additionally implements the "continuousUpdates" static property accessor to
+	     * give control over the behavior of the ResizeObserverController instance.
+	     * Changes made to this property affect all future and existing observers.
+	     */
+	    var ResizeObserver = function () {
+	        /**
+	         * Creates a new instance of ResizeObserver.
+	         *
+	         * @param {Function} callback - Callback that is invoked when dimensions of
+	         *      one of the observed elements change.
+	         */
+	        function ResizeObserver(callback) {
+	            classCallCheck(this, ResizeObserver);
+
+	            if (!arguments.length) {
+	                throw new TypeError('1 argument required, but only 0 present.');
+	            }
+
+	            // Create a new instance of the internal ResizeObserver.
+	            var observer = new ResizeObserver$2(callback, controller, this);
+
+	            // Register internal observer.
+	            observers.set(this, observer);
+	        }
+
+	        createClass(ResizeObserver, null, [{
+	            key: 'continuousUpdates',
+
+	            /**
+	             * Tells whether continuous updates are enabled.
+	             *
+	             * @returns {Boolean}
+	             */
+	            get: function get() {
+	                return controller.continuousUpdates;
+	            },
+
+	            /**
+	             * Enables or disables continuous updates.
+	             *
+	             * @param {Boolean} value - Whether to enable or disable continuous updates.
+	             */
+	            set: function set(value) {
+	                if (typeof value !== 'boolean') {
+	                    throw new TypeError('type of "continuousUpdates" value must be boolean.');
+	                }
+
+	                controller.continuousUpdates = value;
+	            }
+	        }]);
+	        return ResizeObserver;
+	    }();
+
+	    // Expose public methods of ResizeObserver.
+	    ['observe', 'unobserve', 'disconnect'].forEach(function (method) {
+	        ResizeObserver.prototype[method] = function () {
+	            if (isBrowser) {
+	                var _observers$get;
+
+	                (_observers$get = observers.get(this))[method].apply(_observers$get, arguments);
+	            }
+	        };
+	    });
+
+	    return ResizeObserver;
+	})();
+
+	var ResizeObserver = ResizeObserverPolyfill;
+
+	// Export existing implementation if it's available.
+	if (typeof global$1.ResizeObserver === 'function') {
+	    ResizeObserver = global$1.ResizeObserver;
+	}
+
+	var ResizeObserver$1 = ResizeObserver;
+
+	return ResizeObserver$1;
+	})));
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 423 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = getNodeDimensions;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _getCloneDimensions = __webpack_require__(424);
+
+	var _getCloneDimensions2 = _interopRequireDefault(_getCloneDimensions);
+
+	var _getMargin = __webpack_require__(425);
+
+	var _getMargin2 = _interopRequireDefault(_getMargin);
+
+	function getNodeDimensions(node) {
+	  var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+	  var rect = node.getBoundingClientRect();
+	  var width = undefined,
+	      height = undefined,
+	      margin = undefined;
+
+	  // determine if we need to clone the element to get proper dimensions or not
+	  if (!rect.width || !rect.height || options.clone) {
+	    var cloneDimensions = (0, _getCloneDimensions2['default'])(node, options);
+	    rect = cloneDimensions.rect;
+	    margin = cloneDimensions.margin;
+	  }
+	  // if no cloning needed, we need to determine if margin should be accounted for
+	  else if (options.margin) {
+	      margin = (0, _getMargin2['default'])(getComputedStyle(node));
+	    }
+
+	  // include margin in width/height calculation if desired
+	  if (options.margin) {
+	    width = margin.left + rect.width + margin.right;
+	    height = margin.top + rect.height + margin.bottom;
+	  } else {
+	    width = rect.width;
+	    height = rect.height;
+	  }
+
+	  return {
+	    width: width,
+	    height: height,
+	    top: rect.top,
+	    right: rect.right,
+	    bottom: rect.bottom,
+	    left: rect.left
+	  };
+	}
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 424 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports['default'] = getCloneDimensions;
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _getMargin = __webpack_require__(425);
+
+	var _getMargin2 = _interopRequireDefault(_getMargin);
+
+	function getCloneDimensions(node, options) {
+	  var parentNode = node.parentNode;
+
+	  var context = document.createElement('div');
+	  var clone = node.cloneNode(true);
+	  var style = getComputedStyle(node);
+	  var rect = undefined,
+	      width = undefined,
+	      height = undefined,
+	      margin = undefined;
+
+	  // give the node some context to measure off of
+	  // no height and hidden overflow hide node copy
+	  context.style.height = 0;
+	  context.style.overflow = 'hidden';
+
+	  // clean up any attributes that might cause a conflict with the original node
+	  // i.e. inputs that should focus or submit data
+	  clone.setAttribute('id', '');
+	  clone.setAttribute('name', '');
+
+	  // set props to get a true dimension calculation
+	  if (options.display || style.getPropertyValue('display') === 'none') {
+	    clone.style.display = options.display || 'block';
+	  }
+	  if (options.width || !parseInt(style.getPropertyValue('width'))) {
+	    clone.style.width = options.width || 'auto';
+	  }
+	  if (options.height || !parseInt(style.getPropertyValue('height'))) {
+	    clone.style.height = options.height || 'auto';
+	  }
+
+	  // append copy to context
+	  context.appendChild(clone);
+
+	  // append context to DOM so we can measure
+	  parentNode.appendChild(context);
+
+	  // get accurate dimensions
+	  rect = clone.getBoundingClientRect();
+	  width = clone.offsetWidth;
+	  height = clone.offsetHeight;
+
+	  // destroy clone
+	  parentNode.removeChild(context);
+
+	  return {
+	    rect: {
+	      width: width,
+	      height: height,
+	      top: rect.top,
+	      right: rect.right,
+	      bottom: rect.bottom,
+	      left: rect.left
+	    },
+	    margin: (0, _getMargin2['default'])(style)
+	  };
+	}
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 425 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports["default"] = getMargin;
+	var toNumber = function toNumber(n) {
+	  return parseInt(n) || 0;
+	};
+
+	function getMargin(style) {
+	  return {
+	    top: toNumber(style.marginTop),
+	    right: toNumber(style.marginRight),
+	    bottom: toNumber(style.marginBottom),
+	    left: toNumber(style.marginLeft)
+	  };
+	}
+
+	module.exports = exports["default"];
+
+/***/ },
+/* 426 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18185,7 +19836,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var TAB = exports.TAB = 9;
 
 /***/ },
-/* 420 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18199,15 +19850,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _QualityMenu = __webpack_require__(421);
+	var _QualityMenu = __webpack_require__(428);
 
 	var _QualityMenu2 = _interopRequireDefault(_QualityMenu);
 
-	var _TextTracksMenu = __webpack_require__(423);
+	var _TextTracksMenu = __webpack_require__(430);
 
 	var _TextTracksMenu2 = _interopRequireDefault(_TextTracksMenu);
 
-	var _MenuBarButton = __webpack_require__(422);
+	var _MenuBarButton = __webpack_require__(429);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18275,7 +19926,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 421 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18285,7 +19936,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = QualityMenu;
 
-	var _MenuBarButton = __webpack_require__(422);
+	var _MenuBarButton = __webpack_require__(429);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18314,7 +19965,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 422 */
+/* 429 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18329,7 +19980,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
-	var _Icon = __webpack_require__(404);
+	var _Icon = __webpack_require__(403);
 
 	var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -18357,7 +20008,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      event.preventDefault();
 
 	      if (_this.props.subMenuItems.length > 0) {
-	        _this.setState({ subMenuVisible: !_this.state.subMenuVisible });
+	        _this.setState({ subMenuVisible: true });
 	      }
 
 	      if (_this.props.onClick) {
@@ -18522,7 +20173,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 423 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -18532,7 +20183,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = TextTracksMenu;
 
-	var _MenuBarButton = __webpack_require__(422);
+	var _MenuBarButton = __webpack_require__(429);
 
 	var _MenuBarButton2 = _interopRequireDefault(_MenuBarButton);
 
@@ -18561,7 +20212,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 424 */
+/* 431 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18586,7 +20237,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 425 */
+/* 432 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18606,7 +20257,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 426 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18618,11 +20269,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(427);
+	var _selectors2 = __webpack_require__(434);
 
-	var _selectors3 = __webpack_require__(430);
+	var _selectors3 = __webpack_require__(437);
 
-	var _selectors4 = __webpack_require__(431);
+	var _selectors4 = __webpack_require__(438);
 
 	var _selectors5 = __webpack_require__(395);
 
@@ -18640,7 +20291,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.prop = _selectors6.prop;
 
 /***/ },
-/* 427 */
+/* 434 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18653,9 +20304,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(428);
+	var _selectors2 = __webpack_require__(435);
 
-	var _selectors3 = __webpack_require__(429);
+	var _selectors3 = __webpack_require__(436);
 
 	function currentParentChapterAttributes() {
 	  return function (state, props) {
@@ -18690,7 +20341,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 428 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18717,7 +20368,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var chapterAttributes = exports.chapterAttributes = selector;
 
 /***/ },
-/* 429 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18742,7 +20393,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 430 */
+/* 437 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18761,7 +20412,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 431 */
+/* 438 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -18779,7 +20430,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 432 */
+/* 439 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18790,47 +20441,47 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.PageBackground = exports.PageBackgroundAsset = exports.PageBackgroundVideo = exports.PagePrintImage = exports.MobilePageVideoPoster = exports.PageVideoPlayer = exports.Page = exports.pageBackgroundReduxModule = undefined;
 	exports.reduxModule = reduxModule;
 
-	var _Page = __webpack_require__(433);
+	var _Page = __webpack_require__(440);
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _PageVideoPlayer = __webpack_require__(440);
+	var _PageVideoPlayer = __webpack_require__(447);
 
 	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
 
-	var _MobilePageVideoPoster = __webpack_require__(454);
+	var _MobilePageVideoPoster = __webpack_require__(460);
 
 	var _MobilePageVideoPoster2 = _interopRequireDefault(_MobilePageVideoPoster);
 
-	var _PageBackgroundVideo = __webpack_require__(455);
+	var _PageBackgroundVideo = __webpack_require__(461);
 
 	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
 
-	var _PageBackgroundAsset = __webpack_require__(456);
+	var _PageBackgroundAsset = __webpack_require__(462);
 
 	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
 
-	var _PageBackground = __webpack_require__(457);
+	var _PageBackground = __webpack_require__(463);
 
 	var _PageBackground2 = _interopRequireDefault(_PageBackground);
 
-	var _PagePrintImage = __webpack_require__(458);
+	var _PagePrintImage = __webpack_require__(464);
 
 	var _PagePrintImage2 = _interopRequireDefault(_PagePrintImage);
 
-	var _createReducer = __webpack_require__(459);
+	var _createReducer = __webpack_require__(465);
 
 	var _createReducer2 = _interopRequireDefault(_createReducer);
 
-	var _sagas = __webpack_require__(461);
+	var _sagas = __webpack_require__(467);
 
 	var _sagas2 = _interopRequireDefault(_sagas);
 
-	var _fadeInWhenPageWillActivate = __webpack_require__(470);
+	var _fadeInWhenPageWillActivate = __webpack_require__(477);
 
 	var _fadeInWhenPageWillActivate2 = _interopRequireDefault(_fadeInWhenPageWillActivate);
 
-	var _fadeOutWhenPageWillDeactivate = __webpack_require__(467);
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(473);
 
 	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
 
@@ -18891,7 +20542,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.PageBackground = _PageBackground2.default;
 
 /***/ },
-/* 433 */
+/* 440 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -18903,17 +20554,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _media = __webpack_require__(432);
+	var _media = __webpack_require__(439);
 
-	var _PlayerControls = __webpack_require__(434);
+	var _PlayerControls = __webpack_require__(441);
 
 	var _PlayerControls2 = _interopRequireDefault(_PlayerControls);
 
-	var _NonJsLinks = __webpack_require__(438);
+	var _NonJsLinks = __webpack_require__(445);
 
 	var _NonJsLinks2 = _interopRequireDefault(_NonJsLinks);
 
-	var _playerStateClassNames = __webpack_require__(435);
+	var _playerStateClassNames = __webpack_require__(442);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
@@ -18921,7 +20572,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(392);
 
-	var _selectors2 = __webpack_require__(436);
+	var _selectors2 = __webpack_require__(443);
 
 	var _classnames = __webpack_require__(305);
 
@@ -18942,7 +20593,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	  return React.createElement(
 	    _components.PageWrapper,
-	    { className: pageWraperClassName(props.className, page, props.textTracks, playerState) },
+	    { className: pageWraperClassName(props.className, willAutoplay(props), props.textTracks, playerState) },
 	    React.createElement(
 	      _components.PageBackground,
 	      null,
@@ -18981,24 +20632,29 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  textTracks: (0, _selectors2.textTracks)({
 	    file: (0, _selectors.prop)('file'),
 	    defaultTextTrackFileId: (0, _selectors.prop)('page.defaultTextTrackFileId')
-	  })
+	  }),
+	  hasAutoplaySupport: (0, _selectors.has)('autoplay support')
 	}))(MediaPage);
 
 
-	function pageWraperClassName(className, page, textTracks, playerState) {
+	function willAutoplay(props) {
+	  return props.page.autoplay !== false && props.hasAutoplaySupport;
+	}
+
+	function pageWraperClassName(className, autoplay, textTracks, playerState) {
 	  return (0, _classnames2.default)(className, {
 	    'has_text_tracks': !!textTracks.activeFileId,
 	    'is_idle': playerState.isPlaying && playerState.userIsIdle,
 	    'is_control_bar_focused': playerState.focusInsideControls,
 	    'is_control_bar_hovered': playerState.userHoveringControls,
 	    'is_control_bar_hidden': playerState.controlsHidden,
-	    'unplayed': !playerState.hasPlayed && !page.autoplay,
+	    'unplayed': playerState.unplayed && !autoplay,
 	    'has_played': playerState.hasPlayed
 	  });
 	}
 
 /***/ },
-/* 434 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19011,7 +20667,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.MediaPlayerControls = MediaPlayerControls;
 
-	var _playerStateClassNames = __webpack_require__(435);
+	var _playerStateClassNames = __webpack_require__(442);
 
 	var _playerStateClassNames2 = _interopRequireDefault(_playerStateClassNames);
 
@@ -19021,11 +20677,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
-	var _selectors2 = __webpack_require__(430);
+	var _selectors2 = __webpack_require__(437);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _react = __webpack_require__(304);
 
@@ -19058,18 +20714,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return _react2.default.createElement(_PlayerControls2.default, _extends({ hasProgress: true,
 	    controlBarText: props.controlBarText,
 
-	    isLoading: playerState.isLoading,
+	    isLoading: playerState.isLoading || playerState.bufferUnderrun,
 	    isPlaying: playerState.shouldPlay,
-	    currentTime: playerState.currentTime,
+	    currentTime: playerState.scrubbingAt !== undefined ? playerState.scrubbingAt : playerState.currentTime,
 	    bufferedEnd: playerState.bufferedEnd,
 	    duration: playerState.duration,
-	    isScrubbing: playerState.isScrubbing,
-	    isSeeking: playerState.isSeeking,
 
 	    onPlayButtonClick: actions.togglePlaying,
-	    onSeekStart: actions.scrubbingStarted,
+	    onScrub: actions.scrubTo,
 	    onSeek: actions.seekTo,
-	    onSeekEnd: actions.scrubbingEnded,
 
 	    onMouseEnter: actions.controlsEntered,
 	    onMouseLeave: actions.controlsLeft,
@@ -19161,7 +20814,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 435 */
+/* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19172,9 +20825,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.default = function (playerState) {
 	  return (0, _classnames2.default)({
-	    'is_playing': playerState.isPlaying,
+	    'is_playing': playerState.shouldPlay,
 	    'is_playing_delayed': playerState.hasBeenPlayingJustNow,
-	    'is_paused': !playerState.isPlaying
+	    'is_paused': !playerState.shouldPlay
 	  });
 	};
 
@@ -19185,7 +20838,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 436 */
+/* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19201,15 +20854,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.textTracks = textTracks;
 	exports.videoQualitySetting = videoQualitySetting;
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _selectors = __webpack_require__(395);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(431);
+	var _selectors3 = __webpack_require__(438);
 
-	var _selectors4 = __webpack_require__(430);
+	var _selectors4 = __webpack_require__(437);
 
 	var _redux = __webpack_require__(313);
 
@@ -19293,7 +20946,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 437 */
+/* 444 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19301,7 +20954,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.CONTROLS_HIDDEN = exports.FOCUS_LEFT_CONTROLS = exports.FOCUS_ENTERED_CONTROLS = exports.CONTROLS_LEFT = exports.CONTROLS_ENTERED = exports.USER_IDLE = exports.USER_INTERACTION = exports.HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT = exports.WAITING = exports.SEEKED = exports.SEEKING = exports.ENDED = exports.TIME_UPDATE = exports.PAUSED = exports.PLAYING = exports.PROGRESS = exports.META_DATA_LOADED = exports.BUFFER_UNDERRUN = exports.ABORT_PREBUFFERING = exports.PREBUFFERED = exports.PREBUFFER = exports.SCRUBBING_ENDED = exports.SCRUBBING_STARTED = exports.SEEK_TO = exports.FADE_OUT_AND_PAUSE = exports.PAUSE = exports.PLAY_AND_FADE_IN = exports.PLAY = exports.TOGGLE_PLAYING = undefined;
+	exports.CONTROLS_HIDDEN = exports.FOCUS_LEFT_CONTROLS = exports.FOCUS_ENTERED_CONTROLS = exports.CONTROLS_LEFT = exports.CONTROLS_ENTERED = exports.USER_IDLE = exports.USER_INTERACTION = exports.HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT = exports.WAITING = exports.SEEKED = exports.SEEKING = exports.ENDED = exports.TIME_UPDATE = exports.PAUSED = exports.PLAYING = exports.PROGRESS = exports.META_DATA_LOADED = exports.BUFFER_UNDERRUN_CONTINUE = exports.BUFFER_UNDERRUN = exports.ABORT_PREBUFFERING = exports.PREBUFFERED = exports.PREBUFFER = exports.SEEK_TO = exports.SCRUB_TO = exports.FADE_OUT_AND_PAUSE = exports.PAUSE = exports.PLAY_AND_FADE_IN = exports.PLAY = exports.TOGGLE_PLAYING = undefined;
 	exports.actionCreators = actionCreators;
 	exports.updateTextTrackSettings = updateTextTrackSettings;
 	exports.updateVideoQualitySetting = updateVideoQualitySetting;
@@ -19313,16 +20966,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var PLAY_AND_FADE_IN = exports.PLAY_AND_FADE_IN = 'MEDIA_PLAY_AND_FADE_IN';
 	var PAUSE = exports.PAUSE = 'MEDIA_PAUSE';
 	var FADE_OUT_AND_PAUSE = exports.FADE_OUT_AND_PAUSE = 'MEDIA_FADE_OUT_AND_PAUSE';
-	var SEEK_TO = exports.SEEK_TO = 'MEDIA_SEEK_TO';
 
-	var SCRUBBING_STARTED = exports.SCRUBBING_STARTED = 'MEDIA_SCRUBBING_STARTED';
-	var SCRUBBING_ENDED = exports.SCRUBBING_ENDED = 'MEDIA_SCRUBBING_ENDED';
+	var SCRUB_TO = exports.SCRUB_TO = 'MEDIA_SCRUB_TO';
+	var SEEK_TO = exports.SEEK_TO = 'MEDIA_SEEK_TO';
 
 	var PREBUFFER = exports.PREBUFFER = 'MEDIA_PREBUFFER';
 	var PREBUFFERED = exports.PREBUFFERED = 'MEDIA_PREBUFFERED';
 	var ABORT_PREBUFFERING = exports.ABORT_PREBUFFERING = 'MEDIA_ABORT_PREBUFFERING';
 
 	var BUFFER_UNDERRUN = exports.BUFFER_UNDERRUN = 'MEDIA_BUFFER_UNDERRUN';
+	var BUFFER_UNDERRUN_CONTINUE = exports.BUFFER_UNDERRUN_CONTINUE = 'MEDIA_BUFFER_UNDERRUN_CONTINUE';
 
 	var META_DATA_LOADED = exports.META_DATA_LOADED = 'MEDIA_META_DATA_LOADED';
 	var PROGRESS = exports.PROGRESS = 'MEDIA_PROGRESS';
@@ -19375,6 +21028,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        fadeDuration: fadeDuration
 	      });
 	    },
+	    scrubTo: function scrubTo(time) {
+	      return pageAction(SCRUB_TO, {
+	        time: time
+	      });
+	    },
 	    seekTo: function seekTo(time) {
 	      return pageAction(SEEK_TO, {
 	        time: time
@@ -19392,11 +21050,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    bufferUnderrun: function bufferUnderrun() {
 	      return pageAction(BUFFER_UNDERRUN);
 	    },
-	    scrubbingStarted: function scrubbingStarted() {
-	      return pageAction(SCRUBBING_STARTED);
-	    },
-	    scrubbingEnded: function scrubbingEnded() {
-	      return pageAction(SCRUBBING_STARTED);
+	    bufferUnderrunContinue: function bufferUnderrunContinue() {
+	      return pageAction(BUFFER_UNDERRUN_CONTINUE);
 	    },
 	    playing: function playing() {
 	      return pageAction(PLAYING);
@@ -19497,7 +21152,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 438 */
+/* 445 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19509,9 +21164,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _utils = __webpack_require__(372);
 
-	var _selectors = __webpack_require__(430);
+	var _selectors = __webpack_require__(437);
 
-	var _selectors2 = __webpack_require__(439);
+	var _selectors2 = __webpack_require__(446);
 
 	var _reactRedux = __webpack_require__(359);
 
@@ -19553,7 +21208,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(NonJsLinks);
 
 /***/ },
-/* 439 */
+/* 446 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -19569,7 +21224,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 440 */
+/* 447 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19580,17 +21235,17 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.VideoPlayer = undefined;
 	exports.default = PageVideoPlayer;
 
-	var _VideoFilePlayer = __webpack_require__(441);
+	var _VideoFilePlayer = __webpack_require__(448);
 
 	var _VideoFilePlayer2 = _interopRequireDefault(_VideoFilePlayer);
 
-	var _createPageFilePlayer = __webpack_require__(453);
+	var _createPageFilePlayer = __webpack_require__(459);
 
 	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
 
 	var _selectors = __webpack_require__(395);
 
-	var _selectors2 = __webpack_require__(426);
+	var _selectors2 = __webpack_require__(433);
 
 	var _utils = __webpack_require__(372);
 
@@ -19628,7 +21283,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 441 */
+/* 448 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19654,15 +21309,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  );
 	};
 
-	var _createFilePlayer = __webpack_require__(442);
+	var _createFilePlayer = __webpack_require__(449);
 
 	var _createFilePlayer2 = _interopRequireDefault(_createFilePlayer);
 
-	var _Positioner = __webpack_require__(449);
+	var _Positioner = __webpack_require__(455);
 
 	var _Positioner2 = _interopRequireDefault(_Positioner);
 
-	var _sources = __webpack_require__(452);
+	var _sources = __webpack_require__(458);
 
 	var _sources2 = _interopRequireDefault(_sources);
 
@@ -19680,7 +21335,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 /***/ },
-/* 442 */
+/* 449 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19715,7 +21370,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        _this.player = createPlayer(element, {
 	          emulateTextTracksDisplay: emulateTextTracksDisplay,
 	          atmoSettings: _this.atmoSettings,
-	          mediaContext: _this.context.mediaContext
+	          mediaContext: _this.context.mediaContext,
+	          playsInline: props.playsInline
 	        });
 
 	        (0, _handlePlayerState.initPlayer)(_this.player, function () {
@@ -19797,8 +21453,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	  var result = (0, _reactRedux.connect)((0, _utils.combine)({
 	    textTracks: (0, _selectors.textTracks)({
-	      file: (0, _selectors4.prop)('file'),
-	      defaultTextTrackFileId: (0, _selectors4.prop)('defaultTextTrackFileId')
+	      file: (0, _selectors3.prop)('file'),
+	      defaultTextTrackFileId: (0, _selectors3.prop)('defaultTextTrackFileId')
 	    }),
 	    quality: (0, _selectors2.setting)({ property: 'videoQuality' }),
 	    textTrackPosition: textTrackPosition
@@ -19811,31 +21467,29 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return result;
 	};
 
-	var _MediaTag = __webpack_require__(443);
+	var _MediaTag = __webpack_require__(450);
 
 	var _MediaTag2 = _interopRequireDefault(_MediaTag);
 
-	var _createPageflowPlayer = __webpack_require__(444);
+	var _createPageflowPlayer = __webpack_require__(451);
 
 	var _createPageflowPlayer2 = _interopRequireDefault(_createPageflowPlayer);
 
-	var _watchPlayer = __webpack_require__(445);
+	var _watchPlayer = __webpack_require__(452);
 
 	var _watchPlayer2 = _interopRequireDefault(_watchPlayer);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
-	var _handlePlayerState = __webpack_require__(446);
+	var _handlePlayerState = __webpack_require__(453);
 
-	var _textTracks = __webpack_require__(447);
+	var _textTracks = __webpack_require__(454);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
-	var _selectors2 = __webpack_require__(431);
+	var _selectors2 = __webpack_require__(438);
 
-	var _selectors3 = __webpack_require__(448);
-
-	var _selectors4 = __webpack_require__(426);
+	var _selectors3 = __webpack_require__(433);
 
 	var _react = __webpack_require__(304);
 
@@ -19853,20 +21507,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var classicPlayerControlsPresent = (0, _selectors3.widgetPresent)('classicPlayerControls');
-
 	function textTrackPosition(state, _ref2) {
 	  var playerState = _ref2.playerState;
 
-	  if (!playerState.controlsHidden) {
-	    return classicPlayerControlsPresent(state) ? 'top' : 'auto.translated';
-	  }
-
-	  return 'auto';
+	  return playerState.controlsHidden ? 'auto' : 'top';
 	}
 
 /***/ },
-/* 443 */
+/* 450 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20056,7 +21704,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 444 */
+/* 451 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20068,7 +21716,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	function createPageflowPlayer(element, _ref) {
 	  var emulateTextTracksDisplay = _ref.emulateTextTracksDisplay,
 	      atmoSettings = _ref.atmoSettings,
-	      mediaContext = _ref.mediaContext;
+	      mediaContext = _ref.mediaContext,
+	      playsInline = _ref.playsInline;
+
+	  var isAudio = element.tagName.toLowerCase() == 'audio';
 
 	  var player = new pageflow.VideoPlayer(element, {
 	    controlBar: false,
@@ -20078,10 +21729,12 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    textTrackSettings: false,
 
 	    html5: {
-	      nativeCaptions: element.tagName.toLowerCase() != 'audio' && pageflow.browser.has('ios platform')
+	      nativeCaptions: !isAudio && pageflow.browser.has('ios platform')
 	    },
 
 	    bufferUnderrunWaiting: true,
+	    useSlimPlayerControlsDuringPhonePlayback: !playsInline && !isAudio,
+	    fullscreenDuringPhonePlayback: !playsInline && !isAudio,
 
 	    volumeFading: true,
 	    hooks: pageflow.atmo.createMediaPlayerHooks(atmoSettings),
@@ -20103,7 +21756,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 445 */
+/* 452 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20132,6 +21785,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  player.on('seeking', actions.seeking);
 	  player.on('seeked', actions.seeked);
 	  player.on('bufferunderrun', actions.bufferUnderrun);
+	  player.on('bufferunderruncontinue', actions.bufferUnderrunContinue);
 
 	  player.on('timeupdate', function () {
 	    return actions.timeUpdate({
@@ -20143,7 +21797,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 446 */
+/* 453 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20179,10 +21833,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 
 	  if (!playerState.shouldPlay && nextPlayerState.shouldPlay) {
-	    if (!playsInline && !player.isAudio()) {
-	      player.requestNativePlayerOnPhone();
-	    }
-
 	    if (nextPlayerState.fadeDuration) {
 	      player.playAndFadeIn(nextPlayerState.fadeDuration);
 	    } else {
@@ -20202,7 +21852,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 447 */
+/* 454 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20281,23 +21931,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 448 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.widgetPresent = widgetPresent;
-	function widgetPresent(typeName) {
-	  return function (state) {
-	    return state.widgets[typeName];
-	  };
-	}
-
-/***/ },
-/* 449 */
+/* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20305,108 +21939,58 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Positioner = undefined;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	exports.default = Positioner;
 
-	var _getDimensions = __webpack_require__(450);
+	var _getDimensions = __webpack_require__(456);
 
 	var _getDimensions2 = _interopRequireDefault(_getDimensions);
 
-	var _getCueOffsetClassName = __webpack_require__(451);
+	var _getCueOffsetClassName = __webpack_require__(457);
 
 	var _getCueOffsetClassName2 = _interopRequireDefault(_getCueOffsetClassName);
-
-	var _pages = __webpack_require__(310);
-
-	var _selectors = __webpack_require__(337);
-
-	var _utils = __webpack_require__(372);
 
 	var _react = __webpack_require__(304);
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactMeasure = __webpack_require__(420);
+
+	var _reactMeasure2 = _interopRequireDefault(_reactMeasure);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Positioner = exports.Positioner = function (_React$Component) {
-	  _inherits(Positioner, _React$Component);
-
-	  function Positioner(props, state) {
-	    _classCallCheck(this, Positioner);
-
-	    var _this = _possibleConstructorReturn(this, (Positioner.__proto__ || Object.getPrototypeOf(Positioner)).call(this, props, state));
-
-	    _this.state = {};
-
-	    _this.bindWrapper = function (wrapper) {
-	      _this.wrapper = wrapper;
-
-	      if (wrapper) {
-	        pageflow.events.on('resize', _this.measure);
-	        _this.measure();
-	      } else {
-	        pageflow.events.off('resize', _this.measure);
-	      }
-	    };
-
-	    _this.measure = function () {
-	      _this.setState({
-	        wrapperDimensions: {
-	          width: _this.wrapper.clientWidth,
-	          height: _this.wrapper.clientHeight
-	        }
-	      });
-	    };
-	    return _this;
-	  }
-
-	  _createClass(Positioner, [{
-	    key: 'componentWillReceiveProps',
-	    value: function componentWillReceiveProps(nextProps) {
-	      if (!this.props.pageIsActive && nextProps.pageIsActive) {
-	        this.measure();
-	      }
+	function Positioner(props) {
+	  return _react2.default.createElement(
+	    _reactMeasure2.default,
+	    { whitelist: ['width', 'height'] },
+	    function (wrapperDimensions) {
+	      return renderWrapper(props, wrapperDimensions);
 	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var dimensions = (0, _getDimensions2.default)(this.props.videoFile, this.props.fit, this.props.position, this.state.wrapperDimensions);
-
-	      return _react2.default.createElement(
-	        'div',
-	        { ref: this.bindWrapper, className: 'videoWrapper' },
-	        _react2.default.createElement(
-	          'div',
-	          { className: (0, _getCueOffsetClassName2.default)(dimensions, this.state.wrapperDimensions),
-	            style: style(dimensions) },
-	          this.props.children
-	        )
-	      );
-	    }
-	  }]);
-
-	  return Positioner;
-	}(_react2.default.Component);
-
-	exports.default = (0, _pages.connectInPage)((0, _utils.combine)({
-	  pageIsActive: (0, _selectors.pageIsActive)()
-	}))(Positioner);
-
+	  );
+	}
 
 	Positioner.propTypes = {
 	  videoFile: _react2.default.PropTypes.object,
 	  fit: _react2.default.PropTypes.oneOf(['contain', 'cover', 'smart_contain']),
 	  position: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.number)
 	};
+
+	function renderWrapper(props, wrapperDimensions) {
+	  var dimensions = (0, _getDimensions2.default)(props.videoFile, props.fit, props.position, wrapperDimensions);
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'videoWrapper' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: (0, _getCueOffsetClassName2.default)(dimensions, wrapperDimensions),
+	        style: style(dimensions) },
+	      props.children
+	    )
+	  );
+	}
 
 	function style(dimensions) {
 	  return dimensions && _extends({
@@ -20415,7 +21999,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 450 */
+/* 456 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20469,7 +22053,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 451 */
+/* 457 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20492,7 +22076,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 452 */
+/* 458 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -20534,7 +22118,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 453 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20577,7 +22161,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _utils = __webpack_require__(372);
 
 /***/ },
-/* 454 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20631,7 +22215,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(MobilePageVideoPoster);
 
 /***/ },
-/* 455 */
+/* 461 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20644,11 +22228,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	exports.PageBackgroundVideo = PageBackgroundVideo;
 
-	var _PageVideoPlayer = __webpack_require__(440);
+	var _PageVideoPlayer = __webpack_require__(447);
 
 	var _PageVideoPlayer2 = _interopRequireDefault(_PageVideoPlayer);
 
-	var _MobilePageVideoPoster = __webpack_require__(454);
+	var _MobilePageVideoPoster = __webpack_require__(460);
 
 	var _MobilePageVideoPoster2 = _interopRequireDefault(_MobilePageVideoPoster);
 
@@ -20688,7 +22272,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageBackgroundVideo);
 
 /***/ },
-/* 456 */
+/* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20700,11 +22284,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PageBackgroundVideo = __webpack_require__(455);
+	var _PageBackgroundVideo = __webpack_require__(461);
 
 	var _PageBackgroundVideo2 = _interopRequireDefault(_PageBackgroundVideo);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
 	var _pages = __webpack_require__(310);
 
@@ -20742,7 +22326,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageBackgroundAsset);
 
 /***/ },
-/* 457 */
+/* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20754,7 +22338,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _PageBackgroundAsset = __webpack_require__(456);
+	var _PageBackgroundAsset = __webpack_require__(462);
 
 	var _PageBackgroundAsset2 = _interopRequireDefault(_PageBackgroundAsset);
 
@@ -20770,7 +22354,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 458 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20786,7 +22370,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _selectors = __webpack_require__(337);
 
-	var _selectors2 = __webpack_require__(426);
+	var _selectors2 = __webpack_require__(433);
 
 	var _utils = __webpack_require__(372);
 
@@ -20838,7 +22422,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 459 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20866,6 +22450,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      case _actions3.PAGE_WILL_ACTIVATE:
 	        return _extends({}, state, {
 	          hasPlayed: false,
+	          unplayed: true,
 	          userHasBeenIdle: false
 	        });
 	      case _actions3.PAGE_WILL_DEACTIVATE:
@@ -20876,22 +22461,36 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      case _actions.PLAY:
 	        return _extends({}, state, {
 	          shouldPlay: true,
-	          isPlaying: true,
-	          hasPlayed: true,
 	          hasBeenPlayingJustNow: true,
+	          unplayed: false,
 	          fadeDuration: null,
 	          isLoading: true
+	        });
+	      case _actions.PLAYING:
+	        return _extends({}, state, {
+	          isPlaying: true
 	        });
 	      case _actions.PLAY_AND_FADE_IN:
 	        return _extends({}, state, {
 	          shouldPlay: true,
-	          isPlaying: true,
-	          hasPlayed: true,
 	          hasBeenPlayingJustNow: true,
 	          fadeDuration: action.payload.fadeDuration,
 	          isLoading: true
 	        });
 	      case _actions.PAUSE:
+	        return _extends({}, state, {
+	          shouldPlay: false,
+	          fadeDuration: null,
+	          isLoading: false
+	        });
+	      case _actions.PAUSED:
+	        if (state.bufferUnderrun) {
+	          return _extends({}, state, {
+	            isPlaying: false,
+	            hasPlayed: true
+	          });
+	        }
+
 	        return _extends({}, state, {
 	          shouldPlay: false,
 	          isPlaying: false,
@@ -20906,11 +22505,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          isLoading: false
 	        });
 
-	      case _actions.SEEK_TO:
-	        return _extends({}, state, {
-	          shouldSeekTo: action.payload.time
-	        });
-
 	      case _actions.PREBUFFER:
 	        return _extends({}, state, {
 	          shouldPrebuffer: true
@@ -20921,28 +22515,35 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        });
 
 	      case _actions.WAITING:
-	      case _actions.BUFFER_UNDERRUN:
 	        return _extends({}, state, {
 	          isLoading: true
 	        });
+	      case _actions.BUFFER_UNDERRUN:
+	        return _extends({}, state, {
+	          bufferUnderrun: true
+	        });
+	      case _actions.BUFFER_UNDERRUN_CONTINUE:
+	        return _extends({}, state, {
+	          bufferUnderrun: false
+	        });
+
+	      case _actions.SCRUB_TO:
+	        return _extends({}, state, {
+	          scrubbingAt: action.payload.time
+	        });
+	      case _actions.SEEK_TO:
+	        return _extends({}, state, {
+	          shouldSeekTo: action.payload.time
+	        });
+
 	      case _actions.SEEKING:
 	        return _extends({}, state, {
-	          isSeeking: true,
 	          isLoading: true
 	        });
 	      case _actions.SEEKED:
 	        return _extends({}, state, {
-	          isSeeking: false,
+	          scrubbingAt: undefined,
 	          isLoading: false
-	        });
-
-	      case _actions.SCRUBBING_STARTED:
-	        return _extends({}, state, {
-	          isScrubbing: true
-	        });
-	      case _actions.SCRUBBING_ENDED:
-	        return _extends({}, state, {
-	          isScrubbing: false
 	        });
 
 	      case _actions.META_DATA_LOADED:
@@ -21010,14 +22611,14 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  };
 	};
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
-	var _actions2 = __webpack_require__(460);
+	var _actions2 = __webpack_require__(466);
 
 	var _actions3 = __webpack_require__(300);
 
 /***/ },
-/* 460 */
+/* 466 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21047,7 +22648,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 461 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21057,35 +22658,35 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = _callee;
 
-	var _togglePlaying = __webpack_require__(462);
+	var _togglePlaying = __webpack_require__(468);
 
 	var _togglePlaying2 = _interopRequireDefault(_togglePlaying);
 
-	var _handlePageDidActivate = __webpack_require__(463);
+	var _handlePageDidActivate = __webpack_require__(469);
 
 	var _handlePageDidActivate2 = _interopRequireDefault(_handlePageDidActivate);
 
-	var _disableScrollIndicatorDuringPlayback = __webpack_require__(464);
+	var _disableScrollIndicatorDuringPlayback = __webpack_require__(470);
 
 	var _disableScrollIndicatorDuringPlayback2 = _interopRequireDefault(_disableScrollIndicatorDuringPlayback);
 
-	var _hasNotBeenPlayingForAMoment = __webpack_require__(465);
+	var _hasNotBeenPlayingForAMoment = __webpack_require__(471);
 
 	var _hasNotBeenPlayingForAMoment2 = _interopRequireDefault(_hasNotBeenPlayingForAMoment);
 
-	var _idling = __webpack_require__(466);
+	var _idling = __webpack_require__(472);
 
 	var _idling2 = _interopRequireDefault(_idling);
 
-	var _fadeOutWhenPageWillDeactivate = __webpack_require__(467);
+	var _fadeOutWhenPageWillDeactivate = __webpack_require__(473);
 
 	var _fadeOutWhenPageWillDeactivate2 = _interopRequireDefault(_fadeOutWhenPageWillDeactivate);
 
-	var _goToNextPageOnEnd = __webpack_require__(468);
+	var _goToNextPageOnEnd = __webpack_require__(474);
 
 	var _goToNextPageOnEnd2 = _interopRequireDefault(_goToNextPageOnEnd);
 
-	var _controlsHidden = __webpack_require__(469);
+	var _controlsHidden = __webpack_require__(475);
 
 	var _controlsHidden2 = _interopRequireDefault(_controlsHidden);
 
@@ -21105,7 +22706,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          sagas = [(0, _togglePlaying2.default)()];
 
 
-	          if (!(0, _utils.has)('phone platform')) {
+	          if (!options.playsInNativePlayer || !options.playsInNativePlayer()) {
 	            sagas.push([(0, _disableScrollIndicatorDuringPlayback2.default)(), (0, _goToNextPageOnEnd2.default)(), (0, _fadeOutWhenPageWillDeactivate2.default)(), (0, _hasNotBeenPlayingForAMoment2.default)()]);
 	          }
 
@@ -21129,7 +22730,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 462 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21139,11 +22740,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.default = _callee;
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
-	var _actions2 = __webpack_require__(460);
+	var _actions2 = __webpack_require__(466);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
 	var _reduxSaga = __webpack_require__(349);
 
@@ -21181,7 +22782,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        case 2:
 	          state = _context2.sent;
 
-	          if (!state.isPlaying) {
+	          if (!state.shouldPlay) {
 	            _context2.next = 8;
 	            break;
 	          }
@@ -21206,7 +22807,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 463 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21222,7 +22823,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _actions = __webpack_require__(300);
 
-	var _actions2 = __webpack_require__(437);
+	var _actions2 = __webpack_require__(444);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21230,7 +22831,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _actionCreators = (0, _actions2.actionCreators)(),
 	    play = _actionCreators.play,
-	    prebuffer = _actionCreators.prebuffer;
+	    prebuffer = _actionCreators.prebuffer,
+	    waiting = _actionCreators.waiting;
 
 	function _callee2() {
 	  return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -21272,28 +22874,37 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      switch (_context3.prev = _context3.next) {
 	        case 0:
 	          _context3.next = 2;
-	          return [(0, _effects.take)(_actions2.PREBUFFERED), (0, _effects.put)(prebuffer())];
-
-	        case 2:
-	          _context3.next = 4;
 	          return (0, _effects.select)((0, _selectors.pageAttribute)('autoplay'));
 
-	        case 4:
+	        case 2:
 	          autoplay = _context3.sent;
 
 	          if (!(autoplay !== false)) {
-	            _context3.next = 10;
+	            _context3.next = 6;
 	            break;
 	          }
 
+	          _context3.next = 6;
+	          return (0, _effects.put)(waiting());
+
+	        case 6:
 	          _context3.next = 8;
-	          return (0, _effects.call)(_reduxSaga.delay, 1000);
+	          return [(0, _effects.take)(_actions2.PREBUFFERED), (0, _effects.put)(prebuffer())];
 
 	        case 8:
-	          _context3.next = 10;
+	          if (!(autoplay !== false)) {
+	            _context3.next = 13;
+	            break;
+	          }
+
+	          _context3.next = 11;
+	          return (0, _effects.call)(_reduxSaga.delay, 1000);
+
+	        case 11:
+	          _context3.next = 13;
 	          return (0, _effects.put)(play());
 
-	        case 10:
+	        case 13:
 	        case 'end':
 	          return _context3.stop();
 	      }
@@ -21302,7 +22913,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 464 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21316,7 +22927,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21389,11 +23000,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 	function disable() {
-	  if (pageflow.widgets.isPresent('classic_player_controls')) {
-	    pageflow.events.trigger('scroll_indicator:schedule_disable');
-	  } else {
-	    pageflow.events.trigger('scroll_indicator:disable');
-	  }
+	  pageflow.events.trigger('scroll_indicator:disable');
 	}
 
 	function enable() {
@@ -21401,7 +23008,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 465 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21415,7 +23022,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _marked = [_callee3].map(regeneratorRuntime.mark);
 
@@ -21428,7 +23035,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        case 0:
 	          _actionCreators = (0, _actions.actionCreators)(), hasNotBeenPlayingForAMoment = _actionCreators.hasNotBeenPlayingForAMoment;
 	          _context3.next = 3;
-	          return (0, _reduxSaga.takeEvery)([_actions.PAUSED, _actions.ENDED], regeneratorRuntime.mark(function _callee2() {
+	          return (0, _reduxSaga.takeEvery)([_actions.PAUSE, _actions.ENDED], regeneratorRuntime.mark(function _callee2() {
 	            return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	              while (1) {
 	                switch (_context2.prev = _context2.next) {
@@ -21474,7 +23081,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 466 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21488,9 +23095,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
-	var _actions2 = __webpack_require__(460);
+	var _actions2 = __webpack_require__(466);
 
 	var _marked = [_callee, putAfterDelay].map(regeneratorRuntime.mark);
 
@@ -21519,7 +23126,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      switch (_context2.prev = _context2.next) {
 	        case 0:
 	          _context2.next = 2;
-	          return (0, _effects.call)(_reduxSaga.delay, 1000);
+	          return (0, _effects.call)(_reduxSaga.delay, 3000);
 
 	        case 2:
 	          _context2.next = 4;
@@ -21534,7 +23141,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 467 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21548,7 +23155,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _actions2 = __webpack_require__(300);
 
@@ -21566,7 +23173,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	        case 0:
 	          _actionCreators = (0, _actions.actionCreators)({ scope: scope }), fadeOutAndPause = _actionCreators.fadeOutAndPause;
 	          _context2.next = 3;
-	          return (0, _reduxSaga.takeEvery)(_actions2.PAGE_WILL_DEACTIVATE, regeneratorRuntime.mark(function _callee() {
+	          return (0, _reduxSaga.takeEvery)(_actions2.PAGE_DID_DEACTIVATE, regeneratorRuntime.mark(function _callee() {
 	            return regeneratorRuntime.wrap(function _callee$(_context) {
 	              while (1) {
 	                switch (_context.prev = _context.next) {
@@ -21591,7 +23198,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 468 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21605,7 +23212,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _selectors = __webpack_require__(337);
 
@@ -21663,7 +23270,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 469 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21677,13 +23284,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
-	var _selectors2 = __webpack_require__(448);
+	var _selectors2 = __webpack_require__(476);
 
-	var _actions2 = __webpack_require__(460);
+	var _actions2 = __webpack_require__(466);
 
 	var _marked = [_callee4].map(regeneratorRuntime.mark);
 
@@ -21790,7 +23397,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 470 */
+/* 476 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.widgetPresent = widgetPresent;
+	function widgetPresent(typeName) {
+	  return function (state) {
+	    return state.widgets[typeName];
+	  };
+	}
+
+/***/ },
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21804,7 +23427,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(437);
+	var _actions = __webpack_require__(444);
 
 	var _actions2 = __webpack_require__(300);
 
@@ -21871,7 +23494,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 471 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21881,11 +23504,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.Page = exports.reduxModule = undefined;
 
-	var _Page = __webpack_require__(472);
+	var _Page = __webpack_require__(479);
 
 	var _Page2 = _interopRequireDefault(_Page);
 
-	var _reenableScrollIndicator = __webpack_require__(474);
+	var _reenableScrollIndicator = __webpack_require__(481);
 
 	var _reenableScrollIndicator2 = _interopRequireDefault(_reenableScrollIndicator);
 
@@ -21900,7 +23523,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.Page = _Page2.default;
 
 /***/ },
-/* 472 */
+/* 479 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21921,7 +23544,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _selectors = __webpack_require__(473);
+	var _selectors = __webpack_require__(480);
 
 	var _pages = __webpack_require__(310);
 
@@ -22040,7 +23663,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}))(PageWithInteractiveBackground);
 
 /***/ },
-/* 473 */
+/* 480 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22059,7 +23682,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 474 */
+/* 481 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22073,7 +23696,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _effects = __webpack_require__(345);
 
-	var _actions = __webpack_require__(475);
+	var _actions = __webpack_require__(482);
 
 	var _selectors = __webpack_require__(337);
 
@@ -22123,7 +23746,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 475 */
+/* 482 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22149,7 +23772,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 476 */
+/* 483 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22159,7 +23782,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.registry = undefined;
 
-	var _PageTypeRegistry = __webpack_require__(477);
+	var _PageTypeRegistry = __webpack_require__(484);
 
 	var _PageTypeRegistry2 = _interopRequireDefault(_PageTypeRegistry);
 
@@ -22170,7 +23793,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = registry.register;
 
 /***/ },
-/* 477 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22272,7 +23895,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 478 */
+/* 485 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22300,16 +23923,16 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  });
 	};
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
-	var _media = __webpack_require__(432);
+	var _media = __webpack_require__(439);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 479 */
+/* 486 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -22330,7 +23953,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var registry = exports.registry = [];
 
 /***/ },
-/* 480 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22343,9 +23966,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _collections = __webpack_require__(338);
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
-	var _boot = __webpack_require__(481);
+	var _boot = __webpack_require__(488);
 
 	var _boot2 = _interopRequireDefault(_boot);
 
@@ -22403,7 +24026,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = _class;
 
 /***/ },
-/* 481 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22502,46 +24125,46 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  return store;
 	};
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
-	var _registerWidgetType = __webpack_require__(479);
+	var _registerWidgetType = __webpack_require__(486);
 
-	var _createStore = __webpack_require__(482);
+	var _createStore = __webpack_require__(489);
 
 	var _createStore2 = _interopRequireDefault(_createStore);
 
 	var _createSaga = __webpack_require__(343);
 
-	var _storylines = __webpack_require__(483);
+	var _storylines = __webpack_require__(490);
 
-	var _chapters = __webpack_require__(484);
+	var _chapters = __webpack_require__(491);
 
 	var _pages = __webpack_require__(310);
 
-	var _pageTypes = __webpack_require__(485);
+	var _pageTypes = __webpack_require__(492);
 
-	var _current = __webpack_require__(488);
+	var _current = __webpack_require__(495);
 
-	var _files = __webpack_require__(492);
+	var _files = __webpack_require__(499);
 
-	var _settings = __webpack_require__(493);
+	var _settings = __webpack_require__(500);
 
-	var _i18n = __webpack_require__(495);
+	var _i18n = __webpack_require__(502);
 
-	var _entry = __webpack_require__(498);
+	var _entry = __webpack_require__(505);
 
-	var _hotkeys = __webpack_require__(501);
+	var _hotkeys = __webpack_require__(508);
 
-	var _hideText = __webpack_require__(502);
+	var _hideText = __webpack_require__(509);
 
-	var _widgets = __webpack_require__(505);
+	var _widgets = __webpack_require__(512);
 
 	var _redux = __webpack_require__(313);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ },
-/* 482 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -22595,7 +24218,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(294)))
 
 /***/ },
-/* 483 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22622,7 +24245,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 484 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22648,7 +24271,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 485 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22659,9 +24282,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.reducers = undefined;
 	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(486);
+	var _actions = __webpack_require__(493);
 
-	var _reducer = __webpack_require__(487);
+	var _reducer = __webpack_require__(494);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22676,7 +24299,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 486 */
+/* 493 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22699,7 +24322,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 487 */
+/* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22720,10 +24343,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(486);
+	var _actions = __webpack_require__(493);
 
 /***/ },
-/* 488 */
+/* 495 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22733,11 +24356,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.watch = exports.reducers = undefined;
 
-	var _reducer = __webpack_require__(489);
+	var _reducer = __webpack_require__(496);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _watch = __webpack_require__(491);
+	var _watch = __webpack_require__(498);
 
 	var _watch2 = _interopRequireDefault(_watch);
 
@@ -22748,7 +24371,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.watch = _watch2.default;
 
 /***/ },
-/* 489 */
+/* 496 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22769,10 +24392,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(490);
+	var _actions = __webpack_require__(497);
 
 /***/ },
-/* 490 */
+/* 497 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22795,7 +24418,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 491 */
+/* 498 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22810,10 +24433,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  });
 	};
 
-	var _actions = __webpack_require__(490);
+	var _actions = __webpack_require__(497);
 
 /***/ },
-/* 492 */
+/* 499 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22867,7 +24490,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 493 */
+/* 500 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22879,7 +24502,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.createSaga = createSaga;
 	exports.watch = watch;
 
-	var _reducer = __webpack_require__(494);
+	var _reducer = __webpack_require__(501);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22933,7 +24556,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 494 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22958,7 +24581,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _actions = __webpack_require__(301);
 
 /***/ },
-/* 495 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22969,9 +24592,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.reducers = undefined;
 	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(496);
+	var _actions = __webpack_require__(503);
 
-	var _reducer = __webpack_require__(497);
+	var _reducer = __webpack_require__(504);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -22986,7 +24609,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 496 */
+/* 503 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23009,7 +24632,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 497 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23030,10 +24653,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(496);
+	var _actions = __webpack_require__(503);
 
 /***/ },
-/* 498 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23044,9 +24667,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.reducers = undefined;
 	exports.initFromSeed = initFromSeed;
 
-	var _actions = __webpack_require__(499);
+	var _actions = __webpack_require__(506);
 
-	var _reducer = __webpack_require__(500);
+	var _reducer = __webpack_require__(507);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -23061,7 +24684,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 499 */
+/* 506 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23084,7 +24707,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 500 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23105,10 +24728,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(499);
+	var _actions = __webpack_require__(506);
 
 /***/ },
-/* 501 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23118,9 +24741,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.watchEvents = watchEvents;
 
-	var _keyCodes = __webpack_require__(419);
+	var _keyCodes = __webpack_require__(426);
 
-	var _actions = __webpack_require__(460);
+	var _actions = __webpack_require__(466);
 
 	function watchEvents(window, store) {
 	  window.addEventListener('keydown', function (event) {
@@ -23135,7 +24758,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 502 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23145,11 +24768,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.watch = exports.reducers = undefined;
 
-	var _watch = __webpack_require__(503);
+	var _watch = __webpack_require__(510);
 
 	var _watch2 = _interopRequireDefault(_watch);
 
-	var _reducer = __webpack_require__(504);
+	var _reducer = __webpack_require__(511);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -23162,7 +24785,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.watch = _watch2.default;
 
 /***/ },
-/* 503 */
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23181,10 +24804,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	            });
 	};
 
-	var _actions = __webpack_require__(475);
+	var _actions = __webpack_require__(482);
 
 /***/ },
-/* 504 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23218,9 +24841,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(475);
+	var _actions = __webpack_require__(482);
 
-	var _actions2 = __webpack_require__(490);
+	var _actions2 = __webpack_require__(497);
 
 	var initialState = {
 	  isActive: false,
@@ -23228,7 +24851,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	};
 
 /***/ },
-/* 505 */
+/* 512 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23240,7 +24863,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.createWidgetType = createWidgetType;
 	exports.watch = watch;
 
-	var _reducer = __webpack_require__(506);
+	var _reducer = __webpack_require__(513);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
@@ -23250,7 +24873,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _reactRedux = __webpack_require__(359);
 
-	var _actions = __webpack_require__(507);
+	var _actions = __webpack_require__(514);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23283,7 +24906,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 506 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23305,10 +24928,10 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  }
 	};
 
-	var _actions = __webpack_require__(507);
+	var _actions = __webpack_require__(514);
 
 /***/ },
-/* 507 */
+/* 514 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -23331,7 +24954,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 508 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23341,11 +24964,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.register = register;
 
-	var _audio = __webpack_require__(509);
+	var _audio = __webpack_require__(516);
 
-	var _plain = __webpack_require__(512);
+	var _plain = __webpack_require__(519);
 
-	var _video = __webpack_require__(513);
+	var _video = __webpack_require__(520);
 
 	function register() {
 	  (0, _plain.register)();
@@ -23354,7 +24977,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 509 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23364,23 +24987,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.register = register;
 
-	var _media = __webpack_require__(432);
+	var _media = __webpack_require__(439);
 
-	var _PageAudioFilePlayer = __webpack_require__(510);
+	var _PageAudioFilePlayer = __webpack_require__(517);
 
 	var _PageAudioFilePlayer2 = _interopRequireDefault(_PageAudioFilePlayer);
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
 	var _pages = __webpack_require__(310);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(430);
+	var _selectors3 = __webpack_require__(437);
 
 	var _selectors4 = __webpack_require__(395);
 
@@ -23421,7 +25044,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 510 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23430,11 +25053,11 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _createPageFilePlayer = __webpack_require__(453);
+	var _createPageFilePlayer = __webpack_require__(459);
 
 	var _createPageFilePlayer2 = _interopRequireDefault(_createPageFilePlayer);
 
-	var _AudioFilePlayer = __webpack_require__(511);
+	var _AudioFilePlayer = __webpack_require__(518);
 
 	var _AudioFilePlayer2 = _interopRequireDefault(_AudioFilePlayer);
 
@@ -23443,7 +25066,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.default = (0, _createPageFilePlayer2.default)(_AudioFilePlayer2.default);
 
 /***/ },
-/* 511 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23452,7 +25075,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	  value: true
 	});
 
-	var _createFilePlayer = __webpack_require__(442);
+	var _createFilePlayer = __webpack_require__(449);
 
 	var _createFilePlayer2 = _interopRequireDefault(_createFilePlayer);
 
@@ -23469,7 +25092,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 
 /***/ },
-/* 512 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23481,9 +25104,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	var _components = __webpack_require__(302);
 
-	var _media = __webpack_require__(432);
+	var _media = __webpack_require__(439);
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
@@ -23527,7 +25150,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	}
 
 /***/ },
-/* 513 */
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -23537,21 +25160,23 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	});
 	exports.register = register;
 
-	var _media = __webpack_require__(432);
+	var _media = __webpack_require__(439);
 
-	var _registerPageType = __webpack_require__(476);
+	var _registerPageType = __webpack_require__(483);
 
 	var _registerPageType2 = _interopRequireDefault(_registerPageType);
 
 	var _pages = __webpack_require__(310);
 
-	var _selectors = __webpack_require__(436);
+	var _selectors = __webpack_require__(443);
 
 	var _selectors2 = __webpack_require__(337);
 
-	var _selectors3 = __webpack_require__(430);
+	var _selectors3 = __webpack_require__(437);
 
 	var _selectors4 = __webpack_require__(395);
+
+	var _selectors5 = __webpack_require__(392);
 
 	var _utils = __webpack_require__(372);
 
@@ -23588,12 +25213,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      playerActions: (0, _selectors.playerActions)()
 	    }))(VideoPage),
 
-	    reduxModules: [(0, _media.reduxModule)({ hideControls: true })]
+	    reduxModules: [(0, _media.reduxModule)({
+	      hideControls: true,
+	      playsInNativePlayer: (0, _selectors5.has)('native video player')
+	    })]
 	  });
 	}
 
 /***/ },
-/* 514 */
+/* 521 */
 /***/ function(module, exports) {
 
 	module.exports = pageflow;
