@@ -1,9 +1,8 @@
 import {
-  PLAY, PLAYING, PAUSE, PAUSED, SEEK_TO,
+  PLAY, PLAYING, PAUSE, PAUSED, SCRUB_TO, SEEK_TO,
   FADE_OUT_AND_PAUSE, PLAY_AND_FADE_IN,
   PREBUFFER, PREBUFFERED,
   BUFFER_UNDERRUN, BUFFER_UNDERRUN_CONTINUE, WAITING, SEEKING, SEEKED,
-  SCRUBBING_STARTED, SCRUBBING_ENDED,
   META_DATA_LOADED, PROGRESS, TIME_UPDATE, ENDED,
   HAS_NOT_BEEN_PLAYING_FOR_A_MOMENT,
   USER_INTERACTION, USER_IDLE,
@@ -93,12 +92,6 @@ export default function({scope = 'default'} = {}) {
         isLoading: false
       };
 
-    case SEEK_TO:
-      return {
-        ...state,
-        shouldSeekTo: action.payload.time
-      };
-
     case PREBUFFER:
       return {
         ...state,
@@ -126,28 +119,27 @@ export default function({scope = 'default'} = {}) {
         bufferUnderrun: false
       };
 
+    case SCRUB_TO:
+      return {
+        ...state,
+        scrubbingAt: action.payload.time
+      };
+    case SEEK_TO:
+      return {
+        ...state,
+        shouldSeekTo: action.payload.time
+      };
+
     case SEEKING:
       return {
         ...state,
-        isSeeking: true,
         isLoading: true
       };
     case SEEKED:
       return {
         ...state,
-        isSeeking: false,
+        scrubbingAt: undefined,
         isLoading: false
-      };
-
-    case SCRUBBING_STARTED:
-      return {
-        ...state,
-        isScrubbing: true
-      };
-    case SCRUBBING_ENDED:
-      return {
-        ...state,
-        isScrubbing: false
       };
 
     case META_DATA_LOADED:

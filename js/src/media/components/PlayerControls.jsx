@@ -33,16 +33,14 @@ export function MediaPlayerControls(props) {
 
                     isLoading={playerState.isLoading || playerState.bufferUnderrun}
                     isPlaying={playerState.shouldPlay}
-                    currentTime={playerState.currentTime}
+                    currentTime={playerState.scrubbingAt !== undefined ?
+                                 playerState.scrubbingAt : playerState.currentTime}
                     bufferedEnd={playerState.bufferedEnd}
                     duration={playerState.duration}
-                    isScrubbing={playerState.isScrubbing}
-                    isSeeking={playerState.isSeeking}
 
                     onPlayButtonClick={actions.togglePlaying}
-                    onSeekStart={actions.scrubbingStarted}
+                    onScrub={actions.scrubTo}
                     onSeek={actions.seekTo}
-                    onSeekEnd={actions.scrubbingEnded}
 
                     onMouseEnter={actions.controlsEntered}
                     onMouseLeave={actions.controlsLeft}

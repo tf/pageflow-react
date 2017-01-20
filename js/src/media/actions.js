@@ -5,10 +5,9 @@ export const PLAY = 'MEDIA_PLAY';
 export const PLAY_AND_FADE_IN = 'MEDIA_PLAY_AND_FADE_IN';
 export const PAUSE = 'MEDIA_PAUSE';
 export const FADE_OUT_AND_PAUSE = 'MEDIA_FADE_OUT_AND_PAUSE';
-export const SEEK_TO = 'MEDIA_SEEK_TO';
 
-export const SCRUBBING_STARTED = 'MEDIA_SCRUBBING_STARTED';
-export const SCRUBBING_ENDED = 'MEDIA_SCRUBBING_ENDED';
+export const SCRUB_TO = 'MEDIA_SCRUB_TO';
+export const SEEK_TO = 'MEDIA_SEEK_TO';
 
 export const PREBUFFER = 'MEDIA_PREBUFFER';
 export const PREBUFFERED = 'MEDIA_PREBUFFERED';
@@ -64,6 +63,13 @@ export function actionCreators({scope = 'default'} = {}) {
       });
     },
 
+
+    scrubTo(time) {
+      return pageAction(SCRUB_TO, {
+        time
+      });
+    },
+
     seekTo(time) {
       return pageAction(SEEK_TO, {
         time
@@ -90,15 +96,6 @@ export function actionCreators({scope = 'default'} = {}) {
 
     bufferUnderrunContinue() {
       return pageAction(BUFFER_UNDERRUN_CONTINUE);
-    },
-
-
-    scrubbingStarted() {
-      return pageAction(SCRUBBING_STARTED);
-    },
-
-    scrubbingEnded() {
-      return pageAction(SCRUBBING_STARTED);
     },
 
 

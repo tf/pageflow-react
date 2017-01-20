@@ -9,8 +9,6 @@ export default class ProgressSlider extends React.Component {
     super(props, context);
 
     this.state = {
-      isScrubbing: false,
-      scrubbingAt: false,
       handleWidth: null,
       progressHolderWidth: null
     };
@@ -24,17 +22,14 @@ export default class ProgressSlider extends React.Component {
     };
 
     this.handleStop = (mouseEvent, dragEvent) => {
-      this.handleDrag(mouseEvent, dragEvent);
-      this.setState({isScrubbing: false});
+      if (this.props.onSeek) {
+        this.props.onSeek(this.positionToTime(dragEvent.x));
+      }
     };
 
     this.handleDrag = (mouseEvent, dragEvent) => {
-      if (this.props.onSeek && this.props.duration && this.state.progressHolderWidth) {
-        const fraction = Math.max(0, Math.min(1, dragEvent.x / this.state.progressHolderWidth));
-        const scrubbingAt = fraction * this.props.duration;
-
-        this.setState({scrubbingAt, isScrubbing: true});
-        this.props.onSeek(scrubbingAt);
+      if (this.props.onScrub) {
+        this.props.onScrub(this.positionToTime(dragEvent.x));
       }
     };
 
@@ -48,9 +43,20 @@ export default class ProgressSlider extends React.Component {
         destination = Math.min(this.props.currentTime + 1, this.props.duration || Infinity);
       }
 
-      this.props.onSeek(destination);
-      this.setState({scrubbingAt: destination});
+      if (this.prop.onSeek) {
+        this.props.onSeek(destination);
+      }
     };
+  }
+
+  positionToTime(x) {
+    if (this.props.duration && this.state.progressHolderWidth) {
+      const fraction = Math.max(0, Math.min(1, x / this.state.progressHolderWidth));
+      return fraction * this.props.duration;
+    }
+    else {
+      return 0;
+    }
   }
 
   render() {
@@ -90,8 +96,7 @@ export default class ProgressSlider extends React.Component {
   }
 
   playProgress() {
-    const currentTime = (this.props.isSeeking || this.state.isScrubbing) ? this.state.scrubbingAt : this.props.currentTime;
-    return this.props.duration > 0 ? (currentTime / this.props.duration) : 0;
+    return this.props.duration > 0 ? (this.props.currentTime / this.props.duration) : 0;
   }
 }
 
