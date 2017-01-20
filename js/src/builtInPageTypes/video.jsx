@@ -11,6 +11,7 @@ import {playerState, playerActions} from 'media/selectors';
 import {pageAttributes, pageAttribute} from 'pages/selectors';
 import {t} from 'i18n/selectors';
 import {file} from 'files/selectors';
+import {has} from 'utils/selectors';
 
 import {combine} from 'utils';
 
@@ -50,7 +51,10 @@ export function register() {
     )(VideoPage),
 
     reduxModules: [
-      mediaReduxModule({hideControls: true})
+      mediaReduxModule({
+        hideControls: true,
+        playsInNativePlayer: has('native video player')
+      })
     ]
   });
 }
