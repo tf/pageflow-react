@@ -2,7 +2,7 @@ import {actionCreators} from './actions';
 import {nestedFiles} from 'files/selectors';
 import {pageState} from 'pages/selectors';
 import {setting} from 'settings/selectors';
-import {t} from 'i18n/selectors';
+import {t, locale} from 'i18n/selectors';
 
 import {bindActionCreators} from 'redux';
 
@@ -18,32 +18,60 @@ export function playerActions({scope = 'default'} = {}) {
 
 export function textTracks({file,
                             defaultTextTrackFileId = () => {}}) {
-  const settingsSelector = setting({property: 'textTrack'});
+  const textTrackSettingsSelector = setting({property: 'textTrack'});
+  const volumeSelector = setting({property: 'volume'});
   const filesSelector = nestedFiles('textTrackFiles', {
     parent: file
   });
 
   return (state, props) => {
-    const settings = settingsSelector(state, props) || {};
-    const files = filesSelector(state, props);
+    const textTrackSettings = textTrackSettingsSelector(state, props) || {};
     const translate = t(state, props);
-    const defaultId = defaultTextTrackFileId(state, props);
+    const files = filesSelector(state, props).map(textTrackFile => ({
+      displayLabel: displayLabel(textTrackFile, translate),
+      ...textTrackFile
+    }));
+
+    const autoFile = autoTextTrackFile(files,
+                                       defaultTextTrackFileId(state, props),
+                                       locale(state),
+                                       volumeSelector(state, props));
 
     return {
-      files: files.map(textTrackFile => ({
-        displayLabel: displayLabel(textTrackFile, translate),
-        isDefault: defaultId && textTrackFile.id == defaultId,
-        ...textTrackFile
-      })).sort((file1, file2) =>
+      files: files.sort((file1, file2) =>
         file1.displayLabel.localeCompare(file2.displayLabel)
       ),
+      autoFile,
       activeFileId: getActiveTextTrackFileId(files,
-                                             defaultId,
-                                             settings),
-      mode: settings.kind == 'off' ? 'off' :
-            settings.kind ? 'user' : 'auto'
+                                             autoFile,
+                                             textTrackSettings),
+      mode: textTrackSettings.kind == 'off' ? 'off' :
+            textTrackSettings.kind ? 'user' : 'auto'
     };
   };
+}
+
+function autoTextTrackFile(textTrackFiles, defaultTextTrackFileId, locale, volume) {
+  if (defaultTextTrackFileId) {
+    const defaultTextTrackFile = textTrackFiles.find(textTrackFile =>
+      textTrackFile.id == defaultTextTrackFileId
+    );
+
+    if (defaultTextTrackFile) {
+      return defaultTextTrackFile;
+    }
+  }
+
+  const subtitlesInEntryLanguage = textTrackFiles.find(textTrackFile => {
+    return textTrackFile.kind == 'subtitles' &&
+           textTrackFile.srclang == locale;
+  });
+
+  const captionsForMutedVideo = volume == 0 && textTrackFiles.find(textTrackFile => {
+    return textTrackFile.kind == 'captions';
+  });
+
+  return subtitlesInEntryLanguage || captionsForMutedVideo;
 }
 
 function displayLabel(textTrackFile, t) {
@@ -52,7 +80,7 @@ function displayLabel(textTrackFile, t) {
            {defaultValue: t('pageflow.public.languages.unknown')});
 }
 
-function getActiveTextTrackFileId(textTrackFiles, defaultTextTrackFileId, options) {
+function getActiveTextTrackFileId(textTrackFiles, autoTextTrackFile, options) {
   if (options.kind == 'off') {
     return null;
   }
@@ -66,13 +94,7 @@ function getActiveTextTrackFileId(textTrackFiles, defaultTextTrackFileId, option
     return file.id;
   }
 
-  if (defaultTextTrackFileId) {
-    const defaultTextTrackFile = textTrackFiles.find(textTrackFile =>
-      textTrackFile.id == defaultTextTrackFileId
-    );
-
-    return defaultTextTrackFile && defaultTextTrackFile.id;
-  }
+  return autoTextTrackFile && autoTextTrackFile.id;
 }
 
 export function videoQualitySetting() {

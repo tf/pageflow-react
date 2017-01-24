@@ -37,7 +37,7 @@ describe('textTracks selector', () => {
         parent_file_id: 2004,
         parent_file_model_type: 'Pageflow::VideoFile',
         configuration: {
-          kind: 'captions',
+          kind: 'subtitles',
           srclang: 'en'
         }
       },
@@ -128,6 +128,33 @@ describe('textTracks selector', () => {
     expect(result.activeFileId).to.be.falsy;
   });
 
+  it('sets activeFileId to id of of first captions if mute', () => {
+    const state = sample({
+      files,
+      volume: 0,
+      locale: 'de'
+    });
+
+    const result = textTracks({
+      file: file('videoFiles', {id: 2004})
+    })(state);
+
+    expect(result).to.have.deep.property('activeFileId', 3002);
+  });
+
+  it('sets activeFileId to id of of subtitles matching entry locale', () => {
+    const state = sample({
+      files,
+      locale: 'en'
+    });
+
+    const result = textTracks({
+      file: file('videoFiles', {id: 2004})
+    })(state);
+
+    expect(result).to.have.deep.property('activeFileId', 3001);
+  });
+
   it('adds displayLabel', () => {
     const state = sample({files});
 
@@ -149,7 +176,9 @@ function sample({
     video_files: 'Pageflow::VideoFile',
     text_track_files: 'Pageflow::TextTrackFile'
   },
-  textTrack
+  textTrack,
+  volume,
+  locale = 'en'
 }) {
   let state;
   const reducer = combineReducers({
@@ -158,7 +187,7 @@ function sample({
     ...settingsReducers
   });
 
-  initI18nFromSeed({locale: 'en'}, action => {
+  initI18nFromSeed({locale}, action => {
     state = reducer(state, action);
   });
 
@@ -166,12 +195,16 @@ function sample({
     state = reducer(state, action);
   });
 
+  state.settings = {};
+
   if (textTrack) {
     const updateSettingsAction = updateTextTrackSettings(textTrack(state));
 
-    state.settings = {
-      [updateSettingsAction.payload.property]: updateSettingsAction.payload.value
-    };
+    state.settings[updateSettingsAction.payload.property] = updateSettingsAction.payload.value;
+  }
+
+  if (volume !== undefined) {
+    state.settings['volume'] = volume;
   }
 
   return state;

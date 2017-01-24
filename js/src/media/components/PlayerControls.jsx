@@ -101,7 +101,11 @@ function textTracksMenuItems(textTracks, t) {
 
   const autoItem = {
     value: 'auto',
-    label: t('pageflow.public.text_track_modes.auto'),
+    label: textTracks.autoFile ?
+           t('pageflow.public.text_track_modes.auto', {
+             label: textTracks.autoFile.displayLabel
+           }) :
+           t('pageflow.public.text_track_modes.auto_off'),
     active: textTracks.mode == 'auto'
   };
 
@@ -109,8 +113,6 @@ function textTracksMenuItems(textTracks, t) {
     return {
       value: textTrackFile.id,
       label: textTrackFile.displayLabel,
-      annotation: textTrackFile.isDefault ?
-                  t('pageflow.public.text_track_modes.auto_annotation') : '',
       active: textTracks.mode == 'user' &&
               textTrackFile.id == textTracks.activeFileId,
     };

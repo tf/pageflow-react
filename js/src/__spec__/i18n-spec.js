@@ -1,5 +1,5 @@
 import {initFromSeed, reducers} from 'i18n';
-import {t} from 'i18n/selectors';
+import {t, locale} from 'i18n/selectors';
 
 import {createStore, combineReducers} from 'redux';
 
@@ -25,5 +25,15 @@ describe('i18n', () => {
     t(store.getState())('some.key');
 
     expect(I18n.t).to.have.been.calledWith('some.key', {locale: 'fr'});
+  });
+
+  it('provides locale selector to fetch locale name', () => {
+    const store = createStore(combineReducers(reducers));
+
+    initFromSeed({locale: 'fr'}, store.dispatch);
+
+    const result = locale(store.getState());
+
+    expect(result).to.eq('fr');
   });
 });

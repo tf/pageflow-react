@@ -3,8 +3,8 @@ de:
     public:
       text_track_modes:
         none: "Aus"
-        auto: "Automatisch"
-        auto_annotation: "AUTO"
+        auto_off: "Automatisch (Aus)"
+        auto: "Auto (%{label})"
       open_audio: "Audio öffnen"
       open_video: "Video öffnen"
       text_tracks: "Untertitel"
