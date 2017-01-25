@@ -302,7 +302,7 @@ describe('createFilePlayer', () => {
       expect(mockPlayer.textTracks()[1].mode).to.eq('disabled');
     });
 
-    it('does not reset text track modes if they are unchanged to allow changes in native player', () => {
+    it('does not reset text track modes if browser has native video player', () => {
       const {FilePlayer, mockPlayer} = setup();
       const textTracks = {
         files: [
@@ -312,43 +312,11 @@ describe('createFilePlayer', () => {
         activeFileId: 5
       };
 
-      const wrapper = mount(<FilePlayer {...requiredProps}
-                                        textTracks={textTracks} />);
-
-      mockPlayer.textTracks()[1].mode = 'showing';
-      wrapper.setProps({
-        some: 'other'
-      });
-
-      expect(mockPlayer.textTracks()[1].mode).to.eq('showing');
-    });
-
-    it('dispatches action on pause to sync with text track changes made in native player', () => {
-      const {FilePlayer, mockPlayer} = setup();
-      const textTracks = {
-        files: [
-          {
-            id: 5,
-            srclang: 'en',
-            kind: 'captions',
-            urls: {vtt: 'some.vtt'},
-            isReady: true
-          }
-        ]
-      };
-      const updateTextTrackSettings = sinon.spy();
-
       mount(<FilePlayer {...requiredProps}
                         textTracks={textTracks}
-                        updateTextTrackSettings={updateTextTrackSettings} />);
+                        hasNativeVideoPlayer={true} />);
 
-      mockPlayer.textTracks()[0].mode = 'showing';
-      mockPlayer.trigger('pause');
-
-      expect(updateTextTrackSettings).to.have.been.calledWith({
-        srclang: 'en',
-        kind: 'captions'
-      });
+      expect(mockPlayer.textTracks()[0].mode).not.to.eq('showing');
     });
   });
 

@@ -1,6 +1,5 @@
-export function initTextTracks(player, updateTextTrackSettings, getActiveTexTrackFileId, getPosition) {
+export function initTextTracks(player, getActiveTexTrackFileId, getPosition) {
   player.on('pause', () => {
-    saveChangesMadeInNativePlayer(player, updateTextTrackSettings);
     updateOnNextPlay(player, getActiveTexTrackFileId, getPosition);
   });
 
@@ -35,17 +34,6 @@ function updateMode(player, activeTextTrackFileId) {
 
 function updatePosition(player, position) {
   player.updateCueLineSettings(position);
-}
-
-function saveChangesMadeInNativePlayer(player, updateTextTrackSettings) {
-  const showingTextTrack = [].slice.call(player.textTracks()).find(textTrack =>
-    textTrack.mode == 'showing'
-  );
-
-  updateTextTrackSettings(showingTextTrack ? {
-    srclang: showingTextTrack.language,
-    kind: showingTextTrack.kind
-  } : null);
 }
 
 export function textTracksFromFiles(textTrackFiles, textTracksEnabled) {

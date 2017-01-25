@@ -17,6 +17,7 @@ import {
 import {textTracks} from 'media/selectors';
 import {setting} from 'settings/selectors';
 import {prop} from 'selectors';
+import {has} from 'utils/selectors';
 
 import React from 'react';
 import {combine} from 'utils';
@@ -33,6 +34,9 @@ export default function({
     constructor(props, context) {
       super(props, context);
 
+      this.displaysTextTracksInNativePlayer =
+        this.props.hasNativeVideoPlayer && tagName == 'video';
+
       this.updateAtmoSettings();
 
       this.setupMediaTag = element => {
@@ -48,10 +52,11 @@ export default function({
                                   this.prevFileId,
                                   this.props.file.id);
 
-        initTextTracks(this.player,
-                       this.props.updateTextTrackSettings,
-                       () => this.props.textTracks.activeFileId,
-                       () => this.props.textTrackPosition);
+        if (!this.displaysTextTracksInNativePlayer) {
+          initTextTracks(this.player,
+                         () => this.props.textTracks.activeFileId,
+                         () => this.props.textTrackPosition);
+        }
 
         watchPlayer(this.player, this.props.playerActions);
 
@@ -75,10 +80,12 @@ export default function({
                                   this.props.playerActions,
                                   this.props.playsInline);
 
-      updateTextTracks(this.player,
-                       prevProps.textTracks.activeFileId,
-                       this.props.textTracks.activeFileId,
-                       this.props.textTrackPosition);
+      if (!this.displaysTextTracksInNativePlayer) {
+        updateTextTracks(this.player,
+                         prevProps.textTracks.activeFileId,
+                         this.props.textTracks.activeFileId,
+                         this.props.textTrackPosition);
+      }
 
       this.updateAtmoSettings();
     }
@@ -129,6 +136,7 @@ export default function({
         defaultTextTrackFileId: prop('defaultTextTrackFileId')
       }),
       quality: setting({property: 'videoQuality'}),
+      hasNativeVideoPlayer: has('native video player'),
       textTrackPosition
     }),
     {
