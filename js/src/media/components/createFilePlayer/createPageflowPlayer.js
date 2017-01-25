@@ -12,7 +12,7 @@ export default function createPageflowPlayer(
     textTrackSettings: false,
 
     html5: {
-      nativeCaptions: !isAudio && pageflow.browser.has('ios platform')
+      nativeCaptions: !isAudio && pageflow.browser.has('iphone platform')
     },
 
     bufferUnderrunWaiting: true,
