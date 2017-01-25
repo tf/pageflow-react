@@ -20405,10 +20405,15 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	exports.t = t;
+	exports.locale = locale;
 	function t(state) {
 	  return function (key, options) {
 	    return I18n.t(key, _extends({ locale: state.i18n.locale }, options));
 	  };
+	}
+
+	function locale(state) {
+	  return state.i18n.locale;
 	}
 
 /***/ },
@@ -20776,7 +20781,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	  var autoItem = {
 	    value: 'auto',
-	    label: t('pageflow.public.text_track_modes.auto'),
+	    label: textTracks.autoFile ? t('pageflow.public.text_track_modes.auto', {
+	      label: textTracks.autoFile.displayLabel
+	    }) : t('pageflow.public.text_track_modes.auto_off'),
 	    active: textTracks.mode == 'auto'
 	  };
 
@@ -20784,7 +20791,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    return {
 	      value: textTrackFile.id,
 	      label: textTrackFile.displayLabel,
-	      annotation: textTrackFile.isDefault ? t('pageflow.public.text_track_modes.auto_annotation') : '',
 	      active: textTracks.mode == 'user' && textTrackFile.id == textTracks.activeFileId
 	    };
 	  }));
@@ -20889,37 +20895,61 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      _ref3$defaultTextTrac = _ref3.defaultTextTrackFileId,
 	      defaultTextTrackFileId = _ref3$defaultTextTrac === undefined ? function () {} : _ref3$defaultTextTrac;
 
-	  var settingsSelector = (0, _selectors3.setting)({ property: 'textTrack' });
+	  var textTrackSettingsSelector = (0, _selectors3.setting)({ property: 'textTrack' });
+	  var volumeSelector = (0, _selectors3.setting)({ property: 'volume' });
 	  var filesSelector = (0, _selectors.nestedFiles)('textTrackFiles', {
 	    parent: file
 	  });
 
 	  return function (state, props) {
-	    var settings = settingsSelector(state, props) || {};
-	    var files = filesSelector(state, props);
+	    var textTrackSettings = textTrackSettingsSelector(state, props) || {};
 	    var translate = (0, _selectors4.t)(state, props);
-	    var defaultId = defaultTextTrackFileId(state, props);
+	    var files = filesSelector(state, props).map(function (textTrackFile) {
+	      return _extends({
+	        displayLabel: displayLabel(textTrackFile, translate)
+	      }, textTrackFile);
+	    });
+
+	    var autoFile = autoTextTrackFile(files, defaultTextTrackFileId(state, props), (0, _selectors4.locale)(state), volumeSelector(state, props));
 
 	    return {
-	      files: files.map(function (textTrackFile) {
-	        return _extends({
-	          displayLabel: displayLabel(textTrackFile, translate),
-	          isDefault: defaultId && textTrackFile.id == defaultId
-	        }, textTrackFile);
-	      }).sort(function (file1, file2) {
+	      files: files.sort(function (file1, file2) {
 	        return file1.displayLabel.localeCompare(file2.displayLabel);
 	      }),
-	      activeFileId: getActiveTextTrackFileId(files, defaultId, settings),
-	      mode: settings.kind == 'off' ? 'off' : settings.kind ? 'user' : 'auto'
+	      autoFile: autoFile,
+	      activeFileId: getActiveTextTrackFileId(files, autoFile, textTrackSettings),
+	      mode: textTrackSettings.kind == 'off' ? 'off' : textTrackSettings.kind ? 'user' : 'auto'
 	    };
 	  };
+	}
+
+	function autoTextTrackFile(textTrackFiles, defaultTextTrackFileId, locale, volume) {
+	  if (defaultTextTrackFileId) {
+	    var defaultTextTrackFile = textTrackFiles.find(function (textTrackFile) {
+	      return textTrackFile.id == defaultTextTrackFileId;
+	    });
+
+	    if (defaultTextTrackFile) {
+	      return defaultTextTrackFile;
+	    }
+	  }
+
+	  var subtitlesInEntryLanguage = textTrackFiles.find(function (textTrackFile) {
+	    return textTrackFile.kind == 'subtitles' && textTrackFile.srclang == locale;
+	  });
+
+	  var captionsForMutedVideo = volume == 0 && textTrackFiles.find(function (textTrackFile) {
+	    return textTrackFile.kind == 'captions';
+	  });
+
+	  return subtitlesInEntryLanguage || captionsForMutedVideo;
 	}
 
 	function displayLabel(textTrackFile, t) {
 	  return textTrackFile.label || t('pageflow.public.languages.' + textTrackFile.srclang || 'unknown', { defaultValue: t('pageflow.public.languages.unknown') });
 	}
 
-	function getActiveTextTrackFileId(textTrackFiles, defaultTextTrackFileId, options) {
+	function getActiveTextTrackFileId(textTrackFiles, autoTextTrackFile, options) {
 	  if (options.kind == 'off') {
 	    return null;
 	  }
@@ -20932,13 +20962,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    return file.id;
 	  }
 
-	  if (defaultTextTrackFileId) {
-	    var defaultTextTrackFile = textTrackFiles.find(function (textTrackFile) {
-	      return textTrackFile.id == defaultTextTrackFileId;
-	    });
-
-	    return defaultTextTrackFile && defaultTextTrackFile.id;
-	  }
+	  return autoTextTrackFile && autoTextTrackFile.id;
 	}
 
 	function videoQualitySetting() {
@@ -21364,6 +21388,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	      var _this = _possibleConstructorReturn(this, (FilePlayer.__proto__ || Object.getPrototypeOf(FilePlayer)).call(this, props, context));
 
+	      _this.displaysTextTracksInNativePlayer = _this.props.hasNativeVideoPlayer && tagName == 'video';
+
 	      _this.updateAtmoSettings();
 
 	      _this.setupMediaTag = function (element) {
@@ -21378,11 +21404,13 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	          return _this.props.playerState;
 	        }, _this.prevFileId, _this.props.file.id);
 
-	        (0, _textTracks.initTextTracks)(_this.player, _this.props.updateTextTrackSettings, function () {
-	          return _this.props.textTracks.activeFileId;
-	        }, function () {
-	          return _this.props.textTrackPosition;
-	        });
+	        if (!_this.displaysTextTracksInNativePlayer) {
+	          (0, _textTracks.initTextTracks)(_this.player, function () {
+	            return _this.props.textTracks.activeFileId;
+	          }, function () {
+	            return _this.props.textTrackPosition;
+	          });
+	        }
 
 	        (0, _watchPlayer2.default)(_this.player, _this.props.playerActions);
 
@@ -21405,7 +21433,9 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	        (0, _handlePlayerState.updatePlayer)(this.player, prevProps.playerState, this.props.playerState, this.props.playerActions, this.props.playsInline);
 
-	        (0, _textTracks.updateTextTracks)(this.player, prevProps.textTracks.activeFileId, this.props.textTracks.activeFileId, this.props.textTrackPosition);
+	        if (!this.displaysTextTracksInNativePlayer) {
+	          (0, _textTracks.updateTextTracks)(this.player, prevProps.textTracks.activeFileId, this.props.textTracks.activeFileId, this.props.textTrackPosition);
+	        }
 
 	        this.updateAtmoSettings();
 	      }
@@ -21457,6 +21487,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      defaultTextTrackFileId: (0, _selectors3.prop)('defaultTextTrackFileId')
 	    }),
 	    quality: (0, _selectors2.setting)({ property: 'videoQuality' }),
+	    hasNativeVideoPlayer: (0, _selectors4.has)('native video player'),
 	    textTrackPosition: textTrackPosition
 	  }), {
 	    updateTextTrackSettings: _actions.updateTextTrackSettings
@@ -21490,6 +21521,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	var _selectors2 = __webpack_require__(438);
 
 	var _selectors3 = __webpack_require__(433);
+
+	var _selectors4 = __webpack_require__(392);
 
 	var _react = __webpack_require__(304);
 
@@ -21729,7 +21762,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    textTrackSettings: false,
 
 	    html5: {
-	      nativeCaptions: !isAudio && pageflow.browser.has('ios platform')
+	      nativeCaptions: !isAudio && pageflow.browser.has('iphone platform')
 	    },
 
 	    bufferUnderrunWaiting: true,
@@ -21863,9 +21896,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	exports.initTextTracks = initTextTracks;
 	exports.updateTextTracks = updateTextTracks;
 	exports.textTracksFromFiles = textTracksFromFiles;
-	function initTextTracks(player, updateTextTrackSettings, getActiveTexTrackFileId, getPosition) {
+	function initTextTracks(player, getActiveTexTrackFileId, getPosition) {
 	  player.on('pause', function () {
-	    saveChangesMadeInNativePlayer(player, updateTextTrackSettings);
 	    updateOnNextPlay(player, getActiveTexTrackFileId, getPosition);
 	  });
 
@@ -21899,17 +21931,6 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 
 	function updatePosition(player, position) {
 	  player.updateCueLineSettings(position);
-	}
-
-	function saveChangesMadeInNativePlayer(player, updateTextTrackSettings) {
-	  var showingTextTrack = [].slice.call(player.textTracks()).find(function (textTrack) {
-	    return textTrack.mode == 'showing';
-	  });
-
-	  updateTextTrackSettings(showingTextTrack ? {
-	    srclang: showingTextTrack.language,
-	    kind: showingTextTrack.kind
-	  } : null);
 	}
 
 	function textTracksFromFiles(textTrackFiles, textTracksEnabled) {
