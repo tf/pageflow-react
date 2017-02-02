@@ -11,6 +11,8 @@ export default function createPageflowPlayer(
     errorDisplay: false,
     textTrackSettings: false,
 
+    poster: element.getAttribute('data-poster'),
+
     html5: {
       nativeCaptions: !isAudio && pageflow.browser.has('iphone platform')
     },

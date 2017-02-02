@@ -85,7 +85,7 @@ describe('createFilePlayer', () => {
 
       const wrapper = mount(<FilePlayer {...requiredProps} file={file} />);
 
-      expect(wrapper.render()).to.have.descendants('video[poster="some-poster.png"]');
+      expect(wrapper.render()).to.have.descendants('video[data-poster="some-poster.png"]');
     });
 
     it('renders media tag with ready text tracks from props', () => {

@@ -73,7 +73,7 @@ export default class MediaTag extends React.Component {
     mediaElement.setAttribute('alt', this.props.alt);
 
     if (this.props.poster) {
-      mediaElement.setAttribute('poster', this.props.poster);
+      mediaElement.setAttribute('data-poster', this.props.poster);
     }
 
     if (this.props.loop) {

@@ -34,10 +34,10 @@ describe('MediaTag', () => {
     expect(wrapper).to.have.descendants('track[src="some.vtt"]');
   });
 
-  it('renders poster attribute for given poster', () => {
+  it('renders data-poster attribute for given poster', () => {
     const wrapper = render(<MediaTag poster="http://example.com/poster.png" />);
 
-    expect(wrapper).to.have.descendants('video[poster*="poster.png"]');
+    expect(wrapper).to.have.descendants('video[data-poster*="poster.png"]');
   });
 
   it('renders loop attribute', () => {
@@ -73,7 +73,7 @@ describe('MediaTag', () => {
 
     wrapper.setProps({poster: 'http://example.com/poster.png'});
 
-    expect(wrapper.render()).to.have.descendants('video[poster*="poster.png"]');
+    expect(wrapper.render()).to.have.descendants('video[data-poster*="poster.png"]');
   });
 
   it('re-renders when track changes', () => {
