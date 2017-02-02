@@ -14,7 +14,9 @@ module Pageflow
       end
 
       def render(template, _)
-        template.render(File.join('pageflow', 'react', 'widget'), name: name)
+        template.render(File.join('pageflow', 'react', 'widget'),
+                        name: name,
+                        role: role)
       end
     end
   end
