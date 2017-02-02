@@ -21657,7 +21657,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	      mediaElement.setAttribute('alt', this.props.alt);
 
 	      if (this.props.poster) {
-	        mediaElement.setAttribute('poster', this.props.poster);
+	        mediaElement.setAttribute('data-poster', this.props.poster);
 	      }
 
 	      if (this.props.loop) {
@@ -21760,6 +21760,8 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    bigPlayButton: false,
 	    errorDisplay: false,
 	    textTrackSettings: false,
+
+	    poster: element.getAttribute('data-poster'),
 
 	    html5: {
 	      nativeCaptions: !isAudio && pageflow.browser.has('iphone platform')
