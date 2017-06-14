@@ -11635,11 +11635,7 @@ pageflow = typeof pageflow === "object" ? pageflow : {}; pageflow["react"] =
 	    'div',
 	    { className: wrapperClassNames(props) },
 	    header(props),
-	    React.createElement(
-	      'p',
-	      null,
-	      props.description
-	    )
+	    React.createElement('p', { dangerouslySetInnerHTML: { __html: props.description } })
 	  );
 
 	  function wrapperClassNames(props) {
